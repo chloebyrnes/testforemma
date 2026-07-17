@@ -20,8 +20,8 @@ const services = [
   },
   {
     tag: "04",
-    title: "Custom Software",
-    body: "When nothing off-the-shelf fits, we design and build something that does, from the ground up.",
+    title: "Custom Web Applications",
+    body: "Portals, dashboards, and business tools that go beyond a standard website, built when nothing off-the-shelf fits.",
   },
 ]
 
@@ -39,21 +39,21 @@ const sectionOrder = ["top", "services", "about", "pricing", "process", "contact
 const pricingTiers = [
   {
     tag: "01",
-    title: "Website",
-    price: "Starting at $X,XXX",
-    body: "A custom-designed site built to represent your business and bring in the right traffic.",
+    title: "Custom Website",
+    price: "Starting at $1,500",
+    body: "A custom-designed site built to represent your business and bring in the right traffic. More complex sites are quoted higher.",
     includes: ["Custom design, no templates", "Mobile-responsive build", "Up to 5 pages", "Basic SEO setup"],
   },
   {
     tag: "02",
     title: "Portal or Internal Tool",
-    price: "Starting at $XX,XXX",
-    body: "A purpose-built application for your team or your clients, designed around how you work.",
+    price: "Starting at $3,500",
+    body: "Covers straightforward tools like client portals, dashboards, admin systems, or business workflows. More complex functionality gets a custom quote.",
     includes: ["User accounts & permissions", "Custom dashboard", "Database integration", "Admin controls"],
   },
   {
     tag: "03",
-    title: "Custom Software",
+    title: "Custom Web Application",
     price: "Scoped individually",
     body: "For projects with no off-the-shelf equivalent. We scope it after we understand what you need.",
     includes: ["Discovery workshop", "Technical specification", "Dedicated design & dev team", "Ongoing support"],
@@ -116,14 +116,14 @@ const globalStyles = `
     box-shadow: 0 12px 24px rgba(66, 63, 47, 0.32);
   }
   .btn-secondary {
+    background-color: #C9AE99;
     border: 1px solid #423F2F;
     color: #423F2F;
-    transition: background-color 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
   .btn-secondary:hover {
-    background-color: #C9AE99;
-    border-color: #C9AE99;
     transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(66, 63, 47, 0.28);
   }
   .btn-arrow {
     display: inline-block;
@@ -420,7 +420,20 @@ function Nav() {
             aria-controls="primary-menu"
             className="flex items-center gap-3 rounded-sm border border-[#423F2F] px-4 py-2 font-mono text-xs uppercase tracking-[0.15em] text-[#423F2F] transition-all duration-200 hover:bg-[#423F2F] hover:text-[#F2EBDA] hover:-translate-y-0.5 focus-visible:outline-none"
           >
-            <span>{open ? "Close" : "Menu"}</span>
+            <span className="relative inline-block h-4 w-10">
+              <span
+                className="absolute inset-0 transition-opacity duration-300"
+                style={{ opacity: open ? 0 : 1 }}
+              >
+                Menu
+              </span>
+              <span
+                className="absolute inset-0 transition-opacity duration-300"
+                style={{ opacity: open ? 1 : 0 }}
+              >
+                Close
+              </span>
+            </span>
             <FlowerToggle open={open} />
           </button>
 
@@ -470,17 +483,16 @@ function Hero() {
       <div className="mt-10 grid items-start gap-14 lg:grid-cols-2">
         <div>
           <p className="max-w-xl text-base leading-relaxed text-[#423F2F]/80 sm:text-lg">
-            {COMPANY_NAME} is a design and development studio specializing in custom websites and
-            software solutions. We work with businesses from the initial idea through strategy,
-            UI/UX design, user flow, and development to create digital experiences that are both
-            beautiful and functional.
+            {COMPANY_NAME} is a design and development studio building custom websites, web
+            applications, and digital tools around the way your business works. We work with
+            businesses from the initial idea through strategy, UI/UX design, user flow, and
+            development to create experiences that are both thoughtful and functional.
           </p>
           <p className="mt-4 max-w-xl text-base leading-relaxed text-[#423F2F]/80 sm:text-lg">
             Whether you need a custom website, client portal, internal business tool, or
-            completely unique software solution, our design team helps structure your vision and
-            plan how it should look, feel, and function. From there, our development team brings
-            it to life, built specifically for your business, your customers, and the way you
-            work.
+            web-based application, our design team helps structure your vision and plan how it
+            should look, feel, and function. From there, our development team brings it to life,
+            built specifically for your business, your customers, and the way you work.
           </p>
           <div className="mt-9 flex flex-wrap gap-4">
             <a
@@ -512,26 +524,21 @@ function Hero() {
 
 function Services() {
   return (
-    <section id="services" className="relative border-t-4 border-[#BDB485] px-6 py-12 sm:px-10 sm:py-16" style={{ backgroundColor: "#F4EEDF" }}>
+    <section id="services" className="relative border-t-4 border-[#BDB485] px-6 py-12 sm:px-10 sm:py-16" style={{ backgroundColor: "#F1E8DA" }}>
       <div className="mx-auto max-w-6xl">
         <Reveal>
-          <div className="flex items-baseline justify-between gap-6">
-            <h2 className="font-display text-3xl text-[#423F2F] sm:text-4xl">What we build</h2>
-            <p className="hidden font-mono text-xs uppercase tracking-[0.2em] text-[#423F2F]/70 sm:block">
-              Scope 01-04
-            </p>
-          </div>
-          <span className="mt-3 block h-1 w-16 rounded-full bg-[#BDB485]" />
+          <h2 className="font-display text-3xl text-[#423F2F] sm:text-4xl">What we build</h2>
+          <span className="mt-3 block h-1 w-28 rounded-full bg-[#BDB485]" />
         </Reveal>
         <div className="mt-12 grid gap-px overflow-hidden border border-[#423F2F] bg-[#423F2F] sm:grid-cols-2">
           {services.map((s, i) => (
             <Reveal key={s.tag} delay={i * 90}>
               <div
-                className="service-card h-full bg-[#D5D6BA]/30 p-8"
-                style={{ "--accent": accentCycle[i % accentCycle.length] }}
+                className="service-card h-full p-8"
+                style={{ "--accent": accentCycle[i % accentCycle.length], backgroundColor: "#D5D6BA" }}
               >
                 <ImagePlaceholder label={`${s.title} example`} aspect="aspect-[4/3]" className="mb-5" />
-                <p className="font-mono text-xs uppercase tracking-[0.2em]" style={{ color: accentCycle[i % accentCycle.length] }}>
+                <p className="font-mono text-xs uppercase tracking-[0.2em]" style={{ color: "#423F2F" }}>
                   {s.tag}
                 </p>
                 <h3 className="mt-4 font-display text-2xl text-[#423F2F]">{s.title}</h3>
@@ -547,7 +554,7 @@ function Services() {
 
 function About() {
   return (
-    <section id="about" className="relative border-t-4 border-[#C9AE99] px-6 py-12 sm:px-10 sm:py-16" style={{ backgroundColor: "#F6F1E4" }}>
+    <section id="about" className="relative border-t-4 border-[#C9AE99] px-6 py-12 sm:px-10 sm:py-16" style={{ backgroundColor: "#EFE1D1" }}>
       <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
         <Reveal>
           <div>
@@ -555,7 +562,7 @@ function About() {
             <h2 className="mt-4 font-display text-3xl text-[#423F2F] sm:text-4xl">
               Design and development, under one roof.
             </h2>
-            <span className="mt-3 block h-1 w-16 rounded-full bg-[#C9AE99]" />
+            <span className="mt-3 block h-1 w-28 rounded-full bg-[#C9AE99]" />
             <ImagePlaceholder label="Studio / Team Photo" aspect="aspect-[4/5]" className="mt-8 max-w-sm" />
           </div>
         </Reveal>
@@ -571,6 +578,11 @@ function About() {
               should look, feel, and function before a line of code is written, and our developers
               build it exactly as planned, no translation lost along the way.
             </p>
+            <p>
+              That foundation comes from years of hands-on development experience, understanding
+              how sites need to be structured, how people move through them, and what's technically
+              feasible before a design decision gets made.
+            </p>
           </div>
         </Reveal>
       </div>
@@ -582,16 +594,11 @@ function Pricing() {
   const [openIndex, setOpenIndex] = useState(null)
 
   return (
-    <section id="pricing" className="relative border-t-4 border-[#BDB485] px-6 py-12 sm:px-10 sm:py-16" style={{ backgroundColor: "#F8F4E9" }}>
+    <section id="pricing" className="relative border-t-4 border-[#BDB485] px-6 py-12 sm:px-10 sm:py-16" style={{ backgroundColor: "#EDDAC8" }}>
       <div className="mx-auto max-w-6xl">
         <Reveal>
-          <div className="flex items-baseline justify-between gap-6">
-            <h2 className="font-display text-3xl text-[#423F2F] sm:text-4xl">Pricing</h2>
-            <p className="hidden font-mono text-xs uppercase tracking-[0.2em] text-[#423F2F]/70 sm:block">
-              Scope 01-03
-            </p>
-          </div>
-          <span className="mt-3 block h-1 w-16 rounded-full bg-[#BDB485]" />
+          <h2 className="font-display text-3xl text-[#423F2F] sm:text-4xl">Pricing</h2>
+          <span className="mt-3 block h-1 w-28 rounded-full bg-[#BDB485]" />
           <p className="mt-4 max-w-xl text-base leading-relaxed text-[#423F2F]/80">
             Every project is scoped after we understand what you're building. These ranges give
             you a starting point.
@@ -600,15 +607,15 @@ function Pricing() {
         <div className="mt-12 grid gap-px overflow-hidden border border-[#423F2F] bg-[#423F2F] sm:grid-cols-3">
           {pricingTiers.map((tier, i) => {
             const isOpen = openIndex === i
-            const accent = accentCycle[i % accentCycle.length]
+            const borderAccent = accentCycle[i % accentCycle.length]
             return (
               <Reveal key={tier.tag} delay={i * 90}>
                 <div
-                  className="pricing-card flex h-full flex-col bg-[#D5D6BA]/30 p-8"
-                  style={{ "--accent": accent }}
+                  className="pricing-card flex h-full flex-col p-8"
+                  style={{ "--accent": borderAccent, backgroundColor: "#D5D6BA" }}
                 >
                   <div>
-                    <p className="font-mono text-xs uppercase tracking-[0.2em]" style={{ color: accent }}>
+                    <p className="font-mono text-xs uppercase tracking-[0.2em]" style={{ color: "#423F2F" }}>
                       {tier.tag}
                     </p>
                     <h3 className="mt-4 font-display text-xl text-[#423F2F]">{tier.title}</h3>
@@ -621,7 +628,7 @@ function Pricing() {
                       onClick={() => setOpenIndex(isOpen ? null : i)}
                       aria-expanded={isOpen}
                       className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.15em] underline decoration-dotted underline-offset-4"
-                      style={{ color: accent }}
+                      style={{ color: "#423F2F" }}
                     >
                       {isOpen ? "Show Less" : "Learn More"}
                       <span
@@ -635,7 +642,7 @@ function Pricing() {
                       <ul className="mt-5 space-y-2 border-t border-[#423F2F]/30 pt-5">
                         {tier.includes.map((item) => (
                           <li key={item} className="flex items-start gap-2 text-sm text-[#423F2F]">
-                            <span className="mt-1 h-1.5 w-1.5 flex-none rounded-full" style={{ backgroundColor: accent }} />
+                            <span className="mt-1 h-1.5 w-1.5 flex-none rounded-full" style={{ backgroundColor: "#423F2F" }} />
                             {item}
                           </li>
                         ))}
@@ -654,11 +661,11 @@ function Pricing() {
 
 function Process() {
   return (
-    <section id="process" className="relative border-t-4 border-[#C9AE99] px-6 py-12 sm:px-10 sm:py-16" style={{ backgroundColor: "#FAF7EE" }}>
+    <section id="process" className="relative border-t-4 border-[#C9AE99] px-6 py-12 sm:px-10 sm:py-16" style={{ backgroundColor: "#EBD3BF" }}>
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <h2 className="font-display text-3xl text-[#423F2F] sm:text-4xl">How it comes together</h2>
-          <span className="mt-3 block h-1 w-16 rounded-full bg-[#C9AE99]" />
+          <span className="mt-3 block h-1 w-28 rounded-full bg-[#C9AE99]" />
           <p className="mt-4 max-w-xl text-base leading-relaxed text-[#423F2F]/80">
             Five stages, start to finish. Every project moves through the same sequence, so
             nothing gets built before it's been thought through.
@@ -668,7 +675,7 @@ function Process() {
           {process.map((p, i) => (
             <Reveal key={p.step} as="li" delay={i * 80} className="relative list-none pl-0">
               <div className="relative flex items-center gap-3">
-                <span className="font-mono text-sm" style={{ color: accentCycle[i % accentCycle.length] }}>
+                <span className="font-mono text-sm" style={{ color: "#423F2F" }}>
                   {p.step}
                 </span>
                 <span className="h-px flex-1" style={{ backgroundColor: accentCycle[i % accentCycle.length] }} />
@@ -690,7 +697,7 @@ function Process() {
 
 function ClosingCTA() {
   return (
-    <section id="contact" className="relative border-t border-[#C9AE99] px-6 py-16 sm:px-10 sm:py-20" style={{ backgroundColor: "#FCFAF3" }}>
+    <section id="contact" className="relative border-t border-[#C9AE99] px-6 py-16 sm:px-10 sm:py-20" style={{ backgroundColor: "#E9CCB6" }}>
       <Reveal className="relative mx-auto max-w-3xl text-center">
         <div className="relative">
           <CornerMarks color="#BDB485" />
@@ -715,7 +722,7 @@ function ClosingCTA() {
 
 function Footer() {
   return (
-    <footer className="border-t border-[#C9AE99] px-6 py-8 sm:px-10" style={{ backgroundColor: "#FEFCF8" }}>
+    <footer className="border-t border-[#C9AE99] px-6 py-8 sm:px-10" style={{ backgroundColor: "#E7C5AD" }}>
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 font-mono text-xs uppercase tracking-[0.15em] text-[#423F2F]/70 sm:flex-row">
         <span>{COMPANY_NAME}</span>
         <span>© {new Date().getFullYear()} All rights reserved</span>
@@ -735,7 +742,7 @@ export default function IndexPage() {
         className="pointer-events-none fixed inset-0"
         style={{
           background:
-            "radial-gradient(circle at 15% 10%, rgba(201,174,153,0.20), transparent 45%), radial-gradient(circle at 85% 70%, rgba(213,214,186,0.30), transparent 50%)",
+            "radial-gradient(circle at 15% 10%, rgba(201,174,153,0.10), transparent 45%), radial-gradient(circle at 85% 70%, rgba(213,214,186,0.14), transparent 50%)",
         }}
       />
       <Nav />
