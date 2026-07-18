@@ -8,6 +8,9 @@ import Layout, {
   CornerMarks,
   ImagePlaceholder,
   BlueprintDiagram,
+  WebsiteMockup,
+  PortalMockup,
+  InternalToolMockup,
 } from "../components/Layout"
 
 function Hero() {
@@ -71,7 +74,7 @@ function ServicesTeaser() {
     <section
       className="relative border-t-4 border-[#BDB485] px-6 py-12 sm:px-10 sm:py-16"
     >
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-screen-2xl">
         <Reveal>
           <h2 className="font-display text-3xl text-[#423F2F] sm:text-4xl">What we build</h2>
           <span className="mt-3 block h-1 w-28 rounded-full bg-[#BDB485]" />
@@ -84,7 +87,21 @@ function ServicesTeaser() {
                 className="service-card block h-full p-8 focus-visible:outline-none"
                 style={{ "--accent": accentCycle[i % accentCycle.length], backgroundColor: "#D5D6BA" }}
               >
-                <ImagePlaceholder label={`${s.title} example`} aspect="aspect-[4/3]" className="mb-5" />
+                {s.tag === "01" ? (
+                  <div className="mb-5" onClick={(e) => e.preventDefault()}>
+                    <WebsiteMockup />
+                  </div>
+                ) : s.tag === "02" ? (
+                  <div className="mb-5" onClick={(e) => e.preventDefault()}>
+                    <PortalMockup />
+                  </div>
+                ) : s.tag === "03" ? (
+                  <div className="mb-5" onClick={(e) => e.preventDefault()}>
+                    <InternalToolMockup />
+                  </div>
+                ) : (
+                  <img src={s.image} alt={`${s.title} diagram`} className="mb-5 aspect-[4/3] w-full object-cover" />
+                )}
                 <p className="font-mono text-xs uppercase tracking-[0.2em]" style={{ color: "#423F2F" }}>
                   {s.tag}
                 </p>
