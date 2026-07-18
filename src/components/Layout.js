@@ -181,12 +181,10 @@ const globalStyles = `
   }
 
   .reveal {
-    opacity: 0;
     transform: translateY(24px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
+    transition: transform 0.7s ease;
   }
   .reveal.visible {
-    opacity: 1;
     transform: translateY(0);
   }
 `
@@ -322,9 +320,15 @@ function FlowerToggle({ open }) {
 }
 
 export function ProcessDiagram() {
-  const nodes = [{ x: 90 }, { x: 280 }, { x: 470 }, { x: 660 }, { x: 850 }]
+  const nodes = [
+    { x: 90, label: "Idea" },
+    { x: 280, label: "Strategy" },
+    { x: 470, label: "Design" },
+    { x: 660, label: "User Flow" },
+    { x: 850, label: "Development" },
+  ]
   return (
-    <svg viewBox="0 0 940 190" className="w-full h-auto" fill="none" aria-hidden="true">
+    <svg viewBox="0 0 940 220" className="w-full h-auto" fill="none" aria-hidden="true">
       <path
         d="M90 110 L850 110"
         stroke="#423F2F"
@@ -390,6 +394,20 @@ export function ProcessDiagram() {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
+
+      {nodes.map((n) => (
+        <text
+          key={n.x}
+          x={n.x}
+          y={165}
+          textAnchor="middle"
+          fill="#423F2F"
+          fontSize="13"
+          fontFamily="Cormorant Garamond, serif"
+        >
+          {n.label}
+        </text>
+      ))}
     </svg>
   )
 }
@@ -550,7 +568,7 @@ export default function Layout({ children, currentPath = "/" }) {
     <main
       id="top"
       className="min-h-screen font-body text-[#423F2F] selection:bg-[#423F2F] selection:text-[#F2EBDA]"
-      style={{ backgroundColor: "#F2EBDA" }}
+      style={{ background: "linear-gradient(to bottom, #EDEFDA 0%, #F2EBDA 20%, #E7C5AD 100%)" }}
     >
       <style>{globalStyles}</style>
       <div

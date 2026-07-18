@@ -28,7 +28,6 @@ export default function PricingPage() {
 
       <section
         className="relative border-t-4 border-[#BDB485] px-6 py-12 sm:px-10 sm:py-16"
-        style={{ backgroundColor: "#F1E8DA" }}
       >
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-px overflow-hidden border border-[#423F2F] bg-[#423F2F] sm:grid-cols-3">
@@ -99,7 +98,6 @@ export default function PricingPage() {
 
       <section
         className="relative border-t border-[#C9AE99] px-6 py-16 sm:px-10 sm:py-20"
-        style={{ backgroundColor: "#EDDAC8" }}
       >
         <Reveal className="relative mx-auto max-w-3xl text-center">
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#423F2F]/70">Have a project in mind?</p>

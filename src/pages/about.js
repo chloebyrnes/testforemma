@@ -20,19 +20,29 @@ export default function AboutPage() {
           <Reveal delay={120}>
             <div className="space-y-5 text-base leading-relaxed text-[#423F2F]/80 sm:text-lg">
               <p>
-                {COMPANY_NAME} was built around a simple idea: the businesses that need custom
-                software rarely need a template, and they rarely need design and development
-                handled by two teams that never talk to each other.
+                At {COMPANY_NAME}, we create custom websites and web applications that are built
+                with care, purpose, and attention to detail. Every project is approached
+                individually, combining thoughtful design with modern development to create
+                digital experiences that feel intuitive, reliable, and built to last.
               </p>
               <p>
-                We keep design and development in the same room. Our designers plan how something
-                should look, feel, and function before a line of code is written, and our
-                developers build it exactly as planned, no translation lost along the way.
+                We believe every business deserves a digital presence that's designed specifically
+                for the way it operates. Rather than relying on templates or predefined solutions,
+                each website and application is carefully planned and developed from the ground
+                up, allowing every feature, interaction, and design decision to serve a clear
+                purpose.
               </p>
               <p>
-                That foundation comes from years of hands-on development experience, understanding
-                how sites need to be structured, how people move through them, and what's
-                technically feasible before a design decision gets made.
+                Design and development are never treated as separate parts of the process. They
+                work together from the very beginning, creating products that not only look
+                cohesive but also perform seamlessly behind the scenes. The result is a website or
+                application that feels polished, functions reliably, is simple to manage, and
+                continues to support your business as it evolves.
+              </p>
+              <p>
+                Whether you're starting from scratch or reimagining an existing website, our goal
+                is to create digital products that feel considered, dependable, and uniquely
+                yours.
               </p>
             </div>
           </Reveal>
@@ -41,7 +51,6 @@ export default function AboutPage() {
 
       <section
         className="relative border-t border-[#C9AE99] px-6 py-16 sm:px-10 sm:py-20"
-        style={{ backgroundColor: "#EDDAC8" }}
       >
         <Reveal className="relative mx-auto max-w-3xl text-center">
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#423F2F]/70">Let's get started</p>
