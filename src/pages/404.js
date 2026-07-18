@@ -1,49 +1,39 @@
-import * as React from "react"
+import React from "react"
 import { Link } from "gatsby"
+import Layout, { COMPANY_NAME, CornerMarks, CrosshairMark } from "../components/Layout"
 
-const pageStyles = {
-  color: "#232129",
-  padding: "96px",
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-}
-
-const paragraphStyles = {
-  marginBottom: 48,
-}
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
-
-const NotFoundPage = () => {
+export default function NotFoundPage() {
   return (
-    <main style={pageStyles}>
-      <h1 style={headingStyles}>Page not found</h1>
-      <p style={paragraphStyles}>
-        Sorry 😔, we couldn’t find what you were looking for.
-        <br />
-        {process.env.NODE_ENV === "development" ? (
-          <>
-            <br />
-            Try creating a page in <code style={codeStyles}>src/pages/</code>.
-            <br />
-          </>
-        ) : null}
-        <br />
-        <Link to="/">Go home</Link>.
-      </p>
-    </main>
+    <Layout currentPath="/404">
+      <section className="relative mx-auto flex min-h-[70vh] max-w-3xl flex-col items-center justify-center px-6 py-20 text-center sm:px-10">
+        <div className="relative mx-auto max-w-lg text-center">
+          <CornerMarks />
+          <CrosshairMark className="mx-auto h-10 w-10 text-[#423F2F]" />
+          <h1 className="mt-4 font-display text-4xl text-[#423F2F] sm:text-5xl">
+            This page hasn't been drafted yet.
+          </h1>
+          <p className="mt-3 font-script text-2xl text-[#423F2F] sm:text-3xl">
+            Let's get you back on track.
+          </p>
+          <p className="mt-6 max-w-md mx-auto text-base leading-relaxed text-[#423F2F]/80 sm:text-lg">
+            The page you're looking for doesn't exist, or it moved. Head back home and we'll
+            point you in the right direction.
+          </p>
+          <div className="mt-9 flex flex-wrap justify-center gap-4">
+            <Link
+              to="/"
+              className="btn-primary group inline-flex items-center gap-2 rounded-sm px-7 py-3 font-mono text-xs uppercase tracking-[0.15em] focus-visible:outline-none"
+            >
+              Go Home
+              <span className="btn-arrow">→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+    </Layout>
   )
 }
 
-export default NotFoundPage
-
-export const Head = () => <title>Not found</title>
+export function Head() {
+  return <title>Page Not Found | {COMPANY_NAME}</title>
+}
