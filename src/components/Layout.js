@@ -1,15 +1,13 @@
 import React, { useState, useEffect, useRef } from "react"
 import { Link } from "gatsby"
-import websiteDiagram from "../images/websitediagram.png"
-import clientPortalDiagram from "../images/clientportaldiagram.png"
-import internalToolDiagram from "../images/internaltooldiagram.png"
-import webAppDiagram from "../images/webappdiagram.png"
+import ashLogo from "../images/ashlogo.png"
 
-export const COMPANY_NAME = "[Company Name]"
+export const COMPANY_NAME = "Ash Studio"
 
 export const navLinks = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
+  { label: "Portfolio", href: "/portfolio" },
   { label: "Process", href: "/process" },
   { label: "About", href: "/about" },
   { label: "Pricing", href: "/pricing" },
@@ -30,7 +28,6 @@ export const services = [
     tag: "01",
     title: "Custom Websites",
     contactType: "Custom Website",
-    image: websiteDiagram,
     body: "Marketing sites, product sites, and everything in between, designed to represent your business and built to perform.",
     detail:
       "A website built from scratch around your business, not squeezed into a template. We handle everything from the initial layout and content structure through responsive design, SEO basics, and a clean handoff so it's easy to maintain.",
@@ -39,7 +36,6 @@ export const services = [
     tag: "02",
     title: "Client Portals",
     contactType: "Client Portal",
-    image: clientPortalDiagram,
     body: "Give the people you work with a place to log in, track progress, and get what they need without a phone call.",
     detail:
       "A secure, branded space for your clients to log in, see status updates, download files, or submit information. We design the flow around what your clients actually need to see, not a generic dashboard template.",
@@ -48,7 +44,6 @@ export const services = [
     tag: "03",
     title: "Internal Tools",
     contactType: "Internal Tool",
-    image: internalToolDiagram,
     body: "Software your team uses behind the scenes, like inventory trackers, scheduling systems, or reporting dashboards, built to fit how you actually work.",
     detail:
       "Internal tools are the software your team relies on daily but customers never see, things like inventory systems, scheduling tools, order tracking, or reporting dashboards. Spreadsheets and off-the-shelf tools only get you so far. We build tools shaped around your team's actual process, so the tool fits the work instead of the other way around.",
@@ -57,7 +52,6 @@ export const services = [
     tag: "04",
     title: "Custom Web Applications",
     contactType: "Custom Web Application",
-    image: webAppDiagram,
     body: "Portals, dashboards, and business tools that go beyond a standard website, built when nothing off-the-shelf fits.",
     detail:
       "For projects that don't fit neatly into 'website' or 'internal tool,' we scope and build custom web applications from the ground up, covering everything from the initial technical plan to a finished, working product.",
@@ -99,68 +93,84 @@ export const process = [
   { step: "05", title: "Development", body: "We build it, custom code, made for your business." },
 ]
 
-export const accentCycle = ["#423F2F", "#BDB485"]
+export const accentCycle = ["#434A2F", "#7A8755"]
 
 const globalStyles = `
-  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Cormorant+Garamond:wght@500;600;700&family=Pinyon+Script&family=Space+Grotesk:wght@500;600;700&family=Playfair+Display:wght@500;600;700&family=Poppins:wght@400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Cormorant+Garamond:wght@500;600;700&family=Pinyon+Script&family=Space+Grotesk:wght@500;600;700&family=Playfair+Display:wght@500;600;700&family=Poppins:wght@400;500;600&family=Bodoni+Moda:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Quicksand:wght@500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap');
 
   html, body, #___gatsby, #gatsby-focus-wrapper {
-    background-color: #F2EBDA;
+    background-color: #F5F5F5;
   }
-  .font-display { font-family: 'Cormorant Garamond', serif; }
-  .font-script { font-family: 'Pinyon Script', cursive; }
+  .font-display { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 500; letter-spacing: -0.01em; }
+  .font-script { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400; }
   .font-mono { font-family: 'IBM Plex Mono', monospace; }
   .font-body { font-family: 'Inter', sans-serif; }
 
   .menu-panel {
-    background-color: #C9AE99;
-    border: 2px solid #423F2F;
-    box-shadow: 0 10px 24px rgba(66, 63, 47, 0.2);
+    background-color: #E2D5C4;
+    box-shadow: -8px 0 40px rgba(67, 74, 47, 0.25);
   }
   .menu-link {
-    display: block;
-    color: #423F2F;
+    color: #434A2F;
     border-left: 3px solid transparent;
-    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   }
   .menu-link:hover,
   .menu-link:focus-visible {
-    background-color: #F2EBDA;
-    color: #423F2F;
-    border-left-color: #423F2F;
+    background-color: #F5F5F5;
+    color: #434A2F;
+    border-left-color: #434A2F;
     outline: none;
   }
   .menu-link.active {
-    background-color: #D5D6BA;
-    border-left-color: #423F2F;
+    background-color: #B8A89E;
+    border-left-color: #434A2F;
     font-weight: 600;
+  }
+  .menu-link-label {
+    display: inline-block;
+    transition: transform 0.25s ease;
+  }
+  .menu-link:hover .menu-link-label {
+    transform: translateX(4px);
+  }
+  .menu-link-arrow {
+    display: inline-block;
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  .menu-link:hover .menu-link-arrow {
+    opacity: 1;
+    transform: translateX(0);
   }
 
   a:focus-visible,
   button:focus-visible {
-    outline: 2px solid #423F2F;
+    outline: 2px solid #434A2F;
     outline-offset: 2px;
   }
 
   .btn-primary {
-    background-color: #423F2F;
-    color: #F2EBDA;
+    background-color: #434A2F;
+    color: #F5F5F5;
     transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
   .btn-primary:hover {
-    background-color: #5A5540;
+    background-color: #363D26;
     transform: translateY(-2px);
-    box-shadow: 0 12px 24px rgba(66, 63, 47, 0.32);
+    box-shadow: 0 12px 24px rgba(67, 74, 47, 0.32);
   }
   .btn-secondary {
-    background-color: #C9AE99;
-    border: 1px solid #423F2F;
-    color: #423F2F;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background-color: transparent;
+    border: 1px solid #434A2F;
+    color: #434A2F;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
   .btn-secondary:hover {
+    background-color: #E2D5C4;
     transform: translateY(-2px);
-    box-shadow: 0 12px 24px rgba(66, 63, 47, 0.28);
+    box-shadow: 0 12px 24px rgba(67, 74, 47, 0.28);
   }
   .btn-arrow {
     display: inline-block;
@@ -172,20 +182,35 @@ const globalStyles = `
   }
 
   .service-card, .pricing-card {
-    border-left: 4px solid var(--accent, #423F2F);
+    border-left: 4px solid var(--accent, #434A2F);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
   .service-card:hover, .pricing-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 18px 34px rgba(66, 63, 47, 0.18);
+    box-shadow: 0 18px 34px rgba(67, 74, 47, 0.18);
   }
 
   .back-to-top {
     transition: opacity 0.25s ease, transform 0.25s ease, background-color 0.2s ease;
   }
   .back-to-top:hover {
-    background-color: #5A5540;
+    background-color: #363D26;
     transform: translateY(-3px);
+  }
+
+  @keyframes menu-orbit-cw {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes menu-orbit-ccw {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+  }
+  .menu-orbit-cw {
+    animation: menu-orbit-cw 6s linear infinite;
+  }
+  .menu-orbit-ccw {
+    animation: menu-orbit-ccw 3.5s linear infinite;
   }
 
   .reveal {
@@ -243,7 +268,7 @@ export function CrosshairMark({ className = "", style = {} }) {
   )
 }
 
-export function CornerMarks({ color = "#423F2F" }) {
+export function CornerMarks({ color = "#434A2F" }) {
   const base = "absolute h-5 w-5"
   return (
     <>
@@ -257,7 +282,7 @@ export function CornerMarks({ color = "#423F2F" }) {
 
 export function WatercolorWash({ aspect = "aspect-[20/7]", className = "" }) {
   return (
-    <div className={`relative w-full overflow-hidden ${aspect} ${className}`} style={{ backgroundColor: "#F2EBDA" }}>
+    <div className={`relative w-full overflow-hidden ${aspect} ${className}`} style={{ backgroundColor: "#F5F5F5" }}>
       <svg viewBox="0 0 1600 560" className="absolute inset-0 h-full w-full" preserveAspectRatio="xMidYMid slice">
         <defs>
           <filter id="wc-rough" x="-20%" y="-20%" width="140%" height="140%">
@@ -276,12 +301,12 @@ export function WatercolorWash({ aspect = "aspect-[20/7]", className = "" }) {
           </filter>
         </defs>
 
-        <ellipse cx="260" cy="180" rx="360" ry="220" fill="#D5D6BA" opacity="0.55" filter="url(#wc-rough)" />
-        <ellipse cx="1300" cy="420" rx="420" ry="260" fill="#C9AE99" opacity="0.55" filter="url(#wc-rough)" />
-        <ellipse cx="820" cy="80" rx="300" ry="160" fill="#BDB485" opacity="0.45" filter="url(#wc-rough2)" />
-        <ellipse cx="1150" cy="120" rx="220" ry="150" fill="#D5D6BA" opacity="0.4" filter="url(#wc-rough2)" />
-        <ellipse cx="480" cy="440" rx="280" ry="180" fill="#C9AE99" opacity="0.4" filter="url(#wc-rough2)" />
-        <ellipse cx="60" cy="480" rx="220" ry="150" fill="#BDB485" opacity="0.35" filter="url(#wc-rough)" />
+        <ellipse cx="260" cy="180" rx="360" ry="220" fill="#E2D5C4" opacity="0.55" filter="url(#wc-rough)" />
+        <ellipse cx="1300" cy="420" rx="420" ry="260" fill="#B8A89E" opacity="0.55" filter="url(#wc-rough)" />
+        <ellipse cx="820" cy="80" rx="300" ry="160" fill="#7A8755" opacity="0.45" filter="url(#wc-rough2)" />
+        <ellipse cx="1150" cy="120" rx="220" ry="150" fill="#E2D5C4" opacity="0.4" filter="url(#wc-rough2)" />
+        <ellipse cx="480" cy="440" rx="280" ry="180" fill="#B8A89E" opacity="0.4" filter="url(#wc-rough2)" />
+        <ellipse cx="60" cy="480" rx="220" ry="150" fill="#7A8755" opacity="0.35" filter="url(#wc-rough)" />
 
         <rect x="0" y="0" width="1600" height="560" filter="url(#wc-grain)" />
       </svg>
@@ -305,13 +330,13 @@ const lightBlueWhitePalette = {
 const mockupPalettes = [
   {
     name: "Default",
-    bg: "#F2EBDA",
+    bg: "#F5F5F5",
     surface: "#FEFEFB",
-    ink: "#423F2F",
-    a1: "#D5D6BA",
-    a2: "#C9AE99",
-    a3: "#BDB485",
-    font: "'Cormorant Garamond', serif",
+    ink: "#434A2F",
+    a1: "#E2D5C4",
+    a2: "#B8A89E",
+    a3: "#7A8755",
+    font: "'Plus Jakarta Sans', sans-serif",
     layout: "classic",
     align: "left",
   },
@@ -451,7 +476,7 @@ export function WebsiteMockup() {
   return (
     <div>
       <div className="mb-1 flex flex-wrap items-center gap-2">
-        <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[#423F2F]/60">Try a style:</span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[#434A2F]/60">Try a style:</span>
         {mockupPalettes.map((pal, idx) => (
           <button
             key={pal.name}
@@ -462,20 +487,20 @@ export function WebsiteMockup() {
             })}
             className="flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.08em] transition-colors"
             style={{
-              borderColor: "#423F2F",
-              backgroundColor: idx === paletteIndex ? "#423F2F" : "transparent",
-              color: idx === paletteIndex ? "#F2EBDA" : "#423F2F",
+              borderColor: "#434A2F",
+              backgroundColor: idx === paletteIndex ? "#434A2F" : "transparent",
+              color: idx === paletteIndex ? "#F5F5F5" : "#434A2F",
             }}
           >
             <span
               className="h-2.5 w-2.5 rounded-full border"
-              style={{ backgroundColor: pal.ink, borderColor: idx === paletteIndex ? "#F2EBDA" : "#423F2F" }}
+              style={{ backgroundColor: pal.ink, borderColor: idx === paletteIndex ? "#F5F5F5" : "#434A2F" }}
             />
             {pal.name}
           </button>
         ))}
       </div>
-      <p className="mb-3 font-mono text-[9px] italic text-[#423F2F]/50">
+      <p className="mb-3 font-mono text-[9px] italic text-[#434A2F]/50">
         Just examples, we'll design something unique for your brand.
       </p>
 
@@ -688,7 +713,7 @@ export function PortalMockup() {
   return (
     <div>
       <div className="mb-1 flex flex-wrap items-center gap-2">
-        <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[#423F2F]/60">Try a style:</span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[#434A2F]/60">Try a style:</span>
         {portalPalettes.map((pal, idx) => (
           <button
             key={pal.name}
@@ -696,20 +721,20 @@ export function PortalMockup() {
             onClick={stop(() => setPaletteIndex(idx))}
             className="flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.08em] transition-colors"
             style={{
-              borderColor: "#423F2F",
-              backgroundColor: idx === paletteIndex ? "#423F2F" : "transparent",
-              color: idx === paletteIndex ? "#F2EBDA" : "#423F2F",
+              borderColor: "#434A2F",
+              backgroundColor: idx === paletteIndex ? "#434A2F" : "transparent",
+              color: idx === paletteIndex ? "#F5F5F5" : "#434A2F",
             }}
           >
             <span
               className="h-2.5 w-2.5 rounded-full border"
-              style={{ backgroundColor: pal.ink, borderColor: idx === paletteIndex ? "#F2EBDA" : "#423F2F" }}
+              style={{ backgroundColor: pal.ink, borderColor: idx === paletteIndex ? "#F5F5F5" : "#434A2F" }}
             />
             {pal.name}
           </button>
         ))}
       </div>
-      <p className="mb-3 font-mono text-[9px] italic text-[#423F2F]/50">
+      <p className="mb-3 font-mono text-[9px] italic text-[#434A2F]/50">
         Just examples, we'll design something unique for your brand.
       </p>
 
@@ -898,7 +923,7 @@ export function InternalToolMockup() {
   return (
     <div>
       <div className="mb-1 flex flex-wrap items-center gap-2">
-        <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[#423F2F]/60">Try a style:</span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[#434A2F]/60">Try a style:</span>
         {toolPalettes.map((pal, idx) => (
           <button
             key={pal.name}
@@ -906,20 +931,20 @@ export function InternalToolMockup() {
             onClick={stop(() => setPaletteIndex(idx))}
             className="flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.08em] transition-colors"
             style={{
-              borderColor: "#423F2F",
-              backgroundColor: idx === paletteIndex ? "#423F2F" : "transparent",
-              color: idx === paletteIndex ? "#F2EBDA" : "#423F2F",
+              borderColor: "#434A2F",
+              backgroundColor: idx === paletteIndex ? "#434A2F" : "transparent",
+              color: idx === paletteIndex ? "#F5F5F5" : "#434A2F",
             }}
           >
             <span
               className="h-2.5 w-2.5 rounded-full border"
-              style={{ backgroundColor: pal.ink, borderColor: idx === paletteIndex ? "#F2EBDA" : "#423F2F" }}
+              style={{ backgroundColor: pal.ink, borderColor: idx === paletteIndex ? "#F5F5F5" : "#434A2F" }}
             />
             {pal.name}
           </button>
         ))}
       </div>
-      <p className="mb-3 font-mono text-[9px] italic text-[#423F2F]/50">
+      <p className="mb-3 font-mono text-[9px] italic text-[#434A2F]/50">
         Just examples, we'll design something unique for your business.
       </p>
 
@@ -1142,7 +1167,7 @@ export function WebAppMockup() {
   return (
     <div>
       <div className="mb-1 flex flex-wrap items-center gap-2">
-        <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[#423F2F]/60">Try a style:</span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[#434A2F]/60">Try a style:</span>
         {mockupPalettes.map((pal, idx) => (
           <button
             key={pal.name}
@@ -1153,20 +1178,20 @@ export function WebAppMockup() {
             })}
             className="flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.08em] transition-colors"
             style={{
-              borderColor: "#423F2F",
-              backgroundColor: idx === paletteIndex ? "#423F2F" : "transparent",
-              color: idx === paletteIndex ? "#F2EBDA" : "#423F2F",
+              borderColor: "#434A2F",
+              backgroundColor: idx === paletteIndex ? "#434A2F" : "transparent",
+              color: idx === paletteIndex ? "#F5F5F5" : "#434A2F",
             }}
           >
             <span
               className="h-2.5 w-2.5 rounded-full border"
-              style={{ backgroundColor: pal.ink, borderColor: idx === paletteIndex ? "#F2EBDA" : "#423F2F" }}
+              style={{ backgroundColor: pal.ink, borderColor: idx === paletteIndex ? "#F5F5F5" : "#434A2F" }}
             />
             {pal.name}
           </button>
         ))}
       </div>
-      <p className="mb-3 font-mono text-[9px] italic text-[#423F2F]/50">
+      <p className="mb-3 font-mono text-[9px] italic text-[#434A2F]/50">
         Just examples, we'll design something unique for your app.
       </p>
 
@@ -1320,14 +1345,14 @@ export function WebAppMockup() {
 export function ImagePlaceholder({ label, aspect = "aspect-[16/9]", className = "" }) {
   return (
     <div
-      className={`flex ${aspect} w-full flex-col items-center justify-center gap-2 border-2 border-dashed border-[#423F2F] bg-[#D5D6BA]/40 ${className}`}
+      className={`flex ${aspect} w-full flex-col items-center justify-center gap-2 border-2 border-dashed border-[#434A2F] bg-[#E2D5C4]/40 ${className}`}
     >
-      <svg viewBox="0 0 24 24" className="h-6 w-6 text-[#423F2F]" fill="none" aria-hidden="true">
+      <svg viewBox="0 0 24 24" className="h-6 w-6 text-[#434A2F]" fill="none" aria-hidden="true">
         <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" strokeWidth="1.4" />
         <circle cx="8.5" cy="9.5" r="1.6" stroke="currentColor" strokeWidth="1.4" />
         <path d="M4 17 L9 12 L13 16 L16 13 L20 17" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
-      <span className="px-2 text-center font-mono text-[10px] uppercase tracking-[0.15em] text-[#423F2F]">
+      <span className="px-2 text-center font-mono text-[10px] uppercase tracking-[0.15em] text-[#434A2F]">
         {label}
       </span>
     </div>
@@ -1335,54 +1360,35 @@ export function ImagePlaceholder({ label, aspect = "aspect-[16/9]", className = 
 }
 
 function FlowerToggle({ open }) {
-  const petalAngles = [0, 60, 120, 180, 240, 300]
   return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
+    <svg viewBox="0 0 24 24" className="h-5 w-5 sm:h-6 sm:w-6" fill="none" aria-hidden="true">
       <path
-        d="M12 14 L12 21"
+        d="M4 8 H20"
         stroke="currentColor"
-        strokeWidth="1.2"
+        strokeWidth="1.4"
         strokeLinecap="round"
-        style={{ transition: "opacity 0.3s ease", opacity: open ? 0 : 1 }}
-      />
-      <ellipse
-        cx="12"
-        cy="9"
-        rx="3"
-        ry="5.2"
-        fill="currentColor"
-        style={{
-          transformOrigin: "12px 9px",
-          transition: "opacity 0.3s ease, transform 0.3s ease",
-          opacity: open ? 0 : 1,
-          transform: open ? "scale(0.4)" : "scale(1)",
-        }}
-      />
-      {petalAngles.map((deg, idx) => (
-        <ellipse
-          key={deg}
-          cx="12"
-          cy="12"
-          rx="2"
-          ry="4.6"
-          fill="#C9AE99"
-          style={{
-            transformOrigin: "12px 12px",
-            transform: open ? `rotate(${deg}deg) translateY(-5px) scale(1)` : `rotate(${deg}deg) translateY(-1px) scale(0)`,
-            opacity: open ? 1 : 0,
-            transition: `transform 0.35s ease ${idx * 30}ms, opacity 0.3s ease ${idx * 30}ms`,
-          }}
-        />
-      ))}
-      <circle
-        cx="12"
-        cy="12"
-        r="2"
-        fill="#423F2F"
         style={{
           transformOrigin: "12px 12px",
-          transition: "transform 0.3s ease 0.15s",
-          transform: open ? "scale(1)" : "scale(0)",
+          transition: "transform 0.3s ease",
+          transform: open ? "translateY(4px) rotate(45deg)" : "translateY(0) rotate(0deg)",
+        }}
+      />
+      <path
+        d="M4 12 H20"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+        style={{ transition: "opacity 0.2s ease", opacity: open ? 0 : 1 }}
+      />
+      <path
+        d="M4 16 H20"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+        style={{
+          transformOrigin: "12px 12px",
+          transition: "transform 0.3s ease",
+          transform: open ? "translateY(-4px) rotate(-45deg)" : "translateY(0) rotate(0deg)",
         }}
       />
     </svg>
@@ -1401,7 +1407,7 @@ export function ProcessDiagram() {
     <svg viewBox="0 0 940 220" className="w-full h-auto" fill="none" aria-hidden="true">
       <path
         d="M90 110 L850 110"
-        stroke="#423F2F"
+        stroke="#434A2F"
         strokeWidth="1.5"
         strokeDasharray="6 6"
       />
@@ -1409,7 +1415,7 @@ export function ProcessDiagram() {
         <path
           key={n.x}
           d={`M${n.x - 18} 104 L${n.x - 4} 110 L${n.x - 18} 116`}
-          stroke="#423F2F"
+          stroke="#434A2F"
           strokeWidth="1.5"
           fill="none"
         />
@@ -1420,14 +1426,14 @@ export function ProcessDiagram() {
             cx={n.x}
             cy={110}
             r="26"
-            fill={i === nodes.length - 1 ? "#423F2F" : "#D5D6BA"}
-            stroke="#423F2F"
+            fill={i === nodes.length - 1 ? "#434A2F" : "#E2D5C4"}
+            stroke="#434A2F"
             strokeWidth="1.5"
           />
         </g>
       ))}
 
-      <g stroke="#423F2F" strokeWidth="1.4" strokeLinecap="round" fill="none">
+      <g stroke="#434A2F" strokeWidth="1.4" strokeLinecap="round" fill="none">
         <path d={`M${nodes[0].x} 96 L${nodes[0].x} 100`} />
         <path d={`M${nodes[0].x} 120 L${nodes[0].x} 124`} />
         <path d={`M${nodes[0].x - 12} 110 L${nodes[0].x - 8} 110`} />
@@ -1436,12 +1442,12 @@ export function ProcessDiagram() {
         <path d={`M${nodes[0].x + 5} 117 L${nodes[0].x + 8} 120`} />
       </g>
 
-      <circle cx={nodes[1].x} cy="110" r="7" stroke="#423F2F" strokeWidth="1.4" fill="none" />
-      <circle cx={nodes[1].x} cy="110" r="2" fill="#423F2F" />
+      <circle cx={nodes[1].x} cy="110" r="7" stroke="#434A2F" strokeWidth="1.4" fill="none" />
+      <circle cx={nodes[1].x} cy="110" r="2" fill="#434A2F" />
 
       <path
         d={`M${nodes[2].x - 7} 117 L${nodes[2].x + 6} 104 L${nodes[2].x + 10} 108 L${nodes[2].x - 3} 121 Z`}
-        stroke="#423F2F"
+        stroke="#434A2F"
         strokeWidth="1.2"
         fill="none"
         strokeLinejoin="round"
@@ -1449,7 +1455,7 @@ export function ProcessDiagram() {
 
       <path
         d={`M${nodes[3].x - 10} 110 L${nodes[3].x + 6} 110 M${nodes[3].x + 1} 104 L${nodes[3].x + 8} 110 L${nodes[3].x + 1} 116`}
-        stroke="#423F2F"
+        stroke="#434A2F"
         strokeWidth="1.4"
         fill="none"
         strokeLinecap="round"
@@ -1458,7 +1464,7 @@ export function ProcessDiagram() {
 
       <path
         d={`M${nodes[4].x - 10} 104 L${nodes[4].x - 16} 110 L${nodes[4].x - 10} 116 M${nodes[4].x + 10} 104 L${nodes[4].x + 16} 110 L${nodes[4].x + 10} 116`}
-        stroke="#F2EBDA"
+        stroke="#F5F5F5"
         strokeWidth="1.4"
         fill="none"
         strokeLinecap="round"
@@ -1471,7 +1477,7 @@ export function ProcessDiagram() {
           x={n.x}
           y={165}
           textAnchor="middle"
-          fill="#423F2F"
+          fill="#434A2F"
           fontSize="13"
           fontFamily="Cormorant Garamond, serif"
         >
@@ -1482,23 +1488,67 @@ export function ProcessDiagram() {
   )
 }
 
+export function StageIcon({ index, light = false }) {
+  const stroke = light ? "#F5F5F5" : "#434A2F"
+  const icons = [
+    <g key="idea" stroke={stroke} strokeWidth="1.4" strokeLinecap="round">
+      <path d="M12 2v4M12 20v4M2 12h4M20 12h4M5.5 5.5l2.8 2.8M15.7 15.7l2.8 2.8" />
+    </g>,
+    <g key="strategy">
+      <circle cx="12" cy="12" r="7" stroke={stroke} strokeWidth="1.4" fill="none" />
+      <circle cx="12" cy="12" r="2" fill={stroke} />
+    </g>,
+    <path
+      key="design"
+      d="M6 18 L16 8 L19 11 L9 21 L5 21 Z"
+      stroke={stroke}
+      strokeWidth="1.3"
+      fill="none"
+      strokeLinejoin="round"
+    />,
+    <path
+      key="flow"
+      d="M4 12 H16 M11 6 L18 12 L11 18"
+      stroke={stroke}
+      strokeWidth="1.4"
+      fill="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />,
+    <path
+      key="dev"
+      d="M8 6 L2 12 L8 18 M16 6 L22 12 L16 18"
+      stroke={stroke}
+      strokeWidth="1.4"
+      fill="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />,
+  ]
+  return (
+    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
+      {icons[index]}
+    </svg>
+  )
+}
+
 export function BlueprintDiagram() {
   return (
     <svg viewBox="0 0 900 280" className="w-full h-auto" fill="none" aria-hidden="true">
-      <rect x="20" y="20" width="240" height="200" fill="#D5D6BA" stroke="#423F2F" strokeWidth="1.25" strokeDasharray="4 4" />
-      <g stroke="#423F2F" strokeWidth="1.25">
+      <rect x="20" y="20" width="240" height="200" fill="#E2D5C4" stroke="#434A2F" strokeWidth="1.25" strokeDasharray="4 4" />
+      <g stroke="#434A2F" strokeWidth="1.25">
         <path d="M40 60 q10 -6 24 2 t22 -4 q14 10 28 -2" strokeDasharray="3 3" />
         <path d="M50 90 q30 20 60 4" strokeDasharray="3 3" />
         <circle cx="130" cy="50" r="14" strokeDasharray="2 3" />
         <path d="M60 130 l140 0" strokeDasharray="3 3" />
       </g>
-      <text x="30" y="245" fill="#423F2F" fontSize="12" fontFamily="IBM Plex Mono, monospace" letterSpacing="1">A / IDEA</text>
+      <text x="30" y="245" fill="#434A2F" fontSize="12" fontFamily="IBM Plex Mono, monospace" letterSpacing="1">A / IDEA</text>
 
-      <path d="M275 120 L320 120" stroke="#423F2F" strokeWidth="1.5" strokeDasharray="4 4" />
-      <path d="M312 114 L322 120 L312 126" stroke="#423F2F" strokeWidth="1.5" fill="none" />
+      <path d="M275 120 L320 120" stroke="#434A2F" strokeWidth="1.5" strokeDasharray="4 4" />
+      <path d="M312 114 L322 120 L312 126" stroke="#434A2F" strokeWidth="1.5" fill="none" />
 
-      <rect x="330" y="20" width="240" height="200" fill="#D5D6BA" stroke="#423F2F" strokeWidth="1.25" strokeDasharray="4 4" />
-      <g stroke="#7A7550" strokeWidth="1.5">
+      <rect x="330" y="20" width="240" height="200" fill="#E2D5C4" stroke="#434A2F" strokeWidth="1.25" strokeDasharray="4 4" />
+      <g stroke="#5C6640" strokeWidth="1.5">
         <rect x="350" y="40" width="200" height="24" />
         <rect x="350" y="76" width="90" height="60" />
         <rect x="450" y="76" width="100" height="28" />
@@ -1506,20 +1556,20 @@ export function BlueprintDiagram() {
         <rect x="350" y="148" width="200" height="18" />
         <rect x="350" y="176" width="120" height="18" />
       </g>
-      <text x="340" y="245" fill="#7A7550" fontSize="12" fontFamily="IBM Plex Mono, monospace" letterSpacing="1">B / DESIGN</text>
+      <text x="340" y="245" fill="#5C6640" fontSize="12" fontFamily="IBM Plex Mono, monospace" letterSpacing="1">B / DESIGN</text>
 
-      <path d="M585 120 L630 120" stroke="#423F2F" strokeWidth="1.5" strokeDasharray="4 4" />
-      <path d="M622 114 L632 120 L622 126" stroke="#423F2F" strokeWidth="1.5" fill="none" />
+      <path d="M585 120 L630 120" stroke="#434A2F" strokeWidth="1.5" strokeDasharray="4 4" />
+      <path d="M622 114 L632 120 L622 126" stroke="#434A2F" strokeWidth="1.5" fill="none" />
 
-      <rect x="640" y="20" width="240" height="200" fill="#423F2F" stroke="#BDB485" strokeWidth="1.5" />
-      <rect x="660" y="40" width="200" height="24" rx="3" fill="#F2EBDA" />
-      <rect x="660" y="76" width="90" height="60" rx="3" fill="#7A7550" />
-      <rect x="660" y="76" width="90" height="60" rx="3" fill="none" stroke="#C9AE99" />
-      <rect x="760" y="76" width="100" height="28" rx="3" fill="#C9AE99" />
-      <rect x="760" y="112" width="100" height="24" rx="3" fill="#2A281C" stroke="#C9AE99" />
-      <rect x="660" y="148" width="200" height="18" rx="3" fill="#2A281C" />
-      <rect x="660" y="176" width="120" height="18" rx="9" fill="#C9AE99" />
-      <text x="650" y="245" fill="#423F2F" fontSize="12" fontFamily="IBM Plex Mono, monospace" letterSpacing="1">C / BUILT</text>
+      <rect x="640" y="20" width="240" height="200" fill="#434A2F" stroke="#7A8755" strokeWidth="1.5" />
+      <rect x="660" y="40" width="200" height="24" rx="3" fill="#F5F5F5" />
+      <rect x="660" y="76" width="90" height="60" rx="3" fill="#5C6640" />
+      <rect x="660" y="76" width="90" height="60" rx="3" fill="none" stroke="#B8A89E" />
+      <rect x="760" y="76" width="100" height="28" rx="3" fill="#B8A89E" />
+      <rect x="760" y="112" width="100" height="24" rx="3" fill="#2B301C" stroke="#B8A89E" />
+      <rect x="660" y="148" width="200" height="18" rx="3" fill="#2B301C" />
+      <rect x="660" y="176" width="120" height="18" rx="9" fill="#B8A89E" />
+      <text x="650" y="245" fill="#434A2F" fontSize="12" fontFamily="IBM Plex Mono, monospace" letterSpacing="1">C / BUILT</text>
     </svg>
   )
 }
@@ -1540,11 +1590,14 @@ function Nav({ currentPath }) {
   }, [open])
 
   return (
-    <header className="relative z-30 mx-auto max-w-6xl px-6 py-6 sm:px-10">
-      <div className="flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 font-mono text-sm uppercase tracking-[0.2em] text-[#423F2F]">
-          <CrosshairMark className="h-5 w-5 text-[#423F2F]" />
-          {COMPANY_NAME}
+    <header className="relative z-[60] mx-auto max-w-6xl px-6 py-6 sm:px-10">
+      <div className="flex flex-wrap items-center justify-between gap-y-3">
+        <Link to="/" className="-ml-3 flex items-center text-[#434A2F] sm:-ml-4">
+          <img
+            src={ashLogo}
+            alt={COMPANY_NAME}
+            className="h-14 w-auto opacity-100 transition-opacity duration-300 hover:opacity-70 sm:h-20 md:h-24"
+          />
         </Link>
         <div className="relative" ref={menuRef}>
           <button
@@ -1552,9 +1605,9 @@ function Nav({ currentPath }) {
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="primary-menu"
-            className="flex items-center gap-3 rounded-sm border border-[#423F2F] px-4 py-2 font-mono text-xs uppercase tracking-[0.15em] text-[#423F2F] transition-all duration-200 hover:bg-[#423F2F] hover:text-[#F2EBDA] hover:-translate-y-0.5 focus-visible:outline-none"
+            className="flex items-center gap-3 rounded-sm border border-[#434A2F] px-5 py-3 font-mono text-xs uppercase tracking-[0.15em] text-[#434A2F] transition-all duration-200 hover:bg-[#434A2F] hover:text-[#F5F5F5] hover:-translate-y-0.5 focus-visible:outline-none sm:px-6 sm:py-3.5 sm:text-sm"
           >
-            <span className="relative inline-block h-4 w-10">
+            <span className="relative inline-block h-4 w-10 sm:h-5 sm:w-12">
               <span
                 className="absolute inset-0 transition-opacity duration-300"
                 style={{ opacity: open ? 0 : 1 }}
@@ -1571,23 +1624,47 @@ function Nav({ currentPath }) {
             <FlowerToggle open={open} />
           </button>
 
-          {open && (
-            <nav id="primary-menu" className="menu-panel absolute right-0 top-full mt-2 w-56 py-2">
-              {navLinks.map((link) => {
-                const isActive = link.href === currentPath
-                return (
-                  <Link
-                    key={link.href}
-                    to={link.href}
-                    onClick={() => setOpen(false)}
-                    className={`menu-link px-5 py-3 font-mono text-xs uppercase tracking-[0.15em] ${isActive ? "active" : ""}`}
-                  >
-                    {link.label}
-                  </Link>
-                )
-              })}
-            </nav>
-          )}
+          <div
+            className="fixed inset-0 z-40 bg-[#434A2F] transition-opacity duration-400"
+            style={{
+              opacity: open ? 0.35 : 0,
+              pointerEvents: open ? "auto" : "none",
+            }}
+            onClick={() => setOpen(false)}
+          />
+
+          <nav
+            id="primary-menu"
+            className="menu-panel fixed inset-y-0 right-0 z-50 flex w-[85vw] max-w-xs flex-col justify-center gap-2 py-10 sm:w-96 sm:max-w-none"
+            style={{
+              opacity: open ? 1 : 0,
+              transform: open ? "translateX(0)" : "translateX(60px)",
+              filter: open ? "blur(0px)" : "blur(6px)",
+              pointerEvents: open ? "auto" : "none",
+              transition: "opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease",
+            }}
+          >
+            {navLinks.map((link, idx) => {
+              const isActive = link.href === currentPath
+              return (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  onClick={() => setOpen(false)}
+                  className={`menu-link group flex items-center justify-between px-10 py-4 font-mono text-base uppercase tracking-[0.2em] ${isActive ? "active" : ""}`}
+                  style={{
+                    transitionDelay: open ? `${idx * 40}ms` : "0ms",
+                  }}
+                >
+                  <span className="flex items-baseline gap-3">
+                    <span className="text-xs opacity-40">0{idx + 1}</span>
+                    <span className="menu-link-label">{link.label}</span>
+                  </span>
+                  <span className="menu-link-arrow">→</span>
+                </Link>
+              )
+            })}
+          </nav>
         </div>
       </div>
     </header>
@@ -1596,8 +1673,8 @@ function Nav({ currentPath }) {
 
 function Footer() {
   return (
-    <footer className="border-t border-[#C9AE99] px-6 py-5 sm:px-10" style={{ backgroundColor: "#E7C5AD" }}>
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 font-mono text-xs uppercase tracking-[0.15em] text-[#423F2F]/70 sm:flex-row sm:gap-4">
+    <footer className="border-t border-[#B8A89E] px-6 py-5 sm:px-10" style={{ backgroundColor: "#E2D5C4" }}>
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 font-mono text-xs uppercase tracking-[0.15em] text-[#434A2F]/70 sm:flex-row sm:gap-4">
         <span>{COMPANY_NAME}</span>
         <span>© {new Date().getFullYear()} All rights reserved</span>
       </div>
@@ -1621,8 +1698,8 @@ function BackToTop() {
       aria-label="Back to top"
       className="back-to-top fixed bottom-6 right-6 z-40 flex h-11 w-11 items-center justify-center rounded-full font-mono text-sm"
       style={{
-        backgroundColor: "#423F2F",
-        color: "#F2EBDA",
+        backgroundColor: "#434A2F",
+        color: "#F5F5F5",
         opacity: show ? 1 : 0,
         pointerEvents: show ? "auto" : "none",
         transform: show ? "translateY(0)" : "translateY(12px)",
@@ -1637,15 +1714,15 @@ export default function Layout({ children, currentPath = "/" }) {
   return (
     <main
       id="top"
-      className="min-h-screen font-body text-[#423F2F] selection:bg-[#423F2F] selection:text-[#F2EBDA]"
-      style={{ background: "linear-gradient(to bottom, #EDEFDA 0%, #F2EBDA 20%, #E7C5AD 100%)" }}
+      className="min-h-screen font-body text-[#434A2F] selection:bg-[#434A2F] selection:text-[#F5F5F5]"
+      style={{ background: "linear-gradient(to bottom, #F5F5F5 0%, #F5F5F5 35%, #E2D5C4 100%)" }}
     >
       <style>{globalStyles}</style>
       <div
         className="pointer-events-none fixed inset-0"
         style={{
           background:
-            "radial-gradient(circle at 15% 10%, rgba(201,174,153,0.10), transparent 45%), radial-gradient(circle at 85% 70%, rgba(213,214,186,0.14), transparent 50%)",
+            "radial-gradient(circle at 15% 10%, rgba(0,0,0,0.035), transparent 45%), radial-gradient(circle at 85% 70%, rgba(0,0,0,0.03), transparent 50%)",
         }}
       />
       <Nav currentPath={currentPath} />

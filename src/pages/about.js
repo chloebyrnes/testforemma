@@ -9,16 +9,16 @@ export default function AboutPage() {
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <Reveal>
             <div>
-              <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#423F2F]/70">About</p>
-              <h1 className="mt-4 font-display text-4xl text-[#423F2F] sm:text-5xl">
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#434A2F]/70">About</p>
+              <h1 className="mt-4 font-display text-4xl text-[#434A2F] sm:text-5xl [text-wrap:balance]">
                 Design and development, under one roof.
               </h1>
-              <span className="mt-3 block h-1 w-28 rounded-full bg-[#C9AE99]" />
+              <span className="mt-3 block h-1 w-28 rounded-full bg-[#B8A89E]" />
               <ImagePlaceholder label="Studio / Team Photo" aspect="aspect-[4/5]" className="mt-8 max-w-sm" />
             </div>
           </Reveal>
           <Reveal delay={120}>
-            <div className="space-y-5 text-base leading-relaxed text-[#423F2F]/80 sm:text-lg">
+            <div className="space-y-5 text-base leading-relaxed text-[#434A2F]/80 sm:text-lg">
               <p>
                 At {COMPANY_NAME}, we create custom websites and web applications that are built
                 with care, purpose, and attention to detail. Every project is approached
@@ -50,11 +50,11 @@ export default function AboutPage() {
       </section>
 
       <section
-        className="relative border-t border-[#C9AE99] px-6 py-16 sm:px-10 sm:py-20"
+        className="relative border-t border-[#B8A89E] px-6 py-16 sm:px-10 sm:py-20"
       >
-        <Reveal className="relative mx-auto max-w-3xl text-center">
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#423F2F]/70">Let's get started</p>
-          <h2 className="mt-5 font-display text-3xl leading-tight text-[#423F2F] sm:text-4xl">
+        <Reveal className="relative mx-auto max-w-4xl text-center">
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#434A2F]/70">Let's get started</p>
+          <h2 className="mt-5 font-display text-2xl leading-tight text-[#434A2F] sm:text-3xl xl:whitespace-nowrap [text-wrap:balance]">
             Have an idea? Let's put it on paper, then build it.
           </h2>
           <div className="mt-9 flex flex-wrap justify-center gap-4">

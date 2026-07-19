@@ -8,14 +8,14 @@ export default function NotFoundPage() {
       <section className="relative mx-auto flex min-h-[70vh] max-w-3xl flex-col items-center justify-center px-6 py-20 text-center sm:px-10">
         <div className="relative mx-auto max-w-lg text-center">
           <CornerMarks />
-          <CrosshairMark className="mx-auto h-10 w-10 text-[#423F2F]" />
-          <h1 className="mt-4 font-display text-4xl text-[#423F2F] sm:text-5xl">
+          <CrosshairMark className="mx-auto h-10 w-10 text-[#111111]" />
+          <h1 className="mt-4 font-display text-4xl text-[#111111] sm:text-5xl">
             This page hasn't been drafted yet.
           </h1>
-          <p className="mt-3 font-script text-2xl text-[#423F2F] sm:text-3xl">
+          <p className="mt-3 font-script text-2xl text-[#111111] sm:text-3xl">
             Let's get you back on track.
           </p>
-          <p className="mt-6 max-w-md mx-auto text-base leading-relaxed text-[#423F2F]/80 sm:text-lg">
+          <p className="mt-6 max-w-md mx-auto text-base leading-relaxed text-[#111111]/80 sm:text-lg">
             The page you're looking for doesn't exist, or it moved. Head back home and we'll
             point you in the right direction.
           </p>

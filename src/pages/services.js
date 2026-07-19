@@ -1,23 +1,29 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link } from "gatsby"
-import Layout, { COMPANY_NAME, services, accentCycle, Reveal, ImagePlaceholder, WebsiteMockup, PortalMockup, InternalToolMockup, WebAppMockup } from "../components/Layout"
+import Layout, { COMPANY_NAME, services, accentCycle, Reveal, WebsiteMockup, PortalMockup, InternalToolMockup, WebAppMockup } from "../components/Layout"
+
+const mockupComponents = {
+  "01": WebsiteMockup,
+  "02": PortalMockup,
+  "03": InternalToolMockup,
+  "04": WebAppMockup,
+}
 
 export default function ServicesPage() {
+  const [openTags, setOpenTags] = useState([])
+
+  const toggle = (tag) => {
+    setOpenTags((tags) => (tags.includes(tag) ? tags.filter((t) => t !== tag) : [...tags, tag]))
+  }
+
   return (
     <Layout currentPath="/services">
       <section className="relative mx-auto max-w-6xl px-6 pb-6 pt-12 sm:px-10 sm:pt-16">
-        <div className="relative mb-10">
-          <ImagePlaceholder label="Services Header Image (recommended 1600x700)" aspect="aspect-[20/7]" />
-          <div
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-20 sm:h-28"
-            style={{ background: "linear-gradient(to bottom, rgba(242,235,218,0) 0%, #F2EBDA 100%)" }}
-          />
-        </div>
         <Reveal>
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#423F2F]/70">Services</p>
-          <h1 className="mt-4 font-display text-4xl text-[#423F2F] sm:text-5xl">What we build</h1>
-          <span className="mt-3 block h-1 w-28 rounded-full bg-[#BDB485]" />
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-[#423F2F]/80 sm:text-lg">
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#434A2F]/70">Services</p>
+          <h1 className="mt-4 font-display text-4xl text-[#434A2F] sm:text-5xl [text-wrap:balance]">What we build</h1>
+          <span className="mt-3 block h-1 w-28 rounded-full bg-[#7A8755]" />
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-[#434A2F]/80 sm:text-lg">
             Four ways we typically work with businesses, from a straightforward marketing site to
             a fully custom web application. Every project starts with a conversation about what
             you actually need.
@@ -25,57 +31,59 @@ export default function ServicesPage() {
         </Reveal>
       </section>
 
-      <section
-        className="relative border-t-4 border-[#BDB485] px-6 py-12 sm:px-10 sm:py-16"
-      >
-        <div className="mx-auto max-w-screen-2xl">
-          <div className="grid gap-px overflow-hidden border border-[#423F2F] bg-[#423F2F] sm:grid-cols-2">
-            {services.map((s, i) => (
+      <section className="relative border-t-4 border-[#7A8755] px-6 py-12 sm:px-10 sm:py-16">
+        <div className="mx-auto max-w-6xl space-y-px overflow-hidden border border-[#434A2F] bg-[#434A2F]">
+          {services.map((s, i) => {
+            const isOpen = openTags.includes(s.tag)
+            const Mockup = mockupComponents[s.tag]
+            const accent = accentCycle[i % accentCycle.length]
+            return (
               <Reveal key={s.tag} delay={i * 90}>
-                <Link
-                  to={`/contact?type=${encodeURIComponent(s.contactType)}`}
-                  className="service-card block h-full p-8 focus-visible:outline-none"
-                  style={{ "--accent": accentCycle[i % accentCycle.length], backgroundColor: "#D5D6BA" }}
-                >
-                  {s.tag === "01" ? (
-                    <div className="mb-5" onClick={(e) => e.preventDefault()}>
-                      <WebsiteMockup />
+                <div className="p-8" style={{ backgroundColor: "#E2D5C4", borderLeft: `4px solid ${accent}` }}>
+                  <div className="flex flex-wrap items-start justify-between gap-6">
+                    <div className="max-w-2xl">
+                      <p className="font-mono text-xs uppercase tracking-[0.2em]" style={{ color: accent }}>
+                        {s.tag}
+                      </p>
+                      <h2 className="mt-3 font-display text-2xl text-[#434A2F] sm:text-3xl">{s.title}</h2>
+                      <p className="mt-3 text-sm leading-relaxed text-[#434A2F]/80 sm:text-base">{s.detail}</p>
+                      <Link
+                        to={`/contact?type=${encodeURIComponent(s.contactType)}`}
+                        className="mt-5 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.15em] text-[#434A2F] underline decoration-dotted underline-offset-4"
+                      >
+                        Get a quote
+                        <span>→</span>
+                      </Link>
                     </div>
-                  ) : s.tag === "02" ? (
-                    <div className="mb-5" onClick={(e) => e.preventDefault()}>
-                      <PortalMockup />
-                    </div>
-                  ) : s.tag === "03" ? (
-                    <div className="mb-5" onClick={(e) => e.preventDefault()}>
-                      <InternalToolMockup />
-                    </div>
-                  ) : (
-                    <div className="mb-5" onClick={(e) => e.preventDefault()}>
-                      <WebAppMockup />
+                    <button
+                      type="button"
+                      onClick={() => toggle(s.tag)}
+                      aria-expanded={isOpen}
+                      className="btn-secondary hidden flex-none rounded-sm px-5 py-2.5 font-mono text-xs uppercase tracking-[0.15em] focus-visible:outline-none sm:inline-flex"
+                    >
+                      {isOpen ? "Hide Examples ▲" : "View Examples ▾"}
+                    </button>
+                    <p className="font-mono text-xs italic text-[#434A2F]/60 sm:hidden">
+                      Interactive examples are best viewed on desktop.
+                    </p>
+                  </div>
+
+                  {isOpen && (
+                    <div className="mt-8 hidden border-t pt-8 sm:block" style={{ borderColor: "#434A2F33" }}>
+                      <Mockup />
                     </div>
                   )}
-                  <p className="font-mono text-xs uppercase tracking-[0.2em]" style={{ color: "#423F2F" }}>
-                    {s.tag}
-                  </p>
-                  <h2 className="mt-4 font-display text-2xl text-[#423F2F]">{s.title}</h2>
-                  <p className="mt-3 text-sm leading-relaxed text-[#423F2F]/80">{s.detail}</p>
-                  <span className="mt-5 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.15em] text-[#423F2F] underline decoration-dotted underline-offset-4">
-                    Get a quote
-                    <span>→</span>
-                  </span>
-                </Link>
+                </div>
               </Reveal>
-            ))}
-          </div>
+            )
+          })}
         </div>
       </section>
 
-      <section
-        className="relative border-t border-[#C9AE99] px-6 py-16 sm:px-10 sm:py-20"
-      >
-        <Reveal className="relative mx-auto max-w-3xl text-center">
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#423F2F]/70">Not sure which fits?</p>
-          <h2 className="mt-5 font-display text-3xl leading-tight text-[#423F2F] sm:text-4xl">
+      <section className="relative border-t border-[#B8A89E] px-6 py-16 sm:px-10 sm:py-20">
+        <Reveal className="relative mx-auto max-w-4xl text-center">
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#434A2F]/70">Not sure which fits?</p>
+          <h2 className="mt-5 font-display text-2xl leading-tight text-[#434A2F] sm:text-3xl xl:whitespace-nowrap [text-wrap:balance]">
             Let's talk about what you're building.
           </h2>
           <div className="mt-9 flex flex-wrap justify-center gap-4">

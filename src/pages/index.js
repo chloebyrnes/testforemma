@@ -2,41 +2,29 @@ import React from "react"
 import { Link } from "gatsby"
 import Layout, {
   COMPANY_NAME,
-  services,
-  accentCycle,
+  process,
   Reveal,
   CornerMarks,
-  ImagePlaceholder,
   BlueprintDiagram,
-  WebsiteMockup,
-  PortalMockup,
-  InternalToolMockup,
-  WebAppMockup,
+  StageIcon,
 } from "../components/Layout"
 
 function Hero() {
   return (
-    <section className="relative mx-auto max-w-6xl px-6 pb-14 pt-8 sm:px-10 sm:pb-16 sm:pt-12">
-      <div className="relative mb-10">
-        <ImagePlaceholder label="Hero Image (recommended 1600x700)" aspect="aspect-[20/7]" />
-        <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-20 sm:h-28"
-          style={{ background: "linear-gradient(to bottom, rgba(242,235,218,0) 0%, #F2EBDA 100%)" }}
-        />
-      </div>
-      <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#423F2F]">
+    <section className="relative mx-auto max-w-7xl px-6 pb-14 pt-8 sm:px-10 sm:pb-16 sm:pt-12">
+      <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#434A2F]">
         Design &amp; Development Studio
       </p>
-      <h1 className="mt-4 font-display text-3xl leading-[1.1] text-[#423F2F] sm:text-4xl lg:whitespace-nowrap lg:text-[2.75rem]">
+      <h1 className="mt-4 font-display text-2xl leading-[1.15] text-[#434A2F] sm:text-3xl xl:whitespace-nowrap xl:text-3xl [text-wrap:balance]">
         Custom websites &amp; web applications, built around your business.
       </h1>
-      <p className="mt-3 font-script text-2xl text-[#423F2F] sm:text-3xl lg:whitespace-nowrap lg:text-4xl">
+      <p className="mt-3 font-script text-xl text-[#434A2F] sm:text-2xl xl:whitespace-nowrap xl:text-2xl [text-wrap:balance]">
         Your idea. Thoughtfully designed. Custom built.
       </p>
 
       <div className="mt-10 grid items-start gap-14 lg:grid-cols-2">
         <div>
-          <p className="max-w-xl text-base leading-relaxed text-[#423F2F]/80 sm:text-lg">
+          <p className="max-w-xl text-base leading-relaxed text-[#434A2F]/80 sm:text-lg">
             {COMPANY_NAME} is a design and development studio building custom websites, web
             applications, and digital tools around the way your business works. From the initial
             idea through strategy, UI/UX design, and development, we help shape your vision and
@@ -61,7 +49,7 @@ function Hero() {
         </div>
         <div className="relative">
           <CornerMarks />
-          <div className="border border-[#423F2F] bg-[#D5D6BA]/40 p-4 sm:p-6">
+          <div className="border border-[#434A2F] bg-[#E2D5C4]/40 p-4 sm:p-6">
             <BlueprintDiagram />
           </div>
         </div>
@@ -70,60 +58,57 @@ function Hero() {
   )
 }
 
-function ServicesTeaser() {
+function ProcessTeaser() {
   return (
     <section
-      className="relative border-t-4 border-[#BDB485] px-6 py-12 sm:px-10 sm:py-16"
+      className="relative border-t-4 border-[#7A8755] px-6 py-12 sm:px-10 sm:py-16"
     >
-      <div className="mx-auto max-w-screen-2xl">
+      <div className="mx-auto max-w-6xl">
         <Reveal>
-          <h2 className="font-display text-3xl text-[#423F2F] sm:text-4xl">What we build</h2>
-          <span className="mt-3 block h-1 w-28 rounded-full bg-[#BDB485]" />
+          <h2 className="font-display text-3xl text-[#434A2F] sm:text-4xl">How it comes together</h2>
+          <span className="mt-3 block h-1 w-28 rounded-full bg-[#7A8755]" />
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#434A2F]/80">
+            Five stages, start to finish. Every project moves through the same sequence, so
+            nothing gets built before it's been thought through.
+          </p>
         </Reveal>
-        <div className="mt-12 grid gap-px overflow-hidden border border-[#423F2F] bg-[#423F2F] sm:grid-cols-2">
-          {services.map((s, i) => (
-            <Reveal key={s.tag} delay={i * 90}>
-              <Link
-                to={`/contact?type=${encodeURIComponent(s.contactType)}`}
-                className="service-card block h-full p-8 focus-visible:outline-none"
-                style={{ "--accent": accentCycle[i % accentCycle.length], backgroundColor: "#D5D6BA" }}
-              >
-                {s.tag === "01" ? (
-                  <div className="mb-5" onClick={(e) => e.preventDefault()}>
-                    <WebsiteMockup />
+        <div className="mt-14">
+          <ol className="grid gap-10 sm:grid-cols-5">
+            {process.map((p, i) => {
+              const isLast = i === process.length - 1
+              return (
+                <Reveal key={p.step} as="li" delay={i * 80} className="relative list-none pl-0">
+                  <div className="relative flex items-center gap-3">
+                    <span
+                      className="flex h-11 w-11 flex-none items-center justify-center rounded-full border"
+                      style={{
+                        borderColor: "#434A2F",
+                        backgroundColor: isLast ? "#434A2F" : "#E2D5C4",
+                      }}
+                    >
+                      <StageIcon index={i} light={isLast} />
+                    </span>
+                    <span className="h-px flex-1 bg-[#434A2F]" />
+                    {!isLast && (
+                      <span className="pointer-events-none absolute left-full top-1/2 ml-4 hidden -translate-y-1/2 text-[#434A2F]/60 sm:block">
+                        →
+                      </span>
+                    )}
                   </div>
-                ) : s.tag === "02" ? (
-                  <div className="mb-5" onClick={(e) => e.preventDefault()}>
-                    <PortalMockup />
-                  </div>
-                ) : s.tag === "03" ? (
-                  <div className="mb-5" onClick={(e) => e.preventDefault()}>
-                    <InternalToolMockup />
-                  </div>
-                ) : (
-                  <div className="mb-5" onClick={(e) => e.preventDefault()}>
-                    <WebAppMockup />
-                  </div>
-                )}
-                <p className="font-mono text-xs uppercase tracking-[0.2em]" style={{ color: "#423F2F" }}>
-                  {s.tag}
-                </p>
-                <h3 className="mt-4 font-display text-2xl text-[#423F2F]">{s.title}</h3>
-                <p className="mt-3 max-w-sm text-sm leading-relaxed text-[#423F2F]/80">{s.body}</p>
-                <span className="mt-5 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.15em] text-[#423F2F] underline decoration-dotted underline-offset-4">
-                  Get a quote
-                  <span>→</span>
-                </span>
-              </Link>
-            </Reveal>
-          ))}
+                  <p className="mt-4 font-mono text-xs text-[#434A2F]/70">{p.step}</p>
+                  <h3 className="mt-1 font-display text-lg text-[#434A2F]">{p.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[#434A2F]/80">{p.body}</p>
+                </Reveal>
+              )
+            })}
+          </ol>
         </div>
         <Reveal delay={200}>
           <Link
-            to="/services"
-            className="mt-8 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.15em] text-[#423F2F] underline decoration-dotted underline-offset-4"
+            to="/process"
+            className="mt-10 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.15em] text-[#434A2F] underline decoration-dotted underline-offset-4"
           >
-            View all services
+            View full process
             <span>→</span>
           </Link>
         </Reveal>
@@ -135,13 +120,13 @@ function ServicesTeaser() {
 function ClosingCTA() {
   return (
     <section
-      className="relative border-t border-[#C9AE99] px-6 py-16 sm:px-10 sm:py-20"
+      className="relative border-t border-[#B8A89E] px-6 py-16 sm:px-10 sm:py-20"
     >
-      <Reveal className="relative mx-auto max-w-3xl text-center">
+      <Reveal className="relative mx-auto max-w-4xl text-center">
         <div className="relative">
-          <CornerMarks color="#BDB485" />
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#423F2F]/70">Let's get started</p>
-          <h2 className="mt-5 font-display text-3xl leading-tight text-[#423F2F] sm:text-4xl">
+          <CornerMarks color="#7A8755" />
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#434A2F]/70">Let's get started</p>
+          <h2 className="mt-5 font-display text-2xl leading-tight text-[#434A2F] sm:text-3xl xl:whitespace-nowrap [text-wrap:balance]">
             Have an idea? Let's put it on paper, then build it.
           </h2>
           <div className="mt-9 flex flex-wrap justify-center gap-4">
@@ -163,7 +148,7 @@ export default function IndexPage() {
   return (
     <Layout currentPath="/">
       <Hero />
-      <ServicesTeaser />
+      <ProcessTeaser />
       <ClosingCTA />
     </Layout>
   )
@@ -176,7 +161,7 @@ export function Head() {
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
       <link
-        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Cormorant+Garamond:wght@500;600;700&family=Pinyon+Script&display=swap"
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Cormorant+Garamond:wght@500;600;700&family=Pinyon+Script&family=Bodoni+Moda:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap"
         rel="stylesheet"
       />
     </>
