@@ -28,10 +28,7 @@ export default function FloralHomePage() {
         <p className="fl-body text-xs uppercase tracking-[0.3em]" style={{ color: "#8A9468" }}>
           Fresh &middot; Local &middot; Seasonal
         </p>
-        <h1 className="fl-serif mx-auto mt-3 text-6xl sm:text-7xl" style={{ color: "#FFFFFF" }}>
-          Petal &amp; Bloom Co.
-        </h1>
-        <p className="fl-body mx-auto mt-4 max-w-lg text-lg" style={{ color: "#D7DAC5" }}>
+        <p className="fl-body mx-auto mt-6 max-w-lg text-lg" style={{ color: "#D7DAC5" }}>
           Flowers for every kind of day. We grow, cut, and hand-tie every bouquet ourselves,
           right here in the shop, so what you get is never more than a day old.
         </p>
@@ -151,7 +148,6 @@ export default function FloralHomePage() {
       </section>
 
       <footer className="fl-body px-6 py-10 text-center sm:px-10" style={{ backgroundColor: "#2C2F21", color: "#D7DAC5" }}>
-        <p className="fl-serif text-2xl" style={{ color: "#FFFFFF" }}>Petal &amp; Bloom Co.</p>
         <p className="mt-3 text-sm uppercase tracking-[0.1em]" style={{ color: "#8A9468" }}>
           Open Tuesday through Saturday, 9am to 5pm
         </p>

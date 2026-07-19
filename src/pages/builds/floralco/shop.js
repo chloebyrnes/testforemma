@@ -107,7 +107,6 @@ export default function FloralShopPage() {
       </section>
 
       <footer className="fl-body px-6 py-10 text-center sm:px-10" style={{ backgroundColor: "#2C2F21", color: "#D7DAC5" }}>
-        <p className="fl-serif text-2xl" style={{ color: "#FFFFFF" }}>Petal &amp; Bloom Co.</p>
         <p className="mt-3 text-sm uppercase tracking-[0.1em]" style={{ color: "#8A9468" }}>
           Open Tuesday through Saturday, 9am to 5pm
         </p>

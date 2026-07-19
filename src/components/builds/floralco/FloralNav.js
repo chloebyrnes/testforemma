@@ -15,7 +15,7 @@ export default function FloralNav({ current }) {
       style={{ borderBottom: "1px solid #8A9468" }}
     >
       <Link to="/builds/floralco/" className="flex items-center">
-        <img src={logo} alt="Petal & Bloom Co." className="h-16 w-auto sm:h-20" style={{ filter: "brightness(0) invert(1)" }} />
+        <img src={logo} alt="Petal & Bloom Co." className="h-16 w-auto sm:h-20" />
       </Link>
       <nav className="flex flex-wrap items-center justify-center gap-6">
         {links.map((l) => (
