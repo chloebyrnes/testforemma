@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-import Layout, { COMPANY_NAME, services, accentCycle, Reveal, ImagePlaceholder, WebsiteMockup, PortalMockup, InternalToolMockup } from "../components/Layout"
+import Layout, { COMPANY_NAME, services, accentCycle, Reveal, ImagePlaceholder, WebsiteMockup, PortalMockup, InternalToolMockup, WebAppMockup } from "../components/Layout"
 
 export default function ServicesPage() {
   return (
@@ -50,7 +50,9 @@ export default function ServicesPage() {
                       <InternalToolMockup />
                     </div>
                   ) : (
-                    <img src={s.image} alt={`${s.title} diagram`} className="mb-5 aspect-[4/3] w-full object-cover" />
+                    <div className="mb-5" onClick={(e) => e.preventDefault()}>
+                      <WebAppMockup />
+                    </div>
                   )}
                   <p className="font-mono text-xs uppercase tracking-[0.2em]" style={{ color: "#423F2F" }}>
                     {s.tag}

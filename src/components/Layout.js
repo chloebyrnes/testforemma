@@ -1040,6 +1040,283 @@ export function InternalToolMockup() {
   )
 }
 
+export function WebAppMockup() {
+  const [tab, setTab] = useState("Project")
+  const tabs = ["Project", "Add-ons", "Your Quote"]
+  const [paletteIndex, setPaletteIndex] = useState(0)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [typeIndex, setTypeIndex] = useState(0)
+  const [sizeIndex, setSizeIndex] = useState(0)
+  const [addonSet, setAddonSet] = useState([])
+  const [confirmed, setConfirmed] = useState(false)
+  const p = mockupPalettes[paletteIndex]
+
+  const stop = (fn) => (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    fn()
+  }
+
+  const projectTypes = [
+    { name: "Website", base: 1500 },
+    { name: "Web App", base: 4000 },
+    { name: "Branding", base: 800 },
+  ]
+  const sizes = [
+    { name: "Small", mult: 1 },
+    { name: "Medium", mult: 1.5 },
+    { name: "Large", mult: 2.2 },
+  ]
+  const addons = [
+    { name: "Rush Delivery", price: 500 },
+    { name: "SEO Package", price: 300 },
+    { name: "Copywriting", price: 400 },
+    { name: "Extra Revisions", price: 200 },
+  ]
+
+  const toggleAddon = (name) => {
+    setAddonSet((set) => (set.includes(name) ? set.filter((n) => n !== name) : [...set, name]))
+  }
+
+  const basePrice = Math.round(projectTypes[typeIndex].base * sizes[sizeIndex].mult)
+  const addonTotal = addons.filter((a) => addonSet.includes(a.name)).reduce((sum, a) => sum + a.price, 0)
+  const total = basePrice + addonTotal
+
+  const cardRadius = p.layout === "friendly" ? "rounded-lg" : p.layout === "minimal" ? "rounded-none" : "rounded-sm"
+  const frameRadius = p.layout === "friendly" ? "rounded-2xl" : "rounded-none"
+  const btnRadius = p.layout === "friendly" ? "rounded-full" : p.layout === "minimal" ? "rounded-none" : "rounded-sm"
+  const headerAlign =
+    p.align === "center" ? "text-center items-center" : p.align === "right" ? "text-right items-end" : "text-left items-start"
+
+  const NavBar = () => {
+    if (p.layout === "minimal") {
+      return (
+        <div className="relative flex items-center justify-between border-b px-4 py-3" style={{ borderColor: `${p.ink}33`, backgroundColor: p.bg }}>
+          <span className="font-mono text-[10px] uppercase tracking-[0.15em]" style={{ color: p.ink }}>{tab}</span>
+          <button type="button" onClick={stop(() => setMenuOpen((v) => !v))} className="flex flex-col gap-1" aria-label="Menu">
+            <span className="block h-[1.5px] w-5" style={{ backgroundColor: p.ink }} />
+            <span className="block h-[1.5px] w-5" style={{ backgroundColor: p.ink }} />
+            <span className="block h-[1.5px] w-5" style={{ backgroundColor: p.ink }} />
+          </button>
+          {menuOpen && (
+            <div className="absolute right-4 top-full z-10 mt-1 w-36 border" style={{ borderColor: p.ink, backgroundColor: p.bg }}>
+              {tabs.map((t) => (
+                <button
+                  key={t}
+                  type="button"
+                  onClick={stop(() => {
+                    setTab(t)
+                    setMenuOpen(false)
+                  })}
+                  className="block w-full px-4 py-2.5 text-left font-mono text-[10px] uppercase tracking-[0.1em]"
+                  style={{ backgroundColor: tab === t ? p.ink : "transparent", color: tab === t ? p.bg : p.ink }}
+                >
+                  {t}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      )
+    }
+    return (
+      <div
+        className={`flex gap-1 border-b px-4 pt-3 ${p.layout === "editorial" ? "justify-center" : ""}`}
+        style={{ borderColor: `${p.ink}33`, backgroundColor: p.bg }}
+      >
+        {tabs.map((t) => (
+          <button
+            key={t}
+            type="button"
+            onClick={stop(() => setTab(t))}
+            className={`${btnRadius === "rounded-full" ? "rounded-t-full" : "rounded-t-sm"} px-4 py-2 font-mono text-xs uppercase tracking-[0.1em] transition-colors`}
+            style={{ backgroundColor: tab === t ? p.ink : "transparent", color: tab === t ? p.bg : p.ink }}
+          >
+            {t}
+          </button>
+        ))}
+      </div>
+    )
+  }
+
+  return (
+    <div>
+      <div className="mb-1 flex flex-wrap items-center gap-2">
+        <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[#423F2F]/60">Try a style:</span>
+        {mockupPalettes.map((pal, idx) => (
+          <button
+            key={pal.name}
+            type="button"
+            onClick={stop(() => {
+              setPaletteIndex(idx)
+              setMenuOpen(false)
+            })}
+            className="flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.08em] transition-colors"
+            style={{
+              borderColor: "#423F2F",
+              backgroundColor: idx === paletteIndex ? "#423F2F" : "transparent",
+              color: idx === paletteIndex ? "#F2EBDA" : "#423F2F",
+            }}
+          >
+            <span
+              className="h-2.5 w-2.5 rounded-full border"
+              style={{ backgroundColor: pal.ink, borderColor: idx === paletteIndex ? "#F2EBDA" : "#423F2F" }}
+            />
+            {pal.name}
+          </button>
+        ))}
+      </div>
+      <p className="mb-3 font-mono text-[9px] italic text-[#423F2F]/50">
+        Just examples, we'll design something unique for your app.
+      </p>
+
+      <div className={`w-full overflow-hidden border transition-colors duration-300 ${frameRadius}`} style={{ borderColor: p.ink, backgroundColor: p.bg }}>
+        <div className="flex items-center gap-2 border-b px-4 py-2.5 transition-colors duration-300" style={{ borderColor: `${p.ink}4D`, backgroundColor: p.a1 }}>
+          <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: p.ink }} />
+          <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: p.ink }} />
+          <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: p.ink }} />
+          <span className="ml-2 flex-1 truncate rounded-sm px-3 py-1 font-mono text-[10px]" style={{ backgroundColor: p.bg, color: p.ink }}>
+            app.yourbusiness.com/quote
+          </span>
+        </div>
+
+        <NavBar />
+
+        <div className="p-6 transition-colors duration-300 sm:p-8" style={{ backgroundColor: p.bg }}>
+          {tab === "Project" && (
+            <div className={`flex flex-col ${headerAlign}`}>
+              <p
+                className={p.layout === "minimal" ? "text-xl uppercase tracking-tight sm:text-2xl" : "text-xl sm:text-2xl"}
+                style={{ color: p.ink, fontFamily: p.font }}
+              >
+                Get an Instant Quote
+              </p>
+              {p.layout === "editorial" && <span className="mt-2 h-px w-16" style={{ backgroundColor: p.a3 }} />}
+              <p className="mt-1 w-full font-mono text-[10px] uppercase tracking-[0.15em]" style={{ color: `${p.ink}80` }}>Project Type</p>
+              <div className={`mt-2 flex w-full flex-wrap gap-2 ${p.align === "center" ? "justify-center" : p.align === "right" ? "justify-end" : ""}`}>
+                {projectTypes.map((t, idx) => (
+                  <button
+                    key={t.name}
+                    type="button"
+                    onClick={stop(() => setTypeIndex(idx))}
+                    className="rounded-full border px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.08em] transition-colors"
+                    style={{
+                      borderColor: p.ink,
+                      backgroundColor: typeIndex === idx ? p.ink : "transparent",
+                      color: typeIndex === idx ? p.bg : p.ink,
+                    }}
+                  >
+                    {t.name}
+                  </button>
+                ))}
+              </div>
+
+              <p className="mt-6 w-full font-mono text-[10px] uppercase tracking-[0.15em]" style={{ color: `${p.ink}80` }}>Project Size</p>
+              <div className={`mt-2 flex w-full flex-wrap gap-2 ${p.align === "center" ? "justify-center" : p.align === "right" ? "justify-end" : ""}`}>
+                {sizes.map((s, idx) => (
+                  <button
+                    key={s.name}
+                    type="button"
+                    onClick={stop(() => setSizeIndex(idx))}
+                    className="rounded-full border px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.08em] transition-colors"
+                    style={{
+                      borderColor: p.ink,
+                      backgroundColor: sizeIndex === idx ? p.ink : "transparent",
+                      color: sizeIndex === idx ? p.bg : p.ink,
+                    }}
+                  >
+                    {s.name}
+                  </button>
+                ))}
+              </div>
+
+              <div className={`mt-6 w-full border p-3 ${cardRadius} ${p.layout === "editorial" ? "max-w-xs" : ""}`} style={{ borderColor: `${p.ink}33`, backgroundColor: p.surface }}>
+                <p className="font-mono text-[9px] uppercase tracking-[0.1em]" style={{ color: `${p.ink}80` }}>Running Estimate</p>
+                <p className="mt-1 text-lg" style={{ color: p.ink, fontFamily: p.font }}>${basePrice.toLocaleString()}</p>
+              </div>
+            </div>
+          )}
+
+          {tab === "Add-ons" && (
+            <div className={headerAlign.includes("center") ? "text-center" : headerAlign.includes("end") ? "text-right" : ""}>
+              <p className="text-xl sm:text-2xl" style={{ color: p.ink, fontFamily: p.font }}>Optional Add-ons</p>
+              <p className="mt-1 text-sm" style={{ color: `${p.ink}99` }}>Tap to add or remove from your quote</p>
+              <div className={`mt-4 divide-y ${p.layout === "editorial" ? "mx-auto max-w-sm text-left" : ""}`} style={{ borderColor: `${p.ink}26` }}>
+                {addons.map((a) => {
+                  const active = addonSet.includes(a.name)
+                  return (
+                    <button
+                      key={a.name}
+                      type="button"
+                      onClick={stop(() => toggleAddon(a.name))}
+                      className="flex w-full items-center justify-between border-t py-3 text-left"
+                      style={{ borderColor: `${p.ink}26` }}
+                    >
+                      <span className="flex items-center gap-3">
+                        <span
+                          className={`flex h-4 w-4 flex-none items-center justify-center border ${p.layout === "friendly" ? "rounded-full" : "rounded-sm"}`}
+                          style={{ borderColor: p.ink, backgroundColor: active ? p.ink : "transparent", color: p.bg }}
+                        >
+                          {active ? "✓" : ""}
+                        </span>
+                        <span className="text-sm" style={{ color: p.ink }}>{a.name}</span>
+                      </span>
+                      <span className="font-mono text-xs" style={{ color: `${p.ink}99` }}>+${a.price}</span>
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+          )}
+
+          {tab === "Your Quote" && (
+            <div className={headerAlign.includes("center") ? "text-center" : headerAlign.includes("end") ? "text-right" : ""}>
+              {confirmed ? (
+                <div>
+                  <p className="text-xl sm:text-2xl" style={{ color: p.ink, fontFamily: p.font }}>Quote Requested</p>
+                  <p className="mt-2 text-sm" style={{ color: `${p.ink}B3` }}>
+                    We'll follow up with an official quote based on these details.
+                  </p>
+                </div>
+              ) : (
+                <div>
+                  <p className="text-xl sm:text-2xl" style={{ color: p.ink, fontFamily: p.font }}>Your Estimated Quote</p>
+                  <div className={`mt-4 space-y-2 border p-4 ${cardRadius} ${p.layout === "editorial" ? "mx-auto max-w-sm text-left" : ""}`} style={{ borderColor: `${p.ink}33`, backgroundColor: p.surface }}>
+                    <div className="flex justify-between text-sm" style={{ color: p.ink }}>
+                      <span style={{ color: `${p.ink}80` }}>Project</span>
+                      <span>{projectTypes[typeIndex].name}, {sizes[sizeIndex].name}</span>
+                    </div>
+                    <div className="flex justify-between text-sm" style={{ color: p.ink }}>
+                      <span style={{ color: `${p.ink}80` }}>Add-ons</span>
+                      <span>{addonSet.length ? addonSet.join(", ") : "None"}</span>
+                    </div>
+                    <div className="mt-2 flex justify-between border-t pt-2 text-base" style={{ borderColor: `${p.ink}33`, color: p.ink, fontFamily: p.font }}>
+                      <span>Total</span>
+                      <span>${total.toLocaleString()}</span>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={stop(() => setConfirmed(true))}
+                    className={`mt-4 px-5 py-2.5 font-mono text-xs uppercase tracking-[0.1em] ${btnRadius}`}
+                    style={{ backgroundColor: p.ink, color: p.bg }}
+                  >
+                    Request This Quote
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+
+
+
+
 export function ImagePlaceholder({ label, aspect = "aspect-[16/9]", className = "" }) {
   return (
     <div
