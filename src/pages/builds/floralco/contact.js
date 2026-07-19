@@ -1,12 +1,12 @@
 import React, { useState } from "react"
 import { Link } from "gatsby"
-import PetalMenu from "../../../components/builds/floralco/petalmenu"
+import FloralNav from "../../../components/builds/floralco/FloralNav"
+import PlaceholderPhoto from "../../../components/builds/floralco/PlaceholderPhoto"
 
 const fontImports = `
-  @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&display=swap');
-  .fl-script { font-family: 'Caveat', cursive; }
-  .fl-serif { font-family: 'Fraunces', serif; font-optical-sizing: auto; }
-  .fl-body { font-family: 'Fraunces', serif; font-optical-sizing: auto; font-weight: 400; }
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+  .fl-serif { font-family: 'DM Serif Display', serif; }
+  .fl-body { font-family: 'DM Sans', sans-serif; }
   .fl-input {
     border-bottom: 2px solid #8A9468;
     transition: border-color 0.3s ease, transform 0.3s ease;
@@ -15,47 +15,41 @@ const fontImports = `
     border-color: #3A3E2C;
     transform: translateY(-2px);
   }
-  .fl-bloom-btn {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .fl-bloom-btn:hover {
-    transform: scale(1.05) rotate(-1deg);
-    box-shadow: 0 12px 24px rgba(58, 62, 44, 0.35);
-  }
 `
+
+const faqs = [
+  { q: "Do you deliver same-day?", a: "Yes, order by 2pm for same-day delivery within town." },
+  { q: "Can I request specific flowers?", a: "Always. Tell us in the message field and we'll do our best." },
+  { q: "Do you do weddings and events?", a: "We do, reach out at least a month ahead for larger orders." },
+]
 
 export default function FloralContactPage() {
   const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
   const [message, setMessage] = useState("")
   const [sent, setSent] = useState(false)
 
   return (
-    <main className="fl-body" style={{ backgroundColor: "#F7F3EA", minHeight: "100vh" }}>
+    <main className="fl-body" style={{ backgroundColor: "#FFFFFF", minHeight: "100vh" }}>
       <style>{fontImports}</style>
-      <PetalMenu current="Contact" />
+      <FloralNav current="Contact" />
 
-      <section className="relative overflow-hidden px-6 py-16 sm:px-10 sm:py-24">
-        <svg viewBox="0 0 24 24" className="pointer-events-none absolute -left-10 top-10 h-40 w-40 opacity-15 sm:h-56 sm:w-56" fill="none">
-          <path d="M12 21 C4 17 4 8 12 3 C20 8 20 17 12 21 Z" fill="#8A9468" />
-        </svg>
-        <svg viewBox="0 0 24 24" className="pointer-events-none absolute -right-8 bottom-10 h-32 w-32 opacity-15 sm:h-44 sm:w-44" fill="none">
-          <path d="M12 21 C4 17 4 8 12 3 C20 8 20 17 12 21 Z" fill="#6B7355" />
-        </svg>
-
-        <div className="relative mx-auto max-w-md text-center">
-          <p className="fl-serif text-xs uppercase tracking-[0.3em]" style={{ color: "#6B7355" }}>
+      <section className="px-6 py-16 sm:px-10 sm:py-20">
+        <div className="mx-auto max-w-md text-center">
+          <p className="fl-body text-xs uppercase tracking-[0.3em]" style={{ color: "#6B7355" }}>
             Say Hello
           </p>
-          <h1 className="fl-script mt-2 text-6xl" style={{ color: "#3A3E2C" }}>
+          <h1 className="fl-serif mt-2 text-5xl" style={{ color: "#3A3E2C" }}>
             Get in touch.
           </h1>
+          <p className="fl-body mt-3 text-lg" style={{ color: "#5A5F45" }}>
+            Questions, custom orders, or just want to say hi.
+          </p>
         </div>
 
-        <div className="relative mx-auto mt-12 max-w-md">
+        <div className="mx-auto mt-12 max-w-md">
           {sent ? (
             <div className="text-center">
-              <p className="fl-script text-4xl" style={{ color: "#6B7355" }}>Thank you!</p>
+              <p className="fl-serif text-3xl" style={{ color: "#6B7355" }}>Thank you!</p>
               <p className="fl-body mt-3 text-xl" style={{ color: "#3A3E2C" }}>
                 {name.split(" ")[0]}, we'll get back to you soon.
               </p>
@@ -70,14 +64,6 @@ export default function FloralContactPage() {
                 className="fl-input fl-body w-full bg-transparent px-2 py-3 text-lg outline-none"
                 style={{ color: "#3A3E2C" }}
               />
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Your email"
-                className="fl-input fl-body w-full bg-transparent px-2 py-3 text-lg outline-none"
-                style={{ color: "#3A3E2C" }}
-              />
               <textarea
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
@@ -88,9 +74,9 @@ export default function FloralContactPage() {
               />
               <button
                 type="button"
-                onClick={() => name && email && setSent(true)}
-                className="fl-bloom-btn fl-serif w-full px-6 py-4 text-sm uppercase tracking-[0.15em] shadow-md"
-                style={{ backgroundColor: "#6B7355", color: "#F7F3EA" }}
+                onClick={() => name && setSent(true)}
+                className="fl-body w-full px-6 py-4 text-sm uppercase tracking-[0.15em] shadow-sm transition-transform hover:-translate-y-0.5"
+                style={{ backgroundColor: "#6B7355", color: "#FFFFFF" }}
               >
                 Send Message
               </button>
@@ -99,15 +85,32 @@ export default function FloralContactPage() {
         </div>
       </section>
 
+      <section className="px-6 py-14 sm:px-10">
+        <PlaceholderPhoto label="Visit us in person" aspect="aspect-[21/9]" className="mx-auto max-w-5xl" />
+      </section>
+
+      <section className="px-6 py-16 sm:px-10 sm:py-20" style={{ backgroundColor: "#F4F5EF" }}>
+        <h2 className="fl-serif text-center text-3xl" style={{ color: "#3A3E2C" }}>
+          A Few Common Questions
+        </h2>
+        <div className="mx-auto mt-10 max-w-2xl space-y-8">
+          {faqs.map((f) => (
+            <div key={f.q}>
+              <p className="fl-serif text-lg" style={{ color: "#3A3E2C" }}>{f.q}</p>
+              <p className="fl-body mt-1 text-base" style={{ color: "#5A5F45" }}>{f.a}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <footer className="fl-body px-6 py-10 text-center sm:px-10" style={{ backgroundColor: "#3A3E2C", color: "#EAE7D6" }}>
-        <p className="fl-script text-2xl">Petal &amp; Bloom Co.</p>
-        <p className="mt-3 text-base">hello@petalandbloom.co &middot; Open Tue-Sat, 9am-5pm</p>
-        <p className="fl-serif mt-4 text-xs uppercase tracking-[0.15em]" style={{ color: "#8A9468" }}>
-          © {new Date().getFullYear()} Petal &amp; Bloom Co.
+        <p className="fl-serif text-2xl" style={{ color: "#FFFFFF" }}>Petal &amp; Bloom Co.</p>
+        <p className="mt-3 text-sm uppercase tracking-[0.1em]" style={{ color: "#8A9468" }}>
+          Open Tuesday through Saturday, 9am to 5pm
         </p>
         <Link
           to="/portfolio"
-          className="fl-serif mt-6 inline-block text-xs uppercase tracking-[0.15em] underline"
+          className="fl-body mt-6 inline-block text-xs uppercase tracking-[0.15em] underline"
           style={{ color: "#8A9468" }}
         >
           ← Back to Ash Studio Portfolio

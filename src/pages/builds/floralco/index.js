@@ -1,22 +1,18 @@
 import React, { useState } from "react"
 import { Link } from "gatsby"
-import PetalMenu from "../../../components/builds/floralco/petalmenu"
-import vintagephoto from "../../../components/builds/floralco/vintagephoto"
-import peonyImg from "../../../images/floralco/peony.jpg"
-import wildflowerImg from "../../../images/floralco/wildflower.jpg"
-import evergreenImg from "../../../images/floralco/evergreen.jpg"
+import FloralNav from "../../../components/builds/floralco/FloralNav"
+import PlaceholderPhoto from "../../../components/builds/floralco/PlaceholderPhoto"
 
 const fontImports = `
-  @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&display=swap');
-  .fl-script { font-family: 'Caveat', cursive; }
-  .fl-serif { font-family: 'Fraunces', serif; font-optical-sizing: auto; }
-  .fl-body { font-family: 'Fraunces', serif; font-optical-sizing: auto; font-weight: 400; }
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+  .fl-serif { font-family: 'DM Serif Display', serif; }
+  .fl-body { font-family: 'DM Sans', sans-serif; }
 `
 
 const favorites = [
-  { name: "The Peony Dream", price: "$68", img: peonyImg, rotate: -2 },
-  { name: "Wildflower Meadow", price: "$54", img: wildflowerImg, rotate: 1.5 },
-  { name: "The Evergreen", price: "$76", img: evergreenImg, rotate: -1 },
+  { name: "The Peony Dream", price: "$68" },
+  { name: "Wildflower Meadow", price: "$54" },
+  { name: "The Evergreen", price: "$76" },
 ]
 
 export default function FloralHomePage() {
@@ -24,57 +20,52 @@ export default function FloralHomePage() {
   const [subscribed, setSubscribed] = useState(false)
 
   return (
-    <main className="fl-body" style={{ backgroundColor: "#F7F3EA", minHeight: "100vh" }}>
+    <main className="fl-body" style={{ backgroundColor: "#FFFFFF", minHeight: "100vh" }}>
       <style>{fontImports}</style>
-      <PetalMenu current="Home" />
+      <FloralNav current="Home" />
 
-      <section className="px-6 pb-20 pt-16 text-center sm:px-10 sm:pt-24">
-        <p className="fl-serif text-xs uppercase tracking-[0.3em]" style={{ color: "#6B7355" }}>
+      <section className="px-6 pb-16 pt-16 text-center sm:px-10 sm:pt-20">
+        <p className="fl-body text-xs uppercase tracking-[0.3em]" style={{ color: "#6B7355" }}>
           Fresh &middot; Local &middot; Seasonal
         </p>
-        <h1 className="fl-script mx-auto mt-3 text-6xl sm:text-7xl" style={{ color: "#3A3E2C" }}>
+        <h1 className="fl-serif mx-auto mt-3 text-6xl sm:text-7xl" style={{ color: "#3A3E2C" }}>
           Petal &amp; Bloom Co.
         </h1>
-        <p className="fl-serif mx-auto mt-4 max-w-md text-xl italic" style={{ color: "#5A5F45" }}>
-          Flowers for every kind of day.
-        </p>
-        <p className="fl-body mx-auto mt-4 max-w-md text-lg" style={{ color: "#6E735C" }}>
-          Hand-tied bouquets, delivered weekly or just when you need one.
+        <p className="fl-body mx-auto mt-4 max-w-lg text-lg" style={{ color: "#5A5F45" }}>
+          Flowers for every kind of day. We grow, cut, and hand-tie every bouquet ourselves,
+          right here in the shop, so what you get is never more than a day old.
         </p>
         <Link
           to="/builds/floralco/shop"
-          className="fl-serif mt-9 inline-block px-10 py-4 text-sm uppercase tracking-[0.15em] shadow-md transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
-          style={{ backgroundColor: "#6B7355", color: "#F7F3EA" }}
+          className="fl-body mt-9 inline-block px-10 py-4 text-sm uppercase tracking-[0.15em] shadow-sm transition-transform duration-300 hover:-translate-y-1"
+          style={{ backgroundColor: "#6B7355", color: "#FFFFFF" }}
         >
           Shop Bouquets
         </Link>
       </section>
 
-      <section className="px-6 py-16 sm:px-10 sm:py-20" style={{ backgroundColor: "#EAE7D6" }}>
+      <section className="px-6 py-14 sm:px-10">
+        <PlaceholderPhoto label="Hero photo" aspect="aspect-[21/9]" className="mx-auto max-w-5xl" />
+      </section>
+
+      <section className="px-6 py-16 sm:px-10 sm:py-20" style={{ backgroundColor: "#F4F5EF" }}>
         <div className="mx-auto grid max-w-4xl items-center gap-10 sm:grid-cols-2">
-          <div className="relative mx-auto">
-            <vintagephoto src={wildflowerImg} alt="Flower of the Month" rotate={-2} />
-            <span
-              className="fl-script absolute -bottom-4 -right-4 flex h-20 w-20 items-center justify-center rounded-full text-sm shadow-md"
-              style={{ backgroundColor: "#6B7355", color: "#F7F3EA" }}
-            >
-              New!
-            </span>
-          </div>
+          <PlaceholderPhoto label="Flower of the month" />
           <div>
-            <p className="fl-serif text-xs uppercase tracking-[0.3em]" style={{ color: "#6B7355" }}>
+            <p className="fl-body text-xs uppercase tracking-[0.3em]" style={{ color: "#6B7355" }}>
               Flower of the Month
             </p>
-            <h2 className="fl-script mt-2 text-4xl" style={{ color: "#3A3E2C" }}>
+            <h2 className="fl-serif mt-2 text-4xl" style={{ color: "#3A3E2C" }}>
               Sunday Morning
             </h2>
-            <p className="fl-body mt-3 text-lg leading-relaxed" style={{ color: "#6E735C" }}>
+            <p className="fl-body mt-3 text-lg leading-relaxed" style={{ color: "#5A5F45" }}>
               Ranunculus and anemones in soft cream tones, cut fresh every Sunday. A quiet, easy
-              arrangement for a slow morning.
+              arrangement for a slow morning, and one of the few bouquets we make the exact same
+              way every single week, because some things don't need changing.
             </p>
             <Link
               to="/builds/floralco/shop"
-              className="fl-serif mt-5 inline-flex items-center gap-2 text-sm uppercase tracking-[0.1em] underline"
+              className="fl-body mt-5 inline-flex items-center gap-2 text-sm uppercase tracking-[0.1em] underline"
               style={{ color: "#6B7355" }}
             >
               Shop this bouquet →
@@ -84,49 +75,57 @@ export default function FloralHomePage() {
       </section>
 
       <section className="px-6 py-16 sm:px-10 sm:py-20">
-        <h2 className="fl-script text-center text-5xl" style={{ color: "#3A3E2C" }}>
+        <h2 className="fl-serif text-center text-4xl" style={{ color: "#3A3E2C" }}>
           This Week's Favorites
         </h2>
-        <div className="mx-auto mt-12 grid max-w-4xl gap-12 sm:grid-cols-3">
+        <p className="fl-body mx-auto mt-3 max-w-md text-center text-base" style={{ color: "#5A5F45" }}>
+          A rotating lineup based on what's actually blooming right now, not a catalog that
+          never changes.
+        </p>
+        <div className="mx-auto mt-12 grid max-w-4xl gap-10 sm:grid-cols-3">
           {favorites.map((b) => (
             <Link key={b.name} to="/builds/floralco/shop" className="block text-center">
-              <vintagephoto src={b.img} alt={b.name} rotate={b.rotate} className="mx-auto" />
-              <p className="fl-serif mt-5 text-xl" style={{ color: "#3A3E2C" }}>{b.name}</p>
+              <PlaceholderPhoto label={b.name} />
+              <p className="fl-serif mt-4 text-xl" style={{ color: "#3A3E2C" }}>{b.name}</p>
               <p className="fl-body mt-1 text-lg" style={{ color: "#6B7355" }}>{b.price}</p>
             </Link>
           ))}
         </div>
       </section>
 
-      <section className="px-6 py-16 sm:px-10 sm:py-20" style={{ backgroundColor: "#EAE7D6" }}>
-        <h2 className="fl-script text-center text-4xl" style={{ color: "#3A3E2C" }}>
+      <section className="px-6 py-16 sm:px-10 sm:py-20" style={{ backgroundColor: "#F4F5EF" }}>
+        <h2 className="fl-serif text-center text-3xl" style={{ color: "#3A3E2C" }}>
           From the Shop Floor
         </h2>
-        <div className="mx-auto mt-10 grid max-w-4xl gap-10 sm:grid-cols-3">
-          <vintagephoto label="Photo coming soon" rotate={-2} className="mx-auto" />
-          <vintagephoto label="Photo coming soon" rotate={2} className="mx-auto" />
-          <vintagephoto label="Photo coming soon" rotate={-1} className="mx-auto" />
+        <p className="fl-body mx-auto mt-3 max-w-md text-center text-base" style={{ color: "#5A5F45" }}>
+          A little behind the scenes, from the market run to the finished bouquet.
+        </p>
+        <div className="mx-auto mt-10 grid max-w-4xl gap-8 sm:grid-cols-4">
+          <PlaceholderPhoto label="Morning market run" />
+          <PlaceholderPhoto label="Sorting stems" />
+          <PlaceholderPhoto label="Hand-tying" />
+          <PlaceholderPhoto label="Ready for pickup" />
         </div>
       </section>
 
       <section className="px-6 py-16 text-center sm:px-10 sm:py-20" style={{ backgroundColor: "#3A3E2C" }}>
-        <p className="fl-script text-5xl" style={{ color: "#8A9468" }}>"</p>
-        <p className="fl-body mx-auto max-w-lg text-2xl italic" style={{ color: "#F7F3EA" }}>
+        <p className="fl-serif text-4xl" style={{ color: "#8A9468" }}>"</p>
+        <p className="fl-body mx-auto max-w-lg text-2xl italic" style={{ color: "#FFFFFF" }}>
           Every bouquet feels like it was picked just for me. My kitchen table has never looked
           this good.
         </p>
-        <p className="fl-serif mt-4 text-xs uppercase tracking-[0.2em]" style={{ color: "#8A9468" }}>
+        <p className="fl-body mt-4 text-xs uppercase tracking-[0.2em]" style={{ color: "#8A9468" }}>
           A Happy Customer
         </p>
       </section>
 
       <section className="px-6 py-16 text-center sm:px-10 sm:py-20">
-        <p className="fl-script text-4xl" style={{ color: "#3A3E2C" }}>Stay in Bloom</p>
-        <p className="fl-body mt-2 text-lg" style={{ color: "#6E735C" }}>
+        <p className="fl-serif text-3xl" style={{ color: "#3A3E2C" }}>Stay in Bloom</p>
+        <p className="fl-body mt-2 text-lg" style={{ color: "#5A5F45" }}>
           One email a week, new arrangements and seasonal picks.
         </p>
         {subscribed ? (
-          <p className="fl-serif mt-6 text-sm uppercase tracking-[0.15em]" style={{ color: "#6B7355" }}>
+          <p className="fl-body mt-6 text-sm uppercase tracking-[0.15em]" style={{ color: "#6B7355" }}>
             You're on the list. See you Sunday.
           </p>
         ) : (
@@ -136,14 +135,14 @@ export default function FloralHomePage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="your@email.com"
-              className="fl-body flex-1 rounded-full border px-5 py-3 text-base outline-none"
+              className="fl-body flex-1 border px-5 py-3 text-base outline-none"
               style={{ borderColor: "#8A9468", backgroundColor: "#FFFFFF", color: "#3A3E2C" }}
             />
             <button
               type="button"
               onClick={() => email && setSubscribed(true)}
-              className="fl-serif flex-none rounded-full px-6 py-3 text-xs uppercase tracking-[0.1em] transition-transform hover:-translate-y-0.5"
-              style={{ backgroundColor: "#6B7355", color: "#F7F3EA" }}
+              className="fl-body flex-none px-6 py-3 text-xs uppercase tracking-[0.1em] transition-transform hover:-translate-y-0.5"
+              style={{ backgroundColor: "#6B7355", color: "#FFFFFF" }}
             >
               Join
             </button>
@@ -152,14 +151,13 @@ export default function FloralHomePage() {
       </section>
 
       <footer className="fl-body px-6 py-10 text-center sm:px-10" style={{ backgroundColor: "#3A3E2C", color: "#EAE7D6" }}>
-        <p className="fl-script text-2xl">Petal &amp; Bloom Co.</p>
-        <p className="mt-3 text-base">hello@petalandbloom.co &middot; Open Tue-Sat, 9am-5pm</p>
-        <p className="fl-serif mt-4 text-xs uppercase tracking-[0.15em]" style={{ color: "#8A9468" }}>
-          © {new Date().getFullYear()} Petal &amp; Bloom Co.
+        <p className="fl-serif text-2xl" style={{ color: "#FFFFFF" }}>Petal &amp; Bloom Co.</p>
+        <p className="mt-3 text-sm uppercase tracking-[0.1em]" style={{ color: "#8A9468" }}>
+          Open Tuesday through Saturday, 9am to 5pm
         </p>
         <Link
           to="/portfolio"
-          className="fl-serif mt-6 inline-block text-xs uppercase tracking-[0.15em] underline"
+          className="fl-body mt-6 inline-block text-xs uppercase tracking-[0.15em] underline"
           style={{ color: "#8A9468" }}
         >
           ← Back to Ash Studio Portfolio
