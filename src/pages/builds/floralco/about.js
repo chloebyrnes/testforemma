@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Link } from "gatsby"
 import PetalMenu from "../../../components/builds/floralco/petalmenu"
-import VintagePhoto from "../../../components/builds/floralco/VintagePhoto"
+import vintagephoto from "../../../components/builds/floralco/vintagephoto"
 import evergreenImg from "../../../images/floralco/evergreen.jpg"
 import peonyImg from "../../../images/floralco/peony.jpg"
 
@@ -48,9 +48,9 @@ export default function FloralAboutPage() {
             </p>
           </div>
           <div className="relative mx-auto">
-            <VintagePhoto src={evergreenImg} alt="Petal & Bloom Co. arrangement" rotate={-2} />
+            <vintagephoto src={evergreenImg} alt="Petal & Bloom Co. arrangement" rotate={-2} />
             <div className="absolute -bottom-8 -left-8">
-              <VintagePhoto src={peonyImg} alt="Peonies" rotate={4} />
+              <vintagephoto src={peonyImg} alt="Peonies" rotate={4} />
             </div>
           </div>
         </div>
@@ -61,9 +61,9 @@ export default function FloralAboutPage() {
           Around the Stand
         </h2>
         <div className="mx-auto mt-10 grid max-w-4xl gap-10 sm:grid-cols-3">
-          <VintagePhoto label="Photo coming soon" rotate={2} className="mx-auto" />
-          <VintagePhoto label="Photo coming soon" rotate={-2} className="mx-auto" />
-          <VintagePhoto label="Photo coming soon" rotate={1.5} className="mx-auto" />
+          <vintagephoto label="Photo coming soon" rotate={2} className="mx-auto" />
+          <vintagephoto label="Photo coming soon" rotate={-2} className="mx-auto" />
+          <vintagephoto label="Photo coming soon" rotate={1.5} className="mx-auto" />
         </div>
       </section>
 

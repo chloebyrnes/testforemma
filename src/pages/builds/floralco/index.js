@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Link } from "gatsby"
 import PetalMenu from "../../../components/builds/floralco/petalmenu"
-import VintagePhoto from "../../../components/builds/floralco/VintagePhoto"
+import vintagephoto from "../../../components/builds/floralco/vintagephoto"
 import peonyImg from "../../../images/floralco/peony.jpg"
 import wildflowerImg from "../../../images/floralco/wildflower.jpg"
 import evergreenImg from "../../../images/floralco/evergreen.jpg"
@@ -53,7 +53,7 @@ export default function FloralHomePage() {
       <section className="px-6 py-16 sm:px-10 sm:py-20" style={{ backgroundColor: "#EAE7D6" }}>
         <div className="mx-auto grid max-w-4xl items-center gap-10 sm:grid-cols-2">
           <div className="relative mx-auto">
-            <VintagePhoto src={wildflowerImg} alt="Flower of the Month" rotate={-2} />
+            <vintagephoto src={wildflowerImg} alt="Flower of the Month" rotate={-2} />
             <span
               className="fl-script absolute -bottom-4 -right-4 flex h-20 w-20 items-center justify-center rounded-full text-sm shadow-md"
               style={{ backgroundColor: "#6B7355", color: "#F7F3EA" }}
@@ -90,7 +90,7 @@ export default function FloralHomePage() {
         <div className="mx-auto mt-12 grid max-w-4xl gap-12 sm:grid-cols-3">
           {favorites.map((b) => (
             <Link key={b.name} to="/builds/floralco/shop" className="block text-center">
-              <VintagePhoto src={b.img} alt={b.name} rotate={b.rotate} className="mx-auto" />
+              <vintagephoto src={b.img} alt={b.name} rotate={b.rotate} className="mx-auto" />
               <p className="fl-serif mt-5 text-xl" style={{ color: "#3A3E2C" }}>{b.name}</p>
               <p className="fl-body mt-1 text-lg" style={{ color: "#6B7355" }}>{b.price}</p>
             </Link>
@@ -103,9 +103,9 @@ export default function FloralHomePage() {
           From the Shop Floor
         </h2>
         <div className="mx-auto mt-10 grid max-w-4xl gap-10 sm:grid-cols-3">
-          <VintagePhoto label="Photo coming soon" rotate={-2} className="mx-auto" />
-          <VintagePhoto label="Photo coming soon" rotate={2} className="mx-auto" />
-          <VintagePhoto label="Photo coming soon" rotate={-1} className="mx-auto" />
+          <vintagephoto label="Photo coming soon" rotate={-2} className="mx-auto" />
+          <vintagephoto label="Photo coming soon" rotate={2} className="mx-auto" />
+          <vintagephoto label="Photo coming soon" rotate={-1} className="mx-auto" />
         </div>
       </section>
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Link } from "gatsby"
 import PetalMenu from "../../../components/builds/floralco/petalmenu"
-import VintagePhoto from "../../../components/builds/floralco/VintagePhoto"
+import vintagephoto from "../../../components/builds/floralco/vintagephoto"
 import peonyImg from "../../../images/floralco/peony.jpg"
 import wildflowerImg from "../../../images/floralco/wildflower.jpg"
 import sundayImg from "../../../images/floralco/sundaymorning.jpg"
@@ -69,7 +69,7 @@ export default function FloralShopPage() {
               >
                 {b.tag}
               </span>
-              <VintagePhoto src={b.img} alt={b.name} label={b.name} rotate={b.rotate} className="mx-auto sm:mx-0" />
+              <vintagephoto src={b.img} alt={b.name} label={b.name} rotate={b.rotate} className="mx-auto sm:mx-0" />
               <div className="mt-4 flex flex-col items-center justify-between gap-3 sm:flex-row sm:items-start">
                 <div>
                   <p className="fl-serif text-xl" style={{ color: "#3A3E2C" }}>{b.name}</p>
