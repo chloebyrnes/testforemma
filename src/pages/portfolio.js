@@ -3,7 +3,7 @@ import { Link } from "gatsby"
 import Layout, { COMPANY_NAME, Reveal, ImagePlaceholder } from "../components/Layout"
 
 const projects = [
-  { name: "Petal & Bloom Co.", category: "Custom Website", href: "/builds/FloralCo" },
+  { name: "Petal & Bloom Co.", category: "Custom Website", href: "/builds/floralco/" },
   { name: "Project Two", category: "Client Portal" },
   { name: "Project Three", category: "Internal Tool" },
   { name: "Project Four", category: "Custom Web Application" },
