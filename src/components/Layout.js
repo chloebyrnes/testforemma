@@ -107,7 +107,7 @@ const globalStyles = `
   .font-body { font-family: 'Inter', sans-serif; }
 
   .menu-panel {
-    background-color: #E2D5C4;
+    background-color: #EAE7DC;
     box-shadow: -8px 0 40px rgba(67, 74, 47, 0.25);
   }
   .menu-link {
@@ -123,7 +123,7 @@ const globalStyles = `
     outline: none;
   }
   .menu-link.active {
-    background-color: #B8A89E;
+    background-color: #D6D2BC;
     border-left-color: #434A2F;
     font-weight: 600;
   }
@@ -168,7 +168,7 @@ const globalStyles = `
     transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
   .btn-secondary:hover {
-    background-color: #E2D5C4;
+    background-color: #EAE7DC;
     transform: translateY(-2px);
     box-shadow: 0 12px 24px rgba(67, 74, 47, 0.28);
   }
@@ -301,10 +301,10 @@ export function WatercolorWash({ aspect = "aspect-[20/7]", className = "" }) {
           </filter>
         </defs>
 
-        <ellipse cx="260" cy="180" rx="360" ry="220" fill="#E2D5C4" opacity="0.55" filter="url(#wc-rough)" />
+        <ellipse cx="260" cy="180" rx="360" ry="220" fill="#EAE7DC" opacity="0.55" filter="url(#wc-rough)" />
         <ellipse cx="1300" cy="420" rx="420" ry="260" fill="#B8A89E" opacity="0.55" filter="url(#wc-rough)" />
         <ellipse cx="820" cy="80" rx="300" ry="160" fill="#7A8755" opacity="0.45" filter="url(#wc-rough2)" />
-        <ellipse cx="1150" cy="120" rx="220" ry="150" fill="#E2D5C4" opacity="0.4" filter="url(#wc-rough2)" />
+        <ellipse cx="1150" cy="120" rx="220" ry="150" fill="#EAE7DC" opacity="0.4" filter="url(#wc-rough2)" />
         <ellipse cx="480" cy="440" rx="280" ry="180" fill="#B8A89E" opacity="0.4" filter="url(#wc-rough2)" />
         <ellipse cx="60" cy="480" rx="220" ry="150" fill="#7A8755" opacity="0.35" filter="url(#wc-rough)" />
 
@@ -333,7 +333,7 @@ const mockupPalettes = [
     bg: "#F5F5F5",
     surface: "#FEFEFB",
     ink: "#434A2F",
-    a1: "#E2D5C4",
+    a1: "#EAE7DC",
     a2: "#B8A89E",
     a3: "#7A8755",
     font: "'Plus Jakarta Sans', sans-serif",
@@ -1345,7 +1345,7 @@ export function WebAppMockup() {
 export function ImagePlaceholder({ label, aspect = "aspect-[16/9]", className = "" }) {
   return (
     <div
-      className={`flex ${aspect} w-full flex-col items-center justify-center gap-2 border-2 border-dashed border-[#434A2F] bg-[#E2D5C4]/40 ${className}`}
+      className={`flex ${aspect} w-full flex-col items-center justify-center gap-2 border-2 border-dashed border-[#434A2F] bg-[#EAE7DC]/40 ${className}`}
     >
       <svg viewBox="0 0 24 24" className="h-6 w-6 text-[#434A2F]" fill="none" aria-hidden="true">
         <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" strokeWidth="1.4" />
@@ -1368,7 +1368,7 @@ function FlowerToggle({ open }) {
         strokeWidth="1.4"
         strokeLinecap="round"
         style={{
-          transformOrigin: "12px 12px",
+          transformOrigin: "12px 8px",
           transition: "transform 0.3s ease",
           transform: open ? "translateY(4px) rotate(45deg)" : "translateY(0) rotate(0deg)",
         }}
@@ -1386,7 +1386,7 @@ function FlowerToggle({ open }) {
         strokeWidth="1.4"
         strokeLinecap="round"
         style={{
-          transformOrigin: "12px 12px",
+          transformOrigin: "12px 16px",
           transition: "transform 0.3s ease",
           transform: open ? "translateY(-4px) rotate(-45deg)" : "translateY(0) rotate(0deg)",
         }}
@@ -1426,7 +1426,7 @@ export function ProcessDiagram() {
             cx={n.x}
             cy={110}
             r="26"
-            fill={i === nodes.length - 1 ? "#434A2F" : "#E2D5C4"}
+            fill={i === nodes.length - 1 ? "#434A2F" : "#EAE7DC"}
             stroke="#434A2F"
             strokeWidth="1.5"
           />
@@ -1535,7 +1535,7 @@ export function StageIcon({ index, light = false }) {
 export function BlueprintDiagram() {
   return (
     <svg viewBox="0 0 900 280" className="w-full h-auto" fill="none" aria-hidden="true">
-      <rect x="20" y="20" width="240" height="200" fill="#E2D5C4" stroke="#434A2F" strokeWidth="1.25" strokeDasharray="4 4" />
+      <rect x="20" y="20" width="240" height="200" fill="#EAE7DC" stroke="#434A2F" strokeWidth="1.25" strokeDasharray="4 4" />
       <g stroke="#434A2F" strokeWidth="1.25">
         <path d="M40 60 q10 -6 24 2 t22 -4 q14 10 28 -2" strokeDasharray="3 3" />
         <path d="M50 90 q30 20 60 4" strokeDasharray="3 3" />
@@ -1547,7 +1547,7 @@ export function BlueprintDiagram() {
       <path d="M275 120 L320 120" stroke="#434A2F" strokeWidth="1.5" strokeDasharray="4 4" />
       <path d="M312 114 L322 120 L312 126" stroke="#434A2F" strokeWidth="1.5" fill="none" />
 
-      <rect x="330" y="20" width="240" height="200" fill="#E2D5C4" stroke="#434A2F" strokeWidth="1.25" strokeDasharray="4 4" />
+      <rect x="330" y="20" width="240" height="200" fill="#EAE7DC" stroke="#434A2F" strokeWidth="1.25" strokeDasharray="4 4" />
       <g stroke="#5C6640" strokeWidth="1.5">
         <rect x="350" y="40" width="200" height="24" />
         <rect x="350" y="76" width="90" height="60" />
@@ -1673,7 +1673,7 @@ function Nav({ currentPath }) {
 
 function Footer() {
   return (
-    <footer className="border-t border-[#B8A89E] px-6 py-5 sm:px-10" style={{ backgroundColor: "#E2D5C4" }}>
+    <footer className="border-t border-[#B8A89E] px-6 py-5 sm:px-10" style={{ backgroundColor: "#EAE7DC" }}>
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 font-mono text-xs uppercase tracking-[0.15em] text-[#434A2F]/70 sm:flex-row sm:gap-4">
         <span>{COMPANY_NAME}</span>
         <span>© {new Date().getFullYear()} All rights reserved</span>
@@ -1715,7 +1715,7 @@ export default function Layout({ children, currentPath = "/" }) {
     <main
       id="top"
       className="min-h-screen font-body text-[#434A2F] selection:bg-[#434A2F] selection:text-[#F5F5F5]"
-      style={{ background: "linear-gradient(to bottom, #F5F5F5 0%, #F5F5F5 35%, #E2D5C4 100%)" }}
+      style={{ background: "linear-gradient(to bottom, #F5F5F5 0%, #F5F5F5 35%, #EAE7DC 100%)" }}
     >
       <style>{globalStyles}</style>
       <div

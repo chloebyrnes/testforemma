@@ -39,7 +39,7 @@ export default function ServicesPage() {
             const accent = accentCycle[i % accentCycle.length]
             return (
               <Reveal key={s.tag} delay={i * 90}>
-                <div className="p-8" style={{ backgroundColor: "#E2D5C4", borderLeft: `4px solid ${accent}` }}>
+                <div className="p-8" style={{ backgroundColor: "#EAE7DC", borderLeft: `4px solid ${accent}` }}>
                   <div className="flex flex-wrap items-start justify-between gap-6">
                     <div className="max-w-2xl">
                       <p className="font-mono text-xs uppercase tracking-[0.2em]" style={{ color: accent }}>

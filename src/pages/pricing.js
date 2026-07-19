@@ -31,7 +31,7 @@ export default function PricingPage() {
                 <Reveal key={tier.tag} delay={i * 90}>
                   <div
                     className="pricing-card flex h-full flex-col p-8"
-                    style={{ "--accent": borderAccent, backgroundColor: "#E2D5C4" }}
+                    style={{ "--accent": borderAccent, backgroundColor: "#EAE7DC" }}
                   >
                     <div>
                       <p className="font-mono text-xs uppercase tracking-[0.2em]" style={{ color: "#434A2F" }}>
@@ -68,23 +68,19 @@ export default function PricingPage() {
                         </ul>
                       )}
                     </div>
+                    <div className="mt-6 border-t pt-6" style={{ borderColor: "#434A2F33" }}>
+                      <Link
+                        to={`/contact?type=${encodeURIComponent(tier.contactType)}`}
+                        className="btn-primary group inline-flex w-full items-center justify-center gap-2 rounded-sm px-6 py-3 font-mono text-xs uppercase tracking-[0.15em] focus-visible:outline-none"
+                      >
+                        Get This Quote
+                        <span className="btn-arrow">→</span>
+                      </Link>
+                    </div>
                   </div>
                 </Reveal>
               )
             })}
-          </div>
-          <div className="mt-6 grid gap-6 sm:grid-cols-3">
-            {pricingTiers.map((tier) => (
-              <div key={tier.tag} className="flex justify-center">
-                <Link
-                  to={`/contact?type=${encodeURIComponent(tier.contactType)}`}
-                  className="btn-primary group inline-flex w-full items-center justify-center gap-2 rounded-sm px-6 py-3 font-mono text-xs uppercase tracking-[0.15em] focus-visible:outline-none"
-                >
-                  Get This Quote
-                  <span className="btn-arrow">→</span>
-                </Link>
-              </div>
-            ))}
           </div>
         </div>
       </section>

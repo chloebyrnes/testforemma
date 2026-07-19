@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import Layout, { COMPANY_NAME, Reveal, projectTypes } from "../components/Layout"
 
 const inputClass =
-  "w-full border border-[#3E2B22]/40 bg-[#FFFFFF] px-4 py-3 font-body text-sm text-[#3E2B22] placeholder:text-[#3E2B22]/40 outline-none transition-colors focus:border-[#3E2B22]"
+  "w-full border border-[#434A2F]/40 bg-[#F5F5F5] px-4 py-3 font-body text-sm text-[#434A2F] placeholder:text-[#434A2F]/40 outline-none transition-colors focus:border-[#434A2F]"
 
 const budgetOptions = ["Under $2,000", "$2,000-$5,000", "$5,000-$15,000", "$15,000+", "Not sure yet"]
 const timelineOptions = ["ASAP", "1-3 months", "3-6 months", "Flexible, no rush"]
@@ -21,9 +21,9 @@ function PillGroup({ options, value, onChange, name }) {
             onClick={() => onChange(option)}
             className="rounded-full border px-4 py-2 font-mono text-xs uppercase tracking-[0.1em] transition-colors focus-visible:outline-none"
             style={{
-              borderColor: "#3E2B22",
-              backgroundColor: selected ? "#3E2B22" : "transparent",
-              color: selected ? "#FFFFFF" : "#3E2B22",
+              borderColor: "#434A2F",
+              backgroundColor: selected ? "#434A2F" : "transparent",
+              color: selected ? "#F5F5F5" : "#434A2F",
             }}
           >
             {option}
@@ -84,10 +84,10 @@ export default function ContactPage({ location }) {
     <Layout currentPath="/contact">
       <section className="relative mx-auto max-w-6xl px-6 py-12 sm:px-10 sm:py-16">
         <Reveal>
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#3E2B22]/70">Contact</p>
-          <h1 className="mt-4 font-display text-4xl text-[#3E2B22] sm:text-5xl">Let's get started</h1>
-          <span className="mt-3 block h-1 w-28 rounded-full bg-[#D9CFC0]" />
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-[#3E2B22]/80 sm:text-lg">
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#434A2F]/70">Contact</p>
+          <h1 className="mt-4 font-display text-4xl text-[#434A2F] sm:text-5xl [text-wrap:balance]">Let's get started</h1>
+          <span className="mt-3 block h-1 w-28 rounded-full bg-[#B8A89E]" />
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-[#434A2F]/80 sm:text-lg">
             Tell us a bit about what you're building. We'll get back to you within a couple of
             business days.
           </p>
@@ -96,16 +96,16 @@ export default function ContactPage({ location }) {
         <div className="mt-14 grid gap-14 lg:grid-cols-[1.1fr_0.9fr]">
           <Reveal>
             {submitted ? (
-              <div className="border border-[#3E2B22]/30 p-8" style={{ backgroundColor: "#F0EAE0" }}>
-                <p className="font-display text-2xl text-[#3E2B22]">Thanks, {values.name.split(" ")[0]}.</p>
-                <p className="mt-3 text-sm leading-relaxed text-[#3E2B22]/80">
+              <div className="border border-[#434A2F]/30 p-8" style={{ backgroundColor: "#EAE7DC" }}>
+                <p className="font-display text-2xl text-[#434A2F]">Thanks, {values.name.split(" ")[0]}.</p>
+                <p className="mt-3 text-sm leading-relaxed text-[#434A2F]/80">
                   We've got your message and will be in touch soon at {values.email}.
                 </p>
               </div>
             ) : (
               <div className="space-y-6">
                 <div>
-                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[#3E2B22]/70">
+                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[#434A2F]/70">
                     Name
                   </label>
                   <input
@@ -116,12 +116,12 @@ export default function ContactPage({ location }) {
                     className={inputClass}
                   />
                   {showErrors && !values.name.trim() && (
-                    <p className="mt-1 font-mono text-xs" style={{ color: "#3E2B22" }}>Required</p>
+                    <p className="mt-1 font-mono text-xs" style={{ color: "#434A2F" }}>Required</p>
                   )}
                 </div>
 
                 <div>
-                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[#3E2B22]/70">
+                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[#434A2F]/70">
                     Email
                   </label>
                   <input
@@ -132,12 +132,12 @@ export default function ContactPage({ location }) {
                     className={inputClass}
                   />
                   {showErrors && !values.email.trim() && (
-                    <p className="mt-1 font-mono text-xs" style={{ color: "#3E2B22" }}>Required</p>
+                    <p className="mt-1 font-mono text-xs" style={{ color: "#434A2F" }}>Required</p>
                   )}
                 </div>
 
                 <div>
-                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[#3E2B22]/70">
+                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[#434A2F]/70">
                     Website (optional)
                   </label>
                   <input
@@ -150,7 +150,7 @@ export default function ContactPage({ location }) {
                 </div>
 
                 <div>
-                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[#3E2B22]/70">
+                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[#434A2F]/70">
                     Project Type
                   </label>
                   <PillGroup
@@ -160,12 +160,12 @@ export default function ContactPage({ location }) {
                     onChange={setField("projectType")}
                   />
                   {showErrors && !values.projectType && (
-                    <p className="mt-2 font-mono text-xs" style={{ color: "#3E2B22" }}>Required</p>
+                    <p className="mt-2 font-mono text-xs" style={{ color: "#434A2F" }}>Required</p>
                   )}
                 </div>
 
                 <div>
-                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[#3E2B22]/70">
+                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[#434A2F]/70">
                     Budget
                   </label>
                   <PillGroup
@@ -175,12 +175,12 @@ export default function ContactPage({ location }) {
                     onChange={setField("budget")}
                   />
                   {showErrors && !values.budget && (
-                    <p className="mt-2 font-mono text-xs" style={{ color: "#3E2B22" }}>Required</p>
+                    <p className="mt-2 font-mono text-xs" style={{ color: "#434A2F" }}>Required</p>
                   )}
                 </div>
 
                 <div>
-                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[#3E2B22]/70">
+                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[#434A2F]/70">
                     Timeline
                   </label>
                   <PillGroup
@@ -190,12 +190,12 @@ export default function ContactPage({ location }) {
                     onChange={setField("timeline")}
                   />
                   {showErrors && !values.timeline && (
-                    <p className="mt-2 font-mono text-xs" style={{ color: "#3E2B22" }}>Required</p>
+                    <p className="mt-2 font-mono text-xs" style={{ color: "#434A2F" }}>Required</p>
                   )}
                 </div>
 
                 <div>
-                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[#3E2B22]/70">
+                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[#434A2F]/70">
                     Message
                   </label>
                   <textarea
@@ -205,13 +205,13 @@ export default function ContactPage({ location }) {
                     rows={5}
                     className={inputClass}
                   />
-                  <p className="mt-2 text-xs leading-relaxed text-[#3E2B22]/60">
+                  <p className="mt-2 text-xs leading-relaxed text-[#434A2F]/60">
                     The more detail you give us here, the better we can understand what you're
                     looking for, things like what problem you're solving, who it's for, and any
                     sites or tools you like the look of all help.
                   </p>
                   {showErrors && !values.message.trim() && (
-                    <p className="mt-1 font-mono text-xs" style={{ color: "#3E2B22" }}>Required</p>
+                    <p className="mt-1 font-mono text-xs" style={{ color: "#434A2F" }}>Required</p>
                   )}
                 </div>
 
@@ -228,22 +228,22 @@ export default function ContactPage({ location }) {
           </Reveal>
 
           <Reveal delay={120}>
-            <div className="space-y-8 border-l border-[#3E2B22]/20 pl-8">
+            <div className="space-y-8 border-l border-[#434A2F]/20 pl-8">
               <div>
-                <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#3E2B22]/70">Email</p>
-                <a href="mailto:hello@example.com" className="mt-2 block font-display text-xl text-[#3E2B22]">
+                <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#434A2F]/70">Email</p>
+                <a href="mailto:hello@example.com" className="mt-2 block font-display text-xl text-[#434A2F]">
                   hello@example.com
                 </a>
               </div>
               <div>
-                <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#3E2B22]/70">Response Time</p>
-                <p className="mt-2 text-sm leading-relaxed text-[#3E2B22]/80">
+                <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#434A2F]/70">Response Time</p>
+                <p className="mt-2 text-sm leading-relaxed text-[#434A2F]/80">
                   We typically reply within 1-2 business days.
                 </p>
               </div>
               <div>
-                <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#3E2B22]/70">Based In</p>
-                <p className="mt-2 text-sm leading-relaxed text-[#3E2B22]/80">City, State</p>
+                <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#434A2F]/70">Based In</p>
+                <p className="mt-2 text-sm leading-relaxed text-[#434A2F]/80">City, State</p>
               </div>
             </div>
           </Reveal>

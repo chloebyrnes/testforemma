@@ -49,7 +49,7 @@ function Hero() {
         </div>
         <div className="relative">
           <CornerMarks />
-          <div className="border border-[#434A2F] bg-[#E2D5C4]/40 p-4 sm:p-6">
+          <div className="border border-[#434A2F] bg-[#EAE7DC]/40 p-4 sm:p-6">
             <BlueprintDiagram />
           </div>
         </div>
@@ -83,7 +83,7 @@ function ProcessTeaser() {
                       className="flex h-11 w-11 flex-none items-center justify-center rounded-full border"
                       style={{
                         borderColor: "#434A2F",
-                        backgroundColor: isLast ? "#434A2F" : "#E2D5C4",
+                        backgroundColor: isLast ? "#434A2F" : "#EAE7DC",
                       }}
                     >
                       <StageIcon index={i} light={isLast} />

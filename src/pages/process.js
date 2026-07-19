@@ -26,7 +26,7 @@ export default function ProcessPage() {
                       className="flex h-11 w-11 flex-none items-center justify-center rounded-full border"
                       style={{
                         borderColor: "#434A2F",
-                        backgroundColor: isLast ? "#434A2F" : "#E2D5C4",
+                        backgroundColor: isLast ? "#434A2F" : "#EAE7DC",
                       }}
                     >
                       <StageIcon index={i} light={isLast} />

@@ -3,7 +3,7 @@ import { Link } from "gatsby"
 import Layout, { COMPANY_NAME, Reveal, ImagePlaceholder } from "../components/Layout"
 
 const projects = [
-  { name: "Project One", category: "Custom Website" },
+  { name: "Petal & Bloom Co.", category: "Custom Website", href: "/builds/FloralCo" },
   { name: "Project Two", category: "Client Portal" },
   { name: "Project Three", category: "Internal Tool" },
   { name: "Project Four", category: "Custom Web Application" },
@@ -29,17 +29,34 @@ export default function PortfolioPage() {
       <section className="relative border-t-4 border-[#7A8755] px-6 py-12 sm:px-10 sm:py-16">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project, i) => (
-              <Reveal key={project.name} delay={i * 90}>
-                <div>
+            {projects.map((project, i) => {
+              const content = (
+                <>
                   <ImagePlaceholder label={`${project.name} example`} aspect="aspect-[4/3]" />
                   <p className="mt-4 font-mono text-xs uppercase tracking-[0.15em] text-[#434A2F]/60">
                     {project.category}
                   </p>
                   <h2 className="font-display mt-1 text-xl text-[#434A2F]">{project.name}</h2>
-                </div>
-              </Reveal>
-            ))}
+                  {project.href && (
+                    <span className="mt-2 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.15em] text-[#434A2F] underline decoration-dotted underline-offset-4">
+                      View site
+                      <span>→</span>
+                    </span>
+                  )}
+                </>
+              )
+              return (
+                <Reveal key={project.name} delay={i * 90}>
+                  {project.href ? (
+                    <Link to={project.href} className="block">
+                      {content}
+                    </Link>
+                  ) : (
+                    <div>{content}</div>
+                  )}
+                </Reveal>
+              )
+            })}
           </div>
         </div>
       </section>
