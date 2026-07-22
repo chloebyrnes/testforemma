@@ -4,8 +4,8 @@ import Layout, { COMPANY_NAME, Reveal, ImagePlaceholder } from "../components/La
 
 const projects = [
   { name: "Petal & Bloom Co.", category: "Custom Website", href: "/builds/floralco/" },
-  { name: "Project Two", category: "Client Portal" },
-  { name: "Project Three", category: "Internal Tool" },
+  { name: "Willow & Vine Events", category: "Client Portal", href: "/builds/willowvine/" },
+  { name: "Northbay Supply Co.", category: "Internal Tool", href: "/builds/northbay/login" },
   { name: "Project Four", category: "Custom Web Application" },
   { name: "Project Five", category: "Custom Website" },
   { name: "Project Six", category: "Custom Web Application" },
