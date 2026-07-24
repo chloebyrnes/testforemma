@@ -40,7 +40,7 @@ export default function PortfolioPage() {
                   {project.href && (
                     <span className="mt-2 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)] underline decoration-dotted underline-offset-4">
                       View site
-                      <span>→</span>
+                      <span className="font-menu">→</span>
                     </span>
                   )}
                 </>

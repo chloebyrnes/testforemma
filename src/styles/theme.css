@@ -1,22 +1,24 @@
 /*
   Ash Studio color theme.
-  To change the site's color scheme, edit the values below — nothing else
+  To change the site's color scheme, edit the values below -- nothing else
   needs to change. Every page and the shared Layout reference these variables
   instead of hardcoded hex codes.
 
-  Current palette: Matcha / Oat Milk / Espresso / Cloud
+  Current palette: Off White / Ivory / Nude / Obsidian
+  (fully neutral/monochrome -- no accent hue was given, so buttons and text
+  share the same near-black tone, and Nude fills in as the secondary accent.)
 */
 
 :root {
   /* Core palette */
-  --ash-ink: #603314;          /* Espresso -- primary text, borders, buttons */
-  --ash-bg: #D8D3B3;           /* Oat Milk -- page background */
-  --ash-surface: #B1B7BE;      /* Cloud -- alternating section background */
-  --ash-accent: #76845B;       /* Matcha -- primary accent, buttons, active states */
-  --ash-accent-2: #A67C52;     /* Caramel (derived) -- secondary accent, highlights, hovers */
+  --ash-ink: #101010;          /* Obsidian -- primary text, borders, buttons */
+  --ash-bg: #FDFCF8;           /* Off White -- page background */
+  --ash-surface: #E3DBCC;      /* Nude -- alternating section background */
+  --ash-accent: #101010;       /* Obsidian -- primary accent, buttons, active states */
+  --ash-accent-2: #E3DBCC;     /* Nude -- secondary accent, highlights, hovers */
   --ash-white: #FFFFFF;        /* text on dark accent fills, lightest highlight */
 
   /* Derived shades (kept here so the whole palette lives in one place) */
-  --ash-surface-soft: #DDE1E5; /* lighter tint of Cloud, for subtle card fills */
-  --ash-accent-hover: #586344; /* darker Matcha, for button/hover states */
+  --ash-surface-soft: #F3F0E9; /* Ivory -- lighter tint, for subtle card fills */
+  --ash-accent-hover: #000000; /* pure black, for button/hover states */
 }

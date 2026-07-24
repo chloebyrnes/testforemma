@@ -103,6 +103,7 @@ const globalStyles = `
   }
   .font-display { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 500; letter-spacing: -0.01em; }
   .font-script { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400; }
+  .font-menu { font-family: 'Loveletter No 9', cursive; font-weight: 400; }
   .font-mono { font-family: 'IBM Plex Mono', monospace; }
   .font-body { font-family: 'Inter', sans-serif; }
 
@@ -174,6 +175,7 @@ const globalStyles = `
   }
   .btn-arrow {
     display: inline-block;
+    font-family: 'Loveletter No 9', cursive;
     transition: transform 0.2s ease;
   }
   .btn-primary:hover .btn-arrow,
@@ -1535,11 +1537,11 @@ export function StageIcon({ index, light = false }) {
 export function BlueprintDiagram() {
   const [hovered, setHovered] = useState(false)
 
-  const shift = (dx, dy, rotate = 0, delay = 0) => ({
-    transform: hovered ? `translate(${dx}px, ${dy}px) rotate(${rotate}deg)` : "translate(0px, 0px) rotate(0deg)",
+  const swap = (dx, dy, delay = 0) => ({
+    transform: hovered ? `translate(${dx}px, ${dy}px)` : "translate(0px, 0px)",
     transformBox: "fill-box",
     transformOrigin: "center",
-    transition: `transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) ${delay}ms`,
+    transition: `transform 0.9s cubic-bezier(0.45, 0, 0.2, 1) ${delay}ms`,
   })
 
   return (
@@ -1552,12 +1554,12 @@ export function BlueprintDiagram() {
       onMouseLeave={() => setHovered(false)}
     >
       <rect x="20" y="20" width="240" height="200" fill="var(--ash-surface)" stroke="var(--ash-accent-2)" strokeWidth="1.25" strokeDasharray="4 4" />
-      <g stroke="var(--ash-accent-2)" strokeWidth="1.25" style={shift(4, -3, 1, 0)}>
+      <g stroke="var(--ash-ink)" strokeWidth="1.25" style={swap(6, 12, 80)}>
         <path d="M40 60 q10 -6 24 2 t22 -4 q14 10 28 -2" strokeDasharray="3 3" />
         <path d="M50 90 q30 20 60 4" strokeDasharray="3 3" />
-        <circle cx="130" cy="50" r="14" strokeDasharray="2 3" style={shift(6, 5, 0, 60)} />
-        <path d="M60 130 l140 0" strokeDasharray="3 3" style={shift(-3, 4, 0, 120)} />
       </g>
+      <circle cx="130" cy="50" r="14" stroke="var(--ash-ink)" strokeWidth="1.25" strokeDasharray="2 3" style={swap(-20, 80, 0)} />
+      <path d="M60 130 l140 0" stroke="var(--ash-ink)" strokeWidth="1.25" strokeDasharray="3 3" style={swap(20, -80, 0)} />
       <text x="30" y="245" fill="var(--ash-ink)" fontSize="12" fontFamily="IBM Plex Mono, monospace" letterSpacing="1">A / IDEA</text>
 
       <path d="M275 120 L320 120" stroke="var(--ash-accent-2)" strokeWidth="1.5" strokeDasharray="4 4" />
@@ -1565,12 +1567,12 @@ export function BlueprintDiagram() {
 
       <rect x="330" y="20" width="240" height="200" fill="var(--ash-surface)" stroke="var(--ash-accent-2)" strokeWidth="1.25" strokeDasharray="4 4" />
       <g stroke="var(--ash-ink)" strokeWidth="1.5">
-        <rect x="350" y="40" width="200" height="24" style={shift(3, -4, -0.5, 0)} />
-        <rect x="350" y="76" width="90" height="60" style={shift(-4, 3, -1.5, 50)} />
-        <rect x="450" y="76" width="100" height="28" style={shift(5, 2, 1, 100)} />
-        <rect x="450" y="112" width="100" height="24" style={shift(-3, -3, -1, 150)} />
-        <rect x="350" y="148" width="200" height="18" style={shift(2, 4, 0.5, 200)} />
-        <rect x="350" y="176" width="120" height="18" style={shift(-5, -2, 1.5, 250)} />
+        <rect x="350" y="40" width="200" height="24" />
+        <rect x="350" y="76" width="90" height="60" style={swap(110, 0, 80)} />
+        <rect x="450" y="76" width="100" height="28" style={swap(-100, 0, 80)} />
+        <rect x="450" y="112" width="100" height="24" style={swap(-100, 0, 80)} />
+        <rect x="350" y="148" width="200" height="18" style={swap(0, 28, 160)} />
+        <rect x="350" y="176" width="120" height="18" style={swap(0, -28, 160)} />
       </g>
       <text x="340" y="245" fill="var(--ash-ink)" fontSize="12" fontFamily="IBM Plex Mono, monospace" letterSpacing="1">B / DESIGN</text>
 
@@ -1578,15 +1580,15 @@ export function BlueprintDiagram() {
       <path d="M622 114 L632 120 L622 126" stroke="var(--ash-accent-2)" strokeWidth="1.5" fill="none" />
 
       <rect x="640" y="20" width="240" height="200" fill="var(--ash-surface-soft)" stroke="var(--ash-accent-2)" strokeWidth="1.5" />
-      <rect x="660" y="40" width="200" height="24" rx="3" fill="var(--ash-white)" style={shift(-3, 3, -0.5, 0)} />
-      <g style={shift(4, -3, 1, 60)}>
+      <rect x="660" y="40" width="200" height="24" rx="3" fill="var(--ash-white)" />
+      <g style={swap(110, 0, 80)}>
         <rect x="660" y="76" width="90" height="60" rx="3" fill="var(--ash-accent)" />
         <rect x="660" y="76" width="90" height="60" rx="3" fill="none" stroke="var(--ash-surface)" />
       </g>
-      <rect x="760" y="76" width="100" height="28" rx="3" fill="var(--ash-surface)" style={shift(-4, 4, -1, 120)} />
-      <rect x="760" y="112" width="100" height="24" rx="3" fill="var(--ash-surface)" stroke="var(--ash-accent)" style={shift(3, -2, 1.5, 180)} />
-      <rect x="660" y="148" width="200" height="18" rx="3" fill="var(--ash-surface)" style={shift(-2, 3, 0.5, 240)} />
-      <rect x="660" y="176" width="120" height="18" rx="9" fill="var(--ash-surface)" style={shift(5, -4, -1, 300)} />
+      <rect x="760" y="76" width="100" height="28" rx="3" fill="var(--ash-surface)" style={swap(-100, 0, 80)} />
+      <rect x="760" y="112" width="100" height="24" rx="3" fill="var(--ash-surface)" stroke="var(--ash-accent)" style={swap(-100, 0, 80)} />
+      <rect x="660" y="148" width="200" height="18" rx="3" fill="var(--ash-surface)" style={swap(0, 28, 160)} />
+      <rect x="660" y="176" width="120" height="18" rx="9" fill="var(--ash-surface)" style={swap(0, -28, 160)} />
       <text x="650" y="245" fill="var(--ash-ink)" fontSize="12" fontFamily="IBM Plex Mono, monospace" letterSpacing="1">C / BUILT</text>
     </svg>
   )
@@ -1623,7 +1625,7 @@ function Nav({ currentPath }) {
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="primary-menu"
-            className="flex items-center gap-3 rounded-sm border border-[var(--ash-accent)] px-5 py-3 font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)] transition-all duration-200 hover:bg-[var(--ash-accent)] hover:text-[var(--ash-white)] hover:-translate-y-0.5 focus-visible:outline-none sm:px-6 sm:py-3.5 sm:text-sm"
+            className="flex items-center gap-3 rounded-sm border border-[var(--ash-accent)] px-5 py-3 font-menu text-base lowercase tracking-[0.05em] text-[var(--ash-ink)] transition-all duration-200 hover:bg-[var(--ash-accent)] hover:text-[var(--ash-white)] hover:-translate-y-0.5 focus-visible:outline-none sm:px-6 sm:py-3.5 sm:text-lg"
           >
             <span className="relative inline-block h-4 w-10 sm:h-5 sm:w-12">
               <span
@@ -1675,10 +1677,10 @@ function Nav({ currentPath }) {
                   }}
                 >
                   <span className="flex items-baseline gap-3">
-                    <span className="text-xs opacity-40">0{idx + 1}</span>
+                    <span className="font-menu text-sm normal-case opacity-40">0{idx + 1}</span>
                     <span className="menu-link-label">{link.label}</span>
                   </span>
-                  <span className="menu-link-arrow">→</span>
+                  <span className="menu-link-arrow font-menu text-lg">→</span>
                 </Link>
               )
             })}

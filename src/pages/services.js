@@ -52,7 +52,7 @@ export default function ServicesPage() {
                         className="mt-5 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)] underline decoration-dotted underline-offset-4"
                       >
                         Get a quote
-                        <span>→</span>
+                        <span className="font-menu">→</span>
                       </Link>
                     </div>
                     <button

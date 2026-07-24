@@ -1,2 +1,10 @@
 @import "tailwindcss";
 @import "./theme.css";
+
+@font-face {
+  font-family: 'Loveletter No 9';
+  src: url('../fonts/loveletter_no_9/Loveletter-No-9.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
