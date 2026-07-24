@@ -1,5 +1,5 @@
 /*
-  Ash Studio color theme.
+  Studio Inde color theme.
   To change the site's color scheme, edit the values below -- nothing else
   needs to change. Every page and the shared Layout reference these variables
   instead of hardcoded hex codes.
@@ -15,7 +15,7 @@
   --ash-ink: #3D3833;          /* derived from Stone Linen -- primary text, borders, buttons */
   --ash-bg: #ECE4DB;           /* Porcelain Blush -- page background */
   --ash-surface: #CFC8BE;      /* Warm Parchment -- alternating section background */
-  --ash-accent: #b89c92;       /* Rosewood Dust -- primary accent, buttons, active states */
+  --ash-accent: #C4A69B;       /* Rosewood Dust -- primary accent, buttons, active states */
   --ash-accent-2: #B8AB9C;     /* Stone Linen -- secondary accent, highlights, hovers */
   --ash-white: #FFFFFF;        /* text on dark accent fills, lightest highlight */
 

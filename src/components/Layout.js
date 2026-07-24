@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react"
 import { Link } from "gatsby"
-import ashLogo from "../images/ashlogo.png"
+import ashLogo from "../images/studioinde.png"
 import paperTexture from "../images/background.png"
 
-export const COMPANY_NAME = "Ash Studio"
+export const COMPANY_NAME = "Studio Inde"
 
 export const navLinks = [
   { label: "Home", href: "/" },
@@ -163,6 +163,17 @@ const globalStyles = `
     background-color: var(--ash-accent-hover);
     transform: translateY(-2px);
     box-shadow: 0 12px 24px rgba(17, 17, 17, 0.32);
+  }
+  .btn-primary:disabled {
+    background-color: var(--ash-surface);
+    color: var(--ash-ink);
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .btn-primary:disabled:hover {
+    background-color: var(--ash-surface);
+    transform: none;
+    box-shadow: none;
   }
   .btn-secondary {
     background-color: transparent;

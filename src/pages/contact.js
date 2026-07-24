@@ -104,9 +104,12 @@ export default function ContactPage({ location }) {
               </div>
             ) : (
               <div className="space-y-6">
+                <p className="text-xs text-[var(--ash-ink)]/60">
+                  Fields marked with <span style={{ color: "var(--ash-accent)" }}>*</span> are required.
+                </p>
                 <div>
                   <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]/70">
-                    Name
+                    Name <span style={{ color: "var(--ash-accent)" }}>*</span>
                   </label>
                   <input
                     type="text"
@@ -122,7 +125,7 @@ export default function ContactPage({ location }) {
 
                 <div>
                   <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]/70">
-                    Email
+                    Email <span style={{ color: "var(--ash-accent)" }}>*</span>
                   </label>
                   <input
                     type="email"
@@ -151,7 +154,7 @@ export default function ContactPage({ location }) {
 
                 <div>
                   <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]/70">
-                    Project Type
+                    Project Type <span style={{ color: "var(--ash-accent)" }}>*</span>
                   </label>
                   <PillGroup
                     name="Project Type"
@@ -166,7 +169,7 @@ export default function ContactPage({ location }) {
 
                 <div>
                   <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]/70">
-                    Budget
+                    Budget <span style={{ color: "var(--ash-accent)" }}>*</span>
                   </label>
                   <PillGroup
                     name="Budget"
@@ -181,7 +184,7 @@ export default function ContactPage({ location }) {
 
                 <div>
                   <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]/70">
-                    Timeline
+                    Timeline <span style={{ color: "var(--ash-accent)" }}>*</span>
                   </label>
                   <PillGroup
                     name="Timeline"
@@ -196,7 +199,7 @@ export default function ContactPage({ location }) {
 
                 <div>
                   <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]/70">
-                    Message
+                    Message <span style={{ color: "var(--ash-accent)" }}>*</span>
                   </label>
                   <textarea
                     value={values.message}
@@ -218,6 +221,7 @@ export default function ContactPage({ location }) {
                 <button
                   type="button"
                   onClick={handleSubmit}
+                  disabled={!isValid}
                   className="btn-primary group inline-flex items-center gap-2 rounded-sm px-7 py-3 font-mono text-xs uppercase tracking-[0.15em] focus-visible:outline-none"
                 >
                   Send Message

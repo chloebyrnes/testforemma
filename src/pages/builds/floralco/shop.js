@@ -115,7 +115,7 @@ export default function FloralShopPage() {
           className="fl-body mt-6 inline-block text-xs uppercase tracking-[0.15em] underline"
           style={{ color: "#8A9468" }}
         >
-          ← Back to Ash Studio Portfolio
+          ← Back to Studio Inde Portfolio
         </Link>
       </footer>
     </main>

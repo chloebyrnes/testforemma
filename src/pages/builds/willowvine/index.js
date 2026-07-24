@@ -113,7 +113,7 @@ export default function WillowHomePage() {
           className="wv-body mt-8 inline-block text-xs uppercase tracking-[0.15em] underline"
           style={{ color: "#3A322A" }}
         >
-          ← Back to Ash Studio Portfolio
+          ← Back to Studio Inde Portfolio
         </Link>
       </footer>
     </main>

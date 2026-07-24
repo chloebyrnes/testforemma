@@ -319,7 +319,7 @@ export default function NorthbayDashboard() {
           className="nb-body text-xs uppercase tracking-[0.1em] underline"
           style={{ color: "#64748B" }}
         >
-          ← Back to Ash Studio Portfolio
+          ← Back to Studio Inde Portfolio
         </Link>
       </footer>
     </main>

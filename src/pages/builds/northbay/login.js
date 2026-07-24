@@ -64,7 +64,7 @@ export default function NorthbayLoginPage() {
           className="nb-body mt-8 block text-center text-xs uppercase tracking-[0.1em] underline"
           style={{ color: "#64748B" }}
         >
-          ← Back to Ash Studio Portfolio
+          ← Back to Studio Inde Portfolio
         </Link>
       </div>
     </main>

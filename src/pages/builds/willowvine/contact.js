@@ -101,7 +101,7 @@ export default function WillowContactPage() {
           className="wv-body text-xs uppercase tracking-[0.15em] underline"
           style={{ color: "#2B2B28" }}
         >
-          ← Back to Ash Studio Portfolio
+          ← Back to Studio Inde Portfolio
         </Link>
       </footer>
     </main>
