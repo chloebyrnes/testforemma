@@ -34,7 +34,7 @@ export default function PricingPage() {
                     style={{ "--accent": borderAccent, backgroundColor: "var(--ash-surface-soft)" }}
                   >
                     <div>
-                      <p className="font-mono text-xs uppercase tracking-[0.2em]" style={{ color: "var(--ash-ink)" }}>
+                      <p className="font-menu text-lg normal-case" style={{ color: "var(--ash-ink)" }}>
                         {tier.tag}
                       </p>
                       <h2 className="mt-4 font-display text-xl text-[var(--ash-ink)]">{tier.title}</h2>

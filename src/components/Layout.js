@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
 import { Link } from "gatsby"
 import ashLogo from "../images/ashlogo.png"
+import paperTexture from "../images/background.png"
 
 export const COMPANY_NAME = "Ash Studio"
 
@@ -101,8 +102,8 @@ const globalStyles = `
   html, body, #___gatsby, #gatsby-focus-wrapper {
     background-color: var(--ash-bg);
   }
-  .font-display { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 500; letter-spacing: -0.01em; }
-  .font-script { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400; }
+  .font-display { font-family: 'Courier New', monospace; font-weight: 700; letter-spacing: 0; }
+  .font-script { font-family: 'Courier New', monospace; font-weight: 400; }
   .font-menu { font-family: 'Loveletter No 9', cursive; font-weight: 400; }
   .font-mono { font-family: 'IBM Plex Mono', monospace; }
   .font-body { font-family: 'Inter', sans-serif; }
@@ -155,6 +156,7 @@ const globalStyles = `
   .btn-primary {
     background-color: var(--ash-accent);
     color: var(--ash-white);
+    font-family: 'Courier New', monospace !important;
     transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
   .btn-primary:hover {
@@ -166,6 +168,7 @@ const globalStyles = `
     background-color: transparent;
     border: 1px solid var(--ash-accent);
     color: var(--ash-ink);
+    font-family: 'Courier New', monospace !important;
     transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
   .btn-secondary:hover {
@@ -1582,7 +1585,7 @@ export function BlueprintDiagram() {
       <rect x="640" y="20" width="240" height="200" fill="var(--ash-surface-soft)" stroke="var(--ash-accent-2)" strokeWidth="1.5" />
       <rect x="660" y="40" width="200" height="24" rx="3" fill="var(--ash-white)" />
       <g style={swap(110, 0, 80)}>
-        <rect x="660" y="76" width="90" height="60" rx="3" fill="var(--ash-accent)" />
+        <rect x="660" y="76" width="90" height="60" rx="3" fill="var(--ash-surface)" />
         <rect x="660" y="76" width="90" height="60" rx="3" fill="none" stroke="var(--ash-surface)" />
       </g>
       <rect x="760" y="76" width="100" height="28" rx="3" fill="var(--ash-surface)" style={swap(-100, 0, 80)} />
@@ -1610,84 +1613,118 @@ function Nav({ currentPath }) {
   }, [open])
 
   return (
-    <header className="relative z-[60] mx-auto max-w-6xl px-6 py-6 sm:px-10">
-      <div className="flex flex-wrap items-center justify-between gap-y-3">
-        <Link to="/" className="-ml-3 flex items-center text-[var(--ash-ink)] sm:-ml-4">
+    <>
+      {/* Mobile header: logo + hamburger, drawer menu */}
+      <header className="relative z-[60] mx-auto max-w-6xl px-6 py-6 sm:px-10 md:hidden">
+        <div className="flex flex-wrap items-center justify-between gap-y-3">
+          <Link to="/" className="-ml-3 flex items-center text-[var(--ash-ink)] sm:-ml-4">
+            <img
+              src={ashLogo}
+              alt={COMPANY_NAME}
+              className="h-14 w-auto opacity-100 transition-opacity duration-300 hover:opacity-70 sm:h-20"
+            />
+          </Link>
+          <div className="relative" ref={menuRef}>
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              aria-expanded={open}
+              aria-controls="primary-menu"
+              className="flex items-center gap-3 rounded-sm border border-[var(--ash-accent)] px-5 py-3 font-menu text-base lowercase tracking-[0.05em] text-[var(--ash-ink)] transition-all duration-200 hover:bg-[var(--ash-accent)] hover:text-[var(--ash-white)] hover:-translate-y-0.5 focus-visible:outline-none sm:px-6 sm:py-3.5 sm:text-lg"
+            >
+              <span className="relative inline-block h-4 w-10 sm:h-5 sm:w-12">
+                <span
+                  className="absolute inset-0 transition-opacity duration-300"
+                  style={{ opacity: open ? 0 : 1 }}
+                >
+                  Menu
+                </span>
+                <span
+                  className="absolute inset-0 transition-opacity duration-300"
+                  style={{ opacity: open ? 1 : 0 }}
+                >
+                  Close
+                </span>
+              </span>
+              <FlowerToggle open={open} />
+            </button>
+
+            <div
+              className="fixed inset-0 z-40 bg-[var(--ash-accent)] transition-opacity duration-400"
+              style={{
+                opacity: open ? 0.35 : 0,
+                pointerEvents: open ? "auto" : "none",
+              }}
+              onClick={() => setOpen(false)}
+            />
+
+            <nav
+              id="primary-menu"
+              className="menu-panel fixed inset-y-0 right-0 z-50 flex w-[85vw] max-w-xs flex-col justify-center gap-2 py-10 sm:w-96 sm:max-w-none"
+              style={{
+                opacity: open ? 1 : 0,
+                transform: open ? "translateX(0)" : "translateX(60px)",
+                filter: open ? "blur(0px)" : "blur(6px)",
+                pointerEvents: open ? "auto" : "none",
+                transition: "opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease",
+              }}
+            >
+              {navLinks.map((link, idx) => {
+                const isActive = link.href === currentPath
+                return (
+                  <Link
+                    key={link.href}
+                    to={link.href}
+                    onClick={() => setOpen(false)}
+                    className={`menu-link group flex items-center justify-between px-10 py-4 font-mono text-base uppercase tracking-[0.2em] ${isActive ? "active" : ""}`}
+                    style={{
+                      transitionDelay: open ? `${idx * 40}ms` : "0ms",
+                    }}
+                  >
+                    <span className="flex items-baseline gap-3">
+                      <span className="font-menu text-sm normal-case opacity-40">0{idx + 1}</span>
+                      <span className="menu-link-label">{link.label}</span>
+                    </span>
+                    <span className="menu-link-arrow font-menu text-lg">→</span>
+                  </Link>
+                )
+              })}
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      {/* Desktop header: centered logo, horizontal nav bar below */}
+      <header className="relative z-[60] mx-auto hidden max-w-6xl flex-col items-center px-6 py-8 sm:px-10 md:flex">
+        <Link to="/" className="flex items-center text-[var(--ash-ink)]">
           <img
             src={ashLogo}
             alt={COMPANY_NAME}
-            className="h-14 w-auto opacity-100 transition-opacity duration-300 hover:opacity-70 sm:h-20 md:h-24"
+            className="h-20 w-auto opacity-100 transition-opacity duration-300 hover:opacity-70 lg:h-24"
           />
         </Link>
-        <div className="relative" ref={menuRef}>
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            aria-expanded={open}
-            aria-controls="primary-menu"
-            className="flex items-center gap-3 rounded-sm border border-[var(--ash-accent)] px-5 py-3 font-menu text-base lowercase tracking-[0.05em] text-[var(--ash-ink)] transition-all duration-200 hover:bg-[var(--ash-accent)] hover:text-[var(--ash-white)] hover:-translate-y-0.5 focus-visible:outline-none sm:px-6 sm:py-3.5 sm:text-lg"
-          >
-            <span className="relative inline-block h-4 w-10 sm:h-5 sm:w-12">
-              <span
-                className="absolute inset-0 transition-opacity duration-300"
-                style={{ opacity: open ? 0 : 1 }}
+        <nav className="mt-5 flex flex-wrap items-center justify-center gap-x-8 gap-y-2">
+          {navLinks.map((link) => {
+            const isActive = link.href === currentPath
+            return (
+              <Link
+                key={link.href}
+                to={link.href}
+                className="font-mono text-xs uppercase tracking-[0.15em] transition-colors"
+                style={{
+                  color: "var(--ash-ink)",
+                  fontWeight: isActive ? 700 : 400,
+                  borderBottom: isActive ? "2px solid var(--ash-accent)" : "2px solid transparent",
+                  paddingBottom: "2px",
+                }}
               >
-                Menu
-              </span>
-              <span
-                className="absolute inset-0 transition-opacity duration-300"
-                style={{ opacity: open ? 1 : 0 }}
-              >
-                Close
-              </span>
-            </span>
-            <FlowerToggle open={open} />
-          </button>
-
-          <div
-            className="fixed inset-0 z-40 bg-[var(--ash-accent)] transition-opacity duration-400"
-            style={{
-              opacity: open ? 0.35 : 0,
-              pointerEvents: open ? "auto" : "none",
-            }}
-            onClick={() => setOpen(false)}
-          />
-
-          <nav
-            id="primary-menu"
-            className="menu-panel fixed inset-y-0 right-0 z-50 flex w-[85vw] max-w-xs flex-col justify-center gap-2 py-10 sm:w-96 sm:max-w-none"
-            style={{
-              opacity: open ? 1 : 0,
-              transform: open ? "translateX(0)" : "translateX(60px)",
-              filter: open ? "blur(0px)" : "blur(6px)",
-              pointerEvents: open ? "auto" : "none",
-              transition: "opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease",
-            }}
-          >
-            {navLinks.map((link, idx) => {
-              const isActive = link.href === currentPath
-              return (
-                <Link
-                  key={link.href}
-                  to={link.href}
-                  onClick={() => setOpen(false)}
-                  className={`menu-link group flex items-center justify-between px-10 py-4 font-mono text-base uppercase tracking-[0.2em] ${isActive ? "active" : ""}`}
-                  style={{
-                    transitionDelay: open ? `${idx * 40}ms` : "0ms",
-                  }}
-                >
-                  <span className="flex items-baseline gap-3">
-                    <span className="font-menu text-sm normal-case opacity-40">0{idx + 1}</span>
-                    <span className="menu-link-label">{link.label}</span>
-                  </span>
-                  <span className="menu-link-arrow font-menu text-lg">→</span>
-                </Link>
-              )
-            })}
-          </nav>
-        </div>
-      </div>
-    </header>
+                {link.label}
+              </Link>
+            )
+          })}
+        </nav>
+      </header>
+    </>
   )
 }
 
@@ -1734,10 +1771,23 @@ export default function Layout({ children, currentPath = "/" }) {
   return (
     <main
       id="top"
-      className="min-h-screen font-body text-[var(--ash-ink)] selection:bg-[var(--ash-accent)] selection:text-[var(--ash-white)]"
+      className="relative min-h-screen font-body text-[var(--ash-ink)] selection:bg-[var(--ash-accent)] selection:text-[var(--ash-white)]"
       style={{ background: "linear-gradient(to bottom, var(--ash-bg) 0%, var(--ash-bg) 35%, var(--ash-surface-soft) 100%)" }}
     >
       <style>{globalStyles}</style>
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: `url(${paperTexture})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center top",
+          backgroundRepeat: "no-repeat",
+          backgroundAttachment: "fixed",
+          opacity: 0.25,
+          maskImage: "linear-gradient(to bottom, black 0%, black 55%, transparent 92%)",
+          WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 55%, transparent 92%)",
+        }}
+      />
       <div
         className="pointer-events-none fixed inset-0"
         style={{

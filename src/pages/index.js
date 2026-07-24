@@ -33,9 +33,9 @@ function Hero() {
           <div className="mt-9 flex flex-wrap gap-4">
             <Link
               to="/contact"
-              className="btn-primary group inline-flex items-center gap-2 rounded-sm px-6 py-3 font-menu text-lg lowercase tracking-[0.02em] focus-visible:outline-none"
+              className="btn-primary group inline-flex items-center gap-2 rounded-sm px-6 py-3 text-sm uppercase tracking-[0.15em] focus-visible:outline-none"
             >
-              start your project
+              Start Your Project
               <span className="btn-arrow">→</span>
             </Link>
             <Link
@@ -95,7 +95,7 @@ function ProcessTeaser() {
                       </span>
                     )}
                   </div>
-                  <p className="mt-4 font-mono text-xs text-[var(--ash-ink)]/70">{p.step}</p>
+                  <p className="mt-4 font-menu text-base text-[var(--ash-ink)]/70">{p.step}</p>
                   <h3 className="mt-1 font-display text-lg text-[var(--ash-ink)]">{p.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-[var(--ash-ink)]/80">{p.body}</p>
                 </Reveal>
@@ -132,9 +132,9 @@ function ClosingCTA() {
           <div className="mt-9 flex flex-wrap justify-center gap-4">
             <Link
               to="/contact"
-              className="btn-primary group inline-flex items-center gap-2 rounded-sm px-7 py-3 font-menu text-lg lowercase tracking-[0.02em] focus-visible:outline-none"
+              className="btn-primary group inline-flex items-center gap-2 rounded-sm px-7 py-3 text-sm uppercase tracking-[0.15em] focus-visible:outline-none"
             >
-              start your project
+              Start Your Project
               <span className="btn-arrow">→</span>
             </Link>
           </div>

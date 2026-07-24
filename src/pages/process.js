@@ -38,7 +38,7 @@ export default function ProcessPage() {
                       </span>
                     )}
                   </div>
-                  <p className="mt-4 font-mono text-xs text-[var(--ash-ink)]/70">{p.step}</p>
+                  <p className="mt-4 font-menu text-base text-[var(--ash-ink)]/70">{p.step}</p>
                   <h2 className="mt-1 font-display text-lg text-[var(--ash-ink)]">{p.title}</h2>
                   <p className="mt-2 text-sm leading-relaxed text-[var(--ash-ink)]/80">{p.body}</p>
                 </Reveal>
