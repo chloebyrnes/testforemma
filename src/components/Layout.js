@@ -93,13 +93,13 @@ export const process = [
   { step: "05", title: "Development", body: "We build it, custom code, made for your business." },
 ]
 
-export const accentCycle = ["#434A2F", "#7A8755"]
+export const accentCycle = ["var(--ash-accent)", "var(--ash-surface)"]
 
 const globalStyles = `
   @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Cormorant+Garamond:wght@500;600;700&family=Pinyon+Script&family=Space+Grotesk:wght@500;600;700&family=Playfair+Display:wght@500;600;700&family=Poppins:wght@400;500;600&family=Bodoni+Moda:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Quicksand:wght@500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap');
 
   html, body, #___gatsby, #gatsby-focus-wrapper {
-    background-color: #F5F5F5;
+    background-color: var(--ash-bg);
   }
   .font-display { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 500; letter-spacing: -0.01em; }
   .font-script { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400; }
@@ -107,24 +107,24 @@ const globalStyles = `
   .font-body { font-family: 'Inter', sans-serif; }
 
   .menu-panel {
-    background-color: #EAE7DC;
-    box-shadow: -8px 0 40px rgba(67, 74, 47, 0.25);
+    background-color: var(--ash-white);
+    box-shadow: -8px 0 40px rgba(17, 17, 17, 0.25);
   }
   .menu-link {
-    color: #434A2F;
+    color: var(--ash-ink);
     border-left: 3px solid transparent;
     transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   }
   .menu-link:hover,
   .menu-link:focus-visible {
-    background-color: #F5F5F5;
-    color: #434A2F;
-    border-left-color: #434A2F;
+    background-color: var(--ash-bg);
+    color: var(--ash-ink);
+    border-left-color: var(--ash-surface);
     outline: none;
   }
   .menu-link.active {
-    background-color: #D6D2BC;
-    border-left-color: #434A2F;
+    background-color: var(--ash-accent-2);
+    border-left-color: var(--ash-accent);
     font-weight: 600;
   }
   .menu-link-label {
@@ -147,30 +147,30 @@ const globalStyles = `
 
   a:focus-visible,
   button:focus-visible {
-    outline: 2px solid #434A2F;
+    outline: 2px solid var(--ash-accent);
     outline-offset: 2px;
   }
 
   .btn-primary {
-    background-color: #434A2F;
-    color: #F5F5F5;
+    background-color: var(--ash-accent);
+    color: var(--ash-white);
     transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
   .btn-primary:hover {
-    background-color: #363D26;
+    background-color: var(--ash-accent-hover);
     transform: translateY(-2px);
-    box-shadow: 0 12px 24px rgba(67, 74, 47, 0.32);
+    box-shadow: 0 12px 24px rgba(17, 17, 17, 0.32);
   }
   .btn-secondary {
     background-color: transparent;
-    border: 1px solid #434A2F;
-    color: #434A2F;
+    border: 1px solid var(--ash-accent);
+    color: var(--ash-ink);
     transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
   .btn-secondary:hover {
-    background-color: #EAE7DC;
+    background-color: var(--ash-surface-soft);
     transform: translateY(-2px);
-    box-shadow: 0 12px 24px rgba(67, 74, 47, 0.28);
+    box-shadow: 0 12px 24px rgba(17, 17, 17, 0.28);
   }
   .btn-arrow {
     display: inline-block;
@@ -182,19 +182,19 @@ const globalStyles = `
   }
 
   .service-card, .pricing-card {
-    border-left: 4px solid var(--accent, #434A2F);
+    border-left: 4px solid var(--accent, var(--ash-accent));
     transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
   .service-card:hover, .pricing-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 18px 34px rgba(67, 74, 47, 0.18);
+    box-shadow: 0 18px 34px rgba(17, 17, 17, 0.18);
   }
 
   .back-to-top {
     transition: opacity 0.25s ease, transform 0.25s ease, background-color 0.2s ease;
   }
   .back-to-top:hover {
-    background-color: #363D26;
+    background-color: var(--ash-accent-hover);
     transform: translateY(-3px);
   }
 
@@ -268,7 +268,7 @@ export function CrosshairMark({ className = "", style = {} }) {
   )
 }
 
-export function CornerMarks({ color = "#434A2F" }) {
+export function CornerMarks({ color = "var(--ash-surface)" }) {
   const base = "absolute h-5 w-5"
   return (
     <>
@@ -282,7 +282,7 @@ export function CornerMarks({ color = "#434A2F" }) {
 
 export function WatercolorWash({ aspect = "aspect-[20/7]", className = "" }) {
   return (
-    <div className={`relative w-full overflow-hidden ${aspect} ${className}`} style={{ backgroundColor: "#F5F5F5" }}>
+    <div className={`relative w-full overflow-hidden ${aspect} ${className}`} style={{ backgroundColor: "var(--ash-bg)" }}>
       <svg viewBox="0 0 1600 560" className="absolute inset-0 h-full w-full" preserveAspectRatio="xMidYMid slice">
         <defs>
           <filter id="wc-rough" x="-20%" y="-20%" width="140%" height="140%">
@@ -301,12 +301,12 @@ export function WatercolorWash({ aspect = "aspect-[20/7]", className = "" }) {
           </filter>
         </defs>
 
-        <ellipse cx="260" cy="180" rx="360" ry="220" fill="#EAE7DC" opacity="0.55" filter="url(#wc-rough)" />
-        <ellipse cx="1300" cy="420" rx="420" ry="260" fill="#B8A89E" opacity="0.55" filter="url(#wc-rough)" />
-        <ellipse cx="820" cy="80" rx="300" ry="160" fill="#7A8755" opacity="0.45" filter="url(#wc-rough2)" />
-        <ellipse cx="1150" cy="120" rx="220" ry="150" fill="#EAE7DC" opacity="0.4" filter="url(#wc-rough2)" />
-        <ellipse cx="480" cy="440" rx="280" ry="180" fill="#B8A89E" opacity="0.4" filter="url(#wc-rough2)" />
-        <ellipse cx="60" cy="480" rx="220" ry="150" fill="#7A8755" opacity="0.35" filter="url(#wc-rough)" />
+        <ellipse cx="260" cy="180" rx="360" ry="220" fill="var(--ash-surface-soft)" opacity="0.55" filter="url(#wc-rough)" />
+        <ellipse cx="1300" cy="420" rx="420" ry="260" fill="var(--ash-accent-2)" opacity="0.55" filter="url(#wc-rough)" />
+        <ellipse cx="820" cy="80" rx="300" ry="160" fill="var(--ash-surface)" opacity="0.45" filter="url(#wc-rough2)" />
+        <ellipse cx="1150" cy="120" rx="220" ry="150" fill="var(--ash-surface-soft)" opacity="0.4" filter="url(#wc-rough2)" />
+        <ellipse cx="480" cy="440" rx="280" ry="180" fill="var(--ash-accent-2)" opacity="0.4" filter="url(#wc-rough2)" />
+        <ellipse cx="60" cy="480" rx="220" ry="150" fill="var(--ash-surface)" opacity="0.35" filter="url(#wc-rough)" />
 
         <rect x="0" y="0" width="1600" height="560" filter="url(#wc-grain)" />
       </svg>
@@ -316,7 +316,7 @@ export function WatercolorWash({ aspect = "aspect-[20/7]", className = "" }) {
 
 const lightBlueWhitePalette = {
   name: "Light Blue & White",
-  bg: "#FFFFFF",
+  bg: "var(--ash-white)",
   surface: "#F9FBFD",
   ink: "#1F3A52",
   a1: "#DCEBF6",
@@ -330,12 +330,12 @@ const lightBlueWhitePalette = {
 const mockupPalettes = [
   {
     name: "Default",
-    bg: "#F5F5F5",
+    bg: "var(--ash-bg)",
     surface: "#FEFEFB",
-    ink: "#434A2F",
-    a1: "#EAE7DC",
-    a2: "#B8A89E",
-    a3: "#7A8755",
+    ink: "var(--ash-ink)",
+    a1: "var(--ash-surface-soft)",
+    a2: "var(--ash-accent-2)",
+    a3: "var(--ash-surface)",
     font: "'Plus Jakarta Sans', sans-serif",
     layout: "classic",
     align: "left",
@@ -476,7 +476,7 @@ export function WebsiteMockup() {
   return (
     <div>
       <div className="mb-1 flex flex-wrap items-center gap-2">
-        <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[#434A2F]/60">Try a style:</span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--ash-ink)]/60">Try a style:</span>
         {mockupPalettes.map((pal, idx) => (
           <button
             key={pal.name}
@@ -487,20 +487,20 @@ export function WebsiteMockup() {
             })}
             className="flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.08em] transition-colors"
             style={{
-              borderColor: "#434A2F",
-              backgroundColor: idx === paletteIndex ? "#434A2F" : "transparent",
-              color: idx === paletteIndex ? "#F5F5F5" : "#434A2F",
+              borderColor: "var(--ash-surface)",
+              backgroundColor: idx === paletteIndex ? "var(--ash-surface)" : "transparent",
+              color: idx === paletteIndex ? "var(--ash-white)" : "var(--ash-ink)",
             }}
           >
             <span
               className="h-2.5 w-2.5 rounded-full border"
-              style={{ backgroundColor: pal.ink, borderColor: idx === paletteIndex ? "#F5F5F5" : "#434A2F" }}
+              style={{ backgroundColor: pal.ink, borderColor: idx === paletteIndex ? "var(--ash-white)" : "var(--ash-surface)" }}
             />
             {pal.name}
           </button>
         ))}
       </div>
-      <p className="mb-3 font-mono text-[9px] italic text-[#434A2F]/50">
+      <p className="mb-3 font-mono text-[9px] italic text-[var(--ash-ink)]/50">
         Just examples, we'll design something unique for your brand.
       </p>
 
@@ -713,7 +713,7 @@ export function PortalMockup() {
   return (
     <div>
       <div className="mb-1 flex flex-wrap items-center gap-2">
-        <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[#434A2F]/60">Try a style:</span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--ash-ink)]/60">Try a style:</span>
         {portalPalettes.map((pal, idx) => (
           <button
             key={pal.name}
@@ -721,20 +721,20 @@ export function PortalMockup() {
             onClick={stop(() => setPaletteIndex(idx))}
             className="flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.08em] transition-colors"
             style={{
-              borderColor: "#434A2F",
-              backgroundColor: idx === paletteIndex ? "#434A2F" : "transparent",
-              color: idx === paletteIndex ? "#F5F5F5" : "#434A2F",
+              borderColor: "var(--ash-surface)",
+              backgroundColor: idx === paletteIndex ? "var(--ash-surface)" : "transparent",
+              color: idx === paletteIndex ? "var(--ash-white)" : "var(--ash-ink)",
             }}
           >
             <span
               className="h-2.5 w-2.5 rounded-full border"
-              style={{ backgroundColor: pal.ink, borderColor: idx === paletteIndex ? "#F5F5F5" : "#434A2F" }}
+              style={{ backgroundColor: pal.ink, borderColor: idx === paletteIndex ? "var(--ash-white)" : "var(--ash-surface)" }}
             />
             {pal.name}
           </button>
         ))}
       </div>
-      <p className="mb-3 font-mono text-[9px] italic text-[#434A2F]/50">
+      <p className="mb-3 font-mono text-[9px] italic text-[var(--ash-ink)]/50">
         Just examples, we'll design something unique for your brand.
       </p>
 
@@ -923,7 +923,7 @@ export function InternalToolMockup() {
   return (
     <div>
       <div className="mb-1 flex flex-wrap items-center gap-2">
-        <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[#434A2F]/60">Try a style:</span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--ash-ink)]/60">Try a style:</span>
         {toolPalettes.map((pal, idx) => (
           <button
             key={pal.name}
@@ -931,20 +931,20 @@ export function InternalToolMockup() {
             onClick={stop(() => setPaletteIndex(idx))}
             className="flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.08em] transition-colors"
             style={{
-              borderColor: "#434A2F",
-              backgroundColor: idx === paletteIndex ? "#434A2F" : "transparent",
-              color: idx === paletteIndex ? "#F5F5F5" : "#434A2F",
+              borderColor: "var(--ash-surface)",
+              backgroundColor: idx === paletteIndex ? "var(--ash-surface)" : "transparent",
+              color: idx === paletteIndex ? "var(--ash-white)" : "var(--ash-ink)",
             }}
           >
             <span
               className="h-2.5 w-2.5 rounded-full border"
-              style={{ backgroundColor: pal.ink, borderColor: idx === paletteIndex ? "#F5F5F5" : "#434A2F" }}
+              style={{ backgroundColor: pal.ink, borderColor: idx === paletteIndex ? "var(--ash-white)" : "var(--ash-surface)" }}
             />
             {pal.name}
           </button>
         ))}
       </div>
-      <p className="mb-3 font-mono text-[9px] italic text-[#434A2F]/50">
+      <p className="mb-3 font-mono text-[9px] italic text-[var(--ash-ink)]/50">
         Just examples, we'll design something unique for your business.
       </p>
 
@@ -1167,7 +1167,7 @@ export function WebAppMockup() {
   return (
     <div>
       <div className="mb-1 flex flex-wrap items-center gap-2">
-        <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[#434A2F]/60">Try a style:</span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--ash-ink)]/60">Try a style:</span>
         {mockupPalettes.map((pal, idx) => (
           <button
             key={pal.name}
@@ -1178,20 +1178,20 @@ export function WebAppMockup() {
             })}
             className="flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.08em] transition-colors"
             style={{
-              borderColor: "#434A2F",
-              backgroundColor: idx === paletteIndex ? "#434A2F" : "transparent",
-              color: idx === paletteIndex ? "#F5F5F5" : "#434A2F",
+              borderColor: "var(--ash-surface)",
+              backgroundColor: idx === paletteIndex ? "var(--ash-surface)" : "transparent",
+              color: idx === paletteIndex ? "var(--ash-white)" : "var(--ash-ink)",
             }}
           >
             <span
               className="h-2.5 w-2.5 rounded-full border"
-              style={{ backgroundColor: pal.ink, borderColor: idx === paletteIndex ? "#F5F5F5" : "#434A2F" }}
+              style={{ backgroundColor: pal.ink, borderColor: idx === paletteIndex ? "var(--ash-white)" : "var(--ash-surface)" }}
             />
             {pal.name}
           </button>
         ))}
       </div>
-      <p className="mb-3 font-mono text-[9px] italic text-[#434A2F]/50">
+      <p className="mb-3 font-mono text-[9px] italic text-[var(--ash-ink)]/50">
         Just examples, we'll design something unique for your app.
       </p>
 
@@ -1345,14 +1345,14 @@ export function WebAppMockup() {
 export function ImagePlaceholder({ label, aspect = "aspect-[16/9]", className = "" }) {
   return (
     <div
-      className={`flex ${aspect} w-full flex-col items-center justify-center gap-2 border-2 border-dashed border-[#434A2F] bg-[#EAE7DC]/40 ${className}`}
+      className={`flex ${aspect} w-full flex-col items-center justify-center gap-2 border-2 border-dashed border-[var(--ash-surface)] bg-[var(--ash-surface-soft)]/40 ${className}`}
     >
-      <svg viewBox="0 0 24 24" className="h-6 w-6 text-[#434A2F]" fill="none" aria-hidden="true">
+      <svg viewBox="0 0 24 24" className="h-6 w-6 text-[var(--ash-surface)]" fill="none" aria-hidden="true">
         <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" strokeWidth="1.4" />
         <circle cx="8.5" cy="9.5" r="1.6" stroke="currentColor" strokeWidth="1.4" />
         <path d="M4 17 L9 12 L13 16 L16 13 L20 17" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
-      <span className="px-2 text-center font-mono text-[10px] uppercase tracking-[0.15em] text-[#434A2F]">
+      <span className="px-2 text-center font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--ash-ink)]">
         {label}
       </span>
     </div>
@@ -1407,7 +1407,7 @@ export function ProcessDiagram() {
     <svg viewBox="0 0 940 220" className="w-full h-auto" fill="none" aria-hidden="true">
       <path
         d="M90 110 L850 110"
-        stroke="#434A2F"
+        stroke="var(--ash-surface)"
         strokeWidth="1.5"
         strokeDasharray="6 6"
       />
@@ -1415,7 +1415,7 @@ export function ProcessDiagram() {
         <path
           key={n.x}
           d={`M${n.x - 18} 104 L${n.x - 4} 110 L${n.x - 18} 116`}
-          stroke="#434A2F"
+          stroke="var(--ash-surface)"
           strokeWidth="1.5"
           fill="none"
         />
@@ -1426,14 +1426,14 @@ export function ProcessDiagram() {
             cx={n.x}
             cy={110}
             r="26"
-            fill={i === nodes.length - 1 ? "#434A2F" : "#EAE7DC"}
-            stroke="#434A2F"
+            fill={i === nodes.length - 1 ? "var(--ash-accent)" : "var(--ash-surface-soft)"}
+            stroke="var(--ash-accent)"
             strokeWidth="1.5"
           />
         </g>
       ))}
 
-      <g stroke="#434A2F" strokeWidth="1.4" strokeLinecap="round" fill="none">
+      <g stroke="var(--ash-accent)" strokeWidth="1.4" strokeLinecap="round" fill="none">
         <path d={`M${nodes[0].x} 96 L${nodes[0].x} 100`} />
         <path d={`M${nodes[0].x} 120 L${nodes[0].x} 124`} />
         <path d={`M${nodes[0].x - 12} 110 L${nodes[0].x - 8} 110`} />
@@ -1442,12 +1442,12 @@ export function ProcessDiagram() {
         <path d={`M${nodes[0].x + 5} 117 L${nodes[0].x + 8} 120`} />
       </g>
 
-      <circle cx={nodes[1].x} cy="110" r="7" stroke="#434A2F" strokeWidth="1.4" fill="none" />
-      <circle cx={nodes[1].x} cy="110" r="2" fill="#434A2F" />
+      <circle cx={nodes[1].x} cy="110" r="7" stroke="var(--ash-accent)" strokeWidth="1.4" fill="none" />
+      <circle cx={nodes[1].x} cy="110" r="2" fill="var(--ash-accent)" />
 
       <path
         d={`M${nodes[2].x - 7} 117 L${nodes[2].x + 6} 104 L${nodes[2].x + 10} 108 L${nodes[2].x - 3} 121 Z`}
-        stroke="#434A2F"
+        stroke="var(--ash-accent)"
         strokeWidth="1.2"
         fill="none"
         strokeLinejoin="round"
@@ -1455,7 +1455,7 @@ export function ProcessDiagram() {
 
       <path
         d={`M${nodes[3].x - 10} 110 L${nodes[3].x + 6} 110 M${nodes[3].x + 1} 104 L${nodes[3].x + 8} 110 L${nodes[3].x + 1} 116`}
-        stroke="#434A2F"
+        stroke="var(--ash-accent)"
         strokeWidth="1.4"
         fill="none"
         strokeLinecap="round"
@@ -1464,7 +1464,7 @@ export function ProcessDiagram() {
 
       <path
         d={`M${nodes[4].x - 10} 104 L${nodes[4].x - 16} 110 L${nodes[4].x - 10} 116 M${nodes[4].x + 10} 104 L${nodes[4].x + 16} 110 L${nodes[4].x + 10} 116`}
-        stroke="#F5F5F5"
+        stroke="var(--ash-white)"
         strokeWidth="1.4"
         fill="none"
         strokeLinecap="round"
@@ -1477,7 +1477,7 @@ export function ProcessDiagram() {
           x={n.x}
           y={165}
           textAnchor="middle"
-          fill="#434A2F"
+          fill="var(--ash-ink)"
           fontSize="13"
           fontFamily="Cormorant Garamond, serif"
         >
@@ -1489,7 +1489,7 @@ export function ProcessDiagram() {
 }
 
 export function StageIcon({ index, light = false }) {
-  const stroke = light ? "#F5F5F5" : "#434A2F"
+  const stroke = light ? "var(--ash-white)" : "var(--ash-accent)"
   const icons = [
     <g key="idea" stroke={stroke} strokeWidth="1.4" strokeLinecap="round">
       <path d="M12 2v4M12 20v4M2 12h4M20 12h4M5.5 5.5l2.8 2.8M15.7 15.7l2.8 2.8" />
@@ -1533,43 +1533,61 @@ export function StageIcon({ index, light = false }) {
 }
 
 export function BlueprintDiagram() {
+  const [hovered, setHovered] = useState(false)
+
+  const shift = (dx, dy, rotate = 0, delay = 0) => ({
+    transform: hovered ? `translate(${dx}px, ${dy}px) rotate(${rotate}deg)` : "translate(0px, 0px) rotate(0deg)",
+    transformBox: "fill-box",
+    transformOrigin: "center",
+    transition: `transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) ${delay}ms`,
+  })
+
   return (
-    <svg viewBox="0 0 900 280" className="w-full h-auto" fill="none" aria-hidden="true">
-      <rect x="20" y="20" width="240" height="200" fill="#EAE7DC" stroke="#434A2F" strokeWidth="1.25" strokeDasharray="4 4" />
-      <g stroke="#434A2F" strokeWidth="1.25">
+    <svg
+      viewBox="0 0 900 280"
+      className="w-full h-auto cursor-pointer"
+      fill="none"
+      aria-hidden="true"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <rect x="20" y="20" width="240" height="200" fill="var(--ash-surface)" stroke="var(--ash-accent-2)" strokeWidth="1.25" strokeDasharray="4 4" />
+      <g stroke="var(--ash-accent-2)" strokeWidth="1.25" style={shift(4, -3, 1, 0)}>
         <path d="M40 60 q10 -6 24 2 t22 -4 q14 10 28 -2" strokeDasharray="3 3" />
         <path d="M50 90 q30 20 60 4" strokeDasharray="3 3" />
-        <circle cx="130" cy="50" r="14" strokeDasharray="2 3" />
-        <path d="M60 130 l140 0" strokeDasharray="3 3" />
+        <circle cx="130" cy="50" r="14" strokeDasharray="2 3" style={shift(6, 5, 0, 60)} />
+        <path d="M60 130 l140 0" strokeDasharray="3 3" style={shift(-3, 4, 0, 120)} />
       </g>
-      <text x="30" y="245" fill="#434A2F" fontSize="12" fontFamily="IBM Plex Mono, monospace" letterSpacing="1">A / IDEA</text>
+      <text x="30" y="245" fill="var(--ash-ink)" fontSize="12" fontFamily="IBM Plex Mono, monospace" letterSpacing="1">A / IDEA</text>
 
-      <path d="M275 120 L320 120" stroke="#434A2F" strokeWidth="1.5" strokeDasharray="4 4" />
-      <path d="M312 114 L322 120 L312 126" stroke="#434A2F" strokeWidth="1.5" fill="none" />
+      <path d="M275 120 L320 120" stroke="var(--ash-accent-2)" strokeWidth="1.5" strokeDasharray="4 4" />
+      <path d="M312 114 L322 120 L312 126" stroke="var(--ash-accent-2)" strokeWidth="1.5" fill="none" />
 
-      <rect x="330" y="20" width="240" height="200" fill="#EAE7DC" stroke="#434A2F" strokeWidth="1.25" strokeDasharray="4 4" />
-      <g stroke="#5C6640" strokeWidth="1.5">
-        <rect x="350" y="40" width="200" height="24" />
-        <rect x="350" y="76" width="90" height="60" />
-        <rect x="450" y="76" width="100" height="28" />
-        <rect x="450" y="112" width="100" height="24" />
-        <rect x="350" y="148" width="200" height="18" />
-        <rect x="350" y="176" width="120" height="18" />
+      <rect x="330" y="20" width="240" height="200" fill="var(--ash-surface)" stroke="var(--ash-accent-2)" strokeWidth="1.25" strokeDasharray="4 4" />
+      <g stroke="var(--ash-ink)" strokeWidth="1.5">
+        <rect x="350" y="40" width="200" height="24" style={shift(3, -4, -0.5, 0)} />
+        <rect x="350" y="76" width="90" height="60" style={shift(-4, 3, -1.5, 50)} />
+        <rect x="450" y="76" width="100" height="28" style={shift(5, 2, 1, 100)} />
+        <rect x="450" y="112" width="100" height="24" style={shift(-3, -3, -1, 150)} />
+        <rect x="350" y="148" width="200" height="18" style={shift(2, 4, 0.5, 200)} />
+        <rect x="350" y="176" width="120" height="18" style={shift(-5, -2, 1.5, 250)} />
       </g>
-      <text x="340" y="245" fill="#5C6640" fontSize="12" fontFamily="IBM Plex Mono, monospace" letterSpacing="1">B / DESIGN</text>
+      <text x="340" y="245" fill="var(--ash-ink)" fontSize="12" fontFamily="IBM Plex Mono, monospace" letterSpacing="1">B / DESIGN</text>
 
-      <path d="M585 120 L630 120" stroke="#434A2F" strokeWidth="1.5" strokeDasharray="4 4" />
-      <path d="M622 114 L632 120 L622 126" stroke="#434A2F" strokeWidth="1.5" fill="none" />
+      <path d="M585 120 L630 120" stroke="var(--ash-accent-2)" strokeWidth="1.5" strokeDasharray="4 4" />
+      <path d="M622 114 L632 120 L622 126" stroke="var(--ash-accent-2)" strokeWidth="1.5" fill="none" />
 
-      <rect x="640" y="20" width="240" height="200" fill="#434A2F" stroke="#7A8755" strokeWidth="1.5" />
-      <rect x="660" y="40" width="200" height="24" rx="3" fill="#F5F5F5" />
-      <rect x="660" y="76" width="90" height="60" rx="3" fill="#5C6640" />
-      <rect x="660" y="76" width="90" height="60" rx="3" fill="none" stroke="#B8A89E" />
-      <rect x="760" y="76" width="100" height="28" rx="3" fill="#B8A89E" />
-      <rect x="760" y="112" width="100" height="24" rx="3" fill="#2B301C" stroke="#B8A89E" />
-      <rect x="660" y="148" width="200" height="18" rx="3" fill="#2B301C" />
-      <rect x="660" y="176" width="120" height="18" rx="9" fill="#B8A89E" />
-      <text x="650" y="245" fill="#434A2F" fontSize="12" fontFamily="IBM Plex Mono, monospace" letterSpacing="1">C / BUILT</text>
+      <rect x="640" y="20" width="240" height="200" fill="var(--ash-surface-soft)" stroke="var(--ash-accent-2)" strokeWidth="1.5" />
+      <rect x="660" y="40" width="200" height="24" rx="3" fill="var(--ash-white)" style={shift(-3, 3, -0.5, 0)} />
+      <g style={shift(4, -3, 1, 60)}>
+        <rect x="660" y="76" width="90" height="60" rx="3" fill="var(--ash-accent)" />
+        <rect x="660" y="76" width="90" height="60" rx="3" fill="none" stroke="var(--ash-surface)" />
+      </g>
+      <rect x="760" y="76" width="100" height="28" rx="3" fill="var(--ash-surface)" style={shift(-4, 4, -1, 120)} />
+      <rect x="760" y="112" width="100" height="24" rx="3" fill="var(--ash-surface)" stroke="var(--ash-accent)" style={shift(3, -2, 1.5, 180)} />
+      <rect x="660" y="148" width="200" height="18" rx="3" fill="var(--ash-surface)" style={shift(-2, 3, 0.5, 240)} />
+      <rect x="660" y="176" width="120" height="18" rx="9" fill="var(--ash-surface)" style={shift(5, -4, -1, 300)} />
+      <text x="650" y="245" fill="var(--ash-ink)" fontSize="12" fontFamily="IBM Plex Mono, monospace" letterSpacing="1">C / BUILT</text>
     </svg>
   )
 }
@@ -1592,7 +1610,7 @@ function Nav({ currentPath }) {
   return (
     <header className="relative z-[60] mx-auto max-w-6xl px-6 py-6 sm:px-10">
       <div className="flex flex-wrap items-center justify-between gap-y-3">
-        <Link to="/" className="-ml-3 flex items-center text-[#434A2F] sm:-ml-4">
+        <Link to="/" className="-ml-3 flex items-center text-[var(--ash-ink)] sm:-ml-4">
           <img
             src={ashLogo}
             alt={COMPANY_NAME}
@@ -1605,7 +1623,7 @@ function Nav({ currentPath }) {
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="primary-menu"
-            className="flex items-center gap-3 rounded-sm border border-[#434A2F] px-5 py-3 font-mono text-xs uppercase tracking-[0.15em] text-[#434A2F] transition-all duration-200 hover:bg-[#434A2F] hover:text-[#F5F5F5] hover:-translate-y-0.5 focus-visible:outline-none sm:px-6 sm:py-3.5 sm:text-sm"
+            className="flex items-center gap-3 rounded-sm border border-[var(--ash-accent)] px-5 py-3 font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)] transition-all duration-200 hover:bg-[var(--ash-accent)] hover:text-[var(--ash-white)] hover:-translate-y-0.5 focus-visible:outline-none sm:px-6 sm:py-3.5 sm:text-sm"
           >
             <span className="relative inline-block h-4 w-10 sm:h-5 sm:w-12">
               <span
@@ -1625,7 +1643,7 @@ function Nav({ currentPath }) {
           </button>
 
           <div
-            className="fixed inset-0 z-40 bg-[#434A2F] transition-opacity duration-400"
+            className="fixed inset-0 z-40 bg-[var(--ash-accent)] transition-opacity duration-400"
             style={{
               opacity: open ? 0.35 : 0,
               pointerEvents: open ? "auto" : "none",
@@ -1673,8 +1691,8 @@ function Nav({ currentPath }) {
 
 function Footer() {
   return (
-    <footer className="border-t border-[#B8A89E] px-6 py-5 sm:px-10" style={{ backgroundColor: "#EAE7DC" }}>
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 font-mono text-xs uppercase tracking-[0.15em] text-[#434A2F]/70 sm:flex-row sm:gap-4">
+    <footer className="border-t border-[var(--ash-accent-2)] px-6 py-5 sm:px-10" style={{ backgroundColor: "var(--ash-surface-soft)" }}>
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]/70 sm:flex-row sm:gap-4">
         <span>{COMPANY_NAME}</span>
         <span>© {new Date().getFullYear()} All rights reserved</span>
       </div>
@@ -1698,8 +1716,8 @@ function BackToTop() {
       aria-label="Back to top"
       className="back-to-top fixed bottom-6 right-6 z-40 flex h-11 w-11 items-center justify-center rounded-full font-mono text-sm"
       style={{
-        backgroundColor: "#434A2F",
-        color: "#F5F5F5",
+        backgroundColor: "var(--ash-accent)",
+        color: "var(--ash-white)",
         opacity: show ? 1 : 0,
         pointerEvents: show ? "auto" : "none",
         transform: show ? "translateY(0)" : "translateY(12px)",
@@ -1714,8 +1732,8 @@ export default function Layout({ children, currentPath = "/" }) {
   return (
     <main
       id="top"
-      className="min-h-screen font-body text-[#434A2F] selection:bg-[#434A2F] selection:text-[#F5F5F5]"
-      style={{ background: "linear-gradient(to bottom, #F5F5F5 0%, #F5F5F5 35%, #EAE7DC 100%)" }}
+      className="min-h-screen font-body text-[var(--ash-ink)] selection:bg-[var(--ash-accent)] selection:text-[var(--ash-white)]"
+      style={{ background: "linear-gradient(to bottom, var(--ash-bg) 0%, var(--ash-bg) 35%, var(--ash-surface-soft) 100%)" }}
     >
       <style>{globalStyles}</style>
       <div

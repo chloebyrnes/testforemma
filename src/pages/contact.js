@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import Layout, { COMPANY_NAME, Reveal, projectTypes } from "../components/Layout"
 
 const inputClass =
-  "w-full border border-[#434A2F]/40 bg-[#F5F5F5] px-4 py-3 font-body text-sm text-[#434A2F] placeholder:text-[#434A2F]/40 outline-none transition-colors focus:border-[#434A2F]"
+  "w-full border border-[var(--ash-surface)] bg-[var(--ash-white)] px-4 py-3 font-body text-sm text-[var(--ash-ink)] placeholder:text-[var(--ash-ink)]/40 outline-none transition-colors focus:border-[var(--ash-accent)]"
 
 const budgetOptions = ["Under $2,000", "$2,000-$5,000", "$5,000-$15,000", "$15,000+", "Not sure yet"]
 const timelineOptions = ["ASAP", "1-3 months", "3-6 months", "Flexible, no rush"]
@@ -21,9 +21,9 @@ function PillGroup({ options, value, onChange, name }) {
             onClick={() => onChange(option)}
             className="rounded-full border px-4 py-2 font-mono text-xs uppercase tracking-[0.1em] transition-colors focus-visible:outline-none"
             style={{
-              borderColor: "#434A2F",
-              backgroundColor: selected ? "#434A2F" : "transparent",
-              color: selected ? "#F5F5F5" : "#434A2F",
+              borderColor: "var(--ash-surface)",
+              backgroundColor: selected ? "var(--ash-accent)" : "transparent",
+              color: selected ? "var(--ash-white)" : "var(--ash-ink)",
             }}
           >
             {option}
@@ -84,10 +84,10 @@ export default function ContactPage({ location }) {
     <Layout currentPath="/contact">
       <section className="relative mx-auto max-w-6xl px-6 py-12 sm:px-10 sm:py-16">
         <Reveal>
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#434A2F]/70">Contact</p>
-          <h1 className="mt-4 font-display text-4xl text-[#434A2F] sm:text-5xl [text-wrap:balance]">Let's get started</h1>
-          <span className="mt-3 block h-1 w-28 rounded-full bg-[#B8A89E]" />
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-[#434A2F]/80 sm:text-lg">
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--ash-ink)]/70">Contact</p>
+          <h1 className="mt-4 font-display text-4xl text-[var(--ash-ink)] sm:text-5xl [text-wrap:balance]">Let's get started</h1>
+          <span className="mt-3 block h-1 w-28 rounded-full bg-[var(--ash-accent-2)]" />
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-[var(--ash-ink)]/80 sm:text-lg">
             Tell us a bit about what you're building. We'll get back to you within a couple of
             business days.
           </p>
@@ -96,16 +96,16 @@ export default function ContactPage({ location }) {
         <div className="mt-14 grid gap-14 lg:grid-cols-[1.1fr_0.9fr]">
           <Reveal>
             {submitted ? (
-              <div className="border border-[#434A2F]/30 p-8" style={{ backgroundColor: "#EAE7DC" }}>
-                <p className="font-display text-2xl text-[#434A2F]">Thanks, {values.name.split(" ")[0]}.</p>
-                <p className="mt-3 text-sm leading-relaxed text-[#434A2F]/80">
+              <div className="border border-[var(--ash-surface)]/30 p-8" style={{ backgroundColor: "var(--ash-surface-soft)" }}>
+                <p className="font-display text-2xl text-[var(--ash-ink)]">Thanks, {values.name.split(" ")[0]}.</p>
+                <p className="mt-3 text-sm leading-relaxed text-[var(--ash-ink)]/80">
                   We've got your message and will be in touch soon at {values.email}.
                 </p>
               </div>
             ) : (
               <div className="space-y-6">
                 <div>
-                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[#434A2F]/70">
+                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]/70">
                     Name
                   </label>
                   <input
@@ -116,12 +116,12 @@ export default function ContactPage({ location }) {
                     className={inputClass}
                   />
                   {showErrors && !values.name.trim() && (
-                    <p className="mt-1 font-mono text-xs" style={{ color: "#434A2F" }}>Required</p>
+                    <p className="mt-1 font-mono text-xs" style={{ color: "var(--ash-ink)" }}>Required</p>
                   )}
                 </div>
 
                 <div>
-                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[#434A2F]/70">
+                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]/70">
                     Email
                   </label>
                   <input
@@ -132,12 +132,12 @@ export default function ContactPage({ location }) {
                     className={inputClass}
                   />
                   {showErrors && !values.email.trim() && (
-                    <p className="mt-1 font-mono text-xs" style={{ color: "#434A2F" }}>Required</p>
+                    <p className="mt-1 font-mono text-xs" style={{ color: "var(--ash-ink)" }}>Required</p>
                   )}
                 </div>
 
                 <div>
-                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[#434A2F]/70">
+                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]/70">
                     Website (optional)
                   </label>
                   <input
@@ -150,7 +150,7 @@ export default function ContactPage({ location }) {
                 </div>
 
                 <div>
-                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[#434A2F]/70">
+                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]/70">
                     Project Type
                   </label>
                   <PillGroup
@@ -160,12 +160,12 @@ export default function ContactPage({ location }) {
                     onChange={setField("projectType")}
                   />
                   {showErrors && !values.projectType && (
-                    <p className="mt-2 font-mono text-xs" style={{ color: "#434A2F" }}>Required</p>
+                    <p className="mt-2 font-mono text-xs" style={{ color: "var(--ash-ink)" }}>Required</p>
                   )}
                 </div>
 
                 <div>
-                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[#434A2F]/70">
+                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]/70">
                     Budget
                   </label>
                   <PillGroup
@@ -175,12 +175,12 @@ export default function ContactPage({ location }) {
                     onChange={setField("budget")}
                   />
                   {showErrors && !values.budget && (
-                    <p className="mt-2 font-mono text-xs" style={{ color: "#434A2F" }}>Required</p>
+                    <p className="mt-2 font-mono text-xs" style={{ color: "var(--ash-ink)" }}>Required</p>
                   )}
                 </div>
 
                 <div>
-                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[#434A2F]/70">
+                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]/70">
                     Timeline
                   </label>
                   <PillGroup
@@ -190,12 +190,12 @@ export default function ContactPage({ location }) {
                     onChange={setField("timeline")}
                   />
                   {showErrors && !values.timeline && (
-                    <p className="mt-2 font-mono text-xs" style={{ color: "#434A2F" }}>Required</p>
+                    <p className="mt-2 font-mono text-xs" style={{ color: "var(--ash-ink)" }}>Required</p>
                   )}
                 </div>
 
                 <div>
-                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[#434A2F]/70">
+                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]/70">
                     Message
                   </label>
                   <textarea
@@ -205,13 +205,13 @@ export default function ContactPage({ location }) {
                     rows={5}
                     className={inputClass}
                   />
-                  <p className="mt-2 text-xs leading-relaxed text-[#434A2F]/60">
+                  <p className="mt-2 text-xs leading-relaxed text-[var(--ash-ink)]/60">
                     The more detail you give us here, the better we can understand what you're
                     looking for, things like what problem you're solving, who it's for, and any
                     sites or tools you like the look of all help.
                   </p>
                   {showErrors && !values.message.trim() && (
-                    <p className="mt-1 font-mono text-xs" style={{ color: "#434A2F" }}>Required</p>
+                    <p className="mt-1 font-mono text-xs" style={{ color: "var(--ash-ink)" }}>Required</p>
                   )}
                 </div>
 
@@ -228,22 +228,22 @@ export default function ContactPage({ location }) {
           </Reveal>
 
           <Reveal delay={120}>
-            <div className="space-y-8 border-l border-[#434A2F]/20 pl-8">
+            <div className="space-y-8 border-l border-[var(--ash-surface)]/20 pl-8">
               <div>
-                <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#434A2F]/70">Email</p>
-                <a href="mailto:hello@example.com" className="mt-2 block font-display text-xl text-[#434A2F]">
+                <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--ash-ink)]/70">Email</p>
+                <a href="mailto:hello@example.com" className="mt-2 block font-display text-xl text-[var(--ash-ink)]">
                   hello@example.com
                 </a>
               </div>
               <div>
-                <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#434A2F]/70">Response Time</p>
-                <p className="mt-2 text-sm leading-relaxed text-[#434A2F]/80">
+                <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--ash-ink)]/70">Response Time</p>
+                <p className="mt-2 text-sm leading-relaxed text-[var(--ash-ink)]/80">
                   We typically reply within 1-2 business days.
                 </p>
               </div>
               <div>
-                <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#434A2F]/70">Based In</p>
-                <p className="mt-2 text-sm leading-relaxed text-[#434A2F]/80">City, State</p>
+                <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--ash-ink)]/70">Based In</p>
+                <p className="mt-2 text-sm leading-relaxed text-[var(--ash-ink)]/80">City, State</p>
               </div>
             </div>
           </Reveal>
