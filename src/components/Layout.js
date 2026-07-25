@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from "react"
 import { Link } from "gatsby"
-import ashLogo from "../images/studioinde.png"
-import paperTexture from "../images/background.png"
+import ashLogo from "../images/ashlynstudiologo.png"
 
-export const COMPANY_NAME = "Studio Inde"
+export const COMPANY_NAME = "Ashlyn Studio"
 
 export const navLinks = [
   { label: "Home", href: "/" },
@@ -66,7 +65,7 @@ export const pricingTiers = [
     contactType: "Custom Website",
     price: "Starting at $1,500",
     body: "A custom-designed site built to represent your business and bring in the right traffic. More complex sites are quoted higher.",
-    includes: ["Custom design, no templates", "Mobile-responsive build", "Up to 5 pages", "Basic SEO setup"],
+    includes: ["Custom design, no templates", "Mobile-responsive build"],
   },
   {
     tag: "02",
@@ -102,8 +101,8 @@ const globalStyles = `
   html, body, #___gatsby, #gatsby-focus-wrapper {
     background-color: var(--ash-bg);
   }
-  .font-display { font-family: 'Courier New', monospace; font-weight: 700; letter-spacing: 0; }
-  .font-script { font-family: 'Courier New', monospace; font-weight: 400; }
+  .font-display { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; letter-spacing: -0.01em; }
+  .font-script { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 500; }
   .font-menu { font-family: 'Loveletter No 9', cursive; font-weight: 400; }
   .font-mono { font-family: 'IBM Plex Mono', monospace; }
   .font-body { font-family: 'Inter', sans-serif; }
@@ -156,7 +155,8 @@ const globalStyles = `
   .btn-primary {
     background-color: var(--ash-accent);
     color: var(--ash-white);
-    font-family: 'Courier New', monospace !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-weight: 600;
     transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
   .btn-primary:hover {
@@ -179,7 +179,8 @@ const globalStyles = `
     background-color: transparent;
     border: 1px solid var(--ash-accent);
     color: var(--ash-ink);
-    font-family: 'Courier New', monospace !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-weight: 600;
     transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
   .btn-secondary:hover {
@@ -230,10 +231,12 @@ const globalStyles = `
   }
 
   .reveal {
+    opacity: 0;
     transform: translateY(24px);
-    transition: transform 0.7s ease;
+    transition: opacity 0.7s ease, transform 0.7s ease;
   }
   .reveal.visible {
+    opacity: 1;
     transform: translateY(0);
   }
 `
@@ -247,10 +250,7 @@ function useReveal() {
     if (!el) return
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true)
-          observer.disconnect()
-        }
+        setVisible(entry.isIntersecting)
       },
       { threshold: 0.15 }
     )
@@ -1632,7 +1632,7 @@ function Nav({ currentPath }) {
             <img
               src={ashLogo}
               alt={COMPANY_NAME}
-              className="h-14 w-auto opacity-100 transition-opacity duration-300 hover:opacity-70 sm:h-20"
+              className="h-20 w-auto opacity-100 transition-opacity duration-300 hover:opacity-70 sm:h-28"
             />
           </Link>
           <div className="relative" ref={menuRef}>
@@ -1711,7 +1711,7 @@ function Nav({ currentPath }) {
           <img
             src={ashLogo}
             alt={COMPANY_NAME}
-            className="h-20 w-auto opacity-100 transition-opacity duration-300 hover:opacity-70 lg:h-24"
+            className="h-28 w-auto opacity-100 transition-opacity duration-300 hover:opacity-70 lg:h-36"
           />
         </Link>
         <nav className="mt-5 flex flex-wrap items-center justify-center gap-x-8 gap-y-2">
@@ -1783,29 +1783,9 @@ export default function Layout({ children, currentPath = "/" }) {
     <main
       id="top"
       className="relative min-h-screen font-body text-[var(--ash-ink)] selection:bg-[var(--ash-accent)] selection:text-[var(--ash-white)]"
-      style={{ background: "linear-gradient(to bottom, var(--ash-bg) 0%, var(--ash-bg) 35%, var(--ash-surface-soft) 100%)" }}
+      style={{ backgroundColor: "var(--ash-bg)" }}
     >
       <style>{globalStyles}</style>
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          backgroundImage: `url(${paperTexture})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center top",
-          backgroundRepeat: "no-repeat",
-          backgroundAttachment: "fixed",
-          opacity: 0.25,
-          maskImage: "linear-gradient(to bottom, black 0%, black 55%, transparent 92%)",
-          WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 55%, transparent 92%)",
-        }}
-      />
-      <div
-        className="pointer-events-none fixed inset-0"
-        style={{
-          background:
-            "radial-gradient(circle at 15% 10%, rgba(0,0,0,0.035), transparent 45%), radial-gradient(circle at 85% 70%, rgba(0,0,0,0.03), transparent 50%)",
-        }}
-      />
       <Nav currentPath={currentPath} />
       {children}
       <Footer />

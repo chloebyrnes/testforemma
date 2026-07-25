@@ -112,7 +112,7 @@ export default function FloralContactPage() {
           className="fl-body mt-6 inline-block text-xs uppercase tracking-[0.15em] underline"
           style={{ color: "#8A9468" }}
         >
-          ← Back to Studio Inde Portfolio
+          ← Back to Ashlyn Studio Portfolio
         </Link>
       </footer>
     </main>

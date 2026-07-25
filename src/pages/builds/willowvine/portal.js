@@ -237,7 +237,7 @@ export default function WillowPortalPage() {
           className="wv-body text-xs uppercase tracking-[0.15em] underline"
           style={{ color: "#A67C4E" }}
         >
-          ← Back to Studio Inde Portfolio
+          ← Back to Ashlyn Studio Portfolio
         </Link>
       </footer>
     </main>

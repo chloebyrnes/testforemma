@@ -1,25 +1,27 @@
 /*
-  Studio Inde color theme.
+  Ashlyn Studio color theme.
   To change the site's color scheme, edit the values below -- nothing else
   needs to change. Every page and the shared Layout reference these variables
   instead of hardcoded hex codes.
 
-  Current palette: Porcelain Blush / Rosewood Dust / Stone Linen / Warm Parchment
-  (all four given colors are light-to-mid neutrals, none dark enough for
-  reliable text contrast on their own, so --ash-ink is a derived deep warm
-  taupe based on Stone Linen rather than a literal swatch.)
+  Current palette: built directly from Sage (#B2B59C) and Black Olive
+  (#3B3C36), with a soft white background. Black Olive carries the ink/text
+  role since it's dark enough for real contrast. Sage is used directly as a
+  secondary accent (borders, hovers, highlights) so it stays true to the
+  swatch, and --ash-accent is a deepened version of that same Sage so button
+  text stays readable against it.
 */
 
 :root {
   /* Core palette */
-  --ash-ink: #3D3833;          /* derived from Stone Linen -- primary text, borders, buttons */
-  --ash-bg: #ECE4DB;           /* Porcelain Blush -- page background */
-  --ash-surface: #CFC8BE;      /* Warm Parchment -- alternating section background */
-  --ash-accent: #C4A69B;       /* Rosewood Dust -- primary accent, buttons, active states */
-  --ash-accent-2: #B8AB9C;     /* Stone Linen -- secondary accent, highlights, hovers */
+  --ash-ink: #3B3C36;          /* Black Olive -- primary text, headers, borders */
+  --ash-bg: #FAF8F3;           /* soft white -- page background */
+  --ash-surface: #E7E7DA;      /* light tint of Sage -- alternating section background */
+  --ash-accent: #7C8067;       /* deepened Sage -- primary buttons, active states (contrast-safe with white text) */
+  --ash-accent-2: #B2B59C;     /* Sage, true to swatch -- secondary accent, hovers, highlights */
   --ash-white: #FFFFFF;        /* text on dark accent fills, lightest highlight */
 
   /* Derived shades (kept here so the whole palette lives in one place) */
-  --ash-surface-soft: #F5F0EA; /* lighter tint of Porcelain Blush, for subtle card fills */
-  --ash-accent-hover: #9C7C6F; /* darker Rosewood Dust, for button/hover states */
+  --ash-surface-soft: #F2F1E8; /* very light Sage-white tint, for subtle card fills */
+  --ash-accent-hover: #5F6350; /* darker Sage-olive, for button/hover states */
 }

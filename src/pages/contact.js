@@ -7,6 +7,12 @@ const inputClass =
 const budgetOptions = ["Under $2,000", "$2,000-$5,000", "$5,000-$15,000", "$15,000+", "Not sure yet"]
 const timelineOptions = ["ASAP", "1-3 months", "3-6 months", "Flexible, no rush"]
 
+function encode(data) {
+  return Object.keys(data)
+    .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
+    .join("&")
+}
+
 function PillGroup({ options, value, onChange, name }) {
   return (
     <div className="flex flex-wrap gap-2" role="radiogroup" aria-label={name}>
@@ -46,6 +52,8 @@ export default function ContactPage({ location }) {
   })
   const [submitted, setSubmitted] = useState(false)
   const [showErrors, setShowErrors] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState(false)
 
   useEffect(() => {
     if (!location || !location.search) return
@@ -77,11 +85,39 @@ export default function ContactPage({ location }) {
       setShowErrors(true)
       return
     }
-    setSubmitted(true)
+    setSubmitting(true)
+    setSubmitError(false)
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({
+        "form-name": "contact",
+        ...values,
+      }),
+    })
+      .then(() => {
+        setSubmitting(false)
+        setSubmitted(true)
+      })
+      .catch(() => {
+        setSubmitting(false)
+        setSubmitError(true)
+      })
   }
 
   return (
     <Layout currentPath="/contact">
+      <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+        <input type="text" name="name" />
+        <input type="email" name="email" />
+        <input type="text" name="projectType" />
+        <input type="text" name="budget" />
+        <input type="text" name="timeline" />
+        <input type="text" name="website" />
+        <textarea name="message" />
+        <input type="text" name="bot-field" />
+      </form>
+
       <section className="relative mx-auto max-w-6xl px-6 py-12 sm:px-10 sm:py-16">
         <Reveal>
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--ash-ink)]/70">Contact</p>
@@ -218,13 +254,19 @@ export default function ContactPage({ location }) {
                   )}
                 </div>
 
+                {submitError && (
+                  <p className="font-mono text-xs" style={{ color: "var(--ash-accent-hover)" }}>
+                    Something went wrong sending that. Please try again in a moment.
+                  </p>
+                )}
+
                 <button
                   type="button"
                   onClick={handleSubmit}
-                  disabled={!isValid}
+                  disabled={!isValid || submitting}
                   className="btn-primary group inline-flex items-center gap-2 rounded-sm px-7 py-3 font-mono text-xs uppercase tracking-[0.15em] focus-visible:outline-none"
                 >
-                  Send Message
+                  {submitting ? "Sending..." : "Send Message"}
                   <span className="btn-arrow">→</span>
                 </button>
               </div>
@@ -235,8 +277,8 @@ export default function ContactPage({ location }) {
             <div className="space-y-8 border-l border-[var(--ash-surface)]/20 pl-8">
               <div>
                 <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--ash-ink)]/70">Email</p>
-                <a href="mailto:hello@example.com" className="mt-2 block font-display text-xl text-[var(--ash-ink)]">
-                  hello@example.com
+                <a href="mailto:contact@ashlynstudio.com" className="mt-2 block font-display text-xl text-[var(--ash-ink)]">
+                  contact@ashlynstudio.com
                 </a>
               </div>
               <div>
@@ -247,7 +289,7 @@ export default function ContactPage({ location }) {
               </div>
               <div>
                 <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--ash-ink)]/70">Based In</p>
-                <p className="mt-2 text-sm leading-relaxed text-[var(--ash-ink)]/80">City, State</p>
+                <p className="mt-2 text-sm leading-relaxed text-[var(--ash-ink)]/80">Tampa Bay, Florida</p>
               </div>
             </div>
           </Reveal>
