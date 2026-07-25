@@ -1744,7 +1744,7 @@ function Footer() {
     <footer className="border-t border-[var(--ash-accent-2)] px-6 py-5 sm:px-10" style={{ backgroundColor: "var(--ash-surface-soft)" }}>
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]/70 sm:flex-row sm:gap-4">
         <span>{COMPANY_NAME}</span>
-        <span>© {new Date().getFullYear()} All rights reserved</span>
+        {/* <span>© {new Date().getFullYear()} All rights reserved</span> */}
       </div>
     </footer>
   )

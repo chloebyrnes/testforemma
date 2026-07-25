@@ -106,7 +106,7 @@ export default function WillowHomePage() {
         </p>
         <p className="mt-8 text-base" style={{ color: "#3A322A" }}>Get in touch</p>
         <p className="mt-1 text-base" style={{ color: "#3A322A" }}>hello@willowandvine.co</p>
-        <p className="mt-10 text-sm" style={{ color: "#3A322A" }}>All rights reserved Willow &amp; Vine</p>
+        {/* <p className="mt-10 text-sm" style={{ color: "#3A322A" }}>All rights reserved Willow &amp; Vine</p> */}
         <p className="text-sm" style={{ color: "#3A322A" }}>© {new Date().getFullYear()}</p>
         <Link
           to="/portfolio"
