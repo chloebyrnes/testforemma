@@ -95,11 +95,17 @@ export default function ContactPage({ location }) {
         ...values,
       }),
     })
-      .then(() => {
+      .then((response) => {
         setSubmitting(false)
-        setSubmitted(true)
+        if (response.ok) {
+          setSubmitted(true)
+        } else {
+          console.error("Netlify form submission failed with status", response.status)
+          setSubmitError(true)
+        }
       })
-      .catch(() => {
+      .catch((err) => {
+        console.error("Netlify form submission failed", err)
         setSubmitting(false)
         setSubmitError(true)
       })
@@ -107,6 +113,12 @@ export default function ContactPage({ location }) {
 
   return (
     <Layout currentPath="/contact">
+      {/*
+        Hidden static form so Netlify's build bot can detect the form and its
+        fields in the generated HTML. This form is never shown or interacted
+        with, the visible form below is what people actually fill out, and
+        handleSubmit posts the real data to Netlify using this form's name.
+      */}
       <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
         <input type="text" name="name" />
         <input type="email" name="email" />
