@@ -10,10 +10,10 @@ const mockupComponents = {
 }
 
 export default function ServicesPage() {
-  const [openTags, setOpenTags] = useState([])
+  const [openTag, setOpenTag] = useState(null)
 
   const toggle = (tag) => {
-    setOpenTags((tags) => (tags.includes(tag) ? tags.filter((t) => t !== tag) : [...tags, tag]))
+    setOpenTag((current) => (current === tag ? null : tag))
   }
 
   return (
@@ -34,7 +34,7 @@ export default function ServicesPage() {
       <section className="relative border-t-4 border-[var(--ash-surface)] px-6 py-12 sm:px-10 sm:py-16">
         <div className="mx-auto max-w-6xl space-y-px overflow-hidden border border-[var(--ash-surface)] bg-[var(--ash-surface)]">
           {services.map((s, i) => {
-            const isOpen = openTags.includes(s.tag)
+            const isOpen = openTag === s.tag
             const Mockup = mockupComponents[s.tag]
             const accent = accentCycle[i % accentCycle.length]
             return (

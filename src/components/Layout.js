@@ -65,7 +65,8 @@ export const pricingTiers = [
     contactType: "Custom Website",
     price: "Starting at $1,500",
     body: "A custom-designed site built to represent your business and bring in the right traffic. More complex sites are quoted higher.",
-    includes: ["Custom design, no templates", "Mobile-responsive build"],
+    includes: ["Custom design, no templates", "Mobile-responsive build", "Up to 5 pages", "Basic SEO setup"],
+    examples: ["Wedding & event sites", "Small business sites", "Portfolio & personal sites", "Restaurant & menu sites"],
   },
   {
     tag: "02",
@@ -74,6 +75,7 @@ export const pricingTiers = [
     price: "Starting at $3,500",
     body: "Covers straightforward tools like client portals, dashboards, admin systems, or business workflows. More complex functionality gets a custom quote.",
     includes: ["User accounts & permissions", "Custom dashboard", "Database integration", "Admin controls"],
+    examples: ["Client portals", "Internal inventory tools", "Scheduling & booking systems", "Team dashboards"],
   },
   {
     tag: "03",
@@ -82,6 +84,7 @@ export const pricingTiers = [
     price: "Scoped individually",
     body: "For projects with no off-the-shelf equivalent. We scope it after we understand what you need.",
     includes: ["Discovery workshop", "Technical specification", "Dedicated design & dev team", "Ongoing support"],
+    examples: ["Multi-step quote calculators", "Booking & reservation apps", "Custom business management tools", "Fully custom builds"],
   },
 ]
 
@@ -356,55 +359,40 @@ const mockupPalettes = [
     layout: "classic",
     align: "left",
   },
+  lightBlueWhitePalette,
   {
     name: "Black & White",
-    bg: "#161616",
-    surface: "#242424",
-    ink: "#F2F2F2",
-    a1: "#3A3A3A",
-    a2: "#585858",
-    a3: "#828282",
-    font: "'Space Grotesk', sans-serif",
+    bg: "#3A3A3A",
+    surface: "#484848",
+    ink: "#F5F5F5",
+    a1: "#5C5C5C",
+    a2: "#787878",
+    a3: "#9E9E9E",
+    font: "'Poppins', sans-serif",
     layout: "minimal",
-    align: "left",
-  },
-  {
-    name: "Blush",
-    bg: "#E8E1D1",
-    surface: "#F4EFE4",
-    ink: "#4B342C",
-    a1: "#D8B69F",
-    a2: "#C38380",
-    a3: "#9C7164",
-    font: "'Playfair Display', serif",
-    layout: "editorial",
     align: "center",
   },
-  {
-    name: "Sage",
-    bg: "#DFDAC2",
-    surface: "#EBE6D2",
-    ink: "#4E5138",
-    a1: "#E5DCB1",
-    a2: "#D4D3B3",
-    a3: "#8D926F",
-    font: "'Poppins', sans-serif",
-    layout: "friendly",
-    align: "right",
-  },
-  {
-    name: "Cream & Burgundy",
-    bg: "#F3EAD8",
-    surface: "#FBF6EC",
-    ink: "#3B2A22",
-    a1: "#D8C3A0",
-    a2: "#6E2A35",
-    a3: "#8C5A3C",
-    font: "'Pinyon Script', cursive",
-    layout: "classic",
-    align: "left",
-  },
 ]
+
+function MenuTrigger({ p, menuOpen, onToggle }) {
+  return (
+    <button
+      type="button"
+      onClick={onToggle}
+      aria-label="Menu"
+      className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.15em]"
+      style={{ color: p.ink }}
+    >
+      Menu
+      <span
+        className="inline-block transition-transform duration-200"
+        style={{ transform: menuOpen ? "rotate(180deg)" : "rotate(0deg)" }}
+      >
+        ⌄
+      </span>
+    </button>
+  )
+}
 
 export function WebsiteMockup() {
   const [tab, setTab] = useState("Home")
@@ -435,16 +423,7 @@ export function WebsiteMockup() {
       return (
         <div className="relative flex items-center justify-between border-b px-4 py-3" style={{ borderColor: `${p.ink}33`, backgroundColor: p.bg }}>
           <span className="font-mono text-[10px] uppercase tracking-[0.15em]" style={{ color: p.ink }}>{tab}</span>
-          <button
-            type="button"
-            onClick={stop(() => setMenuOpen((v) => !v))}
-            className="flex flex-col gap-1"
-            aria-label="Menu"
-          >
-            <span className="block h-[1.5px] w-5" style={{ backgroundColor: p.ink }} />
-            <span className="block h-[1.5px] w-5" style={{ backgroundColor: p.ink }} />
-            <span className="block h-[1.5px] w-5" style={{ backgroundColor: p.ink }} />
-          </button>
+          <MenuTrigger p={p} menuOpen={menuOpen} onToggle={stop(() => setMenuOpen((v) => !v))} />
           {menuOpen && (
             <div className="absolute right-4 top-full z-10 mt-1 w-36 border" style={{ borderColor: p.ink, backgroundColor: p.bg }}>
               {tabs.map((t) => (
@@ -539,20 +518,18 @@ export function WebsiteMockup() {
           {tab === "Home" && (
             <div className={`flex flex-col ${heroAlign}`}>
               {p.layout === "minimal" ? (
-                <div className="flex w-full flex-wrap items-end justify-between gap-6">
-                  <div>
-                    <p className="font-mono text-[10px] uppercase tracking-[0.15em]" style={{ color: `${p.ink}99` }}>Welcome to</p>
-                    <p className="mt-1 text-2xl uppercase tracking-tight sm:text-3xl" style={{ color: p.ink, fontFamily: p.font }}>
-                      Your Business Name
-                    </p>
-                    <p className="mt-2 max-w-xs text-sm" style={{ color: `${p.ink}B3` }}>
-                      A short line about what you do, who you help, and why they should choose you.
-                    </p>
-                  </div>
+                <div className="flex w-full flex-col items-center gap-3 text-center">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.15em]" style={{ color: `${p.ink}99` }}>Welcome to</p>
+                  <p className="text-2xl uppercase tracking-tight sm:text-3xl" style={{ color: p.ink, fontFamily: p.font }}>
+                    Your Business Name
+                  </p>
+                  <p className="max-w-xs text-sm" style={{ color: `${p.ink}B3` }}>
+                    A short line about what you do, who you help, and why they should choose you.
+                  </p>
                   <button
                     type="button"
                     onClick={stop(() => {})}
-                    className={`inline-block flex-none ${btnRadius} px-6 py-3 font-mono text-xs uppercase tracking-[0.1em]`}
+                    className={`mt-2 inline-block ${btnRadius} px-6 py-3 font-mono text-xs uppercase tracking-[0.1em]`}
                     style={{ backgroundColor: p.ink, color: p.bg }}
                   >
                     Get Started
@@ -579,7 +556,7 @@ export function WebsiteMockup() {
                 </>
               )}
 
-              <p className="mt-8 w-full font-mono text-[10px] uppercase tracking-[0.15em]" style={{ color: `${p.ink}99` }}>What we offer</p>
+              <p className="mt-8 w-full text-center font-mono text-[10px] uppercase tracking-[0.15em]" style={{ color: `${p.ink}99` }}>What we offer</p>
 
               {p.layout === "minimal" && (
                 <div className="mt-3 w-full divide-y" style={{ borderColor: `${p.ink}33` }}>
@@ -622,7 +599,7 @@ export function WebsiteMockup() {
                 </div>
               )}
 
-              <div className={`mt-8 w-full ${p.layout === "editorial" ? "border-t border-b py-5 text-center" : "border-l-2 pl-4"}`} style={{ borderColor: p.a2 }}>
+              <div className={`mt-8 w-full ${p.layout === "editorial" || p.layout === "minimal" ? "border-t border-b py-5 text-center" : "border-l-2 pl-4"}`} style={{ borderColor: p.a2 }}>
                 <p className="text-sm italic" style={{ color: `${p.ink}CC`, fontFamily: p.font }}>
                   "Working with them was easy from start to finish, exactly what we needed."
                 </p>
@@ -634,14 +611,14 @@ export function WebsiteMockup() {
           {tab === "About" && (
             <div className={heroAlign.includes("center") ? "text-center" : ""}>
               <p className="text-xl sm:text-2xl" style={{ color: p.ink, fontFamily: p.font }}>Our Story</p>
-              <p className={`mt-2 max-w-md text-sm leading-relaxed ${p.layout === "editorial" ? "mx-auto" : ""}`} style={{ color: `${p.ink}B3` }}>
+              <p className={`mt-2 max-w-md text-sm leading-relaxed ${p.layout === "editorial" || p.layout === "minimal" ? "mx-auto" : ""}`} style={{ color: `${p.ink}B3` }}>
                 A short paragraph about the business, how it got started, and the values that
                 guide the work. This is where visitors get a sense of who they're working with.
               </p>
               <div className={`mt-5 aspect-[3/1] w-full ${p.layout === "friendly" ? "rounded-xl" : ""}`} style={{ backgroundColor: p.a1 }} />
 
               <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.15em]" style={{ color: `${p.ink}99` }}>Meet the team</p>
-              <div className={`mt-3 flex gap-4 ${p.layout === "editorial" ? "justify-center" : ""}`}>
+              <div className={`mt-3 flex gap-4 ${p.layout === "editorial" || p.layout === "minimal" ? "justify-center" : ""}`}>
                 {[0, 1, 2].map((n) => (
                   <div key={n} className="text-center">
                     <div className="mx-auto h-12 w-12 rounded-full" style={{ backgroundColor: [p.a1, p.a2, p.a3][n] }} />
@@ -653,11 +630,11 @@ export function WebsiteMockup() {
           )}
 
           {tab === "Contact" && (
-            <div className={p.layout === "editorial" ? "text-center" : "grid gap-8 sm:grid-cols-[1.3fr_1fr]"}>
+            <div className={p.layout === "editorial" || p.layout === "minimal" ? "text-center" : "grid gap-8 sm:grid-cols-[1.3fr_1fr]"}>
               {sent ? (
                 <p className="text-xl" style={{ color: p.ink, fontFamily: p.font }}>Thanks, we'll be in touch.</p>
               ) : (
-                <div className={`space-y-3 ${p.layout === "editorial" ? "mx-auto max-w-xs" : ""}`}>
+                <div className={`space-y-3 ${p.layout === "editorial" || p.layout === "minimal" ? "mx-auto max-w-xs" : ""}`}>
                   <div className={`h-10 w-full border ${cardRadius}`} style={{ borderColor: `${p.ink}4D`, backgroundColor: p.surface }} />
                   <div className={`h-10 w-full border ${cardRadius}`} style={{ borderColor: `${p.ink}4D`, backgroundColor: p.surface }} />
                   <div className={`h-20 w-full border ${cardRadius}`} style={{ borderColor: `${p.ink}4D`, backgroundColor: p.surface }} />
@@ -671,7 +648,7 @@ export function WebsiteMockup() {
                   </button>
                 </div>
               )}
-              {p.layout !== "editorial" && (
+              {p.layout !== "editorial" && p.layout !== "minimal" && (
                 <div className="space-y-3 border-l pl-6 text-sm" style={{ borderColor: `${p.ink}33`, color: `${p.ink}B3` }}>
                   <p className="font-mono text-[10px] uppercase tracking-[0.15em]" style={{ color: `${p.ink}99` }}>Email</p>
                   <p>hello@yourbusiness.com</p>
@@ -690,14 +667,13 @@ export function WebsiteMockup() {
 
 
 export function PortalMockup() {
-  const portalPalettes = [mockupPalettes[0], lightBlueWhitePalette, mockupPalettes[1]]
-
   const [tab, setTab] = useState("Dashboard")
   const tabs = ["Dashboard", "Files", "Messages"]
   const [paletteIndex, setPaletteIndex] = useState(0)
   const [reply, setReply] = useState("")
   const [sent, setSent] = useState(false)
-  const p = portalPalettes[paletteIndex]
+  const [menuOpen, setMenuOpen] = useState(false)
+  const p = mockupPalettes[paletteIndex]
 
   const stop = (fn) => (e) => {
     e.preventDefault()
@@ -726,15 +702,134 @@ export function PortalMockup() {
     { text: "Kickoff call completed", time: "2 weeks ago" },
   ]
 
+  const isMinimal = p.name === "Black & White"
+  const isTopNav = p.name === "Light Blue & White"
+
+  const DashboardContent = () => (
+    <div>
+      <p className="font-mono text-[10px] uppercase tracking-[0.15em]" style={{ color: `${p.ink}99` }}>Welcome back</p>
+      <p className="mt-1 text-2xl sm:text-3xl" style={{ color: p.ink, fontFamily: p.font }}>Client Name</p>
+      <p className="mt-2 max-w-md text-sm" style={{ color: `${p.ink}B3` }}>
+        Here's what's happening with your project.
+      </p>
+
+      <div className="mt-6 w-full">
+        <div className="flex items-center justify-between font-mono text-[9px] uppercase tracking-[0.1em]" style={{ color: `${p.ink}99` }}>
+          <span>Project Progress</span>
+          <span>65%</span>
+        </div>
+        <div className="mt-2 h-2 w-full overflow-hidden" style={{ backgroundColor: p.a1 }}>
+          <div className="h-full" style={{ width: "65%", backgroundColor: p.a3 }} />
+        </div>
+      </div>
+
+      <div className="mt-6 grid w-full grid-cols-3 gap-3">
+        {stats.map((s) => (
+          <div key={s.label} className="border p-3" style={{ borderColor: `${p.ink}33`, backgroundColor: p.surface }}>
+            <p className="text-lg" style={{ color: p.ink, fontFamily: p.font }}>{s.value}</p>
+            <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.1em]" style={{ color: `${p.ink}80` }}>{s.label}</p>
+          </div>
+        ))}
+      </div>
+
+      <p className="mt-8 font-mono text-[10px] uppercase tracking-[0.15em]" style={{ color: `${p.ink}99` }}>Recent Activity</p>
+      <div className={isTopNav ? "mt-3 grid gap-3 sm:grid-cols-2" : "mt-3 divide-y"} style={{ borderColor: `${p.ink}26` }}>
+        {activity.map((a) => (
+          <div
+            key={a.text}
+            className={isTopNav ? "border p-3" : "flex items-center justify-between border-t py-3"}
+            style={{ borderColor: `${p.ink}26`, backgroundColor: isTopNav ? p.surface : "transparent" }}
+          >
+            <span className="text-sm" style={{ color: `${p.ink}D9` }}>{a.text}</span>
+            <span className={isTopNav ? "mt-1 block font-mono text-[9px] uppercase tracking-[0.08em]" : "font-mono text-[9px] uppercase tracking-[0.08em]"} style={{ color: `${p.ink}70` }}>
+              {a.time}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+
+  const FilesContent = () => (
+    <div>
+      <p className="text-xl sm:text-2xl" style={{ color: p.ink, fontFamily: p.font }}>Shared Files</p>
+      <div className={isTopNav ? "mt-4 grid gap-3 sm:grid-cols-2" : "mt-4 divide-y"} style={{ borderColor: `${p.ink}26` }}>
+        {files.map((file) => (
+          <div
+            key={file.name}
+            className={isTopNav ? "flex items-center justify-between border p-3" : "flex items-center justify-between border-t py-3"}
+            style={{ borderColor: `${p.ink}26`, backgroundColor: isTopNav ? p.surface : "transparent" }}
+          >
+            <div>
+              <p className="text-sm" style={{ color: p.ink }}>{file.name}</p>
+              <p className="font-mono text-[9px] uppercase tracking-[0.08em]" style={{ color: `${p.ink}70` }}>{file.date}</p>
+            </div>
+            <span className="rounded-sm px-3 py-1 font-mono text-[9px] uppercase tracking-[0.08em]" style={{ backgroundColor: p.a1, color: p.ink }}>
+              Download
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+
+  const MessagesContent = () => (
+    <div>
+      <p className="text-xl sm:text-2xl" style={{ color: p.ink, fontFamily: p.font }}>Messages</p>
+      <div className="mt-4 space-y-3">
+        <div className="inline-block max-w-[80%] rounded-sm px-4 py-2 text-sm" style={{ backgroundColor: p.a1, color: p.ink }}>
+          Hi, just checking in on the project status.
+        </div>
+        <div className="ml-auto block max-w-[80%] rounded-sm px-4 py-2 text-right text-sm" style={{ backgroundColor: p.ink, color: p.bg }}>
+          Right on track, update coming this week.
+        </div>
+        <div className="inline-block max-w-[80%] rounded-sm px-4 py-2 text-sm" style={{ backgroundColor: p.a1, color: p.ink }}>
+          Sounds great, thanks for the update.
+        </div>
+      </div>
+      {sent ? (
+        <p className="mt-4 font-mono text-xs" style={{ color: `${p.ink}99` }}>Message sent.</p>
+      ) : (
+        <div className="mt-4 flex gap-2">
+          <input
+            type="text"
+            value={reply}
+            onChange={(e) => setReply(e.target.value)}
+            placeholder="Write a reply..."
+            className="flex-1 rounded-sm border px-3 py-2 text-sm outline-none"
+            style={{ borderColor: `${p.ink}4D`, backgroundColor: p.surface, color: p.ink }}
+          />
+          <button
+            type="button"
+            onClick={stop(() => setSent(true))}
+            className="rounded-sm px-4 py-2 font-mono text-xs uppercase tracking-[0.1em]"
+            style={{ backgroundColor: p.ink, color: p.bg }}
+          >
+            Send
+          </button>
+        </div>
+      )}
+    </div>
+  )
+
+  const renderContent = () => {
+    if (tab === "Dashboard") return <DashboardContent />
+    if (tab === "Files") return <FilesContent />
+    return <MessagesContent />
+  }
+
   return (
     <div>
       <div className="mb-1 flex flex-wrap items-center gap-2">
         <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--ash-ink)]/60">Try a style:</span>
-        {portalPalettes.map((pal, idx) => (
+        {mockupPalettes.map((pal, idx) => (
           <button
             key={pal.name}
             type="button"
-            onClick={stop(() => setPaletteIndex(idx))}
+            onClick={stop(() => {
+              setPaletteIndex(idx)
+              setMenuOpen(false)
+            })}
             className="flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.08em] transition-colors"
             style={{
               borderColor: "var(--ash-surface)",
@@ -754,145 +849,109 @@ export function PortalMockup() {
         Just examples, we'll design something unique for your brand.
       </p>
 
-      <div className="flex w-full overflow-hidden border transition-colors duration-300" style={{ borderColor: p.ink, backgroundColor: p.bg }}>
-        <div className="flex w-40 flex-none flex-col border-r py-6" style={{ borderColor: `${p.ink}33`, backgroundColor: p.surface }}>
-          <div className="flex flex-col items-center px-3 text-center">
-            <div
-              className="flex h-12 w-12 items-center justify-center rounded-full font-mono text-xs"
-              style={{ backgroundColor: p.a2, color: p.ink }}
-            >
-              CN
-            </div>
-            <p className="mt-2 text-sm" style={{ color: p.ink, fontFamily: p.font }}>Client Name</p>
-            <p className="font-mono text-[8px] uppercase tracking-[0.08em]" style={{ color: `${p.ink}80` }}>Acme Co.</p>
-          </div>
-          <div className="mt-6 flex flex-col gap-1 px-3">
-            {tabs.map((t) => (
-              <button
-                key={t}
-                type="button"
-                onClick={stop(() => setTab(t))}
-                className="rounded-sm px-3 py-2 text-left font-mono text-[10px] uppercase tracking-[0.1em] transition-colors"
-                style={{
-                  backgroundColor: tab === t ? p.ink : "transparent",
-                  color: tab === t ? p.bg : p.ink,
-                }}
-              >
-                {t}
-              </button>
-            ))}
-          </div>
+      <div className="w-full overflow-hidden border transition-colors duration-300" style={{ borderColor: p.ink, backgroundColor: p.bg }}>
+        <div className="flex items-center gap-2 border-b px-4 py-2.5 transition-colors duration-300" style={{ borderColor: `${p.ink}4D`, backgroundColor: p.a1 }}>
+          <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: p.ink }} />
+          <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: p.ink }} />
+          <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: p.ink }} />
+          <span className="ml-2 flex-1 truncate rounded-sm px-3 py-1 font-mono text-[10px]" style={{ backgroundColor: p.bg, color: p.ink }}>
+            portal.yourbusiness.com
+          </span>
         </div>
 
-        <div className="flex-1">
-          <div className="flex items-center gap-2 border-b px-4 py-2.5 transition-colors duration-300" style={{ borderColor: `${p.ink}4D`, backgroundColor: p.a1 }}>
-            <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: p.ink }} />
-            <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: p.ink }} />
-            <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: p.ink }} />
-            <span className="ml-2 flex-1 truncate rounded-sm px-3 py-1 font-mono text-[10px]" style={{ backgroundColor: p.bg, color: p.ink }}>
-              portal.yourbusiness.com
-            </span>
-          </div>
-
-          <div className="p-6 transition-colors duration-300 sm:p-8" style={{ backgroundColor: p.bg }}>
-            {tab === "Dashboard" && (
-              <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.15em]" style={{ color: `${p.ink}99` }}>Welcome back</p>
-                <p className="mt-1 text-2xl sm:text-3xl" style={{ color: p.ink, fontFamily: p.font }}>Client Name</p>
-                <p className="mt-2 max-w-md text-sm" style={{ color: `${p.ink}B3` }}>
-                  Here's what's happening with your project.
-                </p>
-
-                <div className="mt-6 w-full">
-                  <div className="flex items-center justify-between font-mono text-[9px] uppercase tracking-[0.1em]" style={{ color: `${p.ink}99` }}>
-                    <span>Project Progress</span>
-                    <span>65%</span>
-                  </div>
-                  <div className="mt-2 h-2 w-full overflow-hidden" style={{ backgroundColor: p.a1 }}>
-                    <div className="h-full" style={{ width: "65%", backgroundColor: p.a3 }} />
-                  </div>
-                </div>
-
-                <div className="mt-6 grid w-full grid-cols-3 gap-3">
-                  {stats.map((s) => (
-                    <div key={s.label} className="border p-3" style={{ borderColor: `${p.ink}33`, backgroundColor: p.surface }}>
-                      <p className="text-lg" style={{ color: p.ink, fontFamily: p.font }}>{s.value}</p>
-                      <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.1em]" style={{ color: `${p.ink}80` }}>{s.label}</p>
-                    </div>
-                  ))}
-                </div>
-
-                <p className="mt-8 font-mono text-[10px] uppercase tracking-[0.15em]" style={{ color: `${p.ink}99` }}>Recent Activity</p>
-                <div className="mt-3 divide-y" style={{ borderColor: `${p.ink}26` }}>
-                  {activity.map((a) => (
-                    <div key={a.text} className="flex items-center justify-between border-t py-3" style={{ borderColor: `${p.ink}26` }}>
-                      <span className="text-sm" style={{ color: `${p.ink}D9` }}>{a.text}</span>
-                      <span className="font-mono text-[9px] uppercase tracking-[0.08em]" style={{ color: `${p.ink}70` }}>{a.time}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {tab === "Files" && (
-              <div>
-                <p className="text-xl sm:text-2xl" style={{ color: p.ink, fontFamily: p.font }}>Shared Files</p>
-                <div className="mt-4 divide-y" style={{ borderColor: `${p.ink}26` }}>
-                  {files.map((file) => (
-                    <div key={file.name} className="flex items-center justify-between border-t py-3" style={{ borderColor: `${p.ink}26` }}>
-                      <div>
-                        <p className="text-sm" style={{ color: p.ink }}>{file.name}</p>
-                        <p className="font-mono text-[9px] uppercase tracking-[0.08em]" style={{ color: `${p.ink}70` }}>{file.date}</p>
-                      </div>
-                      <span className="rounded-sm px-3 py-1 font-mono text-[9px] uppercase tracking-[0.08em]" style={{ backgroundColor: p.a1, color: p.ink }}>
-                        Download
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {tab === "Messages" && (
-              <div>
-                <p className="text-xl sm:text-2xl" style={{ color: p.ink, fontFamily: p.font }}>Messages</p>
-                <div className="mt-4 space-y-3">
-                  <div className="inline-block max-w-[80%] rounded-sm px-4 py-2 text-sm" style={{ backgroundColor: p.a1, color: p.ink }}>
-                    Hi, just checking in on the project status.
-                  </div>
-                  <div className="ml-auto block max-w-[80%] rounded-sm px-4 py-2 text-right text-sm" style={{ backgroundColor: p.ink, color: p.bg }}>
-                    Right on track, update coming this week.
-                  </div>
-                  <div className="inline-block max-w-[80%] rounded-sm px-4 py-2 text-sm" style={{ backgroundColor: p.a1, color: p.ink }}>
-                    Sounds great, thanks for the update.
-                  </div>
-                </div>
-                {sent ? (
-                  <p className="mt-4 font-mono text-xs" style={{ color: `${p.ink}99` }}>Message sent.</p>
-                ) : (
-                  <div className="mt-4 flex gap-2">
-                    <input
-                      type="text"
-                      value={reply}
-                      onChange={(e) => setReply(e.target.value)}
-                      placeholder="Write a reply..."
-                      className="flex-1 rounded-sm border px-3 py-2 text-sm outline-none"
-                      style={{ borderColor: `${p.ink}4D`, backgroundColor: p.surface, color: p.ink }}
-                    />
+        {isMinimal ? (
+          <div>
+            <div className="relative flex items-center justify-between border-b px-4 py-3" style={{ borderColor: `${p.ink}33`, backgroundColor: p.bg }}>
+              <span className="font-mono text-[10px] uppercase tracking-[0.15em]" style={{ color: p.ink }}>{tab}</span>
+              <MenuTrigger p={p} menuOpen={menuOpen} onToggle={stop(() => setMenuOpen((v) => !v))} />
+              {menuOpen && (
+                <div className="absolute right-4 top-full z-10 mt-1 w-36 border" style={{ borderColor: p.ink, backgroundColor: p.bg }}>
+                  {tabs.map((t) => (
                     <button
+                      key={t}
                       type="button"
-                      onClick={stop(() => setSent(true))}
-                      className="rounded-sm px-4 py-2 font-mono text-xs uppercase tracking-[0.1em]"
-                      style={{ backgroundColor: p.ink, color: p.bg }}
+                      onClick={stop(() => {
+                        setTab(t)
+                        setMenuOpen(false)
+                      })}
+                      className="block w-full px-4 py-2.5 text-left font-mono text-[10px] uppercase tracking-[0.1em]"
+                      style={{ backgroundColor: tab === t ? p.ink : "transparent", color: tab === t ? p.bg : p.ink }}
                     >
-                      Send
+                      {t}
                     </button>
-                  </div>
-                )}
-              </div>
-            )}
+                  ))}
+                </div>
+              )}
+            </div>
+            <div className="p-6 text-center transition-colors duration-300 sm:p-8" style={{ backgroundColor: p.bg }}>
+              {renderContent()}
+            </div>
           </div>
-        </div>
+        ) : isTopNav ? (
+          <div>
+            <div className="flex items-center justify-between border-b px-4 pt-3" style={{ borderColor: `${p.ink}33`, backgroundColor: p.bg }}>
+              <div className="flex gap-1">
+                {tabs.map((t) => (
+                  <button
+                    key={t}
+                    type="button"
+                    onClick={stop(() => setTab(t))}
+                    className="rounded-t-sm px-4 py-2 font-mono text-xs uppercase tracking-[0.1em] transition-colors"
+                    style={{ backgroundColor: tab === t ? p.ink : "transparent", color: tab === t ? p.bg : p.ink }}
+                  >
+                    {t}
+                  </button>
+                ))}
+              </div>
+              <div className="flex items-center gap-2 pb-2">
+                <span className="text-xs" style={{ color: p.ink }}>Client Name</span>
+                <div
+                  className="flex h-8 w-8 items-center justify-center rounded-full font-mono text-[10px]"
+                  style={{ backgroundColor: p.a2, color: p.bg }}
+                >
+                  CN
+                </div>
+              </div>
+            </div>
+            <div className="p-6 transition-colors duration-300 sm:p-8" style={{ backgroundColor: p.bg }}>
+              {renderContent()}
+            </div>
+          </div>
+        ) : (
+          <div className="flex">
+            <div className="flex w-40 flex-none flex-col border-r py-6" style={{ borderColor: `${p.ink}33`, backgroundColor: p.surface }}>
+              <div className="flex flex-col items-center px-3 text-center">
+                <div
+                  className="flex h-12 w-12 items-center justify-center rounded-full font-mono text-xs"
+                  style={{ backgroundColor: p.a2, color: p.ink }}
+                >
+                  CN
+                </div>
+                <p className="mt-2 text-sm" style={{ color: p.ink, fontFamily: p.font }}>Client Name</p>
+                <p className="font-mono text-[8px] uppercase tracking-[0.08em]" style={{ color: `${p.ink}80` }}>Acme Co.</p>
+              </div>
+              <div className="mt-6 flex flex-col gap-1 px-3">
+                {tabs.map((t) => (
+                  <button
+                    key={t}
+                    type="button"
+                    onClick={stop(() => setTab(t))}
+                    className="rounded-sm px-3 py-2 text-left font-mono text-[10px] uppercase tracking-[0.1em] transition-colors"
+                    style={{
+                      backgroundColor: tab === t ? p.ink : "transparent",
+                      color: tab === t ? p.bg : p.ink,
+                    }}
+                  >
+                    {t}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="flex-1 p-6 transition-colors duration-300 sm:p-8" style={{ backgroundColor: p.bg }}>
+              {renderContent()}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )
@@ -901,12 +960,11 @@ export function PortalMockup() {
 
 
 export function InternalToolMockup() {
-  const toolPalettes = [mockupPalettes[0], lightBlueWhitePalette, mockupPalettes[1]]
-
   const [tab, setTab] = useState("Inventory")
   const tabs = ["Inventory", "Orders", "Reports"]
   const [paletteIndex, setPaletteIndex] = useState(0)
-  const p = toolPalettes[paletteIndex]
+  const [menuOpen, setMenuOpen] = useState(false)
+  const p = mockupPalettes[paletteIndex]
 
   const stop = (fn) => (e) => {
     e.preventDefault()
@@ -936,11 +994,210 @@ export function InternalToolMockup() {
 
   const chartData = [40, 65, 50, 80, 60, 90, 70]
 
+  const isMinimal = p.name === "Black & White"
+  const isCards = p.name === "Light Blue & White"
+
+  const InventoryContent = () => {
+    if (isCards) {
+      return (
+        <div>
+          <div className="flex items-center justify-between">
+            <p className="text-xl sm:text-2xl" style={{ color: p.ink, fontFamily: p.font }}>Inventory</p>
+            <span className="rounded-sm px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.08em]" style={{ backgroundColor: p.ink, color: p.bg }}>
+              + Add Item
+            </span>
+          </div>
+          <div className="mt-5 grid gap-3 sm:grid-cols-2">
+            {inventory.map((row) => (
+              <div key={row.sku} className="border p-4" style={{ borderColor: `${p.ink}33`, backgroundColor: p.surface }}>
+                <div className="flex items-center justify-between">
+                  <p className="text-sm" style={{ color: p.ink }}>{row.item}</p>
+                  <span
+                    className="inline-block w-fit rounded-full px-2 py-0.5 font-mono text-[8px] uppercase tracking-[0.06em]"
+                    style={{ backgroundColor: statusColor(row.status), color: p.ink }}
+                  >
+                    {row.status}
+                  </span>
+                </div>
+                <p className="mt-2 font-mono text-xs" style={{ color: `${p.ink}99` }}>{row.sku}</p>
+                <p className="mt-1 text-sm" style={{ color: `${p.ink}CC` }}>{row.stock} in stock</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )
+    }
+    if (isMinimal) {
+      return (
+        <div>
+          <p className="text-xl sm:text-2xl" style={{ color: p.ink, fontFamily: p.font }}>Inventory</p>
+          <div className="mt-4 divide-y" style={{ borderColor: `${p.ink}26` }}>
+            {inventory.map((row) => (
+              <div key={row.sku} className="flex items-center justify-between border-t py-3" style={{ borderColor: `${p.ink}26` }}>
+                <div>
+                  <p className="text-sm" style={{ color: p.ink }}>{row.item}</p>
+                  <p className="font-mono text-[9px] uppercase tracking-[0.08em]" style={{ color: `${p.ink}70` }}>{row.sku} - {row.stock} in stock</p>
+                </div>
+                <span
+                  className="inline-block w-fit rounded-full px-2 py-0.5 font-mono text-[8px] uppercase tracking-[0.06em]"
+                  style={{ backgroundColor: statusColor(row.status), color: p.ink }}
+                >
+                  {row.status}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )
+    }
+    return (
+      <div>
+        <div className="flex items-center justify-between">
+          <p className="text-xl sm:text-2xl" style={{ color: p.ink, fontFamily: p.font }}>Inventory</p>
+          <span className="rounded-sm px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.08em]" style={{ backgroundColor: p.ink, color: p.bg }}>
+            + Add Item
+          </span>
+        </div>
+        <div className="mt-2 h-9 w-full max-w-xs border" style={{ borderColor: `${p.ink}4D`, backgroundColor: p.surface }} />
+
+        <div className="mt-5 grid grid-cols-4 gap-2 border-b pb-2 font-mono text-[9px] uppercase tracking-[0.08em]" style={{ borderColor: `${p.ink}33`, color: `${p.ink}80` }}>
+          <span>Item</span>
+          <span>SKU</span>
+          <span>Stock</span>
+          <span>Status</span>
+        </div>
+        {inventory.map((row) => (
+          <div key={row.sku} className="grid grid-cols-4 items-center gap-2 border-b py-3 text-sm" style={{ borderColor: `${p.ink}1F`, color: p.ink }}>
+            <span>{row.item}</span>
+            <span className="font-mono text-xs" style={{ color: `${p.ink}99` }}>{row.sku}</span>
+            <span>{row.stock}</span>
+            <span
+              className="inline-block w-fit rounded-full px-2 py-0.5 font-mono text-[8px] uppercase tracking-[0.06em]"
+              style={{ backgroundColor: statusColor(row.status), color: p.ink }}
+            >
+              {row.status}
+            </span>
+          </div>
+        ))}
+      </div>
+    )
+  }
+
+  const OrdersContent = () => {
+    if (isCards) {
+      return (
+        <div>
+          <p className="text-xl sm:text-2xl" style={{ color: p.ink, fontFamily: p.font }}>Orders</p>
+          <div className="mt-5 grid gap-3 sm:grid-cols-2">
+            {orders.map((o) => (
+              <div key={o.id} className="border p-4" style={{ borderColor: `${p.ink}33`, backgroundColor: p.surface }}>
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-xs" style={{ color: p.ink }}>{o.id}</span>
+                  <span
+                    className="inline-block w-fit rounded-full px-2 py-0.5 font-mono text-[8px] uppercase tracking-[0.06em]"
+                    style={{ backgroundColor: statusColor(o.status), color: p.ink }}
+                  >
+                    {o.status}
+                  </span>
+                </div>
+                <p className="mt-2 text-sm" style={{ color: `${p.ink}CC` }}>{o.customer}</p>
+                <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.08em]" style={{ color: `${p.ink}70` }}>{o.date}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )
+    }
+    if (isMinimal) {
+      return (
+        <div>
+          <p className="text-xl sm:text-2xl" style={{ color: p.ink, fontFamily: p.font }}>Orders</p>
+          <div className="mt-4 divide-y" style={{ borderColor: `${p.ink}26` }}>
+            {orders.map((o) => (
+              <div key={o.id} className="flex items-center justify-between border-t py-3" style={{ borderColor: `${p.ink}26` }}>
+                <span className="text-sm" style={{ color: p.ink }}>
+                  {o.customer}
+                  <span className="ml-2 font-mono text-xs" style={{ color: `${p.ink}80` }}>{o.id}</span>
+                </span>
+                <span
+                  className="inline-block w-fit rounded-full px-2 py-0.5 font-mono text-[8px] uppercase tracking-[0.06em]"
+                  style={{ backgroundColor: statusColor(o.status), color: p.ink }}
+                >
+                  {o.status}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )
+    }
+    return (
+      <div>
+        <p className="text-xl sm:text-2xl" style={{ color: p.ink, fontFamily: p.font }}>Orders</p>
+        <div className="mt-5 grid grid-cols-4 gap-2 border-b pb-2 font-mono text-[9px] uppercase tracking-[0.08em]" style={{ borderColor: `${p.ink}33`, color: `${p.ink}80` }}>
+          <span>Order</span>
+          <span>Customer</span>
+          <span>Status</span>
+          <span>Date</span>
+        </div>
+        {orders.map((o) => (
+          <div key={o.id} className="grid grid-cols-4 items-center gap-2 border-b py-3 text-sm" style={{ borderColor: `${p.ink}1F`, color: p.ink }}>
+            <span className="font-mono text-xs">{o.id}</span>
+            <span>{o.customer}</span>
+            <span
+              className="inline-block w-fit rounded-full px-2 py-0.5 font-mono text-[8px] uppercase tracking-[0.06em]"
+              style={{ backgroundColor: statusColor(o.status), color: p.ink }}
+            >
+              {o.status}
+            </span>
+            <span className="font-mono text-xs" style={{ color: `${p.ink}99` }}>{o.date}</span>
+          </div>
+        ))}
+      </div>
+    )
+  }
+
+  const ReportsContent = () => (
+    <div>
+      <p className="text-xl sm:text-2xl" style={{ color: p.ink, fontFamily: p.font }}>Reports</p>
+      <div className="mt-5 grid grid-cols-3 gap-3">
+        {[
+          { label: "Revenue (30d)", value: "$18,420" },
+          { label: "Orders (30d)", value: "142" },
+          { label: "Avg. Order", value: "$129" },
+        ].map((s) => (
+          <div key={s.label} className="border p-3" style={{ borderColor: `${p.ink}33`, backgroundColor: p.surface }}>
+            <p className="text-lg" style={{ color: p.ink, fontFamily: p.font }}>{s.value}</p>
+            <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.1em]" style={{ color: `${p.ink}80` }}>{s.label}</p>
+          </div>
+        ))}
+      </div>
+
+      <p className="mt-8 font-mono text-[10px] uppercase tracking-[0.15em]" style={{ color: `${p.ink}99` }}>Weekly Orders</p>
+      <div className="mt-3 flex h-32 items-end gap-3">
+        {chartData.map((v, idx) => (
+          <div key={idx} className="flex-1" style={{ height: `${v}%`, backgroundColor: idx === chartData.length - 1 ? p.a3 : p.a1 }} />
+        ))}
+      </div>
+      <div className="mt-2 flex gap-3 font-mono text-[8px] uppercase tracking-[0.06em]" style={{ color: `${p.ink}70` }}>
+        {["M", "T", "W", "T", "F", "S", "S"].map((d, idx) => (
+          <span key={idx} className="flex-1 text-center">{d}</span>
+        ))}
+      </div>
+    </div>
+  )
+
+  const renderContent = () => {
+    if (tab === "Inventory") return <InventoryContent />
+    if (tab === "Orders") return <OrdersContent />
+    return <ReportsContent />
+  }
+
   return (
     <div>
       <div className="mb-1 flex flex-wrap items-center gap-2">
         <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--ash-ink)]/60">Try a style:</span>
-        {toolPalettes.map((pal, idx) => (
+        {mockupPalettes.map((pal, idx) => (
           <button
             key={pal.name}
             type="button"
@@ -974,108 +1231,54 @@ export function InternalToolMockup() {
           </span>
         </div>
 
-        <div className="flex gap-1 border-b px-4 pt-3" style={{ borderColor: `${p.ink}33`, backgroundColor: p.bg }}>
-          {tabs.map((t) => (
-            <button
-              key={t}
-              type="button"
-              onClick={stop(() => setTab(t))}
-              className="rounded-t-sm px-4 py-2 font-mono text-xs uppercase tracking-[0.1em] transition-colors"
-              style={{ backgroundColor: tab === t ? p.ink : "transparent", color: tab === t ? p.bg : p.ink }}
-            >
-              {t}
-            </button>
-          ))}
-        </div>
-
-        <div className="p-6 transition-colors duration-300 sm:p-8" style={{ backgroundColor: p.bg }}>
-          {tab === "Inventory" && (
-            <div>
-              <div className="flex items-center justify-between">
-                <p className="text-xl sm:text-2xl" style={{ color: p.ink, fontFamily: p.font }}>Inventory</p>
-                <span className="rounded-sm px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.08em]" style={{ backgroundColor: p.ink, color: p.bg }}>
-                  + Add Item
-                </span>
-              </div>
-              <div className="mt-2 h-9 w-full max-w-xs border" style={{ borderColor: `${p.ink}4D`, backgroundColor: p.surface }} />
-
-              <div className="mt-5 grid grid-cols-4 gap-2 border-b pb-2 font-mono text-[9px] uppercase tracking-[0.08em]" style={{ borderColor: `${p.ink}33`, color: `${p.ink}80` }}>
-                <span>Item</span>
-                <span>SKU</span>
-                <span>Stock</span>
-                <span>Status</span>
-              </div>
-              {inventory.map((row) => (
-                <div key={row.sku} className="grid grid-cols-4 items-center gap-2 border-b py-3 text-sm" style={{ borderColor: `${p.ink}1F`, color: p.ink }}>
-                  <span>{row.item}</span>
-                  <span className="font-mono text-xs" style={{ color: `${p.ink}99` }}>{row.sku}</span>
-                  <span>{row.stock}</span>
-                  <span
-                    className="inline-block w-fit rounded-full px-2 py-0.5 font-mono text-[8px] uppercase tracking-[0.06em]"
-                    style={{ backgroundColor: statusColor(row.status), color: p.ink }}
-                  >
-                    {row.status}
-                  </span>
+        {isMinimal ? (
+          <div>
+            <div className="relative flex items-center justify-between border-b px-4 py-3" style={{ borderColor: `${p.ink}33`, backgroundColor: p.bg }}>
+              <span className="font-mono text-[10px] uppercase tracking-[0.15em]" style={{ color: p.ink }}>{tab}</span>
+              <MenuTrigger p={p} menuOpen={menuOpen} onToggle={stop(() => setMenuOpen((v) => !v))} />
+              {menuOpen && (
+                <div className="absolute right-4 top-full z-10 mt-1 w-36 border" style={{ borderColor: p.ink, backgroundColor: p.bg }}>
+                  {tabs.map((t) => (
+                    <button
+                      key={t}
+                      type="button"
+                      onClick={stop(() => {
+                        setTab(t)
+                        setMenuOpen(false)
+                      })}
+                      className="block w-full px-4 py-2.5 text-left font-mono text-[10px] uppercase tracking-[0.1em]"
+                      style={{ backgroundColor: tab === t ? p.ink : "transparent", color: tab === t ? p.bg : p.ink }}
+                    >
+                      {t}
+                    </button>
+                  ))}
                 </div>
+              )}
+            </div>
+            <div className="p-6 transition-colors duration-300 sm:p-8" style={{ backgroundColor: p.bg }}>
+              {renderContent()}
+            </div>
+          </div>
+        ) : (
+          <div>
+            <div className="flex gap-1 border-b px-4 pt-3" style={{ borderColor: `${p.ink}33`, backgroundColor: p.bg }}>
+              {tabs.map((t) => (
+                <button
+                  key={t}
+                  type="button"
+                  onClick={stop(() => setTab(t))}
+                  className="rounded-t-sm px-4 py-2 font-mono text-xs uppercase tracking-[0.1em] transition-colors"
+                  style={{ backgroundColor: tab === t ? p.ink : "transparent", color: tab === t ? p.bg : p.ink }}
+                >
+                  {t}
+                </button>
               ))}
             </div>
-          )}
-
-          {tab === "Orders" && (
-            <div>
-              <p className="text-xl sm:text-2xl" style={{ color: p.ink, fontFamily: p.font }}>Orders</p>
-              <div className="mt-5 grid grid-cols-4 gap-2 border-b pb-2 font-mono text-[9px] uppercase tracking-[0.08em]" style={{ borderColor: `${p.ink}33`, color: `${p.ink}80` }}>
-                <span>Order</span>
-                <span>Customer</span>
-                <span>Status</span>
-                <span>Date</span>
-              </div>
-              {orders.map((o) => (
-                <div key={o.id} className="grid grid-cols-4 items-center gap-2 border-b py-3 text-sm" style={{ borderColor: `${p.ink}1F`, color: p.ink }}>
-                  <span className="font-mono text-xs">{o.id}</span>
-                  <span>{o.customer}</span>
-                  <span
-                    className="inline-block w-fit rounded-full px-2 py-0.5 font-mono text-[8px] uppercase tracking-[0.06em]"
-                    style={{ backgroundColor: statusColor(o.status), color: p.ink }}
-                  >
-                    {o.status}
-                  </span>
-                  <span className="font-mono text-xs" style={{ color: `${p.ink}99` }}>{o.date}</span>
-                </div>
-              ))}
+            <div className="p-6 transition-colors duration-300 sm:p-8" style={{ backgroundColor: p.bg }}>
+              {renderContent()}
             </div>
-          )}
-
-          {tab === "Reports" && (
-            <div>
-              <p className="text-xl sm:text-2xl" style={{ color: p.ink, fontFamily: p.font }}>Reports</p>
-              <div className="mt-5 grid grid-cols-3 gap-3">
-                {[
-                  { label: "Revenue (30d)", value: "$18,420" },
-                  { label: "Orders (30d)", value: "142" },
-                  { label: "Avg. Order", value: "$129" },
-                ].map((s) => (
-                  <div key={s.label} className="border p-3" style={{ borderColor: `${p.ink}33`, backgroundColor: p.surface }}>
-                    <p className="text-lg" style={{ color: p.ink, fontFamily: p.font }}>{s.value}</p>
-                    <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.1em]" style={{ color: `${p.ink}80` }}>{s.label}</p>
-                  </div>
-                ))}
-              </div>
-
-              <p className="mt-8 font-mono text-[10px] uppercase tracking-[0.15em]" style={{ color: `${p.ink}99` }}>Weekly Orders</p>
-              <div className="mt-3 flex h-32 items-end gap-3">
-                {chartData.map((v, idx) => (
-                  <div key={idx} className="flex-1" style={{ height: `${v}%`, backgroundColor: idx === chartData.length - 1 ? p.a3 : p.a1 }} />
-                ))}
-              </div>
-              <div className="mt-2 flex gap-3 font-mono text-[8px] uppercase tracking-[0.06em]" style={{ color: `${p.ink}70` }}>
-                {["M", "T", "W", "T", "F", "S", "S"].map((d, idx) => (
-                  <span key={idx} className="flex-1 text-center">{d}</span>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   )
@@ -1134,11 +1337,7 @@ export function WebAppMockup() {
       return (
         <div className="relative flex items-center justify-between border-b px-4 py-3" style={{ borderColor: `${p.ink}33`, backgroundColor: p.bg }}>
           <span className="font-mono text-[10px] uppercase tracking-[0.15em]" style={{ color: p.ink }}>{tab}</span>
-          <button type="button" onClick={stop(() => setMenuOpen((v) => !v))} className="flex flex-col gap-1" aria-label="Menu">
-            <span className="block h-[1.5px] w-5" style={{ backgroundColor: p.ink }} />
-            <span className="block h-[1.5px] w-5" style={{ backgroundColor: p.ink }} />
-            <span className="block h-[1.5px] w-5" style={{ backgroundColor: p.ink }} />
-          </button>
+          <MenuTrigger p={p} menuOpen={menuOpen} onToggle={stop(() => setMenuOpen((v) => !v))} />
           {menuOpen && (
             <div className="absolute right-4 top-full z-10 mt-1 w-36 border" style={{ borderColor: p.ink, backgroundColor: p.bg }}>
               {tabs.map((t) => (
@@ -1744,7 +1943,7 @@ function Footer() {
     <footer className="border-t border-[var(--ash-accent-2)] px-6 py-5 sm:px-10" style={{ backgroundColor: "var(--ash-surface-soft)" }}>
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]/70 sm:flex-row sm:gap-4">
         <span>{COMPANY_NAME}</span>
-        {/* <span>© {new Date().getFullYear()} All rights reserved</span> */}
+        <span>© {new Date().getFullYear()} All rights reserved</span>
       </div>
     </footer>
   )

@@ -1,23 +1,17 @@
 import React from "react"
 import { Link } from "gatsby"
-import Layout, { COMPANY_NAME, Reveal, ImagePlaceholder } from "../components/Layout"
+import Layout, { COMPANY_NAME, Reveal } from "../components/Layout"
 
 export default function AboutPage() {
   return (
     <Layout currentPath="/about">
-      <section className="relative mx-auto max-w-6xl px-6 py-12 sm:px-10 sm:py-16">
-        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-          <Reveal>
-            <div>
-              <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--ash-ink)]/70">About</p>
-              <h1 className="mt-4 font-display text-4xl text-[var(--ash-ink)] sm:text-5xl [text-wrap:balance]">
-                Design and development, under one roof.
-              </h1>
-              <span className="mt-3 block h-1 w-28 rounded-full bg-[var(--ash-accent-2)]" />
-              <ImagePlaceholder label="Studio / Team Photo" aspect="aspect-[4/5]" className="mt-8 max-w-sm" />
-            </div>
-          </Reveal>
-          <Reveal delay={120}>
+      <section className="relative mx-auto max-w-4xl px-6 py-12 sm:px-10 sm:py-16">
+        <Reveal>
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--ash-ink)]/70">About</p>
+          <div className="mt-4">
+            <h1 className="float-left mr-8 mb-2 max-w-sm font-display text-4xl leading-[1.15] text-[var(--ash-ink)] sm:text-5xl [text-wrap:balance]">
+              Design and development, under one roof.
+            </h1>
             <div className="space-y-5 text-base leading-relaxed text-[var(--ash-ink)]/80 sm:text-lg">
               <p>
                 At {COMPANY_NAME}, we create custom websites and web applications that are built
@@ -45,8 +39,10 @@ export default function AboutPage() {
                 yours.
               </p>
             </div>
-          </Reveal>
-        </div>
+            <div className="clear-both" />
+          </div>
+          <span className="mt-8 block h-1 w-28 rounded-full bg-[var(--ash-accent-2)]" />
+        </Reveal>
       </section>
 
       <section

@@ -58,14 +58,19 @@ export default function PricingPage() {
                         </span>
                       </button>
                       {isOpen && (
-                        <ul className="mt-5 space-y-2 border-t border-[var(--ash-surface)]/30 pt-5">
-                          {tier.includes.map((item) => (
-                            <li key={item} className="flex items-start gap-2 text-sm text-[var(--ash-ink)]">
-                              <span className="mt-1 h-1.5 w-1.5 flex-none rounded-full" style={{ backgroundColor: "var(--ash-accent)" }} />
-                              {item}
-                            </li>
-                          ))}
-                        </ul>
+                        <div className="mt-5 border-t border-[var(--ash-surface)]/30 pt-5">
+                          <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--ash-ink)]/60">
+                            Examples
+                          </p>
+                          <ul className="mt-3 space-y-2">
+                            {tier.examples.map((ex) => (
+                              <li key={ex} className="flex items-start gap-2 text-sm text-[var(--ash-ink)]">
+                                <span className="mt-1 h-1.5 w-1.5 flex-none rounded-full" style={{ backgroundColor: "var(--ash-accent)" }} />
+                                {ex}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       )}
                     </div>
                     <div className="mt-6 border-t pt-6" style={{ borderColor: "var(--ash-surface)33" }}>
