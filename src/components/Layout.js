@@ -104,6 +104,9 @@ const globalStyles = `
   html, body, #___gatsby, #gatsby-focus-wrapper {
     background-color: var(--ash-bg);
   }
+  a, button, [role="button"] {
+    cursor: pointer;
+  }
   .font-display { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; letter-spacing: -0.01em; }
   .font-script { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 500; }
   .font-menu { font-family: 'Loveletter No 9', cursive; font-weight: 400; }

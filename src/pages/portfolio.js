@@ -1,15 +1,50 @@
 import React from "react"
 import { Link } from "gatsby"
 import Layout, { COMPANY_NAME, Reveal, ImagePlaceholder } from "../components/Layout"
+import willowLogo from "./builds/willowvine/willowandvine.png"
 
 const projects = [
   { name: "Petal & Bloom Co.", category: "Custom Website", href: "/builds/floralco/" },
-  { name: "Willow & Vine Events", category: "Client Portal", href: "/builds/willowvine/" },
+  { name: "Willow & Vine Events", category: "Client Portal", href: "/builds/willowvine/", preview: "willowvine" },
   { name: "Northbay Supply Co.", category: "Internal Tool", href: "/builds/northbay/login" },
   { name: "Project Four", category: "Custom Web Application" },
   { name: "Project Five", category: "Custom Website" },
   { name: "Project Six", category: "Custom Web Application" },
 ]
+
+function WillowVinePreview() {
+  const navItems = ["Home", "My Events", "My Profile", "Contact"]
+  return (
+    <div className="flex aspect-[4/3] w-full overflow-hidden border" style={{ borderColor: "#A2947A" }}>
+      <div className="flex w-2/5 flex-none flex-col items-center gap-3 px-3 py-4" style={{ backgroundColor: "#83715B" }}>
+        <img src={willowLogo} alt="Willow & Vine" className="h-8 w-auto" />
+        <div className="mt-2 flex w-full flex-col gap-1.5">
+          {navItems.map((label, i) => (
+            <div
+              key={label}
+              className="truncate rounded-sm px-2 py-1 text-center text-[7px] uppercase tracking-wide"
+              style={{ backgroundColor: i === 0 ? "#A9776F" : "transparent", color: "#FAF6F0" }}
+            >
+              {label}
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="flex-1 p-4" style={{ backgroundColor: "#FAF6F0" }}>
+        <div className="h-1.5 w-14 rounded-sm" style={{ backgroundColor: "#C7908E" }} />
+        <div className="mt-2 h-3 w-28 rounded-sm" style={{ backgroundColor: "#33302C", opacity: 0.18 }} />
+        <div className="mt-4 grid grid-cols-3 gap-2">
+          {[0, 1, 2].map((i) => (
+            <div key={i} className="aspect-square rounded-sm border" style={{ borderColor: "#ABB2AB", backgroundColor: "#ECEEEA" }} />
+          ))}
+        </div>
+        <div className="mt-4 h-2 w-full rounded-sm" style={{ backgroundColor: "#ECEEEA" }}>
+          <div className="h-full w-1/2 rounded-sm" style={{ backgroundColor: "#C7908E" }} />
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export default function PortfolioPage() {
   return (
@@ -32,7 +67,11 @@ export default function PortfolioPage() {
             {projects.map((project, i) => {
               const content = (
                 <>
-                  <ImagePlaceholder label={`${project.name} example`} aspect="aspect-[4/3]" />
+                  {project.preview === "willowvine" ? (
+                    <WillowVinePreview />
+                  ) : (
+                    <ImagePlaceholder label={`${project.name} example`} aspect="aspect-[4/3]" />
+                  )}
                   <p className="mt-4 font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]/60">
                     {project.category}
                   </p>
