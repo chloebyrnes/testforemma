@@ -2,8 +2,16 @@ import React, { useState } from "react"
 import { Link } from "gatsby"
 
 const fontImports = `
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-  .nb-body { font-family: 'Inter', sans-serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap');
+  .nb-body { font-family: 'Manrope', sans-serif; }
+  a, button {
+    cursor: pointer;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+  }
+  a:hover, button:hover {
+    transform: translateY(-2px);
+    opacity: 0.88;
+  }
 `
 
 const inventory = [
@@ -63,6 +71,9 @@ export default function NorthbayDashboard() {
 
   const lowStockCount = inventory.filter((i) => i.stock <= i.reorder).length
   const maxMovement = Math.max(...weeklyMovement.map((d) => d.value))
+  const totalMovement = weeklyMovement.reduce((sum, d) => sum + d.value, 0)
+  const avgMovement = Math.round(totalMovement / weeklyMovement.length)
+  const busiestDay = weeklyMovement.reduce((a, b) => (b.value > a.value ? b : a))
 
   return (
     <main className="nb-body" style={{ backgroundColor: "#F8FAFC", minHeight: "100vh" }}>
@@ -281,17 +292,37 @@ export default function NorthbayDashboard() {
           <div>
             <h1 className="text-2xl font-semibold" style={{ color: "#0F172A" }}>Reports</h1>
 
+            <div className="mt-6 grid gap-4 sm:grid-cols-3">
+              <div className="rounded-lg border p-4" style={{ borderColor: "#E2E8F0", backgroundColor: "#FFFFFF" }}>
+                <p className="text-2xl font-semibold" style={{ color: "#0F172A" }}>{totalMovement}</p>
+                <p className="mt-1 text-xs uppercase tracking-wide" style={{ color: "#94A3B8" }}>Units Moved This Week</p>
+              </div>
+              <div className="rounded-lg border p-4" style={{ borderColor: "#E2E8F0", backgroundColor: "#FFFFFF" }}>
+                <p className="text-2xl font-semibold" style={{ color: "#0F172A" }}>{avgMovement}</p>
+                <p className="mt-1 text-xs uppercase tracking-wide" style={{ color: "#94A3B8" }}>Average Daily Movement</p>
+              </div>
+              <div className="rounded-lg border p-4" style={{ borderColor: "#E2E8F0", backgroundColor: "#FFFFFF" }}>
+                <p className="text-2xl font-semibold" style={{ color: "#2563EB" }}>{busiestDay.day}</p>
+                <p className="mt-1 text-xs uppercase tracking-wide" style={{ color: "#94A3B8" }}>Busiest Day ({busiestDay.value} units)</p>
+              </div>
+            </div>
+
             <div className="mt-6 rounded-lg border p-6" style={{ borderColor: "#E2E8F0", backgroundColor: "#FFFFFF" }}>
               <p className="text-sm font-medium" style={{ color: "#0F172A" }}>Weekly Stock Movement</p>
-              <div className="mt-6 flex h-40 items-end gap-3">
+              <div className="mt-8 flex gap-3" style={{ height: "160px" }}>
                 {weeklyMovement.map((d) => (
-                  <div key={d.day} className="flex flex-1 flex-col items-center gap-2">
+                  <div key={d.day} className="flex h-full flex-1 flex-col items-center justify-end gap-1.5">
+                    <span className="text-xs font-medium" style={{ color: "#334155" }}>{d.value}</span>
                     <div
                       className="w-full rounded-t-sm"
-                      style={{ height: `${(d.value / maxMovement) * 100}%`, backgroundColor: "#2563EB" }}
+                      style={{ height: `${(d.value / maxMovement) * 100}%`, backgroundColor: d.day === busiestDay.day ? "#0F172A" : "#2563EB" }}
                     />
-                    <span className="text-xs" style={{ color: "#94A3B8" }}>{d.day}</span>
                   </div>
+                ))}
+              </div>
+              <div className="mt-2 flex gap-3">
+                {weeklyMovement.map((d) => (
+                  <span key={d.day} className="flex-1 text-center text-xs" style={{ color: "#94A3B8" }}>{d.day}</span>
                 ))}
               </div>
             </div>

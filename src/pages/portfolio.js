@@ -6,7 +6,7 @@ import willowLogo from "./builds/willowvine/willowandvine.png"
 const projects = [
   { name: "Petal & Bloom Co.", category: "Custom Website", href: "/builds/floralco/" },
   { name: "Willow & Vine Events", category: "Client Portal", href: "/builds/willowvine/", preview: "willowvine" },
-  { name: "Northbay Supply Co.", category: "Internal Tool", href: "/builds/northbay/login" },
+  { name: "Northbay Supply Co.", category: "Internal Tool", href: "/builds/northbay/login", preview: "northbay" },
   { name: "Project Four", category: "Custom Web Application" },
   { name: "Project Five", category: "Custom Website" },
   { name: "Project Six", category: "Custom Web Application" },
@@ -46,6 +46,52 @@ function WillowVinePreview() {
   )
 }
 
+function NorthbayPreview() {
+  const tabItems = ["Dashboard", "Inventory", "Orders", "Reports"]
+  const bars = [40, 65, 50, 80, 60, 90, 70]
+  return (
+    <div className="aspect-[4/3] w-full overflow-hidden border" style={{ borderColor: "#E2E8F0" }}>
+      <div className="flex items-center gap-2 border-b px-3 py-2" style={{ borderColor: "#E2E8F0", backgroundColor: "#FFFFFF" }}>
+        <div
+          className="flex h-5 w-5 flex-none items-center justify-center rounded text-[7px] font-semibold"
+          style={{ backgroundColor: "#2563EB", color: "#FFFFFF" }}
+        >
+          NB
+        </div>
+        <span className="truncate text-[7px] font-semibold" style={{ color: "#0F172A" }}>Northbay Supply Co.</span>
+      </div>
+      <div className="flex gap-2 border-b px-3 pt-1.5" style={{ borderColor: "#E2E8F0", backgroundColor: "#FFFFFF" }}>
+        {tabItems.map((t, i) => (
+          <span
+            key={t}
+            className="pb-1.5 text-[6px] font-medium"
+            style={{
+              color: i === 0 ? "#2563EB" : "#94A3B8",
+              borderBottom: i === 0 ? "1.5px solid #2563EB" : "1.5px solid transparent",
+            }}
+          >
+            {t}
+          </span>
+        ))}
+      </div>
+      <div className="p-3" style={{ backgroundColor: "#F8FAFC" }}>
+        <div className="grid grid-cols-4 gap-1.5">
+          {[0, 1, 2, 3].map((i) => (
+            <div key={i} className="rounded-sm border p-1.5" style={{ borderColor: "#E2E8F0", backgroundColor: "#FFFFFF" }}>
+              <div className="h-2 w-4 rounded-sm" style={{ backgroundColor: "#0F172A", opacity: 0.15 }} />
+            </div>
+          ))}
+        </div>
+        <div className="mt-2 flex h-10 items-end gap-1">
+          {bars.map((v, i) => (
+            <div key={i} className="flex-1 rounded-t-sm" style={{ height: `${v}%`, backgroundColor: "#2563EB" }} />
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function PortfolioPage() {
   return (
     <Layout currentPath="/portfolio">
@@ -55,8 +101,9 @@ export default function PortfolioPage() {
           <h1 className="font-display mt-4 text-4xl text-[var(--ash-ink)] sm:text-5xl [text-wrap:balance]">Selected Work</h1>
           <span className="mt-3 block h-1 w-28 rounded-full bg-[var(--ash-surface)]" />
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-[var(--ash-ink)]/80 sm:text-lg">
-            A look at recent projects, from custom websites to full web applications. Case
-            studies coming soon.
+            A look at the kind of work we do, from custom websites to full web applications.
+            These are example builds showing different styles and features, not real client
+            projects.
           </p>
         </Reveal>
       </section>
@@ -69,6 +116,8 @@ export default function PortfolioPage() {
                 <>
                   {project.preview === "willowvine" ? (
                     <WillowVinePreview />
+                  ) : project.preview === "northbay" ? (
+                    <NorthbayPreview />
                   ) : (
                     <ImagePlaceholder label={`${project.name} example`} aspect="aspect-[4/3]" />
                   )}
@@ -87,9 +136,9 @@ export default function PortfolioPage() {
               return (
                 <Reveal key={project.name} delay={i * 90}>
                   {project.href ? (
-                    <Link to={project.href} className="block">
+                    <a href={project.href} target="_blank" rel="noopener noreferrer" className="block">
                       {content}
-                    </Link>
+                    </a>
                   ) : (
                     <div>{content}</div>
                   )}
