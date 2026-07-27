@@ -31,6 +31,15 @@ export const fontFace = `
     transform: translateY(-2px);
     opacity: 0.88;
   }
+  @keyframes wh-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .wh-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: wh-marquee 45s linear infinite;
+  }
 `
 
 const navLinks = [

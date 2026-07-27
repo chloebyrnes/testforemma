@@ -40,8 +40,13 @@ export default function WildhorseHomePage() {
       </section>
 
       <div className="overflow-hidden py-3" style={{ backgroundColor: wh.gold }}>
-        <div className="wh-display whitespace-nowrap text-xl" style={{ color: wh.darkInk }}>
-          {marqueeText.repeat(6)}
+        <div className="wh-marquee-track">
+          <span className="wh-display whitespace-nowrap px-2 text-xl" style={{ color: wh.darkInk }}>
+            {marqueeText.repeat(3)}
+          </span>
+          <span className="wh-display whitespace-nowrap px-2 text-xl" style={{ color: wh.darkInk }} aria-hidden="true">
+            {marqueeText.repeat(3)}
+          </span>
         </div>
       </div>
 
