@@ -4,13 +4,37 @@ import Layout, { COMPANY_NAME, Reveal, ImagePlaceholder } from "../components/La
 import willowLogo from "./builds/willowvine/willowandvine.png"
 
 const projects = [
-  { name: "Petal House", category: "Custom Website", href: "/builds/floralco/", preview: "floralco" },
+  { name: "Wildhorse Vintage", category: "Custom Website", href: "/builds/wildhorse/", preview: "wildhorse" },
   { name: "Willow & Vine Events", category: "Client Portal", href: "/builds/willowvine/", preview: "willowvine" },
   { name: "Northbay Supply Co.", category: "Internal Tool", href: "/builds/northbay/login", preview: "northbay" },
-  { name: "Project Four", category: "Custom Web Application" },
+  { name: "Petal House", category: "Custom Website", href: "/builds/floralco/", preview: "floralco" },
   { name: "Project Five", category: "Custom Website" },
   { name: "Project Six", category: "Custom Web Application" },
 ]
+
+function WildhorsePreview() {
+  return (
+    <div className="aspect-[4/3] w-full overflow-hidden border" style={{ borderColor: "#2A2119" }}>
+      <div className="flex items-center justify-center border-2 border-dashed" style={{ borderColor: "#C99A44", backgroundColor: "#2A2119", height: "58%" }}>
+        <div className="text-center">
+          <div className="mx-auto h-1 w-12 rounded-sm" style={{ backgroundColor: "#C99A44" }} />
+          <div className="mx-auto mt-2 h-5 w-28 rounded-sm" style={{ backgroundColor: "#EDE1CF", opacity: 0.85 }} />
+          <div className="mx-auto mt-2 h-2 w-16 rounded-sm" style={{ backgroundColor: "#B5563C" }} />
+        </div>
+      </div>
+      <div className="overflow-hidden py-1" style={{ backgroundColor: "#C99A44" }}>
+        <span className="text-[7px] font-semibold uppercase tracking-wide" style={{ color: "#2A2119" }}>
+          &nbsp;New Arrivals Every Friday ★ New Arrivals Every Friday ★ New Arrivals&nbsp;
+        </span>
+      </div>
+      <div className="grid grid-cols-3 gap-1 p-2" style={{ backgroundColor: "#1C1712" }}>
+        <div className="col-span-2 row-span-2 aspect-square border-2 border-dashed" style={{ borderColor: "#C99A44", backgroundColor: "#2A2119" }} />
+        <div className="aspect-square border-2 border-dashed" style={{ borderColor: "#C99A44", backgroundColor: "#2A2119" }} />
+        <div className="aspect-square border-2 border-dashed" style={{ borderColor: "#C99A44", backgroundColor: "#2A2119" }} />
+      </div>
+    </div>
+  )
+}
 
 function WillowVinePreview() {
   const navItems = ["Home", "My Events", "My Profile", "Contact"]
@@ -162,6 +186,8 @@ export default function PortfolioPage() {
                     <NorthbayPreview />
                   ) : project.preview === "floralco" ? (
                     <PetalHousePreview />
+                  ) : project.preview === "wildhorse" ? (
+                    <WildhorsePreview />
                   ) : (
                     <ImagePlaceholder label={`${project.name} example`} aspect="aspect-[4/3]" />
                   )}
