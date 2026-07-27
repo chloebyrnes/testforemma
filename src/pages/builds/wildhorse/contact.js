@@ -30,7 +30,7 @@ export default function WildhorseContactPage() {
           <p className="wh-body text-xs uppercase tracking-[0.3em]" style={{ color: wh.gold }}>
             Visit Us
           </p>
-          <h1 className="wh-display mt-2 text-6xl" style={{ color: wh.ink }}>
+          <h1 className="wh-display mt-2 text-4xl sm:text-6xl" style={{ color: wh.ink }}>
             Come On In
           </h1>
           <p className="wh-body mt-3 text-lg" style={{ color: wh.inkMuted }}>

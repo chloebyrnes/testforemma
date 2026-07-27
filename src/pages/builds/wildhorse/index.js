@@ -26,7 +26,7 @@ export default function WildhorseHomePage() {
           <p className="wh-body text-xs uppercase tracking-[0.35em]" style={{ color: wh.gold }}>
             Curated Vintage &middot; Marfa, Texas
           </p>
-          <h1 className="wh-display mt-2 text-6xl leading-[0.9] sm:text-8xl" style={{ color: wh.ink }}>
+          <h1 className="wh-display mt-2 text-4xl leading-[0.95] sm:text-6xl md:text-8xl" style={{ color: wh.ink }}>
             Wildhorse<br />Vintage
           </h1>
           <Link

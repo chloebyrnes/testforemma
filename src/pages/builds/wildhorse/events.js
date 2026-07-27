@@ -56,7 +56,7 @@ export default function WildhorseEventsPage() {
           <p className="wh-body text-xs uppercase tracking-[0.3em]" style={{ color: wh.gold }}>
             Events
           </p>
-          <h1 className="wh-display mt-2 text-6xl sm:text-7xl" style={{ color: wh.ink }}>
+          <h1 className="wh-display mt-2 text-4xl sm:text-6xl md:text-7xl" style={{ color: wh.ink }}>
             Come Sit a While
           </h1>
           <p className="wh-body mt-3 text-lg" style={{ color: wh.inkMuted }}>
