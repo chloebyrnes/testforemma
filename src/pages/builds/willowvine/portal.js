@@ -390,7 +390,7 @@ function EventDetailsPanel() {
             Payment History
           </p>
           <div className="mt-3 flex justify-between text-sm" style={{ color: wv.ink }}>
-            <span>Retainer - Card ending 4021</span>
+            <span>Retainer - Card ending 0000</span>
             <span>${mockEvent.retainer.toLocaleString()}.00</span>
           </div>
         </div>

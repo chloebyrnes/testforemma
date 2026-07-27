@@ -4,7 +4,7 @@ import Layout, { COMPANY_NAME, Reveal, ImagePlaceholder } from "../components/La
 import willowLogo from "./builds/willowvine/willowandvine.png"
 
 const projects = [
-  { name: "Petal & Bloom Co.", category: "Custom Website", href: "/builds/floralco/" },
+  { name: "Petal House", category: "Custom Website", href: "/builds/floralco/", preview: "floralco" },
   { name: "Willow & Vine Events", category: "Client Portal", href: "/builds/willowvine/", preview: "willowvine" },
   { name: "Northbay Supply Co.", category: "Internal Tool", href: "/builds/northbay/login", preview: "northbay" },
   { name: "Project Four", category: "Custom Web Application" },
@@ -41,6 +41,48 @@ function WillowVinePreview() {
         <div className="mt-4 h-2 w-full rounded-sm" style={{ backgroundColor: "#ECEEEA" }}>
           <div className="h-full w-1/2 rounded-sm" style={{ backgroundColor: "#C7908E" }} />
         </div>
+      </div>
+    </div>
+  )
+}
+
+function PetalHousePreview() {
+  const navItems = ["Home", "Shop", "Contact"]
+  return (
+    <div className="aspect-[4/3] w-full overflow-hidden border" style={{ borderColor: "#E7DCD0" }}>
+      <div className="flex items-center justify-between border-b px-3 py-2" style={{ borderColor: "#E7DCD0", backgroundColor: "#FAF7F2" }}>
+        <span className="text-[8px] font-semibold" style={{ color: "#2B3A2F" }}>Petal House</span>
+        <div className="flex items-center gap-2">
+          {navItems.map((t) => (
+            <span key={t} className="text-[6px] uppercase tracking-wide" style={{ color: "#7A8577" }}>{t}</span>
+          ))}
+          <span className="text-[9px]">🛒</span>
+        </div>
+      </div>
+      <div className="grid grid-cols-2 gap-2 p-3" style={{ backgroundColor: "#FAF7F2" }}>
+        <div>
+          <div className="h-1.5 w-10 rounded-sm" style={{ backgroundColor: "#E8A7B5" }} />
+          <div className="mt-1.5 h-3 w-16 rounded-sm" style={{ backgroundColor: "#2B3A2F", opacity: 0.18 }} />
+          <div className="mt-2 h-2 w-4 rounded-sm" style={{ backgroundColor: "#5B7A5E" }} />
+        </div>
+        <div className="grid grid-cols-2 gap-0.5">
+          {[0, 1, 2, 3].map((i) => (
+            <div key={i} className="aspect-[4/3] border border-dotted" style={{ borderColor: "#E8A7B5", backgroundColor: "#F3E9E0" }} />
+          ))}
+        </div>
+      </div>
+      <div className="grid grid-cols-3 gap-1.5 px-3 pb-3" style={{ backgroundColor: "#FAF7F2" }}>
+        {[0, 1, 2].map((i) => (
+          <div key={i} className="relative">
+            <span
+              className="absolute left-0.5 top-0.5 z-10 rounded-sm px-1 text-[5px]"
+              style={{ backgroundColor: "#E8A7B5", color: "#FFFFFF" }}
+            >
+              •
+            </span>
+            <div className="aspect-square rounded-sm border-2 border-dashed" style={{ borderColor: "#E8A7B5", backgroundColor: "#F3E9E0" }} />
+          </div>
+        ))}
       </div>
     </div>
   )
@@ -118,6 +160,8 @@ export default function PortfolioPage() {
                     <WillowVinePreview />
                   ) : project.preview === "northbay" ? (
                     <NorthbayPreview />
+                  ) : project.preview === "floralco" ? (
+                    <PetalHousePreview />
                   ) : (
                     <ImagePlaceholder label={`${project.name} example`} aspect="aspect-[4/3]" />
                   )}

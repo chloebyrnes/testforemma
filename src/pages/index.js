@@ -30,20 +30,24 @@ function Hero() {
             idea through strategy, UI/UX design, and development, we help shape your vision and
             build it from the ground up.
           </p>
-          <div className="mt-9 flex flex-wrap gap-4">
+          <div className="mt-9 flex flex-wrap gap-2">
             <Link
               to="/contact"
-              className="btn-primary group inline-flex items-center gap-2 rounded-sm px-6 py-3 text-sm uppercase tracking-[0.15em] focus-visible:outline-none"
+              className="btn-primary inline-flex items-center rounded-sm px-4 py-2.5 font-mono text-xs uppercase tracking-[0.1em] focus-visible:outline-none"
             >
               Start Your Project
-              <span className="btn-arrow">→</span>
+            </Link>
+            <Link
+              to="/portfolio"
+              className="btn-secondary inline-flex items-center rounded-sm px-4 py-2.5 font-mono text-xs uppercase tracking-[0.1em] focus-visible:outline-none"
+            >
+              View Portfolio
             </Link>
             <Link
               to="/services"
-              className="btn-secondary group inline-flex items-center gap-2 rounded-sm px-6 py-3 font-mono text-xs uppercase tracking-[0.15em] focus-visible:outline-none"
+              className="btn-secondary inline-flex items-center rounded-sm px-4 py-2.5 font-mono text-xs uppercase tracking-[0.1em] focus-visible:outline-none"
             >
               Explore Our Services
-              <span className="btn-arrow">→</span>
             </Link>
           </div>
         </div>
@@ -132,7 +136,7 @@ function ClosingCTA() {
           <div className="mt-9 flex flex-wrap justify-center gap-4">
             <Link
               to="/contact"
-              className="btn-primary group inline-flex items-center gap-2 rounded-sm px-7 py-3 text-sm uppercase tracking-[0.15em] focus-visible:outline-none"
+              className="btn-primary group inline-flex items-center gap-2 rounded-sm px-7 py-3 font-mono text-xs uppercase tracking-[0.15em] focus-visible:outline-none"
             >
               Start Your Project
               <span className="btn-arrow">→</span>
