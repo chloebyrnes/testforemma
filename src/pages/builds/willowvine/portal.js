@@ -390,7 +390,7 @@ function EventDetailsPanel() {
             Payment History
           </p>
           <div className="mt-3 flex justify-between text-sm" style={{ color: wv.ink }}>
-            <span>Retainer - Card ending 0000</span>
+            <span>Retainer - Card ending 4021</span>
             <span>${mockEvent.retainer.toLocaleString()}.00</span>
           </div>
         </div>
@@ -525,6 +525,7 @@ export default function WillowPortalPage() {
   const [screen, setScreen] = useState("home")
   const [expandedPanel, setExpandedPanel] = useState(null)
   const [checklist, setChecklist] = useState(initialChecklist)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const allTasks = checklist.flatMap((group) => group.tasks)
   const completed = allTasks.filter((c) => c.done).length
@@ -553,10 +554,62 @@ export default function WillowPortalPage() {
     screen === "myEvents" ? "My Events" : screen === "profile" ? "My Profile" : screen === "contact" ? "Contact" : "Home"
 
   return (
-    <main className="wv-body flex min-h-screen" style={{ backgroundColor: wv.bg }}>
+    <main className="wv-body flex min-h-screen flex-col md:flex-row" style={{ backgroundColor: wv.bg }}>
       <style>{fontImports}</style>
 
-      <aside className="flex w-56 flex-none flex-col justify-between px-6 py-8" style={{ backgroundColor: wv.dark }}>
+      <div className="flex items-center justify-between px-6 py-4 md:hidden" style={{ backgroundColor: wv.dark }}>
+        <Link to="/builds/willowvine/portal" onClick={() => { setScreen("home"); setMobileMenuOpen(false) }} className="flex items-center gap-2">
+          <img src={willowVineLogo} alt="Willow & Vine" className="h-9 w-auto" />
+          <span className="wv-heading text-sm" style={{ color: wv.cream }}>Willow &amp; Vine</span>
+        </Link>
+        <button
+          type="button"
+          onClick={() => setMobileMenuOpen((v) => !v)}
+          aria-label="Menu"
+          className="flex h-8 w-8 flex-col items-center justify-center gap-1"
+        >
+          <span className="block h-[2px] w-5" style={{ backgroundColor: wv.cream }} />
+          <span className="block h-[2px] w-5" style={{ backgroundColor: wv.cream }} />
+          <span className="block h-[2px] w-5" style={{ backgroundColor: wv.cream }} />
+        </button>
+      </div>
+
+      {mobileMenuOpen && (
+        <div className="flex flex-col gap-1 px-6 py-4 md:hidden" style={{ backgroundColor: wv.darkActive }}>
+          {sidebarItems.map((item) => {
+            const key = item === "My Events" ? "myEvents" : item === "My Profile" ? "profile" : item.toLowerCase()
+            const isActive = activeSidebar === item
+            return (
+              <button
+                key={item}
+                type="button"
+                onClick={() => {
+                  setScreen(key)
+                  setMobileMenuOpen(false)
+                }}
+                className="wv-body px-3 py-2.5 text-left text-xs uppercase tracking-[0.1em]"
+                style={{
+                  color: wv.cream,
+                  fontWeight: isActive ? 600 : 400,
+                  textDecoration: isActive ? "underline" : "none",
+                }}
+              >
+                {item}
+              </button>
+            )
+          })}
+          <Link
+            to="/builds/willowvine/"
+            onClick={() => setMobileMenuOpen(false)}
+            className="wv-body px-3 py-2.5 text-xs uppercase tracking-[0.1em] underline"
+            style={{ color: wv.peach }}
+          >
+            Logout
+          </Link>
+        </div>
+      )}
+
+      <aside className="hidden w-56 flex-none flex-col justify-between px-6 py-8 md:flex" style={{ backgroundColor: wv.dark }}>
         <div>
           <Link to="/builds/willowvine/portal" onClick={() => setScreen("home")} className="block text-center">
             <img src={willowVineLogo} alt="Willow & Vine" className="mx-auto h-24 w-auto" />
