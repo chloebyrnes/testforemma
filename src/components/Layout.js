@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react"
 import { Link } from "gatsby"
-import ashLogo from "../images/ashlynstudiologo.png"
+import ashLogo from "../images/ashlogo.png"
 
 export const COMPANY_NAME = "Ashlyn Studio"
 
@@ -99,23 +99,23 @@ export const process = [
 export const accentCycle = ["var(--ash-accent)", "var(--ash-surface)"]
 
 const globalStyles = `
-  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Cormorant+Garamond:wght@500;600;700&family=Pinyon+Script&family=Space+Grotesk:wght@500;600;700&family=Playfair+Display:wght@500;600;700&family=Poppins:wght@400;500;600&family=Bodoni+Moda:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Quicksand:wght@500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Cormorant+Garamond:wght@500;600;700&family=Pinyon+Script&family=Space+Grotesk:wght@500;600;700&family=Playfair+Display:wght@500;600;700&family=Poppins:wght@400;500;600&family=Bodoni+Moda:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Quicksand:wght@500;600;700&family=Manrope:wght@500;600;700&display=swap');
 
   html, body, #___gatsby, #gatsby-focus-wrapper {
     background-color: var(--ash-bg);
   }
-  a, button, [role="button"] {
+  a, button {
     cursor: pointer;
   }
-  .font-display { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; letter-spacing: -0.01em; }
-  .font-script { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 500; }
-  .font-menu { font-family: 'Loveletter No 9', cursive; font-weight: 400; }
+  .font-display { font-family: 'Manrope', sans-serif; font-weight: 700; letter-spacing: -0.01em; }
+  .font-script { font-family: 'Manrope', sans-serif; font-weight: 500; }
+  .font-menu { font-family: 'Manrope', sans-serif; font-weight: 500; }
   .font-mono { font-family: 'IBM Plex Mono', monospace; }
   .font-body { font-family: 'Inter', sans-serif; }
 
   .menu-panel {
     background-color: var(--ash-white);
-    box-shadow: -8px 0 40px rgba(17, 17, 17, 0.25);
+    box-shadow: -8px 0 40px rgba(17, 17, 17, 0.1);
   }
   .menu-link {
     color: var(--ash-ink);
@@ -124,14 +124,14 @@ const globalStyles = `
   }
   .menu-link:hover,
   .menu-link:focus-visible {
-    background-color: var(--ash-bg);
+    background-color: var(--ash-surface-soft);
     color: var(--ash-ink);
-    border-left-color: var(--ash-surface);
+    border-left-color: var(--ash-accent);
     outline: none;
   }
   .menu-link.active {
-    background-color: var(--ash-accent-2);
-    border-left-color: var(--ash-accent);
+    background-color: var(--ash-surface-soft);
+    border-left-color: var(--ash-ink);
     font-weight: 600;
   }
   .menu-link-label {
@@ -154,21 +154,21 @@ const globalStyles = `
 
   a:focus-visible,
   button:focus-visible {
-    outline: 2px solid var(--ash-accent);
+    outline: 2px solid var(--ash-ink);
     outline-offset: 2px;
   }
 
   .btn-primary {
     background-color: var(--ash-accent);
-    color: var(--ash-white);
-    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    color: var(--ash-ink);
+    font-family: 'Manrope', sans-serif !important;
     font-weight: 600;
     transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
   .btn-primary:hover {
     background-color: var(--ash-accent-hover);
     transform: translateY(-2px);
-    box-shadow: 0 12px 24px rgba(17, 17, 17, 0.32);
+    box-shadow: 0 12px 24px rgba(17, 17, 17, 0.12);
   }
   .btn-primary:disabled {
     background-color: var(--ash-surface);
@@ -183,20 +183,20 @@ const globalStyles = `
   }
   .btn-secondary {
     background-color: transparent;
-    border: 1px solid var(--ash-accent);
+    border: 1px solid var(--ash-ink);
     color: var(--ash-ink);
-    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-family: 'Manrope', sans-serif !important;
     font-weight: 600;
     transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
   .btn-secondary:hover {
     background-color: var(--ash-surface-soft);
     transform: translateY(-2px);
-    box-shadow: 0 12px 24px rgba(17, 17, 17, 0.28);
+    box-shadow: 0 12px 24px rgba(17, 17, 17, 0.1);
   }
   .btn-arrow {
     display: inline-block;
-    font-family: 'Loveletter No 9', cursive;
+    font-family: 'Manrope', sans-serif;
     transition: transform 0.2s ease;
   }
   .btn-primary:hover .btn-arrow,
@@ -210,14 +210,14 @@ const globalStyles = `
   }
   .service-card:hover, .pricing-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 18px 34px rgba(17, 17, 17, 0.18);
+    box-shadow: 0 18px 34px rgba(17, 17, 17, 0.1);
   }
 
   .back-to-top {
     transition: opacity 0.25s ease, transform 0.25s ease, background-color 0.2s ease;
   }
   .back-to-top:hover {
-    background-color: var(--ash-accent-hover);
+    background-color: #2A2A2A;
     transform: translateY(-3px);
   }
 
@@ -358,7 +358,7 @@ const mockupPalettes = [
     a1: "var(--ash-surface-soft)",
     a2: "var(--ash-accent-2)",
     a3: "var(--ash-surface)",
-    font: "'Plus Jakarta Sans', sans-serif",
+    font: "'Manrope', sans-serif",
     layout: "classic",
     align: "left",
   },
@@ -1834,7 +1834,7 @@ function Nav({ currentPath }) {
             <img
               src={ashLogo}
               alt={COMPANY_NAME}
-              className="h-20 w-auto opacity-100 transition-opacity duration-300 hover:opacity-70 sm:h-28"
+              className="h-12 w-auto opacity-100 transition-opacity duration-300 hover:opacity-70 sm:h-16"
             />
           </Link>
           <div className="relative" ref={menuRef}>
@@ -1843,9 +1843,9 @@ function Nav({ currentPath }) {
               onClick={() => setOpen((v) => !v)}
               aria-expanded={open}
               aria-controls="primary-menu"
-              className="flex items-center gap-3 rounded-sm border border-[var(--ash-accent)] px-5 py-3 font-menu text-base lowercase tracking-[0.05em] text-[var(--ash-ink)] transition-all duration-200 hover:bg-[var(--ash-accent)] hover:text-[var(--ash-white)] hover:-translate-y-0.5 focus-visible:outline-none sm:px-6 sm:py-3.5 sm:text-lg"
+              className="flex items-center gap-3 rounded-sm border border-[var(--ash-ink)] px-5 py-3 font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)] transition-all duration-200 hover:bg-[var(--ash-ink)] hover:text-[var(--ash-white)] hover:-translate-y-0.5 focus-visible:outline-none sm:px-6 sm:py-3.5"
             >
-              <span className="relative inline-block h-4 w-10 sm:h-5 sm:w-12">
+              <span className="relative inline-block h-4 w-10">
                 <span
                   className="absolute inset-0 transition-opacity duration-300"
                   style={{ opacity: open ? 0 : 1 }}
@@ -1863,9 +1863,9 @@ function Nav({ currentPath }) {
             </button>
 
             <div
-              className="fixed inset-0 z-40 bg-[var(--ash-accent)] transition-opacity duration-400"
+              className="fixed inset-0 z-40 bg-[var(--ash-ink)] transition-opacity duration-400"
               style={{
-                opacity: open ? 0.35 : 0,
+                opacity: open ? 0.15 : 0,
                 pointerEvents: open ? "auto" : "none",
               }}
               onClick={() => setOpen(false)}
@@ -1913,7 +1913,7 @@ function Nav({ currentPath }) {
           <img
             src={ashLogo}
             alt={COMPANY_NAME}
-            className="h-28 w-auto opacity-100 transition-opacity duration-300 hover:opacity-70 lg:h-36"
+            className="h-16 w-auto opacity-100 transition-opacity duration-300 hover:opacity-70 lg:h-20"
           />
         </Link>
         <nav className="mt-5 flex flex-wrap items-center justify-center gap-x-8 gap-y-2">
@@ -1925,9 +1925,9 @@ function Nav({ currentPath }) {
                 to={link.href}
                 className="font-mono text-xs uppercase tracking-[0.15em] transition-colors"
                 style={{
-                  color: "var(--ash-ink)",
-                  fontWeight: isActive ? 700 : 400,
-                  borderBottom: isActive ? "2px solid var(--ash-accent)" : "2px solid transparent",
+                  color: isActive ? "var(--ash-ink)" : "#8A8378",
+                  fontWeight: isActive ? 600 : 400,
+                  borderBottom: isActive ? "1px solid var(--ash-ink)" : "1px solid transparent",
                   paddingBottom: "2px",
                 }}
               >
@@ -1968,7 +1968,7 @@ function BackToTop() {
       aria-label="Back to top"
       className="back-to-top fixed bottom-6 right-6 z-40 flex h-11 w-11 items-center justify-center rounded-full font-mono text-sm"
       style={{
-        backgroundColor: "var(--ash-accent)",
+        backgroundColor: "var(--ash-ink)",
         color: "var(--ash-white)",
         opacity: show ? 1 : 0,
         pointerEvents: show ? "auto" : "none",
@@ -1984,12 +1984,12 @@ export default function Layout({ children, currentPath = "/" }) {
   return (
     <main
       id="top"
-      className="relative min-h-screen font-body text-[var(--ash-ink)] selection:bg-[var(--ash-accent)] selection:text-[var(--ash-white)]"
+      className="relative flex min-h-screen flex-col font-body text-[var(--ash-ink)] selection:bg-[var(--ash-ink)] selection:text-[var(--ash-white)]"
       style={{ backgroundColor: "var(--ash-bg)" }}
     >
       <style>{globalStyles}</style>
       <Nav currentPath={currentPath} />
-      {children}
+      <div className="flex-1">{children}</div>
       <Footer />
       <BackToTop />
     </main>

@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Link } from "gatsby"
-import Layout, { COMPANY_NAME, services, accentCycle, Reveal, WebsiteMockup, PortalMockup, InternalToolMockup, WebAppMockup } from "../components/Layout"
+import Layout, { COMPANY_NAME, services, accentCycle, WebsiteMockup, PortalMockup, InternalToolMockup, WebAppMockup } from "../components/Layout"
 
 const mockupComponents = {
   "01": WebsiteMockup,
@@ -19,7 +19,7 @@ export default function ServicesPage() {
   return (
     <Layout currentPath="/services">
       <section className="relative mx-auto max-w-6xl px-6 pb-6 pt-12 sm:px-10 sm:pt-16">
-        <Reveal>
+        <div>
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--ash-ink)]/70">Services</p>
           <h1 className="mt-4 font-display text-4xl text-[var(--ash-ink)] sm:text-5xl [text-wrap:balance]">What we build</h1>
           <span className="mt-3 block h-1 w-28 rounded-full bg-[var(--ash-surface)]" />
@@ -28,7 +28,7 @@ export default function ServicesPage() {
             a fully custom web application. Every project starts with a conversation about what
             you actually need.
           </p>
-        </Reveal>
+        </div>
       </section>
 
       <section className="relative border-t-4 border-[var(--ash-surface)] px-6 py-12 sm:px-10 sm:py-16">
@@ -38,7 +38,7 @@ export default function ServicesPage() {
             const Mockup = mockupComponents[s.tag]
             const accent = accentCycle[i % accentCycle.length]
             return (
-              <Reveal key={s.tag} delay={i * 90}>
+              <div key={s.tag}>
                 <div className="p-8" style={{ backgroundColor: "var(--ash-surface-soft)", borderLeft: `4px solid ${accent}` }}>
                   <div className="flex flex-wrap items-start justify-between gap-6">
                     <div className="max-w-2xl">
@@ -74,14 +74,14 @@ export default function ServicesPage() {
                     </div>
                   )}
                 </div>
-              </Reveal>
+              </div>
             )
           })}
         </div>
       </section>
 
       <section className="relative border-t border-[var(--ash-accent-2)] px-6 py-16 sm:px-10 sm:py-20">
-        <Reveal className="relative mx-auto max-w-4xl text-center">
+        <div className="relative mx-auto max-w-4xl text-center">
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--ash-ink)]/70">Not sure which fits?</p>
           <h2 className="mt-5 font-display text-2xl leading-tight text-[var(--ash-ink)] sm:text-3xl xl:whitespace-nowrap [text-wrap:balance]">
             Let's talk about what you're building.
@@ -102,7 +102,7 @@ export default function ServicesPage() {
               <span className="btn-arrow">→</span>
             </Link>
           </div>
-        </Reveal>
+        </div>
       </section>
     </Layout>
   )

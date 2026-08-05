@@ -4,24 +4,20 @@
   needs to change. Every page and the shared Layout reference these variables
   instead of hardcoded hex codes.
 
-  Current palette: built directly from Sage (#B2B59C) and Black Olive
-  (#3B3C36), with a soft white background. Black Olive carries the ink/text
-  role since it's dark enough for real contrast. Sage is used directly as a
-  secondary accent (borders, hovers, highlights) so it stays true to the
-  swatch, and --ash-accent is a deepened version of that same Sage so button
-  text stays readable against it.
+  Current palette: simple and chic, a white background with light beige/taupe
+  accents and black text throughout, inspired by minimal fashion-brand sites.
 */
 
 :root {
   /* Core palette */
-  --ash-ink: #3B3C36;          /* Black Olive -- primary text, headers, borders */
-  --ash-bg: #FAF8F3;           /* soft white -- page background */
-  --ash-surface: #E7E7DA;      /* light tint of Sage -- alternating section background */
-  --ash-accent: #7C8067;       /* deepened Sage -- primary buttons, active states (contrast-safe with white text) */
-  --ash-accent-2: #B2B59C;     /* Sage, true to swatch -- secondary accent, hovers, highlights */
-  --ash-white: #FFFFFF;        /* text on dark accent fills, lightest highlight */
+  --ash-ink: #111111;          /* near-black -- primary text, primary button fill */
+  --ash-bg: #FFFFFF;           /* pure white -- page background */
+  --ash-surface: #E7E5E1;      /* cool light greige -- alternating section background */
+  --ash-accent: #B7B1A6;       /* cool grey-taupe -- decorative bars, badges, secondary accents */
+  --ash-accent-2: #DDDAD3;     /* cool light greige -- borders, subtle highlights */
+  --ash-white: #FFFFFF;        /* text on black fills */
 
   /* Derived shades (kept here so the whole palette lives in one place) */
-  --ash-surface-soft: #F2F1E8; /* very light Sage-white tint, for subtle card fills */
-  --ash-accent-hover: #5F6350; /* darker Sage-olive, for button/hover states */
+  --ash-surface-soft: #F5F4F2; /* near-white cool grey, for card fills and footer */
+  --ash-accent-hover: #9C968A; /* darker cool greige, for accent hover states */
 }
