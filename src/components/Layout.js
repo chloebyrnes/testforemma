@@ -1579,7 +1579,7 @@ export function ImagePlaceholder({ label, aspect = "aspect-[16/9]", className = 
 
 function FlowerToggle({ open }) {
   return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5 sm:h-6 sm:w-6" fill="none" aria-hidden="true">
+    <svg viewBox="0 0 24 24" className="h-7 w-7 sm:h-8 sm:w-8" fill="none" aria-hidden="true">
       <path
         d="M4 8 H20"
         stroke="currentColor"
@@ -1835,7 +1835,7 @@ function Nav({ currentPath }) {
             <img
               src={ashLogo}
               alt={COMPANY_NAME}
-              className="h-8 w-auto max-w-[140px] object-contain opacity-100 transition-opacity duration-300 hover:opacity-70 sm:h-10 sm:max-w-[180px]"
+              className="h-16 w-auto max-w-[260px] object-contain opacity-100 transition-opacity duration-300 hover:opacity-70 sm:h-20 sm:max-w-[320px]"
             />
           </Link>
           {!isOnboarding && (
@@ -1845,22 +1845,9 @@ function Nav({ currentPath }) {
                 onClick={() => setOpen((v) => !v)}
                 aria-expanded={open}
                 aria-controls="primary-menu"
-                className="flex items-center gap-2 rounded-sm border border-[var(--ash-ink)] px-4 py-2.5 font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)] transition-all duration-200 hover:bg-[var(--ash-ink)] hover:text-[var(--ash-white)] hover:-translate-y-0.5 focus-visible:outline-none sm:px-5 sm:py-3"
+                aria-label={open ? "Close menu" : "Open menu"}
+                className="flex h-14 w-14 flex-none items-center justify-center rounded-sm text-[var(--ash-ink)] transition-colors duration-200 hover:bg-[var(--ash-surface-soft)] focus-visible:outline-none"
               >
-                <span className="relative inline-block h-4 w-10">
-                  <span
-                    className="absolute inset-0 transition-opacity duration-300"
-                    style={{ opacity: open ? 0 : 1 }}
-                  >
-                    Menu
-                  </span>
-                  <span
-                    className="absolute inset-0 transition-opacity duration-300"
-                    style={{ opacity: open ? 1 : 0 }}
-                  >
-                    Close
-                  </span>
-                </span>
                 <FlowerToggle open={open} />
               </button>
 
