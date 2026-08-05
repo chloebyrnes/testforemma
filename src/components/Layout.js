@@ -1829,23 +1829,23 @@ function Nav({ currentPath }) {
   return (
     <>
       {/* Mobile header: logo + hamburger, drawer menu */}
-      <header className="relative z-[60] mx-auto max-w-6xl px-6 py-6 sm:px-10 md:hidden">
-        <div className="flex flex-wrap items-center justify-between gap-y-3">
-          <Link to="/" className="flex items-center text-[var(--ash-ink)]">
+      <header className="relative z-[60] mx-auto max-w-6xl px-6 py-5 sm:px-10 md:hidden">
+        <div className="flex flex-nowrap items-center justify-between gap-3">
+          <Link to="/" className="flex min-w-0 flex-1 items-center text-[var(--ash-ink)]">
             <img
               src={ashLogo}
               alt={COMPANY_NAME}
-              className="h-12 w-auto opacity-100 transition-opacity duration-300 hover:opacity-70 sm:h-16"
+              className="h-8 w-auto max-w-[140px] object-contain opacity-100 transition-opacity duration-300 hover:opacity-70 sm:h-10 sm:max-w-[180px]"
             />
           </Link>
           {!isOnboarding && (
-            <div className="relative" ref={menuRef}>
+            <div className="relative flex-none" ref={menuRef}>
               <button
                 type="button"
                 onClick={() => setOpen((v) => !v)}
                 aria-expanded={open}
                 aria-controls="primary-menu"
-                className="flex items-center gap-3 rounded-sm border border-[var(--ash-ink)] px-5 py-3 font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)] transition-all duration-200 hover:bg-[var(--ash-ink)] hover:text-[var(--ash-white)] hover:-translate-y-0.5 focus-visible:outline-none sm:px-6 sm:py-3.5"
+                className="flex items-center gap-2 rounded-sm border border-[var(--ash-ink)] px-4 py-2.5 font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)] transition-all duration-200 hover:bg-[var(--ash-ink)] hover:text-[var(--ash-white)] hover:-translate-y-0.5 focus-visible:outline-none sm:px-5 sm:py-3"
               >
                 <span className="relative inline-block h-4 w-10">
                   <span

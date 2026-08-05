@@ -163,7 +163,7 @@ export default function IndexPage() {
 export function Head() {
   return (
     <>
-      <title>{COMPANY_NAME} Custom Websites &amp; Web Applications</title>
+      <title>{COMPANY_NAME}</title>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
       <link
