@@ -14,29 +14,26 @@ export default function AboutPage() {
             </h1>
             <div className="space-y-5 text-base leading-relaxed text-[var(--ash-ink)]/80 sm:text-lg">
               <p>
-                At {COMPANY_NAME}, we create custom websites and web applications that are built
-                with care, purpose, and attention to detail. Every project is approached
-                individually, combining thoughtful design with modern development to create
-                digital experiences that feel intuitive, reliable, and built to last.
+                {COMPANY_NAME} is a small, family-run, women-owned design and development
+                studio. We build custom websites and web applications with the precision and
+                care we'd want for our own business: purposeful, built to last, and never
+                generic.
               </p>
               <p>
-                We believe every business deserves a digital presence that's designed specifically
-                for the way it operates. Rather than relying on templates or predefined solutions,
-                each website and application is carefully planned and developed from the ground
-                up, allowing every feature, interaction, and design decision to serve a clear
-                purpose.
+                We don't work from templates. Every project starts with how your business
+                actually operates, and every page, feature, and interaction is planned and built
+                around that, rather than fitted into a predefined structure.
               </p>
               <p>
-                Design and development are never treated as separate parts of the process. They
-                work together from the very beginning, creating products that not only look
-                cohesive but also perform seamlessly behind the scenes. The result is a website or
-                application that feels polished, functions reliably, is simple to manage, and
-                continues to support your business as it evolves.
+                Design and development happen together, not as separate stages. That's what
+                makes the finished product cohesive on the surface and dependable underneath: a
+                site or application that looks right, performs well, and is straightforward to
+                maintain.
               </p>
               <p>
-                Whether you're starting from scratch or reimagining an existing website, our goal
-                is to create digital products that feel considered, dependable, and uniquely
-                yours.
+                Whether you're starting a new project or rebuilding an existing site, the goal
+                stays the same: a digital product that's considered, reliable, and built
+                specifically for you.
               </p>
             </div>
             <div className="clear-both" />

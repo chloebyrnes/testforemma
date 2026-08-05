@@ -1813,6 +1813,7 @@ export function BlueprintDiagram() {
 function Nav({ currentPath }) {
   const [open, setOpen] = useState(false)
   const menuRef = useRef(null)
+  const isOnboarding = currentPath === "/onboarding"
 
   useEffect(() => {
     if (!open) return
@@ -1830,80 +1831,82 @@ function Nav({ currentPath }) {
       {/* Mobile header: logo + hamburger, drawer menu */}
       <header className="relative z-[60] mx-auto max-w-6xl px-6 py-6 sm:px-10 md:hidden">
         <div className="flex flex-wrap items-center justify-between gap-y-3">
-          <Link to="/" className="-ml-3 flex items-center text-[var(--ash-ink)] sm:-ml-4">
+          <Link to="/" className="flex items-center text-[var(--ash-ink)]">
             <img
               src={ashLogo}
               alt={COMPANY_NAME}
               className="h-12 w-auto opacity-100 transition-opacity duration-300 hover:opacity-70 sm:h-16"
             />
           </Link>
-          <div className="relative" ref={menuRef}>
-            <button
-              type="button"
-              onClick={() => setOpen((v) => !v)}
-              aria-expanded={open}
-              aria-controls="primary-menu"
-              className="flex items-center gap-3 rounded-sm border border-[var(--ash-ink)] px-5 py-3 font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)] transition-all duration-200 hover:bg-[var(--ash-ink)] hover:text-[var(--ash-white)] hover:-translate-y-0.5 focus-visible:outline-none sm:px-6 sm:py-3.5"
-            >
-              <span className="relative inline-block h-4 w-10">
-                <span
-                  className="absolute inset-0 transition-opacity duration-300"
-                  style={{ opacity: open ? 0 : 1 }}
-                >
-                  Menu
-                </span>
-                <span
-                  className="absolute inset-0 transition-opacity duration-300"
-                  style={{ opacity: open ? 1 : 0 }}
-                >
-                  Close
-                </span>
-              </span>
-              <FlowerToggle open={open} />
-            </button>
-
-            <div
-              className="fixed inset-0 z-40 bg-[var(--ash-ink)] transition-opacity duration-400"
-              style={{
-                opacity: open ? 0.15 : 0,
-                pointerEvents: open ? "auto" : "none",
-              }}
-              onClick={() => setOpen(false)}
-            />
-
-            <nav
-              id="primary-menu"
-              className="menu-panel fixed inset-y-0 right-0 z-50 flex w-[85vw] max-w-xs flex-col justify-center gap-2 py-10 sm:w-96 sm:max-w-none"
-              style={{
-                opacity: open ? 1 : 0,
-                transform: open ? "translateX(0)" : "translateX(60px)",
-                filter: open ? "blur(0px)" : "blur(6px)",
-                pointerEvents: open ? "auto" : "none",
-                transition: "opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease",
-              }}
-            >
-              {navLinks.map((link, idx) => {
-                const isActive = link.href === currentPath
-                return (
-                  <Link
-                    key={link.href}
-                    to={link.href}
-                    onClick={() => setOpen(false)}
-                    className={`menu-link group flex items-center justify-between px-10 py-4 font-mono text-base uppercase tracking-[0.2em] ${isActive ? "active" : ""}`}
-                    style={{
-                      transitionDelay: open ? `${idx * 40}ms` : "0ms",
-                    }}
+          {!isOnboarding && (
+            <div className="relative" ref={menuRef}>
+              <button
+                type="button"
+                onClick={() => setOpen((v) => !v)}
+                aria-expanded={open}
+                aria-controls="primary-menu"
+                className="flex items-center gap-3 rounded-sm border border-[var(--ash-ink)] px-5 py-3 font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)] transition-all duration-200 hover:bg-[var(--ash-ink)] hover:text-[var(--ash-white)] hover:-translate-y-0.5 focus-visible:outline-none sm:px-6 sm:py-3.5"
+              >
+                <span className="relative inline-block h-4 w-10">
+                  <span
+                    className="absolute inset-0 transition-opacity duration-300"
+                    style={{ opacity: open ? 0 : 1 }}
                   >
-                    <span className="flex items-baseline gap-3">
-                      <span className="font-menu text-sm normal-case opacity-40">0{idx + 1}</span>
-                      <span className="menu-link-label">{link.label}</span>
-                    </span>
-                    <span className="menu-link-arrow font-menu text-lg">→</span>
-                  </Link>
-                )
-              })}
-            </nav>
-          </div>
+                    Menu
+                  </span>
+                  <span
+                    className="absolute inset-0 transition-opacity duration-300"
+                    style={{ opacity: open ? 1 : 0 }}
+                  >
+                    Close
+                  </span>
+                </span>
+                <FlowerToggle open={open} />
+              </button>
+
+              <div
+                className="fixed inset-0 z-40 bg-[var(--ash-ink)] transition-opacity duration-400"
+                style={{
+                  opacity: open ? 0.15 : 0,
+                  pointerEvents: open ? "auto" : "none",
+                }}
+                onClick={() => setOpen(false)}
+              />
+
+              <nav
+                id="primary-menu"
+                className="menu-panel fixed inset-y-0 right-0 z-50 flex w-[85vw] max-w-xs flex-col justify-center gap-2 py-10 sm:w-96 sm:max-w-none"
+                style={{
+                  opacity: open ? 1 : 0,
+                  transform: open ? "translateX(0)" : "translateX(60px)",
+                  filter: open ? "blur(0px)" : "blur(6px)",
+                  pointerEvents: open ? "auto" : "none",
+                  transition: "opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease",
+                }}
+              >
+                {navLinks.map((link, idx) => {
+                  const isActive = link.href === currentPath
+                  return (
+                    <Link
+                      key={link.href}
+                      to={link.href}
+                      onClick={() => setOpen(false)}
+                      className={`menu-link group flex items-center justify-between px-10 py-4 font-mono text-base uppercase tracking-[0.2em] ${isActive ? "active" : ""}`}
+                      style={{
+                        transitionDelay: open ? `${idx * 40}ms` : "0ms",
+                      }}
+                    >
+                      <span className="flex items-baseline gap-3">
+                        <span className="font-menu text-sm normal-case opacity-40">0{idx + 1}</span>
+                        <span className="menu-link-label">{link.label}</span>
+                      </span>
+                      <span className="menu-link-arrow font-menu text-lg">→</span>
+                    </Link>
+                  )
+                })}
+              </nav>
+            </div>
+          )}
         </div>
       </header>
 
@@ -1916,26 +1919,28 @@ function Nav({ currentPath }) {
             className="h-16 w-auto opacity-100 transition-opacity duration-300 hover:opacity-70 lg:h-20"
           />
         </Link>
-        <nav className="mt-5 flex flex-wrap items-center justify-center gap-x-8 gap-y-2">
-          {navLinks.map((link) => {
-            const isActive = link.href === currentPath
-            return (
-              <Link
-                key={link.href}
-                to={link.href}
-                className="font-mono text-xs uppercase tracking-[0.15em] transition-colors"
-                style={{
-                  color: isActive ? "var(--ash-ink)" : "#8A8378",
-                  fontWeight: isActive ? 600 : 400,
-                  borderBottom: isActive ? "1px solid var(--ash-ink)" : "1px solid transparent",
-                  paddingBottom: "2px",
-                }}
-              >
-                {link.label}
-              </Link>
-            )
-          })}
-        </nav>
+        {!isOnboarding && (
+          <nav className="mt-5 flex flex-wrap items-center justify-center gap-x-8 gap-y-2">
+            {navLinks.map((link) => {
+              const isActive = link.href === currentPath
+              return (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className="font-mono text-xs uppercase tracking-[0.15em] transition-colors"
+                  style={{
+                    color: isActive ? "var(--ash-ink)" : "#8A8378",
+                    fontWeight: isActive ? 600 : 400,
+                    borderBottom: isActive ? "1px solid var(--ash-ink)" : "1px solid transparent",
+                    paddingBottom: "2px",
+                  }}
+                >
+                  {link.label}
+                </Link>
+              )
+            })}
+          </nav>
+        )}
       </header>
     </>
   )
@@ -1944,9 +1949,8 @@ function Nav({ currentPath }) {
 function Footer() {
   return (
     <footer className="border-t border-[var(--ash-accent-2)] px-6 py-5 sm:px-10" style={{ backgroundColor: "var(--ash-surface-soft)" }}>
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]/70 sm:flex-row sm:gap-4">
+      <div className="mx-auto flex max-w-6xl items-center justify-center font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]/70">
         <span>{COMPANY_NAME}</span>
-        <span>© {new Date().getFullYear()} All rights reserved</span>
       </div>
     </footer>
   )

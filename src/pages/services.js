@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Link } from "gatsby"
-import Layout, { COMPANY_NAME, services, accentCycle, WebsiteMockup, PortalMockup, InternalToolMockup, WebAppMockup } from "../components/Layout"
+import Layout, { COMPANY_NAME, services, WebsiteMockup, PortalMockup, InternalToolMockup, WebAppMockup } from "../components/Layout"
 
 const mockupComponents = {
   "01": WebsiteMockup,
@@ -36,7 +36,7 @@ export default function ServicesPage() {
           {services.map((s, i) => {
             const isOpen = openTag === s.tag
             const Mockup = mockupComponents[s.tag]
-            const accent = accentCycle[i % accentCycle.length]
+            const accent = "var(--ash-surface)"
             return (
               <div key={s.tag}>
                 <div className="p-8" style={{ backgroundColor: "var(--ash-surface-soft)", borderLeft: `4px solid ${accent}` }}>

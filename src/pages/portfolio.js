@@ -178,19 +178,23 @@ export default function PortfolioPage() {
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {projects.map((project, i) => {
+              const preview =
+                project.preview === "willowvine" ? (
+                  <WillowVinePreview />
+                ) : project.preview === "northbay" ? (
+                  <NorthbayPreview />
+                ) : project.preview === "floralco" ? (
+                  <PetalHousePreview />
+                ) : project.preview === "wildhorse" ? (
+                  <WildhorsePreview />
+                ) : (
+                  <ImagePlaceholder label={`${project.name} example`} aspect="aspect-[4/3]" />
+                )
               const content = (
                 <>
-                  {project.preview === "willowvine" ? (
-                    <WillowVinePreview />
-                  ) : project.preview === "northbay" ? (
-                    <NorthbayPreview />
-                  ) : project.preview === "floralco" ? (
-                    <PetalHousePreview />
-                  ) : project.preview === "wildhorse" ? (
-                    <WildhorsePreview />
-                  ) : (
-                    <ImagePlaceholder label={`${project.name} example`} aspect="aspect-[4/3]" />
-                  )}
+                  <div className="sm:grayscale sm:transition-[filter] sm:duration-500 sm:group-hover:grayscale-0">
+                    {preview}
+                  </div>
                   <p className="mt-4 font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]/60">
                     {project.category}
                   </p>
@@ -206,11 +210,11 @@ export default function PortfolioPage() {
               return (
                 <Reveal key={project.name} delay={i * 90}>
                   {project.href ? (
-                    <a href={project.href} target="_blank" rel="noopener noreferrer" className="block">
+                    <a href={project.href} target="_blank" rel="noopener noreferrer" className="group block">
                       {content}
                     </a>
                   ) : (
-                    <div>{content}</div>
+                    <div className="group">{content}</div>
                   )}
                 </Reveal>
               )
