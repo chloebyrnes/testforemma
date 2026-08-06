@@ -1829,7 +1829,7 @@ function Nav({ currentPath }) {
   return (
     <>
       {/* Mobile header: logo + hamburger, drawer menu */}
-      <header className="relative z-[60] mx-auto max-w-6xl px-6 py-5 sm:px-10 md:hidden">
+      <header className="relative z-[60] mx-auto max-w-6xl px-4 py-2 sm:px-6 md:hidden">
         <div className="flex flex-nowrap items-center justify-between gap-3">
           <Link to="/" className="flex min-w-0 flex-1 items-center text-[var(--ash-ink)]">
             <img
