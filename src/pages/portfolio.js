@@ -8,9 +8,68 @@ const projects = [
   { name: "Willow & Vine Events", category: "Client Portal", href: "/builds/willowvine/", preview: "willowvine" },
   { name: "Northbay Supply Co.", category: "Internal Tool", href: "/builds/northbay/login", preview: "northbay" },
   { name: "Petal House", category: "Custom Website", href: "/builds/floralco/", preview: "floralco" },
-  { name: "Project Five", category: "Custom Website" },
-  { name: "Project Six", category: "Custom Web Application" },
+  { name: "Umbra", category: "Custom Website", href: "/builds/umbra/", preview: "umbra" },
+  { name: "Bloom & Bramble", category: "Custom Website", href: "/builds/bloomandbramble/", preview: "bloomandbramble" },
 ]
+
+function BloomAndBramblePreview() {
+  return (
+    <div className="aspect-[4/3] w-full overflow-hidden border" style={{ borderColor: "#3B473C", backgroundColor: "#FBF6EA" }}>
+      <div className="flex items-center justify-between px-3 py-2">
+        <span className="text-[10px] italic" style={{ color: "#3B473C", fontFamily: "Georgia, serif" }}>
+          Bloom <span style={{ color: "#AD7271" }}>&amp; Bramble</span>
+        </span>
+        <div className="flex gap-1">
+          {["#C6C09C", "#FCC88A", "#B7CBDB", "#E79897"].map((c, i) => (
+            <span key={i} className="h-2.5 w-6 rounded-full" style={{ backgroundColor: c }} />
+          ))}
+        </div>
+      </div>
+      <div className="px-3 pb-3">
+        <p className="text-[7px] uppercase tracking-wide" style={{ color: "#AD7271" }}>Hudson Valley Wedding Florist</p>
+        <p className="mt-1 text-[14px] italic leading-tight" style={{ color: "#3B473C", fontFamily: "Georgia, serif" }}>
+          Where the garden meets the aisle
+        </p>
+        <div className="mt-2 grid grid-cols-4 gap-1">
+          {["#D8CFAE", "#EBDEC0", "#F1E7CE", "#F5EDDA"].map((c, i) => (
+            <div key={i} className="aspect-[3/4]" style={{ backgroundColor: c }} />
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function UmbraPreview() {
+  return (
+    <div className="aspect-[4/3] w-full overflow-hidden border" style={{ borderColor: "#2E2015", backgroundColor: "#FBF7EE" }}>
+      <div className="flex items-center justify-between px-3 py-2" style={{ backgroundColor: "#2E2015" }}>
+        <span className="text-[9px] italic" style={{ color: "#FBF7EE", fontFamily: "Georgia, serif" }}>UMBRA</span>
+        <div className="flex gap-1.5">
+          {["Collection", "Atelier", "Journal"].map((t) => (
+            <span key={t} className="text-[6px] uppercase tracking-wide" style={{ color: "#FBF7EE" }}>{t}</span>
+          ))}
+        </div>
+      </div>
+      <div className="p-3">
+        <span
+          className="inline-block px-1.5 py-0.5 text-[6px] uppercase tracking-wide"
+          style={{ border: "1px solid #B98A4E", color: "#B98A4E", backgroundColor: "#FBF7EE" }}
+        >
+          Collection 04
+        </span>
+        <div className="mt-1.5 text-[15px] italic leading-tight" style={{ color: "#2E2015", fontFamily: "Georgia, serif" }}>
+          Where the garment ends
+        </div>
+        <div className="mt-2 grid grid-cols-3 gap-0.5">
+          <div className="col-span-2 row-span-2 aspect-square" style={{ backgroundColor: "#F3EBD9" }} />
+          <div className="aspect-square" style={{ backgroundColor: "#E4D8BF" }} />
+          <div className="aspect-square" style={{ backgroundColor: "#E4D8BF" }} />
+        </div>
+      </div>
+    </div>
+  )
+}
 
 function WildhorsePreview() {
   return (
@@ -187,6 +246,10 @@ export default function PortfolioPage() {
                   <PetalHousePreview />
                 ) : project.preview === "wildhorse" ? (
                   <WildhorsePreview />
+                ) : project.preview === "umbra" ? (
+                  <UmbraPreview />
+                ) : project.preview === "bloomandbramble" ? (
+                  <BloomAndBramblePreview />
                 ) : (
                   <ImagePlaceholder label={`${project.name} example`} aspect="aspect-[4/3]" />
                 )
