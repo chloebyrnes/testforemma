@@ -255,7 +255,7 @@ export default function PortfolioPage() {
                 )
               const content = (
                 <>
-                  <div className="sm:grayscale sm:transition-[filter] sm:duration-500 sm:group-hover:grayscale-0">
+                  <div>
                     {preview}
                   </div>
                   <p className="mt-4 font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]/60">

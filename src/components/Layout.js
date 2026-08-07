@@ -181,6 +181,18 @@ const globalStyles = `
     transform: none;
     box-shadow: none;
   }
+  .btn-dark {
+    background-color: var(--ash-ink);
+    color: var(--ash-white);
+    font-family: 'Manrope', sans-serif !important;
+    font-weight: 600;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn-dark:hover {
+    background-color: #2A2A2A;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(17, 17, 17, 0.18);
+  }
   .btn-secondary {
     background-color: transparent;
     border: 1px solid var(--ash-ink);
@@ -1916,7 +1928,7 @@ function Nav({ currentPath }) {
                   to={link.href}
                   className="font-mono text-xs uppercase tracking-[0.15em] transition-colors"
                   style={{
-                    color: isActive ? "var(--ash-ink)" : "#8A8378",
+                    color: isActive ? "var(--ash-ink)" : "#8A8A8A",
                     fontWeight: isActive ? 600 : 400,
                     borderBottom: isActive ? "1px solid var(--ash-ink)" : "1px solid transparent",
                     paddingBottom: "2px",

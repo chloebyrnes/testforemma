@@ -21,19 +21,17 @@ function Hero() {
       >
         <source src={bannerVideo} type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-black/40" />
-
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 sm:py-20">
-        <p className="font-mono text-xs uppercase tracking-[0.25em] text-white/80">
+        <p className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--ash-ink)]/80">
           Design &amp; Development Studio
         </p>
-        <h1 className="mt-4 font-display text-2xl leading-[1.15] text-white sm:text-3xl xl:whitespace-nowrap xl:text-3xl [text-wrap:balance]">
+        <h1 className="mt-4 font-display text-2xl leading-[1.15] text-[var(--ash-ink)] sm:text-3xl xl:whitespace-nowrap xl:text-3xl [text-wrap:balance]">
           Custom websites &amp; web applications, built around your business.
         </h1>
-        <p className="mt-3 font-script text-xl text-white/90 sm:text-2xl xl:whitespace-nowrap xl:text-2xl [text-wrap:balance]">
+        <p className="mt-3 font-script text-xl text-[var(--ash-ink)]/90 sm:text-2xl xl:whitespace-nowrap xl:text-2xl [text-wrap:balance]">
           Your idea. Thoughtfully designed. Custom built.
         </p>
-        <p className="mt-6 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg">
+        <p className="mt-6 max-w-xl text-base leading-relaxed text-[var(--ash-ink)]/85 sm:text-lg">
           {COMPANY_NAME} is a design and development studio building custom websites, web
           applications, and digital tools around the way your business works. From the initial
           idea through strategy, UI/UX design, and development, we help shape your vision and
@@ -48,13 +46,13 @@ function Hero() {
           </Link>
           <Link
             to="/portfolio"
-            className="inline-flex items-center rounded-sm border border-white/70 px-4 py-2.5 font-mono text-xs uppercase tracking-[0.1em] text-white transition-colors hover:bg-white/10 focus-visible:outline-none"
+            className="btn-dark inline-flex items-center rounded-sm px-4 py-2.5 font-mono text-xs uppercase tracking-[0.1em] focus-visible:outline-none"
           >
             View Portfolio
           </Link>
           <Link
             to="/services"
-            className="inline-flex items-center rounded-sm border border-white/70 px-4 py-2.5 font-mono text-xs uppercase tracking-[0.1em] text-white transition-colors hover:bg-white/10 focus-visible:outline-none"
+            className="btn-dark inline-flex items-center rounded-sm px-4 py-2.5 font-mono text-xs uppercase tracking-[0.1em] focus-visible:outline-none"
           >
             Explore Our Services
           </Link>
@@ -163,7 +161,7 @@ export default function IndexPage() {
 export function Head() {
   return (
     <>
-      <title>{COMPANY_NAME}</title>
+      <title>{COMPANY_NAME} Custom Websites &amp; Web Applications</title>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
       <link
