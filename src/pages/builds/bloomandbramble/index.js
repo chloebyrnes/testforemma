@@ -1,5 +1,10 @@
 import React from "react"
 import { Link } from "gatsby"
+import bloomandbramble1 from "../../../images/bloomandbramble1.PNG"
+import bloomandbramble2 from "../../../images/bloomandbramble2.PNG"
+import bloomandbramble3 from "../../../images/bloomandbramble3.PNG"
+import bloomandbramble4 from "../../../images/bloomandbramble4.PNG"
+import bloomandbramble5 from "../../../images/bloomandbramble5.PNG"
 
 const bloomStyles = `
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Jost:wght@300;400;500;600&display=swap');
@@ -63,12 +68,12 @@ const bloomStyles = `
   a{color:inherit; text-decoration:none;}
 
   .wrap{
-    max-width:1320px;
+    max-width:1100px;
     margin:0 auto;
-    padding:0 56px;
+    padding:0 40px;
   }
 
-  @media(max-width:820px){ .wrap{padding:0 24px;} }
+  @media(max-width:820px){ .wrap{padding:0 22px;} }
 
   /* ================= NAV ================= */
   nav{
@@ -77,9 +82,9 @@ const bloomStyles = `
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:34px 56px 0;
+    padding:22px 40px 0;
   }
-  @media(max-width:820px){ nav{padding:24px 24px 0;} }
+  @media(max-width:820px){ nav{padding:18px 22px 0;} }
 
   .brand{
     font-family:'Fraunces', serif;
@@ -130,38 +135,35 @@ const bloomStyles = `
   /* ================= HERO ================= */
   .hero{
     position:relative;
-    padding:64px 0 0;
+    padding:48px 0 0;
     display:grid;
     grid-template-columns:1.05fr 0.95fr;
     align-items:end;
     gap:20px;
-    min-height:88vh;
+    min-height:80vh;
   }
   @media(max-width:980px){
-    .hero{grid-template-columns:1fr; min-height:auto; padding-top:36px;}
+    .hero{grid-template-columns:1fr; min-height:auto; padding-top:32px;}
   }
-
-  .spine{
-    position:absolute;
-    left:0; top:110px;
-    writing-mode:vertical-rl;
-    transform:rotate(180deg);
-    font-size:12px;
-    letter-spacing:0.25em;
-    text-transform:uppercase;
-    color:var(--sage-deep);
-    padding-left:8px;
-  }
-  @media(max-width:980px){ .spine{display:none;} }
 
   .hero-copy{
-    padding:70px 0 90px 68px;
+    padding:48px 0 56px;
     max-width:640px;
   }
-  @media(max-width:980px){ .hero-copy{padding-left:0; padding-top:10px;} }
-  @media(max-width:820px){ .hero-copy{padding:10px 0 40px;} }
+  @media(max-width:980px){ .hero-copy{padding-top:8px;} }
+  @media(max-width:820px){ .hero-copy{padding:8px 0 32px;} }
 
-  .hero-copy .eyebrow{margin-bottom:22px; display:block;}
+  .hero-copy .eyebrow{margin-bottom:8px; display:block;}
+
+  .hero-location{
+    display:block;
+    font-family:'Jost',sans-serif;
+    font-size:12.5px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--sage-deep);
+    margin-bottom:22px;
+  }
 
   .sprig{
     width:60px;
@@ -237,6 +239,21 @@ const bloomStyles = `
   .bloom-link:active{transform:scale(1.08);}
   .bloom-link:focus-visible{outline:2px solid var(--mauve-deep); outline-offset:4px;}
 
+  .bloom-pulse{
+    fill:none;
+    stroke:rgba(173,114,113,0.5);
+    stroke-width:1.5;
+    transform-box:fill-box;
+    transform-origin:center;
+    animation:bloomPulse 2.6s ease-out infinite;
+    pointer-events:none;
+  }
+  @keyframes bloomPulse{
+    0%{transform:scale(0.85); opacity:0.75;}
+    70%{transform:scale(1.7); opacity:0;}
+    100%{transform:scale(1.7); opacity:0;}
+  }
+
   .bloom-tip{opacity:0; pointer-events:none; transition:opacity .25s ease;}
   .bloom-link:hover + .bloom-tip{opacity:1;}
   .bloom-link:focus-visible + .bloom-tip{opacity:1;}
@@ -290,13 +307,13 @@ const bloomStyles = `
 
   /* ================= MANIFESTO ================= */
   .manifesto{
-    padding:130px 0 120px;
+    padding:72px 0;
     position:relative;
   }
   .manifesto-grid{
     display:grid;
     grid-template-columns:0.6fr 1fr;
-    gap:60px;
+    gap:44px;
   }
   @media(max-width:900px){ .manifesto-grid{grid-template-columns:1fr; gap:30px;} }
 
@@ -326,10 +343,10 @@ const bloomStyles = `
   .principle p{font-size:15.5px; line-height:1.7; color:#3B4432; max-width:520px;}
 
   /* ================= SERVICES — offset cards ================= */
-  .services{padding:60px 0 130px;}
+  .services{padding:48px 0 72px;}
   .services-head{
     display:flex; justify-content:space-between; align-items:flex-end;
-    margin-bottom:56px; gap:24px; flex-wrap:wrap;
+    margin-bottom:40px; gap:24px; flex-wrap:wrap;
   }
   .services-head h2{font-size:clamp(30px,3.4vw,46px); max-width:480px;}
 
@@ -360,11 +377,11 @@ const bloomStyles = `
   .process{
     background:var(--ink);
     color:var(--paper);
-    padding:120px 0;
+    padding:72px 0;
     position:relative;
   }
   .process .eyebrow{color:var(--gold);}
-  .process h2{font-size:clamp(30px,3.4vw,46px); max-width:560px; margin:20px 0 70px; color:var(--paper);}
+  .process h2{font-size:clamp(30px,3.4vw,46px); max-width:560px; margin:16px 0 48px; color:var(--paper);}
 
   .process-grid{
     display:grid;
@@ -394,8 +411,8 @@ const bloomStyles = `
   .pstep p{font-size:14px; line-height:1.7; color:#BFB89F;}
 
   /* ================= GALLERY (pinterest masonry) ================= */
-  .gallery{padding:130px 0 100px;}
-  .gallery-head{margin-bottom:56px; max-width:600px;}
+  .gallery{padding:72px 0 56px;}
+  .gallery-head{margin-bottom:40px; max-width:600px;}
   .gallery-head h2{font-size:clamp(30px,3.4vw,46px); margin-bottom:16px;}
   .gallery-head p{font-size:15.5px; line-height:1.7; color:#3B473C;}
 
@@ -432,13 +449,14 @@ const bloomStyles = `
     border-radius:8px;
     display:block;
     margin-bottom:12px;
+    object-fit:cover;
   }
   .card .cap-label{font-size:11px; text-transform:uppercase; letter-spacing:0.12em; color:var(--sage-deep); margin-bottom:4px;}
   .card .cap-title{font-family:'Fraunces',serif; font-style:italic; font-size:16px;}
 
   /* ================= TESTIMONIAL ================= */
   .testimonial{
-    padding:70px 0 140px;
+    padding:56px 0 72px;
     display:grid;
     grid-template-columns:0.4fr 1fr;
     gap:40px;
@@ -469,13 +487,13 @@ const bloomStyles = `
   footer{
     background:var(--mauve-deep);
     color:var(--paper);
-    padding:100px 0 40px;
+    padding:64px 0 32px;
   }
   .foot-cta{
     display:grid;
     grid-template-columns:1.2fr 0.8fr;
     gap:40px;
-    padding-bottom:80px;
+    padding-bottom:56px;
     border-bottom:1px solid rgba(241,232,214,0.25);
   }
   @media(max-width:820px){ .foot-cta{grid-template-columns:1fr;} }
@@ -528,9 +546,9 @@ export default function BloomAndBramblePage() {
 
 {/* ================= HERO ================= */}
 <section className="hero wrap">
-  <div className="spine">Hudson Valley, New York</div>
   <div className="hero-copy">
     <span className="eyebrow">Seasonal Wedding Floristry — Est. 2016</span>
+    <span className="hero-location">Hudson Valley, New York</span>
     <h1>
       <span>Grown slow.</span>
       <span className="italic">Gathered by hand.</span>
@@ -557,6 +575,7 @@ export default function BloomAndBramblePage() {
       <ellipse cx="145" cy="168" rx="24" ry="10" fill="#768E78" transform="rotate(-25 145 168)"/>
       <ellipse cx="372" cy="118" rx="24" ry="10" fill="#768E78" transform="rotate(30 372 118)"/>
       {/* blooms (each one clickable) */}
+      <circle className="bloom-pulse" cx="260" cy="90" r="16" style={{ animationDelay: "0s" }}/>
       <a href="#gallery" className="bloom-link" aria-label="View recent weddings">
       <g transform="translate(260,90) rotate(0)">
         <g transform="rotate(0)"><ellipse cx="15" cy="0" rx="14" ry="7.5" fill="#E79897"/></g>
@@ -582,6 +601,7 @@ export default function BloomAndBramblePage() {
           <text className="tip-text" x="0" y="-23" text-anchor="middle">Garden rose</text>
         </g>
       </g>
+      <circle className="bloom-pulse" cx="140" cy="170" r="16" style={{ animationDelay: "0.5s" }}/>
       <a href="#gallery" className="bloom-link" aria-label="View recent weddings">
       <g transform="translate(140,170) rotate(20)">
         <g transform="rotate(0)"><ellipse cx="12" cy="0" rx="11" ry="6" fill="#FCC88A"/></g>
@@ -607,6 +627,7 @@ export default function BloomAndBramblePage() {
           <text className="tip-text" x="0" y="-23" text-anchor="middle">Ranunculus</text>
         </g>
       </g>
+      <circle className="bloom-pulse" cx="380" cy="120" r="16" style={{ animationDelay: "1s" }}/>
       <a href="#gallery" className="bloom-link" aria-label="View recent weddings">
       <g transform="translate(380,120) rotate(-15)">
         <g transform="rotate(0)"><ellipse cx="13" cy="0" rx="12" ry="6.5" fill="#B7CBDB"/></g>
@@ -632,6 +653,7 @@ export default function BloomAndBramblePage() {
           <text className="tip-text" x="0" y="-23" text-anchor="middle">Sweet pea</text>
         </g>
       </g>
+      <circle className="bloom-pulse" cx="150" cy="360" r="16" style={{ animationDelay: "1.5s" }}/>
       <a href="#gallery" className="bloom-link" aria-label="View recent weddings">
       <g transform="translate(150,360) rotate(10)">
         <g transform="rotate(0)"><ellipse cx="14" cy="0" rx="13" ry="7" fill="#C6C09C"/></g>
@@ -657,6 +679,7 @@ export default function BloomAndBramblePage() {
           <text className="tip-text" x="0" y="-23" text-anchor="middle">Dahlia</text>
         </g>
       </g>
+      <circle className="bloom-pulse" cx="380" cy="300" r="16" style={{ animationDelay: "2s" }}/>
       <a href="#gallery" className="bloom-link" aria-label="View recent weddings">
       <g transform="translate(380,300) rotate(-25)">
         <g transform="rotate(0)"><ellipse cx="13" cy="0" rx="12" ry="6.5" fill="#AD7271"/></g>
@@ -802,17 +825,17 @@ export default function BloomAndBramblePage() {
 
   <div className="masonry">
     <div className="card">
-      <svg className="swatch" viewBox="0 0 200 240" width="100%"><rect width="200" height="240" fill="#D8CFAE"/><circle cx="60" cy="70" r="26" fill="#E79897"/><circle cx="120" cy="100" r="20" fill="#AD7271"/><circle cx="90" cy="150" r="18" fill="#FECDBE"/><ellipse cx="150" cy="60" rx="30" ry="12" fill="#768E78" transform="rotate(25 150 60)"/></svg>
+      <img className="swatch" src={bloomandbramble3} alt="Garden rose and sweet pea" />
       <div className="cap-label">June · Rhinebeck Barn</div>
       <div className="cap-title">Garden rose &amp; sweet pea</div>
     </div>
     <div className="card">
-      <svg className="swatch" viewBox="0 0 200 300" width="100%"><rect width="200" height="300" fill="#EBDEC0"/><circle cx="100" cy="90" r="30" fill="#3B473C"/><circle cx="70" cy="160" r="22" fill="#E79897"/><circle cx="140" cy="190" r="20" fill="#FECDBE"/><ellipse cx="60" cy="230" rx="26" ry="10" fill="#4F6350" transform="rotate(-20 60 230)"/></svg>
+      <img className="swatch" src={bloomandbramble2} alt="Chocolate cosmos, dark and loose" />
       <div className="cap-label">May · Private Orchard</div>
       <div className="cap-title">Chocolate cosmos, dark &amp; loose</div>
     </div>
     <div className="card">
-      <svg className="swatch" viewBox="0 0 200 210" width="100%"><rect width="200" height="210" fill="#F1E7CE"/><circle cx="90" cy="80" r="28" fill="#FCC88A"/><circle cx="140" cy="120" r="18" fill="#C6C09C"/><ellipse cx="60" cy="140" rx="22" ry="9" fill="#768E78" transform="rotate(15 60 140)"/></svg>
+      <img className="swatch" src={bloomandbramble1} alt="Dahlia and late-season grass" />
       <div className="cap-label">September · Hudson Riverhouse</div>
       <div className="cap-title">Dahlia &amp; late-season grass</div>
     </div>
@@ -827,12 +850,12 @@ export default function BloomAndBramblePage() {
       <div className="cap-title">Bittersweet &amp; amaranth</div>
     </div>
     <div className="card">
-      <svg className="swatch" viewBox="0 0 200 280" width="100%"><rect width="200" height="280" fill="#EBDEC0"/><circle cx="90" cy="100" r="26" fill="#3B473C"/><circle cx="130" cy="160" r="20" fill="#E79897"/><ellipse cx="60" cy="210" rx="24" ry="10" fill="#4F6350" transform="rotate(-15 60 210)"/></svg>
+      <img className="swatch" src={bloomandbramble4} alt="Bridal bouquet in backyard light" />
       <div className="cap-label">July · Catskill Farmstead</div>
       <div className="cap-title">Bridal bouquet, backyard light</div>
     </div>
     <div className="card">
-      <svg className="swatch" viewBox="0 0 200 200" width="100%"><rect width="200" height="200" fill="#F5EDDA"/><circle cx="100" cy="100" r="28" fill="#FCC88A"/><circle cx="60" cy="70" r="14" fill="#C6C09C"/><circle cx="140" cy="130" r="16" fill="#E79897"/></svg>
+      <img className="swatch" src={bloomandbramble5} alt="Boutonniere, ranunculus" />
       <div className="cap-label">May · Private Orchard</div>
       <div className="cap-title">Boutonnière, ranunculus</div>
     </div>

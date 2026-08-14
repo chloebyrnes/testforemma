@@ -5,6 +5,11 @@ import UmbraNav from "../../../components/builds/umbra/UmbraNav"
 import UmbraNewsletterBand from "../../../components/builds/umbra/UmbraNewsletterBand"
 import UmbraFooter from "../../../components/builds/umbra/UmbraFooter"
 import UmbraPlaceholder from "../../../components/builds/umbra/UmbraPlaceholder"
+import umbra1 from "../../../images/umbra1.png"
+import umbra2 from "../../../images/umbra2.png"
+import umbra3 from "../../../images/umbra3.png"
+import umbra4 from "../../../images/umbra4.png"
+import umbra5 from "../../../images/umbra5.png"
 
 export default function UmbraCollectionPage() {
   return (
@@ -27,31 +32,31 @@ export default function UmbraCollectionPage() {
 
           <div className="look">
             <span className="look-idx mono">Look 01</span>
-            <UmbraPlaceholder label="Wool gabardine coat" />
+            <UmbraPlaceholder label="Wool gabardine coat" src={umbra5} />
             <span className="look-cap mono">Wool gabardine coat</span>
           </div>
 
           <div className="look">
             <span className="look-idx mono">Look 02</span>
-            <UmbraPlaceholder label="Asymmetric shirt-dress" />
+            <UmbraPlaceholder label="Asymmetric shirt-dress" src={umbra4} />
             <span className="look-cap mono">Asymmetric shirt-dress</span>
           </div>
 
           <div className="look">
             <span className="look-idx mono">Look 03</span>
-            <UmbraPlaceholder label="Cropped canvas jacket" />
+            <UmbraPlaceholder label="Cropped canvas jacket" src={umbra3} />
             <span className="look-cap mono">Cropped canvas jacket</span>
           </div>
 
           <div className="look landscape">
             <span className="look-idx mono">Look 04</span>
-            <UmbraPlaceholder label="Paired tailoring — trouser set" />
+            <UmbraPlaceholder label="Paired tailoring — trouser set" src={umbra2} />
             <span className="look-cap mono">Paired tailoring — trouser set</span>
           </div>
 
           <div className="look landscape">
             <span className="look-idx mono">Look 05</span>
-            <UmbraPlaceholder label="Waxed cotton overshirt" />
+            <UmbraPlaceholder label="Waxed cotton overshirt" src={umbra1} />
             <span className="look-cap mono">Waxed cotton overshirt</span>
           </div>
 
@@ -81,9 +86,9 @@ export default function UmbraCollectionPage() {
 
             <div className="piece">
               <div className="piece-figure">
-                <UmbraPlaceholder label="Shadow-Line Trouser" />
+                <UmbraPlaceholder label="Tailored-Line Trouser" />
               </div>
-              <div className="piece-name">Shadow-Line Trouser</div>
+              <div className="piece-name">Tailored-Line Trouser</div>
               <div className="piece-code mono">Pattern No. 014-C / Run of 40</div>
               <div className="piece-row">
                 <span className="piece-price mono">$460</span>

@@ -15,7 +15,7 @@ export default function UmbraHomePage() {
         <div className="hero-inner">
           <div>
             <span className="hero-eyebrow mono">Collection 04 — Negative Space — SS27</span>
-            <h1>Where the garment<br/>ends, <em>the shadow</em><br/>begins.</h1>
+            <h1>A study in<br/>modern <em>dressing.</em></h1>
           </div>
           <div className="hero-side">
             <p>Nineteen silhouettes built around what tailoring removes, not what it adds. Cut in raw wool, waxed cotton and unlined canvas.</p>
@@ -34,10 +34,10 @@ export default function UmbraHomePage() {
       <div className="marquee">
         <div className="marquee-track">
           <span>Negative Space</span><span className="dim">Pattern No. 014-B</span>
-          <span>Cut From Shadow</span><span className="dim">Atelier Paris</span>
+          <span>A Study in Modern Dressing</span><span className="dim">Atelier Paris</span>
           <span>Unlined Canvas</span><span className="dim">Collection 04</span>
           <span>Negative Space</span><span className="dim">Pattern No. 014-B</span>
-          <span>Cut From Shadow</span><span className="dim">Atelier Paris</span>
+          <span>A Study in Modern Dressing</span><span className="dim">Atelier Paris</span>
           <span>Unlined Canvas</span><span className="dim">Collection 04</span>
         </div>
       </div>
@@ -48,5 +48,5 @@ export default function UmbraHomePage() {
 }
 
 export function Head() {
-  return <title>UMBRA — Cut From Shadow</title>
+  return <title>UMBRA — A Study in Modern Dressing</title>
 }
