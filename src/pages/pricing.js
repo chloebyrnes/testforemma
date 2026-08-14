@@ -114,5 +114,5 @@ export default function PricingPage() {
 }
 
 export function Head() {
-  return <title>Pricing | {COMPANY_NAME}</title>
+  return <title>ashlyn studio | Pricing</title>
 }

@@ -312,5 +312,5 @@ export default function ContactPage({ location }) {
 }
 
 export function Head() {
-  return <title>Contact | {COMPANY_NAME}</title>
+  return <title>ashlyn studio | Contact</title>
 }

@@ -66,5 +66,5 @@ export default function AboutPage() {
 }
 
 export function Head() {
-  return <title>About | {COMPANY_NAME}</title>
+  return <title>ashlyn studio | About</title>
 }

@@ -308,5 +308,5 @@ export default function PortfolioPage() {
 }
 
 export function Head() {
-  return <title>Portfolio | {COMPANY_NAME}</title>
+  return <title>ashlyn studio | Portfolio</title>
 }

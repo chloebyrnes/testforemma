@@ -22,16 +22,16 @@ function Hero() {
         <source src={bannerVideo} type="video/mp4" />
       </video>
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 sm:py-20">
-        <p className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--ash-ink)]/80">
+        <p className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--ash-white)]/80">
           Design &amp; Development Studio
         </p>
-        <h1 className="mt-4 font-display text-2xl leading-[1.15] text-[var(--ash-ink)] sm:text-3xl xl:whitespace-nowrap xl:text-3xl [text-wrap:balance]">
+        <h1 className="mt-4 font-display text-2xl leading-[1.15] text-[var(--ash-white)] sm:text-3xl xl:whitespace-nowrap xl:text-3xl [text-wrap:balance]">
           Custom websites &amp; web applications, built around your business.
         </h1>
-        <p className="mt-3 font-script text-xl text-[var(--ash-ink)]/90 sm:text-2xl xl:whitespace-nowrap xl:text-2xl [text-wrap:balance]">
+        <p className="mt-3 font-script text-xl text-[var(--ash-white)]/90 sm:text-2xl xl:whitespace-nowrap xl:text-2xl [text-wrap:balance]">
           Your idea. Thoughtfully designed. Custom built.
         </p>
-        <p className="mt-6 max-w-xl text-base leading-relaxed text-[var(--ash-ink)]/85 sm:text-lg">
+        <p className="mt-6 max-w-xl text-base leading-relaxed text-[var(--ash-white)]/85 sm:text-lg">
           {COMPANY_NAME} is a design and development studio building custom websites, web
           applications, and digital tools around the way your business works. From the initial
           idea through strategy, UI/UX design, and development, we help shape your vision and
@@ -107,15 +107,6 @@ function ProcessTeaser() {
             })}
           </ol>
         </div>
-        <Reveal delay={200}>
-          <Link
-            to="/process"
-            className="mt-10 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)] underline decoration-dotted underline-offset-4"
-          >
-            View full process
-            <span className="font-menu">→</span>
-          </Link>
-        </Reveal>
       </div>
     </section>
   )
@@ -161,7 +152,7 @@ export default function IndexPage() {
 export function Head() {
   return (
     <>
-      <title>{COMPANY_NAME} Custom Websites &amp; Web Applications</title>
+      <title>ashlyn studio</title>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
       <link

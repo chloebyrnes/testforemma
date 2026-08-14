@@ -109,5 +109,5 @@ export default function ServicesPage() {
 }
 
 export function Head() {
-  return <title>Services | {COMPANY_NAME}</title>
+  return <title>ashlyn studio | Services</title>
 }

@@ -81,7 +81,7 @@ function UploadIcon() {
   )
 }
 
-function UploadDropzone({ id, multiple, fileNames, onFilesChange }) {
+function UploadDropzone({ id, name, multiple, fileNames, onFilesChange }) {
   return (
     <div>
       <label
@@ -96,6 +96,7 @@ function UploadDropzone({ id, multiple, fileNames, onFilesChange }) {
         <p className="text-xs text-[var(--ash-ink)]/50">PNG, JPG, or WEBP</p>
         <input
           id={id}
+          name={name}
           type="file"
           accept={imageAccept}
           multiple={multiple}
@@ -144,11 +145,12 @@ export default function OnboardingPage() {
   })
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
-  const [submitError, setSubmitError] = useState(false)
   const [showErrors, setShowErrors] = useState(false)
 
   const [logoFiles, setLogoFiles] = useState([])
   const [galleryFiles, setGalleryFiles] = useState([])
+
+  const hasSubmittedRef = useRef(false)
 
   const setField = (field) => (val) => setValues((v) => ({ ...v, [field]: val }))
   const handleChange = (field) => (e) => setValues((v) => ({ ...v, [field]: e.target.value }))
@@ -159,72 +161,31 @@ export default function OnboardingPage() {
   const showToolField = values.projectType === "Internal Tool" || values.projectType === "Custom Web Application"
   const showSpecificsSection = showPortalField || showToolField
 
-  const handleSubmit = () => {
+  const handleFormSubmit = (e) => {
     if (!isValid) {
+      e.preventDefault()
       setShowErrors(true)
       return
     }
     setSubmitting(true)
-    setSubmitError(false)
+    hasSubmittedRef.current = true
+    // No preventDefault here: this lets the browser do a real native multipart
+    // form POST (targeting the hidden iframe below) instead of a fetch/AJAX
+    // request, since Netlify Forms only reliably attaches uploaded files on
+    // genuine native submissions.
+  }
 
-    const formData = new FormData()
-    formData.append("form-name", "client-onboarding")
-    Object.entries(values).forEach(([key, val]) => {
-      formData.append(key, typeof val === "boolean" ? (val ? "yes" : "no") : val)
-    })
-    logoFiles.forEach((file) => formData.append("logo", file))
-    galleryFiles.forEach((file) => formData.append("galleryPhotos", file))
-
-    fetch("/", { method: "POST", body: formData })
-      .then((response) => {
-        setSubmitting(false)
-        if (response.ok) {
-          setSubmitted(true)
-        } else {
-          setSubmitError(true)
-        }
-      })
-      .catch(() => {
-        setSubmitting(false)
-        setSubmitError(true)
-      })
+  const handleIframeLoad = () => {
+    // The iframe fires a load event on initial mount too (about:blank), so
+    // only treat this as a real submission if the form was actually sent.
+    if (!hasSubmittedRef.current) return
+    setSubmitting(false)
+    setSubmitted(true)
   }
 
   return (
     <Layout currentPath="/onboarding">
-      {/*
-        Hidden static form so Netlify's build bot can detect this form and
-        every field, including the file inputs, at deploy time. The visible
-        form below is what clients actually fill out; handleSubmit posts a
-        FormData object built from that state using this form's name.
-      */}
-      <form name="client-onboarding" data-netlify="true" encType="multipart/form-data" hidden>
-        <input type="text" name="name" />
-        <input type="text" name="businessName" />
-        <input type="email" name="email" />
-        <input type="text" name="phone" />
-        <input type="text" name="projectType" />
-        <input type="text" name="needsLogoHelp" />
-        <input type="file" name="logo" multiple />
-        <input type="file" name="galleryPhotos" multiple />
-        <input type="text" name="styleVibe" />
-        <input type="text" name="colorScheme" />
-        <input type="text" name="colorPreference" />
-        <textarea name="companyDescription" />
-        <input type="text" name="descriptionPreference" />
-        <textarea name="aboutMe" />
-        <input type="text" name="slogans" />
-        <textarea name="companyGoal" />
-        <input type="text" name="hasWebsite" />
-        <input type="text" name="currentPlatform" />
-        <input type="text" name="currentSiteUrl" />
-        <input type="text" name="domainStatus" />
-        <textarea name="portalGoal" />
-        <textarea name="toolDescription" />
-        <textarea name="inspirationSites" />
-        <input type="text" name="socialLinks" />
-        <textarea name="additionalNotes" />
-      </form>
+      <iframe name="hidden-onboarding-iframe" title="hidden" style={{ display: "none" }} onLoad={handleIframeLoad} />
 
       <section className="relative mx-auto max-w-3xl px-6 py-12 sm:px-10 sm:py-16">
         <p className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--ash-ink)]/70">Client Onboarding</p>
@@ -246,29 +207,40 @@ export default function OnboardingPage() {
             </p>
           </div>
         ) : (
-          <div className="mt-14 space-y-16">
+          <form
+            name="client-onboarding"
+            method="POST"
+            data-netlify="true"
+            encType="multipart/form-data"
+            target="hidden-onboarding-iframe"
+            onSubmit={handleFormSubmit}
+            className="mt-14 space-y-16"
+          >
+            <input type="hidden" name="form-name" value="client-onboarding" />
+
             {/* Your Business */}
             <div>
               <SectionHeading eyebrow="01" title="Your Business" />
               <div className="space-y-6">
                 <div className="grid gap-6 sm:grid-cols-2">
                   <Field label="Your Name" required>
-                    <input type="text" value={values.name} onChange={handleChange("name")} placeholder="Jane Smith" className={inputClass} />
+                    <input type="text" name="name" value={values.name} onChange={handleChange("name")} placeholder="Jane Smith" className={inputClass} />
                     {showErrors && !values.name.trim() && <p className="mt-1 font-mono text-xs" style={{ color: "var(--ash-accent)" }}>Required</p>}
                   </Field>
                   <Field label="Business Name" required>
-                    <input type="text" value={values.businessName} onChange={handleChange("businessName")} placeholder="Your Business" className={inputClass} />
+                    <input type="text" name="businessName" value={values.businessName} onChange={handleChange("businessName")} placeholder="Your Business" className={inputClass} />
                     {showErrors && !values.businessName.trim() && <p className="mt-1 font-mono text-xs" style={{ color: "var(--ash-accent)" }}>Required</p>}
                   </Field>
                   <Field label="Email" required>
-                    <input type="email" value={values.email} onChange={handleChange("email")} placeholder="jane@business.com" className={inputClass} />
+                    <input type="email" name="email" value={values.email} onChange={handleChange("email")} placeholder="jane@business.com" className={inputClass} />
                     {showErrors && !values.email.trim() && <p className="mt-1 font-mono text-xs" style={{ color: "var(--ash-accent)" }}>Required</p>}
                   </Field>
                   <Field label="Phone (optional)">
-                    <input type="text" value={values.phone} onChange={handleChange("phone")} placeholder="(555) 555-0100" className={inputClass} />
+                    <input type="text" name="phone" value={values.phone} onChange={handleChange("phone")} placeholder="(555) 555-0100" className={inputClass} />
                   </Field>
                 </div>
                 <Field label="What are we building?" required>
+                  <input type="hidden" name="projectType" value={values.projectType} />
                   <PillGroup name="Project Type" options={projectTypeOptions} value={values.projectType} onChange={setField("projectType")} />
                   {showErrors && !values.projectType && <p className="mt-2 font-mono text-xs" style={{ color: "var(--ash-accent)" }}>Required</p>}
                 </Field>
@@ -282,6 +254,7 @@ export default function OnboardingPage() {
                 <Field label="Logo Upload" hint="Skip this if you don't have one yet, just check the box below.">
                   <UploadDropzone
                     id="logo-upload"
+                    name="logo"
                     multiple
                     fileNames={logoFiles.map((f) => f.name)}
                     onFilesChange={setLogoFiles}
@@ -290,6 +263,8 @@ export default function OnboardingPage() {
                 <label className="flex items-center gap-2 font-body text-sm text-[var(--ash-ink)]">
                   <input
                     type="checkbox"
+                    name="needsLogoHelp"
+                    value="yes"
                     checked={values.needsLogoHelp}
                     onChange={(e) => setValues((v) => ({ ...v, needsLogoHelp: e.target.checked }))}
                   />
@@ -299,6 +274,7 @@ export default function OnboardingPage() {
                 <Field label="Photos to Feature" hint="Gallery, product, team photos, whatever you'd like on the site. Select as many files as you'd like, it's also fine to send more later.">
                   <UploadDropzone
                     id="gallery-upload"
+                    name="galleryPhotos"
                     multiple
                     fileNames={galleryFiles.map((f) => f.name)}
                     onFilesChange={setGalleryFiles}
@@ -308,6 +284,7 @@ export default function OnboardingPage() {
                 <Field label="Style & Aesthetic" hint="A few words or references for the visual direction, for example: minimal and modern, warm and traditional, bold and colorful.">
                   <input
                     type="text"
+                    name="styleVibe"
                     value={values.styleVibe}
                     onChange={handleChange("styleVibe")}
                     placeholder="Describe the look and feel you're going for"
@@ -316,10 +293,12 @@ export default function OnboardingPage() {
                 </Field>
 
                 <Field label="Color Scheme">
+                  <input type="hidden" name="colorPreference" value={values.colorPreference} />
                   <PillGroup name="Color Preference" options={colorPrefOptions} value={values.colorPreference} onChange={setField("colorPreference")} />
                   {values.colorPreference === "I have colors in mind" && (
                     <input
                       type="text"
+                      name="colorScheme"
                       value={values.colorScheme}
                       onChange={handleChange("colorScheme")}
                       placeholder="Hex codes, brand guide link, or just describe it"
@@ -335,19 +314,20 @@ export default function OnboardingPage() {
               <SectionHeading eyebrow="03" title="Content & Voice" />
               <div className="space-y-6">
                 <Field label="Company Description" hint="A few sentences about what your business does and who it's for.">
-                  <textarea value={values.companyDescription} onChange={handleChange("companyDescription")} rows={4} className={inputClass} />
+                  <textarea name="companyDescription" value={values.companyDescription} onChange={handleChange("companyDescription")} rows={4} className={inputClass} />
+                  <input type="hidden" name="descriptionPreference" value={values.descriptionPreference} />
                   <div className="mt-3">
                     <PillGroup name="Description Preference" options={descriptionPrefOptions} value={values.descriptionPreference} onChange={setField("descriptionPreference")} />
                   </div>
                 </Field>
                 <Field label="About / About Me Section" hint="Your story, background, or whatever you'd want visitors to know about you or your team.">
-                  <textarea value={values.aboutMe} onChange={handleChange("aboutMe")} rows={4} className={inputClass} />
+                  <textarea name="aboutMe" value={values.aboutMe} onChange={handleChange("aboutMe")} rows={4} className={inputClass} />
                 </Field>
                 <Field label="Slogans or Taglines (optional)">
-                  <input type="text" value={values.slogans} onChange={handleChange("slogans")} placeholder="Any phrases you use or want to use" className={inputClass} />
+                  <input type="text" name="slogans" value={values.slogans} onChange={handleChange("slogans")} placeholder="Any phrases you use or want to use" className={inputClass} />
                 </Field>
                 <Field label="What's the Goal of the Company?" hint="This helps us make better design decisions, it won't necessarily appear on the site.">
-                  <textarea value={values.companyGoal} onChange={handleChange("companyGoal")} rows={3} className={inputClass} />
+                  <textarea name="companyGoal" value={values.companyGoal} onChange={handleChange("companyGoal")} rows={3} className={inputClass} />
                 </Field>
               </div>
             </div>
@@ -357,6 +337,7 @@ export default function OnboardingPage() {
               <SectionHeading eyebrow="04" title="Current Site & Domain" />
               <div className="space-y-6">
                 <Field label="Do you currently have a website?">
+                  <input type="hidden" name="hasWebsite" value={values.hasWebsite} />
                   <PillGroup name="Has Website" options={yesNoOptions} value={values.hasWebsite} onChange={setField("hasWebsite")} />
                 </Field>
                 {values.hasWebsite === "Yes" && (
@@ -364,6 +345,7 @@ export default function OnboardingPage() {
                     <Field label="What is it built on?">
                       <input
                         type="text"
+                        name="currentPlatform"
                         value={values.currentPlatform}
                         onChange={handleChange("currentPlatform")}
                         placeholder="Shopify, Wix, Squarespace, etc."
@@ -371,11 +353,12 @@ export default function OnboardingPage() {
                       />
                     </Field>
                     <Field label="Current Site URL">
-                      <input type="text" value={values.currentSiteUrl} onChange={handleChange("currentSiteUrl")} placeholder="yourbusiness.com" className={inputClass} />
+                      <input type="text" name="currentSiteUrl" value={values.currentSiteUrl} onChange={handleChange("currentSiteUrl")} placeholder="yourbusiness.com" className={inputClass} />
                     </Field>
                   </div>
                 )}
                 <Field label="Domain Name">
+                  <input type="hidden" name="domainStatus" value={values.domainStatus} />
                   <PillGroup name="Domain Status" options={domainOptions} value={values.domainStatus} onChange={setField("domainStatus")} />
                 </Field>
               </div>
@@ -388,12 +371,12 @@ export default function OnboardingPage() {
                 <div className="space-y-6">
                   {showPortalField && (
                     <Field label="Client Portal Goal" hint="What should clients be able to do with it, and what problem is it solving?">
-                      <textarea value={values.portalGoal} onChange={handleChange("portalGoal")} rows={3} className={inputClass} />
+                      <textarea name="portalGoal" value={values.portalGoal} onChange={handleChange("portalGoal")} rows={3} className={inputClass} />
                     </Field>
                   )}
                   {showToolField && (
                     <Field label="Internal Tool Description" hint="Describe what the tool needs to do for your team.">
-                      <textarea value={values.toolDescription} onChange={handleChange("toolDescription")} rows={3} className={inputClass} />
+                      <textarea name="toolDescription" value={values.toolDescription} onChange={handleChange("toolDescription")} rows={3} className={inputClass} />
                     </Field>
                   )}
                 </div>
@@ -405,33 +388,26 @@ export default function OnboardingPage() {
               <SectionHeading eyebrow={showSpecificsSection ? "06" : "05"} title="Anything Else" />
               <div className="space-y-6">
                 <Field label="Sites You Like" hint="Any websites, yours or someone else's, whose look or feel you'd want us to draw from.">
-                  <textarea value={values.inspirationSites} onChange={handleChange("inspirationSites")} rows={3} className={inputClass} />
+                  <textarea name="inspirationSites" value={values.inspirationSites} onChange={handleChange("inspirationSites")} rows={3} className={inputClass} />
                 </Field>
                 <Field label="Social Media Links (optional)" hint="Helpful for pulling existing photos, tone, or content.">
-                  <input type="text" value={values.socialLinks} onChange={handleChange("socialLinks")} className={inputClass} />
+                  <input type="text" name="socialLinks" value={values.socialLinks} onChange={handleChange("socialLinks")} className={inputClass} />
                 </Field>
                 <Field label="Anything Else We Should Know?">
-                  <textarea value={values.additionalNotes} onChange={handleChange("additionalNotes")} rows={4} className={inputClass} />
+                  <textarea name="additionalNotes" value={values.additionalNotes} onChange={handleChange("additionalNotes")} rows={4} className={inputClass} />
                 </Field>
               </div>
             </div>
 
-            {submitError && (
-              <p className="font-mono text-xs" style={{ color: "var(--ash-accent-hover)" }}>
-                Something went wrong sending that. Please try again in a moment.
-              </p>
-            )}
-
             <button
-              type="button"
-              onClick={handleSubmit}
+              type="submit"
               disabled={submitting}
               className="btn-primary group inline-flex items-center gap-2 rounded-sm px-7 py-3 font-mono text-xs uppercase tracking-[0.15em] focus-visible:outline-none"
             >
               {submitting ? "Sending..." : "Submit"}
               <span className="btn-arrow">→</span>
             </button>
-          </div>
+          </form>
         )}
       </section>
     </Layout>
@@ -439,5 +415,5 @@ export default function OnboardingPage() {
 }
 
 export function Head() {
-  return <title>Client Onboarding | {COMPANY_NAME}</title>
+  return <title>ashlyn studio | Client Onboarding</title>
 }
