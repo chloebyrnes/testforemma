@@ -414,6 +414,7 @@ export function WebsiteMockup() {
   const [sent, setSent] = useState(false)
   const [paletteIndex, setPaletteIndex] = useState(0)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [viewMode, setViewMode] = useState("desktop")
   const p = mockupPalettes[paletteIndex]
 
   const stop = (fn) => (e) => {
@@ -496,14 +497,14 @@ export function WebsiteMockup() {
             })}
             className="flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.08em] transition-colors"
             style={{
-              borderColor: "var(--ash-surface)",
-              backgroundColor: idx === paletteIndex ? "var(--ash-surface)" : "transparent",
+              borderColor: "var(--ash-ink)",
+              backgroundColor: idx === paletteIndex ? "var(--ash-ink)" : "var(--ash-white)",
               color: idx === paletteIndex ? "var(--ash-white)" : "var(--ash-ink)",
             }}
           >
             <span
               className="h-2.5 w-2.5 rounded-full border"
-              style={{ backgroundColor: pal.ink, borderColor: idx === paletteIndex ? "var(--ash-white)" : "var(--ash-surface)" }}
+              style={{ backgroundColor: pal.ink, borderColor: idx === paletteIndex ? "var(--ash-white)" : "var(--ash-ink)" }}
             />
             {pal.name}
           </button>
@@ -513,7 +514,40 @@ export function WebsiteMockup() {
         Just examples, we'll design something unique for your brand.
       </p>
 
-      <div className={`w-full overflow-hidden border transition-colors duration-300 ${frameRadius}`} style={{ borderColor: p.ink, backgroundColor: p.bg }}>
+      <div className="mb-3 hidden items-center gap-2 md:flex">
+        <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--ash-ink)]">Preview:</span>
+        <button
+          type="button"
+          onClick={stop(() => setViewMode("desktop"))}
+          className="rounded-full border px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.08em] transition-colors"
+          style={{
+            borderColor: "var(--ash-ink)",
+            backgroundColor: viewMode === "desktop" ? "var(--ash-ink)" : "var(--ash-white)",
+            color: viewMode === "desktop" ? "var(--ash-white)" : "var(--ash-ink)",
+          }}
+        >
+          Desktop
+        </button>
+        <button
+          type="button"
+          onClick={stop(() => setViewMode("mobile"))}
+          className="rounded-full border px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.08em] transition-colors"
+          style={{
+            borderColor: "var(--ash-ink)",
+            backgroundColor: viewMode === "mobile" ? "var(--ash-ink)" : "var(--ash-white)",
+            color: viewMode === "mobile" ? "var(--ash-white)" : "var(--ash-ink)",
+          }}
+        >
+          Mobile
+        </button>
+      </div>
+
+      <div
+        className={`overflow-hidden border transition-all duration-300 ${frameRadius} ${
+          viewMode === "mobile" ? "mx-auto w-full max-w-[360px]" : "w-full"
+        }`}
+        style={{ borderColor: p.ink, backgroundColor: p.bg }}
+      >
         <div className="flex items-center gap-2 border-b px-4 py-2.5 transition-colors duration-300" style={{ borderColor: `${p.ink}4D`, backgroundColor: p.a1 }}>
           <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: p.ink }} />
           <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: p.ink }} />
@@ -846,14 +880,14 @@ export function PortalMockup() {
             })}
             className="flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.08em] transition-colors"
             style={{
-              borderColor: "var(--ash-surface)",
-              backgroundColor: idx === paletteIndex ? "var(--ash-surface)" : "transparent",
+              borderColor: "var(--ash-ink)",
+              backgroundColor: idx === paletteIndex ? "var(--ash-ink)" : "var(--ash-white)",
               color: idx === paletteIndex ? "var(--ash-white)" : "var(--ash-ink)",
             }}
           >
             <span
               className="h-2.5 w-2.5 rounded-full border"
-              style={{ backgroundColor: pal.ink, borderColor: idx === paletteIndex ? "var(--ash-white)" : "var(--ash-surface)" }}
+              style={{ backgroundColor: pal.ink, borderColor: idx === paletteIndex ? "var(--ash-white)" : "var(--ash-ink)" }}
             />
             {pal.name}
           </button>
@@ -1218,14 +1252,14 @@ export function InternalToolMockup() {
             onClick={stop(() => setPaletteIndex(idx))}
             className="flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.08em] transition-colors"
             style={{
-              borderColor: "var(--ash-surface)",
-              backgroundColor: idx === paletteIndex ? "var(--ash-surface)" : "transparent",
+              borderColor: "var(--ash-ink)",
+              backgroundColor: idx === paletteIndex ? "var(--ash-ink)" : "var(--ash-white)",
               color: idx === paletteIndex ? "var(--ash-white)" : "var(--ash-ink)",
             }}
           >
             <span
               className="h-2.5 w-2.5 rounded-full border"
-              style={{ backgroundColor: pal.ink, borderColor: idx === paletteIndex ? "var(--ash-white)" : "var(--ash-surface)" }}
+              style={{ backgroundColor: pal.ink, borderColor: idx === paletteIndex ? "var(--ash-white)" : "var(--ash-ink)" }}
             />
             {pal.name}
           </button>
@@ -1407,14 +1441,14 @@ export function WebAppMockup() {
             })}
             className="flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.08em] transition-colors"
             style={{
-              borderColor: "var(--ash-surface)",
-              backgroundColor: idx === paletteIndex ? "var(--ash-surface)" : "transparent",
+              borderColor: "var(--ash-ink)",
+              backgroundColor: idx === paletteIndex ? "var(--ash-ink)" : "var(--ash-white)",
               color: idx === paletteIndex ? "var(--ash-white)" : "var(--ash-ink)",
             }}
           >
             <span
               className="h-2.5 w-2.5 rounded-full border"
-              style={{ backgroundColor: pal.ink, borderColor: idx === paletteIndex ? "var(--ash-white)" : "var(--ash-surface)" }}
+              style={{ backgroundColor: pal.ink, borderColor: idx === paletteIndex ? "var(--ash-white)" : "var(--ash-ink)" }}
             />
             {pal.name}
           </button>

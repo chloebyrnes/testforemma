@@ -7,7 +7,7 @@ import UmbraFooter from "../../../components/builds/umbra/UmbraFooter"
 
 export default function UmbraJournalPage() {
   return (
-    <main style={{ backgroundColor: "#FBF7EE" }}>
+    <main className="page-fade-in" style={{ backgroundColor: "#FBF7EE" }}>
       <style>{umbraStyles}</style>
       <UmbraNav current="Journal" />
       <section className="page-header">

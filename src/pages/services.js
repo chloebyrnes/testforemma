@@ -77,7 +77,10 @@ export default function ServicesPage() {
                   </div>
 
                   {isOpen && (
-                    <div className="mt-8 hidden border-t pt-8 sm:block" style={{ borderColor: "var(--ash-surface)33" }}>
+                    <div
+                      className="mt-8 hidden border-t pt-8 sm:block"
+                      style={{ borderColor: "var(--ash-surface)33", backgroundColor: "#F7F1DB", margin: "32px -32px -32px", padding: "32px" }}
+                    >
                       <Mockup />
                     </div>
                   )}

@@ -7,7 +7,7 @@ import UmbraFooter from "../../../components/builds/umbra/UmbraFooter"
 
 export default function UmbraAtelierPage() {
   return (
-    <main style={{ backgroundColor: "#FBF7EE" }}>
+    <main className="page-fade-in" style={{ backgroundColor: "#FBF7EE" }}>
       <style>{umbraStyles}</style>
       <UmbraNav current="Atelier" />
       <section className="page-header">
@@ -17,13 +17,15 @@ export default function UmbraAtelierPage() {
 
       {/* ================= MANIFESTO ================= */}
       <section className="manifesto">
-        <div className="manifesto-quote">
-          “We don't design clothes. <span className="mark">We design the space</span> the body leaves behind, and cut fabric to its edge.”
-        </div>
-        <div className="manifesto-body">
-          <span className="num mono">Atelier note — pattern philosophy</span>
-          <p>Every UMBRA piece starts as an absence: a chalk outline of the space around a body in motion, not the body itself. The pattern is drafted from that outline's edge.</p>
-          <p>What's left is a garment with no excess — seams positioned where the shadow falls, hems cut to where the light stops.</p>
+        <div className="manifesto-inner">
+          <div className="manifesto-quote">
+            “We don't design clothes. <span className="mark">We design the space</span> the body leaves behind, and cut fabric to its edge.”
+          </div>
+          <div className="manifesto-body">
+            <span className="num mono">Atelier note — pattern philosophy</span>
+            <p>Every UMBRA piece starts as an absence: a chalk outline of the space around a body in motion, not the body itself. The pattern is drafted from that outline's edge.</p>
+            <p>What's left is a garment with no excess — seams positioned where the shadow falls, hems cut to where the light stops.</p>
+          </div>
         </div>
       </section>
 

@@ -8,7 +8,7 @@ import UmbraPlaceholder from "../../../components/builds/umbra/UmbraPlaceholder"
 
 export default function UmbraCollectionPage() {
   return (
-    <main style={{ backgroundColor: "#FBF7EE" }}>
+    <main className="page-fade-in" style={{ backgroundColor: "#FBF7EE" }}>
       <style>{umbraStyles}</style>
       <UmbraNav current="Collection" />
       <section className="page-header">
@@ -60,48 +60,50 @@ export default function UmbraCollectionPage() {
 
       {/* ================= EDIT / SHOP ================= */}
       <section className="edit">
-        <div className="edit-head">
-          <h2 className="serif">Shop the archive</h2>
-          <p>Three pieces from Pattern Run 014. Each is numbered and will not be recut once the run sells out.</p>
-        </div>
-        <div className="edit-grid">
-
-          <div className="piece">
-            <div className="piece-figure">
-              <svg viewBox="0 0 200 300"><path d="M100 30 C82 30 74 48 74 64 L60 110 L54 260 L82 260 L90 160 L100 200 L110 160 L118 260 L146 260 L140 110 L126 64 C126 48 118 30 100 30Z" fill="none" stroke="#14120F" stroke-width="1.6"/></svg>
-            </div>
-            <div className="piece-name">The Unstructured Blazer</div>
-            <div className="piece-code mono">Pattern No. 014-B / Run of 40</div>
-            <div className="piece-row">
-              <span className="piece-price mono">$890</span>
-              <a className="piece-link mono" href="#">Enquire</a>
-            </div>
+        <div className="edit-inner">
+          <div className="edit-head">
+            <h2 className="serif">Shop the archive</h2>
+            <p>Three pieces from Pattern Run 014. Each is numbered and will not be recut once the run sells out.</p>
           </div>
+          <div className="edit-grid">
 
-          <div className="piece">
-            <div className="piece-figure">
-              <svg viewBox="0 0 200 300"><path d="M100 30 C86 30 78 46 78 60 L66 120 L60 260 L86 260 L96 150 L100 190 L104 150 L114 260 L140 260 L134 120 L122 60 C122 46 114 30 100 30Z" fill="none" stroke="#14120F" stroke-width="1.6"/></svg>
+            <div className="piece">
+              <div className="piece-figure">
+                <UmbraPlaceholder label="The Unstructured Blazer" />
+              </div>
+              <div className="piece-name">The Unstructured Blazer</div>
+              <div className="piece-code mono">Pattern No. 014-B / Run of 40</div>
+              <div className="piece-row">
+                <span className="piece-price mono">$890</span>
+                <a className="piece-link mono" href="#">Enquire</a>
+              </div>
             </div>
-            <div className="piece-name">Shadow-Line Trouser</div>
-            <div className="piece-code mono">Pattern No. 014-C / Run of 40</div>
-            <div className="piece-row">
-              <span className="piece-price mono">$460</span>
-              <a className="piece-link mono" href="#">Enquire</a>
+
+            <div className="piece">
+              <div className="piece-figure">
+                <UmbraPlaceholder label="Shadow-Line Trouser" />
+              </div>
+              <div className="piece-name">Shadow-Line Trouser</div>
+              <div className="piece-code mono">Pattern No. 014-C / Run of 40</div>
+              <div className="piece-row">
+                <span className="piece-price mono">$460</span>
+                <a className="piece-link mono" href="#">Enquire</a>
+              </div>
             </div>
+
+            <div className="piece">
+              <div className="piece-figure">
+                <UmbraPlaceholder label="Waxed Field Overcoat" />
+              </div>
+              <div className="piece-name">Waxed Field Overcoat</div>
+              <div className="piece-code mono">Pattern No. 014-D / Run of 40</div>
+              <div className="piece-row">
+                <span className="piece-price mono">$1,240</span>
+                <a className="piece-link mono" href="#">Enquire</a>
+              </div>
+            </div>
+
           </div>
-
-          <div className="piece">
-            <div className="piece-figure">
-              <svg viewBox="0 0 200 300"><path d="M100 34 C84 34 76 52 76 66 L64 116 L58 260 L86 260 L94 170 L100 210 L106 170 L114 260 L142 260 L136 116 L124 66 C124 52 116 34 100 34Z" fill="none" stroke="#14120F" stroke-width="1.6"/></svg>
-            </div>
-            <div className="piece-name">Waxed Field Overcoat</div>
-            <div className="piece-code mono">Pattern No. 014-D / Run of 40</div>
-            <div className="piece-row">
-              <span className="piece-price mono">$1,240</span>
-              <a className="piece-link mono" href="#">Enquire</a>
-            </div>
-          </div>
-
         </div>
       </section>
       <UmbraNewsletterBand />
