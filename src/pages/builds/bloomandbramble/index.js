@@ -1,10 +1,10 @@
 import React from "react"
 import { Link } from "gatsby"
-import bloomandbramble1 from "../../../images/bloomandbramble1.PNG"
-import bloomandbramble2 from "../../../images/bloomandbramble2.PNG"
-import bloomandbramble3 from "../../../images/bloomandbramble3.PNG"
-import bloomandbramble4 from "../../../images/bloomandbramble4.PNG"
-import bloomandbramble5 from "../../../images/bloomandbramble5.PNG"
+import bloomandbramble1 from "../../../images/bloomandbramble1.png"
+import bloomandbramble2 from "../../../images/bloomandbramble2.png"
+import bloomandbramble3 from "../../../images/bloomandbramble3.png"
+import bloomandbramble4 from "../../../images/bloomandbramble4.png"
+import bloomandbramble5 from "../../../images/bloomandbramble5.png"
 
 const bloomStyles = `
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Jost:wght@300;400;500;600&display=swap');
