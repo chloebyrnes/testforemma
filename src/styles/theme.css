@@ -4,20 +4,21 @@
   needs to change. Every page and the shared Layout reference these variables
   instead of hardcoded hex codes.
 
-  Current palette: soft cream, light greige, and pale mint, with black text
-  throughout.
+  Current palette: kept deliberately simple -- soft cream background, one
+  consistent mint accent used everywhere (sections, borders, badges,
+  buttons), black text, no color variation between elements.
 */
 
 :root {
   /* Core palette */
-  --ash-ink: #111111;          /* near-black -- primary text, primary button fill */
-  --ash-bg: #F7F1DB;           /* soft cream -- page background */
-  --ash-surface: #E2EEEE;      /* pale mint -- alternating section background */
-  --ash-accent: #E8E9E4;       /* light greige -- decorative bars, badges, secondary accents */
-  --ash-accent-2: #E2EEEE;     /* pale mint -- borders, subtle highlights */
-  --ash-white: #FFFFFF;        /* text on black fills */
+  --ash-ink: #111111;          /* near-black -- all text, no opacity fading */
+  --ash-bg: #F7F1DB;           /* soft cream -- page background, everywhere */
+  --ash-surface: #E2EEEE;      /* mint -- section backgrounds */
+  --ash-accent: #E2EEEE;       /* mint -- same color, buttons/badges/bars */
+  --ash-accent-2: #E2EEEE;     /* mint -- same color, borders/highlights */
+  --ash-white: #FFFFFF;        /* text on black fills only */
 
   /* Derived shades (kept here so the whole palette lives in one place) */
-  --ash-surface-soft: #E8E9E4; /* light greige, for card fills and footer */
-  --ash-accent-hover: #C6C7C0; /* darker greige, for accent hover states */
+  --ash-surface-soft: #E2EEEE; /* mint -- same color, card fills and footer */
+  --ash-accent-hover: #B7D6D6; /* one darker mint tone for hover states -- never black */
 }

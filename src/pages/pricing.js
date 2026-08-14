@@ -1,18 +1,26 @@
 import React, { useState } from "react"
 import { Link } from "gatsby"
-import Layout, { COMPANY_NAME, pricingTiers, accentCycle } from "../components/Layout"
+import Layout, { COMPANY_NAME, pricingTiers } from "../components/Layout"
 
 export default function PricingPage() {
   const [openIndex, setOpenIndex] = useState(null)
 
   return (
     <Layout currentPath="/pricing">
+      <div
+        style={{
+          "--ash-bg": "#FFFFFF",
+          "--ash-surface": "#FFFFFF",
+          "--ash-surface-soft": "#FFFFFF",
+          backgroundColor: "var(--ash-bg)",
+        }}
+      >
       <section className="relative mx-auto max-w-6xl px-6 pb-6 pt-12 sm:px-10 sm:pt-16">
         <div>
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--ash-ink)]/70">Pricing</p>
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--ash-ink)]">Pricing</p>
           <h1 className="mt-4 font-display text-4xl text-[var(--ash-ink)] sm:text-5xl [text-wrap:balance]">Pricing</h1>
           <span className="mt-3 block h-1 w-28 rounded-full bg-[var(--ash-surface)]" />
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-[var(--ash-ink)]/80 sm:text-lg">
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-[var(--ash-ink)] sm:text-lg">
             Every project is scoped after we understand what you're building. These ranges give
             you a starting point.
           </p>
@@ -23,23 +31,22 @@ export default function PricingPage() {
         className="relative border-t-4 border-[var(--ash-surface)] px-6 py-12 sm:px-10 sm:py-16"
       >
         <div className="mx-auto max-w-6xl">
-          <div className="grid gap-px overflow-hidden border border-[var(--ash-surface)] bg-[var(--ash-surface)] sm:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-3">
             {pricingTiers.map((tier, i) => {
               const isOpen = openIndex === i
-              const borderAccent = accentCycle[i % accentCycle.length]
               return (
                 <div key={tier.tag}>
                   <div
-                    className="pricing-card flex h-full flex-col p-8"
-                    style={{ "--accent": borderAccent, backgroundColor: "var(--ash-surface-soft)" }}
+                    className="flex h-full flex-col p-8 border"
+                    style={{ borderColor: "var(--ash-accent)", backgroundColor: "var(--ash-white)" }}
                   >
                     <div>
                       <p className="font-menu text-lg normal-case" style={{ color: "var(--ash-ink)" }}>
                         {tier.tag}
                       </p>
                       <h2 className="mt-4 font-display text-xl text-[var(--ash-ink)]">{tier.title}</h2>
-                      <p className="mt-2 font-mono text-sm text-[var(--ash-ink)]/80">{tier.price}</p>
-                      <p className="mt-4 text-sm leading-relaxed text-[var(--ash-ink)]/80">{tier.body}</p>
+                      <p className="mt-2 font-mono text-sm text-[var(--ash-ink)]">{tier.price}</p>
+                      <p className="mt-4 text-sm leading-relaxed text-[var(--ash-ink)]">{tier.body}</p>
                     </div>
                     <div className="mt-6 pt-2">
                       <button
@@ -59,7 +66,7 @@ export default function PricingPage() {
                       </button>
                       {isOpen && (
                         <div className="mt-5 border-t border-[var(--ash-surface)]/30 pt-5">
-                          <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--ash-ink)]/60">
+                          <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--ash-ink)]">
                             Examples
                           </p>
                           <ul className="mt-3 space-y-2">
@@ -94,7 +101,7 @@ export default function PricingPage() {
         className="relative border-t border-[var(--ash-accent-2)] px-6 py-16 sm:px-10 sm:py-20"
       >
         <div className="relative mx-auto max-w-4xl text-center">
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--ash-ink)]/70">Have a project in mind?</p>
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--ash-ink)]">Have a project in mind?</p>
           <h2 className="mt-5 font-display text-2xl leading-tight text-[var(--ash-ink)] sm:text-3xl xl:whitespace-nowrap [text-wrap:balance]">
             Let's get you an accurate quote.
           </h2>
@@ -109,6 +116,7 @@ export default function PricingPage() {
           </div>
         </div>
       </section>
+      </div>
     </Layout>
   )
 }

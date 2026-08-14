@@ -18,12 +18,20 @@ export default function ServicesPage() {
 
   return (
     <Layout currentPath="/services">
+      <div
+        style={{
+          "--ash-bg": "#FFFFFF",
+          "--ash-surface": "#FFFFFF",
+          "--ash-surface-soft": "#FFFFFF",
+          backgroundColor: "var(--ash-bg)",
+        }}
+      >
       <section className="relative mx-auto max-w-6xl px-6 pb-6 pt-12 sm:px-10 sm:pt-16">
         <div>
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--ash-ink)]/70">Services</p>
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--ash-ink)]">Services</p>
           <h1 className="mt-4 font-display text-4xl text-[var(--ash-ink)] sm:text-5xl [text-wrap:balance]">What we build</h1>
           <span className="mt-3 block h-1 w-28 rounded-full bg-[var(--ash-surface)]" />
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-[var(--ash-ink)]/80 sm:text-lg">
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-[var(--ash-ink)] sm:text-lg">
             Four ways we typically work with businesses, from a straightforward marketing site to
             a fully custom web application. Every project starts with a conversation about what
             you actually need.
@@ -32,11 +40,11 @@ export default function ServicesPage() {
       </section>
 
       <section className="relative border-t-4 border-[var(--ash-surface)] px-6 py-12 sm:px-10 sm:py-16">
-        <div className="mx-auto max-w-6xl space-y-px overflow-hidden border border-[var(--ash-surface)] bg-[var(--ash-surface)]">
+        <div className="mx-auto max-w-6xl divide-y-2 divide-[var(--ash-accent)] overflow-hidden border-2 border-[var(--ash-accent)]">
           {services.map((s, i) => {
             const isOpen = openTag === s.tag
             const Mockup = mockupComponents[s.tag]
-            const accent = "var(--ash-surface)"
+            const accent = "var(--ash-accent)"
             return (
               <div key={s.tag}>
                 <div className="p-8" style={{ backgroundColor: "var(--ash-surface-soft)", borderLeft: `4px solid ${accent}` }}>
@@ -46,7 +54,7 @@ export default function ServicesPage() {
                         {s.tag}
                       </p>
                       <h2 className="mt-3 font-display text-2xl text-[var(--ash-ink)] sm:text-3xl">{s.title}</h2>
-                      <p className="mt-3 text-sm leading-relaxed text-[var(--ash-ink)]/80 sm:text-base">{s.detail}</p>
+                      <p className="mt-3 text-sm leading-relaxed text-[var(--ash-ink)] sm:text-base">{s.detail}</p>
                       <Link
                         to={`/contact?type=${encodeURIComponent(s.contactType)}`}
                         className="mt-5 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)] underline decoration-dotted underline-offset-4"
@@ -63,7 +71,7 @@ export default function ServicesPage() {
                     >
                       {isOpen ? "Hide Examples ▲" : "View Examples ▾"}
                     </button>
-                    <p className="font-mono text-xs italic text-[var(--ash-ink)]/60 sm:hidden">
+                    <p className="font-mono text-xs italic text-[var(--ash-ink)] sm:hidden">
                       Interactive examples are best viewed on desktop.
                     </p>
                   </div>
@@ -82,7 +90,7 @@ export default function ServicesPage() {
 
       <section className="relative border-t border-[var(--ash-accent-2)] px-6 py-16 sm:px-10 sm:py-20">
         <div className="relative mx-auto max-w-4xl text-center">
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--ash-ink)]/70">Not sure which fits?</p>
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--ash-ink)]">Not sure which fits?</p>
           <h2 className="mt-5 font-display text-2xl leading-tight text-[var(--ash-ink)] sm:text-3xl xl:whitespace-nowrap [text-wrap:balance]">
             Let's talk about what you're building.
           </h2>
@@ -104,6 +112,7 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+      </div>
     </Layout>
   )
 }

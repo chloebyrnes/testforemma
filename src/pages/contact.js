@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import Layout, { COMPANY_NAME, Reveal, projectTypes } from "../components/Layout"
 
 const inputClass =
-  "w-full border border-[var(--ash-surface)] bg-[var(--ash-white)] px-4 py-3 font-body text-sm text-[var(--ash-ink)] placeholder:text-[var(--ash-ink)]/40 outline-none transition-colors focus:border-[var(--ash-accent)]"
+  "w-full border border-[var(--ash-surface)] bg-[var(--ash-white)] px-4 py-3 font-body text-sm text-[var(--ash-ink)] placeholder:text-[var(--ash-ink)] outline-none transition-colors focus:border-[var(--ash-accent)]"
 
 const budgetOptions = ["Under $2,000", "$2,000-$5,000", "$5,000-$15,000", "$15,000+", "Not sure yet"]
 const timelineOptions = ["ASAP", "1-3 months", "3-6 months", "Flexible, no rush"]
@@ -25,12 +25,11 @@ function PillGroup({ options, value, onChange, name }) {
             role="radio"
             aria-checked={selected}
             onClick={() => onChange(option)}
-            className="rounded-full border px-4 py-2 font-mono text-xs uppercase tracking-[0.1em] transition-colors focus-visible:outline-none"
-            style={{
-              borderColor: "var(--ash-surface)",
-              backgroundColor: selected ? "var(--ash-accent)" : "transparent",
-              color: selected ? "var(--ash-white)" : "var(--ash-ink)",
-            }}
+            className={`rounded-full border px-4 py-2 font-mono text-xs uppercase tracking-[0.1em] transition-colors focus-visible:outline-none ${
+              selected
+                ? "border-[var(--ash-ink)] bg-[var(--ash-accent)] text-[var(--ash-ink)]"
+                : "border-[var(--ash-ink)] bg-[var(--ash-white)] text-[var(--ash-ink)] hover:bg-[var(--ash-accent)]"
+            }`}
           >
             {option}
           </button>
@@ -113,6 +112,14 @@ export default function ContactPage({ location }) {
 
   return (
     <Layout currentPath="/contact">
+      <div
+        style={{
+          "--ash-bg": "#FFFFFF",
+          "--ash-surface": "#FFFFFF",
+          "--ash-surface-soft": "#FFFFFF",
+          backgroundColor: "var(--ash-bg)",
+        }}
+      >
       {/*
         Hidden static form so Netlify's build bot can detect the form and its
         fields in the generated HTML. This form is never shown or interacted
@@ -132,10 +139,10 @@ export default function ContactPage({ location }) {
 
       <section className="relative mx-auto max-w-6xl px-6 py-12 sm:px-10 sm:py-16">
         <Reveal>
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--ash-ink)]/70">Contact</p>
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--ash-ink)]">Contact</p>
           <h1 className="mt-4 font-display text-4xl text-[var(--ash-ink)] sm:text-5xl [text-wrap:balance]">Let's get started</h1>
           <span className="mt-3 block h-1 w-28 rounded-full bg-[var(--ash-accent-2)]" />
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-[var(--ash-ink)]/80 sm:text-lg">
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-[var(--ash-ink)] sm:text-lg">
             Tell us a bit about what you're building. We'll get back to you within a couple of
             business days.
           </p>
@@ -143,20 +150,21 @@ export default function ContactPage({ location }) {
 
         <div className="mt-14 grid gap-14 lg:grid-cols-[1.1fr_0.9fr]">
           <Reveal>
+            <div className="p-8" style={{ backgroundColor: "var(--ash-white)" }}>
             {submitted ? (
-              <div className="border border-[var(--ash-surface)]/30 p-8" style={{ backgroundColor: "var(--ash-surface-soft)" }}>
+              <div>
                 <p className="font-display text-2xl text-[var(--ash-ink)]">Thanks, {values.name.split(" ")[0]}.</p>
-                <p className="mt-3 text-sm leading-relaxed text-[var(--ash-ink)]/80">
+                <p className="mt-3 text-sm leading-relaxed text-[var(--ash-ink)]">
                   We've got your message and will be in touch soon at {values.email}.
                 </p>
               </div>
             ) : (
               <div className="space-y-6">
-                <p className="text-xs text-[var(--ash-ink)]/60">
+                <p className="text-xs text-[var(--ash-ink)]">
                   Fields marked with <span style={{ color: "var(--ash-accent)" }}>*</span> are required.
                 </p>
                 <div>
-                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]/70">
+                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]">
                     Name <span style={{ color: "var(--ash-accent)" }}>*</span>
                   </label>
                   <input
@@ -172,7 +180,7 @@ export default function ContactPage({ location }) {
                 </div>
 
                 <div>
-                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]/70">
+                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]">
                     Email <span style={{ color: "var(--ash-accent)" }}>*</span>
                   </label>
                   <input
@@ -188,7 +196,7 @@ export default function ContactPage({ location }) {
                 </div>
 
                 <div>
-                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]/70">
+                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]">
                     Website (optional)
                   </label>
                   <input
@@ -201,7 +209,7 @@ export default function ContactPage({ location }) {
                 </div>
 
                 <div>
-                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]/70">
+                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]">
                     Project Type <span style={{ color: "var(--ash-accent)" }}>*</span>
                   </label>
                   <PillGroup
@@ -216,7 +224,7 @@ export default function ContactPage({ location }) {
                 </div>
 
                 <div>
-                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]/70">
+                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]">
                     Budget <span style={{ color: "var(--ash-accent)" }}>*</span>
                   </label>
                   <PillGroup
@@ -231,7 +239,7 @@ export default function ContactPage({ location }) {
                 </div>
 
                 <div>
-                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]/70">
+                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]">
                     Timeline <span style={{ color: "var(--ash-accent)" }}>*</span>
                   </label>
                   <PillGroup
@@ -246,7 +254,7 @@ export default function ContactPage({ location }) {
                 </div>
 
                 <div>
-                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]/70">
+                  <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]">
                     Message <span style={{ color: "var(--ash-accent)" }}>*</span>
                   </label>
                   <textarea
@@ -256,7 +264,7 @@ export default function ContactPage({ location }) {
                     rows={5}
                     className={inputClass}
                   />
-                  <p className="mt-2 text-xs leading-relaxed text-[var(--ash-ink)]/60">
+                  <p className="mt-2 text-xs leading-relaxed text-[var(--ash-ink)]">
                     The more detail you give us here, the better we can understand what you're
                     looking for, things like what problem you're solving, who it's for, and any
                     sites or tools you like the look of all help.
@@ -283,30 +291,32 @@ export default function ContactPage({ location }) {
                 </button>
               </div>
             )}
+            </div>
           </Reveal>
 
           <Reveal delay={120}>
             <div className="space-y-8 border-l border-[var(--ash-surface)]/20 pl-8">
               <div>
-                <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--ash-ink)]/70">Email</p>
+                <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--ash-ink)]">Email</p>
                 <a href="mailto:contact@ashlynstudio.com" className="mt-2 block font-display text-xl text-[var(--ash-ink)]">
                   contact@ashlynstudio.com
                 </a>
               </div>
               <div>
-                <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--ash-ink)]/70">Response Time</p>
-                <p className="mt-2 text-sm leading-relaxed text-[var(--ash-ink)]/80">
+                <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--ash-ink)]">Response Time</p>
+                <p className="mt-2 text-sm leading-relaxed text-[var(--ash-ink)]">
                   We typically reply within 1-2 business days.
                 </p>
               </div>
               <div>
-                <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--ash-ink)]/70">Based In</p>
-                <p className="mt-2 text-sm leading-relaxed text-[var(--ash-ink)]/80">Tampa Bay, Florida</p>
+                <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--ash-ink)]">Based In</p>
+                <p className="mt-2 text-sm leading-relaxed text-[var(--ash-ink)]">Tampa Bay, Florida</p>
               </div>
             </div>
           </Reveal>
         </div>
       </section>
+      </div>
     </Layout>
   )
 }

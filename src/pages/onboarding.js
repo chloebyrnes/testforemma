@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react"
 import Layout, { COMPANY_NAME } from "../components/Layout"
 
 const inputClass =
-  "w-full border border-[var(--ash-surface)] bg-[var(--ash-white)] px-4 py-3 font-body text-sm text-[var(--ash-ink)] placeholder:text-[var(--ash-ink)]/40 outline-none transition-colors focus:border-[var(--ash-accent)]"
+  "w-full border border-[var(--ash-surface)] bg-[var(--ash-white)] px-4 py-3 font-body text-sm text-[var(--ash-ink)] placeholder:text-[var(--ash-ink)] outline-none transition-colors focus:border-[var(--ash-accent)]"
 
 const imageAccept = "image/png, image/jpeg, image/jpg, image/webp, .png, .jpg, .jpeg, .webp"
 
@@ -24,10 +24,10 @@ function SectionHeading({ eyebrow, title }) {
 function Field({ label, hint, required, children }) {
   return (
     <div>
-      <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]/70">
+      <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]">
         {label} {required && <span style={{ color: "var(--ash-accent)" }}>*</span>}
       </label>
-      {hint && <p className="mb-2 text-xs text-[var(--ash-ink)]/60">{hint}</p>}
+      {hint && <p className="mb-2 text-xs text-[var(--ash-ink)]">{hint}</p>}
       {children}
     </div>
   )
@@ -93,7 +93,7 @@ function UploadDropzone({ id, name, multiple, fileNames, onFilesChange }) {
         <p className="font-mono text-xs uppercase tracking-[0.1em] text-[var(--ash-ink)]">
           Click to upload{multiple ? " or select multiple files" : ""}
         </p>
-        <p className="text-xs text-[var(--ash-ink)]/50">PNG, JPG, or WEBP</p>
+        <p className="text-xs text-[var(--ash-ink)]">PNG, JPG, or WEBP</p>
         <input
           id={id}
           name={name}
@@ -107,7 +107,7 @@ function UploadDropzone({ id, name, multiple, fileNames, onFilesChange }) {
       {fileNames.length > 0 && (
         <ul className="mt-2 space-y-1">
           {fileNames.map((name) => (
-            <li key={name} className="font-mono text-xs text-[var(--ash-ink)]/70">
+            <li key={name} className="font-mono text-xs text-[var(--ash-ink)]">
               ✓ {name}
             </li>
           ))}
@@ -185,15 +185,23 @@ export default function OnboardingPage() {
 
   return (
     <Layout currentPath="/onboarding">
+      <div
+        style={{
+          "--ash-bg": "#FFFFFF",
+          "--ash-surface": "#FFFFFF",
+          "--ash-surface-soft": "#FFFFFF",
+          backgroundColor: "var(--ash-bg)",
+        }}
+      >
       <iframe name="hidden-onboarding-iframe" title="hidden" style={{ display: "none" }} onLoad={handleIframeLoad} />
 
       <section className="relative mx-auto max-w-3xl px-6 py-12 sm:px-10 sm:py-16">
-        <p className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--ash-ink)]/70">Client Onboarding</p>
+        <p className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--ash-ink)]">Client Onboarding</p>
         <h1 className="mt-4 font-display text-3xl text-[var(--ash-ink)] sm:text-4xl [text-wrap:balance]">
           Let's get your project started
         </h1>
         <span className="mt-3 block h-1 w-28 rounded-full bg-[var(--ash-accent-2)]" />
-        <p className="mt-6 max-w-2xl text-base leading-relaxed text-[var(--ash-ink)]/80 sm:text-lg">
+        <p className="mt-6 max-w-2xl text-base leading-relaxed text-[var(--ash-ink)] sm:text-lg">
           The more you can share here, the less back-and-forth we'll need later. Nothing except
           the basics at the top is required, fill in whatever applies to your project and skip
           the rest.
@@ -202,7 +210,7 @@ export default function OnboardingPage() {
         {submitted ? (
           <div className="mt-14 border border-[var(--ash-surface)]/30 p-8" style={{ backgroundColor: "var(--ash-surface-soft)" }}>
             <p className="font-display text-2xl text-[var(--ash-ink)]">Thanks, {values.name.split(" ")[0]}.</p>
-            <p className="mt-3 text-sm leading-relaxed text-[var(--ash-ink)]/80">
+            <p className="mt-3 text-sm leading-relaxed text-[var(--ash-ink)]">
               We've got everything you sent over and will follow up soon at {values.email}.
             </p>
           </div>
@@ -410,6 +418,7 @@ export default function OnboardingPage() {
           </form>
         )}
       </section>
+      </div>
     </Layout>
   )
 }

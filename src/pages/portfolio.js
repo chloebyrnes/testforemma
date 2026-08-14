@@ -220,12 +220,20 @@ function NorthbayPreview() {
 export default function PortfolioPage() {
   return (
     <Layout currentPath="/portfolio">
+      <div
+        style={{
+          "--ash-bg": "#FFFFFF",
+          "--ash-surface": "#FFFFFF",
+          "--ash-surface-soft": "#FFFFFF",
+          backgroundColor: "var(--ash-bg)",
+        }}
+      >
       <section className="relative mx-auto max-w-6xl px-6 pb-6 pt-12 sm:px-10 sm:pt-16">
         <Reveal>
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--ash-ink)]/70">Portfolio</p>
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--ash-ink)]">Portfolio</p>
           <h1 className="font-display mt-4 text-4xl text-[var(--ash-ink)] sm:text-5xl [text-wrap:balance]">Selected Work</h1>
           <span className="mt-3 block h-1 w-28 rounded-full bg-[var(--ash-surface)]" />
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-[var(--ash-ink)]/80 sm:text-lg">
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-[var(--ash-ink)] sm:text-lg">
             A look at the kind of work we do, from custom websites to full web applications.
             These are example builds showing different styles and features, not real client
             projects.
@@ -258,7 +266,7 @@ export default function PortfolioPage() {
                   <div>
                     {preview}
                   </div>
-                  <p className="mt-4 font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]/60">
+                  <p className="mt-4 font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]">
                     {project.category}
                   </p>
                   <h2 className="font-display mt-1 text-xl text-[var(--ash-ink)]">{project.name}</h2>
@@ -288,7 +296,7 @@ export default function PortfolioPage() {
 
       <section className="relative border-t border-[var(--ash-accent-2)] px-6 py-16 sm:px-10 sm:py-20">
         <Reveal className="relative mx-auto max-w-4xl text-center">
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--ash-ink)]/70">Like what you see?</p>
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--ash-ink)]">Like what you see?</p>
           <h2 className="font-display mt-5 text-3xl leading-tight text-[var(--ash-ink)] sm:text-4xl">
             Let's build something for you next.
           </h2>
@@ -303,6 +311,7 @@ export default function PortfolioPage() {
           </div>
         </Reveal>
       </section>
+      </div>
     </Layout>
   )
 }

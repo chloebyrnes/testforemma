@@ -8,7 +8,6 @@ export const navLinks = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
   { label: "Portfolio", href: "/portfolio" },
-  { label: "Process", href: "/process" },
   { label: "About", href: "/about" },
   { label: "Pricing", href: "/pricing" },
   { label: "Contact", href: "/contact" },
@@ -182,16 +181,16 @@ const globalStyles = `
     box-shadow: none;
   }
   .btn-dark {
-    background-color: var(--ash-ink);
-    color: var(--ash-white);
+    background-color: var(--ash-accent-hover);
+    color: var(--ash-ink);
     font-family: 'Manrope', sans-serif !important;
     font-weight: 600;
     transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
   .btn-dark:hover {
-    background-color: #2A2A2A;
+    background-color: var(--ash-accent);
     transform: translateY(-2px);
-    box-shadow: 0 12px 24px rgba(17, 17, 17, 0.18);
+    box-shadow: 0 12px 24px rgba(17, 17, 17, 0.12);
   }
   .btn-secondary {
     background-color: transparent;
@@ -486,7 +485,7 @@ export function WebsiteMockup() {
   return (
     <div>
       <div className="mb-1 flex flex-wrap items-center gap-2">
-        <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--ash-ink)]/60">Try a style:</span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--ash-ink)]">Try a style:</span>
         {mockupPalettes.map((pal, idx) => (
           <button
             key={pal.name}
@@ -510,7 +509,7 @@ export function WebsiteMockup() {
           </button>
         ))}
       </div>
-      <p className="mb-3 font-mono text-[9px] italic text-[var(--ash-ink)]/50">
+      <p className="mb-3 font-mono text-[9px] italic text-[var(--ash-ink)]">
         Just examples, we'll design something unique for your brand.
       </p>
 
@@ -836,7 +835,7 @@ export function PortalMockup() {
   return (
     <div>
       <div className="mb-1 flex flex-wrap items-center gap-2">
-        <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--ash-ink)]/60">Try a style:</span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--ash-ink)]">Try a style:</span>
         {mockupPalettes.map((pal, idx) => (
           <button
             key={pal.name}
@@ -860,7 +859,7 @@ export function PortalMockup() {
           </button>
         ))}
       </div>
-      <p className="mb-3 font-mono text-[9px] italic text-[var(--ash-ink)]/50">
+      <p className="mb-3 font-mono text-[9px] italic text-[var(--ash-ink)]">
         Just examples, we'll design something unique for your brand.
       </p>
 
@@ -1211,7 +1210,7 @@ export function InternalToolMockup() {
   return (
     <div>
       <div className="mb-1 flex flex-wrap items-center gap-2">
-        <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--ash-ink)]/60">Try a style:</span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--ash-ink)]">Try a style:</span>
         {mockupPalettes.map((pal, idx) => (
           <button
             key={pal.name}
@@ -1232,7 +1231,7 @@ export function InternalToolMockup() {
           </button>
         ))}
       </div>
-      <p className="mb-3 font-mono text-[9px] italic text-[var(--ash-ink)]/50">
+      <p className="mb-3 font-mono text-[9px] italic text-[var(--ash-ink)]">
         Just examples, we'll design something unique for your business.
       </p>
 
@@ -1397,7 +1396,7 @@ export function WebAppMockup() {
   return (
     <div>
       <div className="mb-1 flex flex-wrap items-center gap-2">
-        <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--ash-ink)]/60">Try a style:</span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--ash-ink)]">Try a style:</span>
         {mockupPalettes.map((pal, idx) => (
           <button
             key={pal.name}
@@ -1421,7 +1420,7 @@ export function WebAppMockup() {
           </button>
         ))}
       </div>
-      <p className="mb-3 font-mono text-[9px] italic text-[var(--ash-ink)]/50">
+      <p className="mb-3 font-mono text-[9px] italic text-[var(--ash-ink)]">
         Just examples, we'll design something unique for your app.
       </p>
 
@@ -1577,7 +1576,7 @@ export function ImagePlaceholder({ label, aspect = "aspect-[16/9]", className = 
     <div
       className={`flex ${aspect} w-full flex-col items-center justify-center gap-2 border-2 border-dashed border-[var(--ash-surface)] bg-[var(--ash-surface-soft)]/40 ${className}`}
     >
-      <svg viewBox="0 0 24 24" className="h-6 w-6 text-[var(--ash-surface)]" fill="none" aria-hidden="true">
+      <svg viewBox="0 0 24 24" className="h-6 w-6 text-[var(--ash-ink)]" fill="none" aria-hidden="true">
         <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" strokeWidth="1.4" />
         <circle cx="8.5" cy="9.5" r="1.6" stroke="currentColor" strokeWidth="1.4" />
         <path d="M4 17 L9 12 L13 16 L16 13 L20 17" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
@@ -1663,7 +1662,7 @@ export function ProcessDiagram() {
         </g>
       ))}
 
-      <g stroke="var(--ash-accent)" strokeWidth="1.4" strokeLinecap="round" fill="none">
+      <g stroke="var(--ash-ink)" strokeWidth="1.4" strokeLinecap="round" fill="none">
         <path d={`M${nodes[0].x} 96 L${nodes[0].x} 100`} />
         <path d={`M${nodes[0].x} 120 L${nodes[0].x} 124`} />
         <path d={`M${nodes[0].x - 12} 110 L${nodes[0].x - 8} 110`} />
@@ -1672,12 +1671,12 @@ export function ProcessDiagram() {
         <path d={`M${nodes[0].x + 5} 117 L${nodes[0].x + 8} 120`} />
       </g>
 
-      <circle cx={nodes[1].x} cy="110" r="7" stroke="var(--ash-accent)" strokeWidth="1.4" fill="none" />
-      <circle cx={nodes[1].x} cy="110" r="2" fill="var(--ash-accent)" />
+      <circle cx={nodes[1].x} cy="110" r="7" stroke="var(--ash-ink)" strokeWidth="1.4" fill="none" />
+      <circle cx={nodes[1].x} cy="110" r="2" fill="var(--ash-ink)" />
 
       <path
         d={`M${nodes[2].x - 7} 117 L${nodes[2].x + 6} 104 L${nodes[2].x + 10} 108 L${nodes[2].x - 3} 121 Z`}
-        stroke="var(--ash-accent)"
+        stroke="var(--ash-ink)"
         strokeWidth="1.2"
         fill="none"
         strokeLinejoin="round"
@@ -1685,7 +1684,7 @@ export function ProcessDiagram() {
 
       <path
         d={`M${nodes[3].x - 10} 110 L${nodes[3].x + 6} 110 M${nodes[3].x + 1} 104 L${nodes[3].x + 8} 110 L${nodes[3].x + 1} 116`}
-        stroke="var(--ash-accent)"
+        stroke="var(--ash-ink)"
         strokeWidth="1.4"
         fill="none"
         strokeLinecap="round"
@@ -1694,8 +1693,8 @@ export function ProcessDiagram() {
 
       <path
         d={`M${nodes[4].x - 10} 104 L${nodes[4].x - 16} 110 L${nodes[4].x - 10} 116 M${nodes[4].x + 10} 104 L${nodes[4].x + 16} 110 L${nodes[4].x + 10} 116`}
-        stroke="var(--ash-white)"
-        strokeWidth="1.4"
+        stroke="var(--ash-ink)"
+        strokeWidth="1.8"
         fill="none"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -1719,7 +1718,7 @@ export function ProcessDiagram() {
 }
 
 export function StageIcon({ index, light = false }) {
-  const stroke = light ? "var(--ash-white)" : "var(--ash-accent)"
+  const stroke = light ? "var(--ash-white)" : "var(--ash-ink)"
   const icons = [
     <g key="idea" stroke={stroke} strokeWidth="1.4" strokeLinecap="round">
       <path d="M12 2v4M12 20v4M2 12h4M20 12h4M5.5 5.5l2.8 2.8M15.7 15.7l2.8 2.8" />
@@ -1948,7 +1947,7 @@ function Nav({ currentPath }) {
 function Footer() {
   return (
     <footer className="border-t border-[var(--ash-accent-2)] px-6 py-5 sm:px-10" style={{ backgroundColor: "var(--ash-surface-soft)" }}>
-      <div className="mx-auto flex max-w-6xl items-center justify-center font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]/70">
+      <div className="mx-auto flex max-w-6xl items-center justify-center font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]">
         <span>{COMPANY_NAME}</span>
       </div>
     </footer>

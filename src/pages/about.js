@@ -5,14 +5,22 @@ import Layout, { COMPANY_NAME, Reveal } from "../components/Layout"
 export default function AboutPage() {
   return (
     <Layout currentPath="/about">
+      <div
+        style={{
+          "--ash-bg": "#FFFFFF",
+          "--ash-surface": "#FFFFFF",
+          "--ash-surface-soft": "#FFFFFF",
+          backgroundColor: "var(--ash-bg)",
+        }}
+      >
       <section className="relative mx-auto max-w-4xl px-6 py-12 sm:px-10 sm:py-16">
         <Reveal>
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--ash-ink)]/70">About</p>
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--ash-ink)]">About</p>
           <div className="mt-4">
             <h1 className="float-left mr-8 mb-2 max-w-sm font-display text-4xl leading-[1.15] text-[var(--ash-ink)] sm:text-5xl [text-wrap:balance]">
               Design and development, under one roof.
             </h1>
-            <div className="space-y-5 text-base leading-relaxed text-[var(--ash-ink)]/80 sm:text-lg">
+            <div className="space-y-5 text-base leading-relaxed text-[var(--ash-ink)] sm:text-lg">
               <p>
                 {COMPANY_NAME} is a small, family-run, women-owned design and development
                 studio. We build custom websites and web applications with the precision and
@@ -46,7 +54,7 @@ export default function AboutPage() {
         className="relative border-t border-[var(--ash-accent-2)] px-6 py-16 sm:px-10 sm:py-20"
       >
         <Reveal className="relative mx-auto max-w-4xl text-center">
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--ash-ink)]/70">Let's get started</p>
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--ash-ink)]">Let's get started</p>
           <h2 className="mt-5 font-display text-2xl leading-tight text-[var(--ash-ink)] sm:text-3xl xl:whitespace-nowrap [text-wrap:balance]">
             Have an idea? Let's put it on paper, then build it.
           </h2>
@@ -61,6 +69,7 @@ export default function AboutPage() {
           </div>
         </Reveal>
       </section>
+      </div>
     </Layout>
   )
 }
