@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react"
 import Layout, { COMPANY_NAME, Reveal, projectTypes } from "../components/Layout"
 
 const inputClass =
-  "w-full border border-[var(--ash-surface)] bg-[var(--ash-white)] px-4 py-3 font-body text-sm text-[var(--ash-ink)] placeholder:text-[var(--ash-ink)] outline-none transition-colors focus:border-[var(--ash-accent)]"
+  "w-full border-2 bg-[var(--ash-white)] px-4 py-3 font-body text-sm text-[var(--ash-ink)] placeholder:text-[var(--ash-ink)]/50 outline-none transition-colors focus:border-[var(--ash-ink)]"
+const inputStyle = { borderColor: "var(--ash-ink)" }
 
 const budgetOptions = ["Under $2,000", "$2,000-$5,000", "$5,000-$15,000", "$15,000+", "Not sure yet"]
 const timelineOptions = ["ASAP", "1-3 months", "3-6 months", "Flexible, no rush"]
@@ -161,18 +162,18 @@ export default function ContactPage({ location }) {
             ) : (
               <div className="space-y-6">
                 <p className="text-xs text-[var(--ash-ink)]">
-                  Fields marked with <span style={{ color: "var(--ash-accent)" }}>*</span> are required.
+                  Fields marked with <span style={{ color: "#B23A2C" }}>*</span> are required.
                 </p>
                 <div>
                   <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]">
-                    Name <span style={{ color: "var(--ash-accent)" }}>*</span>
+                    Name <span style={{ color: "#B23A2C" }}>*</span>
                   </label>
                   <input
                     type="text"
                     value={values.name}
                     onChange={handleChange("name")}
                     placeholder="Jane Smith"
-                    className={inputClass}
+                    className={inputClass} style={inputStyle}
                   />
                   {showErrors && !values.name.trim() && (
                     <p className="mt-1 font-mono text-xs" style={{ color: "var(--ash-ink)" }}>Required</p>
@@ -181,14 +182,14 @@ export default function ContactPage({ location }) {
 
                 <div>
                   <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]">
-                    Email <span style={{ color: "var(--ash-accent)" }}>*</span>
+                    Email <span style={{ color: "#B23A2C" }}>*</span>
                   </label>
                   <input
                     type="email"
                     value={values.email}
                     onChange={handleChange("email")}
                     placeholder="jane@company.com"
-                    className={inputClass}
+                    className={inputClass} style={inputStyle}
                   />
                   {showErrors && !values.email.trim() && (
                     <p className="mt-1 font-mono text-xs" style={{ color: "var(--ash-ink)" }}>Required</p>
@@ -204,13 +205,13 @@ export default function ContactPage({ location }) {
                     value={values.website}
                     onChange={handleChange("website")}
                     placeholder="yourbusiness.com, or type N/A if you don't have one"
-                    className={inputClass}
+                    className={inputClass} style={inputStyle}
                   />
                 </div>
 
                 <div>
                   <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]">
-                    Project Type <span style={{ color: "var(--ash-accent)" }}>*</span>
+                    Project Type <span style={{ color: "#B23A2C" }}>*</span>
                   </label>
                   <PillGroup
                     name="Project Type"
@@ -225,7 +226,7 @@ export default function ContactPage({ location }) {
 
                 <div>
                   <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]">
-                    Budget <span style={{ color: "var(--ash-accent)" }}>*</span>
+                    Budget <span style={{ color: "#B23A2C" }}>*</span>
                   </label>
                   <PillGroup
                     name="Budget"
@@ -240,7 +241,7 @@ export default function ContactPage({ location }) {
 
                 <div>
                   <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]">
-                    Timeline <span style={{ color: "var(--ash-accent)" }}>*</span>
+                    Timeline <span style={{ color: "#B23A2C" }}>*</span>
                   </label>
                   <PillGroup
                     name="Timeline"
@@ -255,14 +256,14 @@ export default function ContactPage({ location }) {
 
                 <div>
                   <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]">
-                    Message <span style={{ color: "var(--ash-accent)" }}>*</span>
+                    Message <span style={{ color: "#B23A2C" }}>*</span>
                   </label>
                   <textarea
                     value={values.message}
                     onChange={handleChange("message")}
                     placeholder="Tell us about your project..."
                     rows={5}
-                    className={inputClass}
+                    className={inputClass} style={inputStyle}
                   />
                   <p className="mt-2 text-xs leading-relaxed text-[var(--ash-ink)]">
                     The more detail you give us here, the better we can understand what you're

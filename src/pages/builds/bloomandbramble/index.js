@@ -82,9 +82,9 @@ const bloomStyles = `
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:22px 40px 0;
+    padding:16px 40px 0;
   }
-  @media(max-width:820px){ nav{padding:18px 22px 0;} }
+  @media(max-width:820px){ nav{padding:14px 22px 0;} }
 
   .brand{
     font-family:'Fraunces', serif;
@@ -135,25 +135,25 @@ const bloomStyles = `
   /* ================= HERO ================= */
   .hero{
     position:relative;
-    padding:48px 0 0;
+    padding:32px 0 0;
     display:grid;
     grid-template-columns:1.05fr 0.95fr;
     align-items:end;
     gap:20px;
-    min-height:80vh;
+    min-height:72vh;
   }
   @media(max-width:980px){
-    .hero{grid-template-columns:1fr; min-height:auto; padding-top:32px;}
+    .hero{grid-template-columns:1fr; min-height:auto; padding-top:24px;}
   }
 
   .hero-copy{
-    padding:48px 0 56px;
+    padding:32px 0 48px;
     max-width:640px;
   }
   @media(max-width:980px){ .hero-copy{padding-top:8px;} }
-  @media(max-width:820px){ .hero-copy{padding:8px 0 32px;} }
+  @media(max-width:820px){ .hero-copy{padding:8px 0 28px;} }
 
-  .hero-copy .eyebrow{margin-bottom:8px; display:block;}
+  .hero-copy .eyebrow{margin-bottom:6px; display:block;}
 
   .hero-location{
     display:block;
@@ -274,25 +274,21 @@ const bloomStyles = `
   }
 
   .hero-tag{
-    position:absolute;
-    top:-20px; right:2%;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
     background:var(--sage);
     color:var(--paper);
-    padding:18px 22px;
-    max-width:190px;
-    font-size:13px;
-    line-height:1.5;
-    border-radius:255px 15px 225px 15px/15px 225px 15px 255px;
-    box-shadow:0 18px 30px -18px rgba(35,43,30,0.45);
-    animation:gentle-bob 5s ease-in-out infinite;
-    z-index:5;
+    padding:9px 16px;
+    max-width:100%;
+    font-size:12.5px;
+    line-height:1.4;
+    border-radius:999px;
+    box-shadow:0 10px 20px -14px rgba(35,43,30,0.5);
+    margin-bottom:18px;
   }
-  @keyframes gentle-bob{
-    0%,100%{transform:rotate(2.5deg) translateY(0);}
-    50%{transform:rotate(-1.5deg) translateY(-6px);}
-  }
-  .hero-tag em{font-family:'Fraunces',serif; font-style:italic; display:block; font-size:15px; margin-bottom:4px;}
-  @media(max-width:640px){ .hero-tag{display:none;} }
+  .hero-tag em{font-family:'Fraunces',serif; font-style:italic; white-space:nowrap;}
+  @media(max-width:640px){ .hero-tag{font-size:11.5px;} }
 
   /* running stem divider */
   .stemline{width:100%; display:block; margin:0; opacity:0.85;}
@@ -455,29 +451,30 @@ const bloomStyles = `
   .card .cap-title{font-family:'Fraunces',serif; font-style:italic; font-size:16px;}
 
   /* ================= TESTIMONIAL ================= */
-  .testimonial{
-    padding:56px 0 72px;
+  .testimonial{padding:56px 0 72px;}
+  .testimonial-head{display:flex; align-items:center; gap:20px; margin-bottom:48px;}
+  .testimonial-head svg{width:64px; height:auto; flex-shrink:0;}
+  .testimonial-head h2{font-size:clamp(26px,3vw,38px); color:var(--plum);}
+  .testimonial-grid{
     display:grid;
-    grid-template-columns:0.4fr 1fr;
-    gap:40px;
-    align-items:center;
+    grid-template-columns:repeat(3,1fr);
+    gap:36px;
   }
-  @media(max-width:820px){ .testimonial{grid-template-columns:1fr;} }
-  .testimonial svg{width:100%; max-width:280px;}
-  .testimonial blockquote{
+  @media(max-width:980px){ .testimonial-grid{grid-template-columns:1fr;} }
+  .testimonial-card blockquote{
     font-family:'Fraunces',serif;
     font-style:italic;
     font-weight:400;
-    font-size:clamp(24px,3vw,38px);
-    line-height:1.35;
+    font-size:17px;
+    line-height:1.5;
     color:var(--plum);
   }
-  .testimonial cite{
+  .testimonial-card cite{
     display:block;
-    margin-top:26px;
+    margin-top:20px;
     font-style:normal;
     font-family:'Jost',sans-serif;
-    font-size:13px;
+    font-size:12.5px;
     letter-spacing:0.06em;
     text-transform:uppercase;
     color:var(--sage-deep);
@@ -549,6 +546,7 @@ export default function BloomAndBramblePage() {
   <div className="hero-copy">
     <span className="eyebrow">Seasonal Wedding Floristry — Est. 2016</span>
     <span className="hero-location">Hudson Valley, New York</span>
+    <div className="hero-tag"><em>This week's bloom</em>Sweet pea, chocolate cosmos &amp; garden rose, cut Tuesday morning.</div>
     <h1>
       <span>Grown slow.</span>
       <span className="italic">Gathered by hand.</span>
@@ -562,7 +560,6 @@ export default function BloomAndBramblePage() {
   </div>
 
   <div className="hero-art">
-    <div className="hero-tag"><em>This week's bloom</em>Sweet pea, chocolate cosmos &amp; garden rose, cut Tuesday morning.</div>
     <svg viewBox="0 0 520 620" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M260 600 C 250 480, 300 420, 270 320 C 245 235, 290 190, 260 90" stroke="#4F6350" stroke-width="2.2"/>
       <path d="M260 470 C 200 450, 170 400, 150 360" stroke="#4F6350" stroke-width="2"/>
@@ -881,30 +878,43 @@ export default function BloomAndBramblePage() {
 
 {/* ================= TESTIMONIAL ================= */}
 <section className="testimonial wrap">
-  <svg viewBox="0 0 260 320" fill="none">
-    <path d="M130 300 C 122 200, 150 160, 128 80" stroke="#4F6350" stroke-width="2"/>
-    <ellipse cx="95" cy="150" rx="22" ry="9" fill="#768E78" transform="rotate(-25 95 150)"/>
-    <ellipse cx="165" cy="110" rx="22" ry="9" fill="#768E78" transform="rotate(25 165 110)"/>
-    <g transform="translate(128,75) rotate(0)">
-      <g transform="rotate(0)"><ellipse cx="14" cy="0" rx="13" ry="7" fill="#E79897"/></g>
-      <g transform="rotate(72)"><ellipse cx="14" cy="0" rx="13" ry="7" fill="#E79897"/></g>
-      <g transform="rotate(144)"><ellipse cx="14" cy="0" rx="13" ry="7" fill="#E79897"/></g>
-      <g transform="rotate(216)"><ellipse cx="14" cy="0" rx="13" ry="7" fill="#E79897"/></g>
-      <g transform="rotate(288)"><ellipse cx="14" cy="0" rx="13" ry="7" fill="#E79897"/></g>
-      <g transform="rotate(36)"><ellipse cx="9.5" cy="0" rx="8.5" ry="4.7" fill="#FECDBE"/></g>
-      <g transform="rotate(108)"><ellipse cx="9.5" cy="0" rx="8.5" ry="4.7" fill="#FECDBE"/></g>
-      <g transform="rotate(180)"><ellipse cx="9.5" cy="0" rx="8.5" ry="4.7" fill="#FECDBE"/></g>
-      <g transform="rotate(252)"><ellipse cx="9.5" cy="0" rx="8.5" ry="4.7" fill="#FECDBE"/></g>
-      <g transform="rotate(324)"><ellipse cx="9.5" cy="0" rx="8.5" ry="4.7" fill="#FECDBE"/></g>
-      <circle r="6.5" fill="#3B473C"/>
-      <circle cx="-2.4" cy="-1.9" r="1.3" fill="#FCC88A"/>
-      <circle cx="2.4" cy="-1.9" r="1.3" fill="#FCC88A"/>
-      <circle cx="0" cy="2.8" r="1.3" fill="#FCC88A"/>
-    </g>
-  </svg>
-  <div>
-    <blockquote>"We told them we didn't want anything that looked 'done.' They showed up with flowers still a little wet from the garden — it was exactly right."</blockquote>
-    <cite>Priya &amp; Nate — Married June, Rhinebeck Barn</cite>
+  <div className="testimonial-head">
+    <svg viewBox="0 0 260 320" fill="none">
+      <path d="M130 300 C 122 200, 150 160, 128 80" stroke="#4F6350" strokeWidth="2"/>
+      <ellipse cx="95" cy="150" rx="22" ry="9" fill="#768E78" transform="rotate(-25 95 150)"/>
+      <ellipse cx="165" cy="110" rx="22" ry="9" fill="#768E78" transform="rotate(25 165 110)"/>
+      <g transform="translate(128,75) rotate(0)">
+        <g transform="rotate(0)"><ellipse cx="14" cy="0" rx="13" ry="7" fill="#E79897"/></g>
+        <g transform="rotate(72)"><ellipse cx="14" cy="0" rx="13" ry="7" fill="#E79897"/></g>
+        <g transform="rotate(144)"><ellipse cx="14" cy="0" rx="13" ry="7" fill="#E79897"/></g>
+        <g transform="rotate(216)"><ellipse cx="14" cy="0" rx="13" ry="7" fill="#E79897"/></g>
+        <g transform="rotate(288)"><ellipse cx="14" cy="0" rx="13" ry="7" fill="#E79897"/></g>
+        <g transform="rotate(36)"><ellipse cx="9.5" cy="0" rx="8.5" ry="4.7" fill="#FECDBE"/></g>
+        <g transform="rotate(108)"><ellipse cx="9.5" cy="0" rx="8.5" ry="4.7" fill="#FECDBE"/></g>
+        <g transform="rotate(180)"><ellipse cx="9.5" cy="0" rx="8.5" ry="4.7" fill="#FECDBE"/></g>
+        <g transform="rotate(252)"><ellipse cx="9.5" cy="0" rx="8.5" ry="4.7" fill="#FECDBE"/></g>
+        <g transform="rotate(324)"><ellipse cx="9.5" cy="0" rx="8.5" ry="4.7" fill="#FECDBE"/></g>
+        <circle r="6.5" fill="#3B473C"/>
+        <circle cx="-2.4" cy="-1.9" r="1.3" fill="#FCC88A"/>
+        <circle cx="2.4" cy="-1.9" r="1.3" fill="#FCC88A"/>
+        <circle cx="0" cy="2.8" r="1.3" fill="#FCC88A"/>
+      </g>
+    </svg>
+    <h2 className="italic">What couples tell us after.</h2>
+  </div>
+  <div className="testimonial-grid">
+    <div className="testimonial-card">
+      <blockquote>"It was exactly what we pictured. Everything felt romantic, natural, and thoughtfully put together without looking overly styled or too perfect. The flowers had so much movement and personality, and every arrangement felt like it belonged in the space. They completely understood the feeling we were going for and somehow made it even more beautiful than we imagined."</blockquote>
+      <cite>Priya &amp; Nate — Married June, Rhinebeck Barn</cite>
+    </div>
+    <div className="testimonial-card">
+      <blockquote>"I had such a hard time explaining what I wanted because I knew the feeling more than I knew the actual flowers. Somehow they understood immediately. When I walked into the space, it looked exactly like what I had been trying to describe for months, only better."</blockquote>
+      <cite>Clara &amp; James — Married May, Hudson Valley</cite>
+    </div>
+    <div className="testimonial-card">
+      <blockquote>"The flowers were one of the things I was most excited about, and they somehow exceeded everything I had saved and sent them. Nothing felt stiff or overly arranged. It was romantic and a little wild and looked like it had always belonged there."</blockquote>
+      <cite>Margot &amp; Will — Married September, Catskills Estate</cite>
+    </div>
   </div>
 </section>
 

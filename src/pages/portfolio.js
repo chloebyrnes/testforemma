@@ -10,11 +10,39 @@ const projects = [
   { name: "Petal House", category: "Custom Website", href: "/builds/floralco/", preview: "floralco" },
   { name: "Umbra", category: "Custom Website", href: "/builds/umbra/", preview: "umbra" },
   { name: "Bloom & Bramble", category: "Custom Website", href: "/builds/bloomandbramble/", preview: "bloomandbramble" },
+  { name: "Mainline Plumbing Co.", category: "Custom Website", href: "/builds/mainlineplumbing/", preview: "mainlineplumbing" },
 ]
+
+function MainlinePlumbingPreview() {
+  return (
+    <div className="aspect-[4/3] w-full overflow-hidden border" style={{ borderColor: "#14293D", backgroundColor: "#14293D" }}>
+      <div className="flex items-center justify-between px-3 py-2" style={{ borderBottom: "1px solid rgba(255,255,255,0.15)" }}>
+        <span className="text-[10px] font-bold uppercase tracking-wide" style={{ color: "#FBF9F4", fontFamily: "Georgia, serif" }}>
+          Mainline <span style={{ color: "#F0A93A" }}>Plumbing Co.</span>
+        </span>
+        <span className="text-[6px] uppercase tracking-wide" style={{ color: "#7FB6E0" }}>Call Now</span>
+      </div>
+      <div className="p-3">
+        <p className="text-[7px] uppercase tracking-wide" style={{ color: "#F0A93A" }}>Licensed &amp; Insured — FL</p>
+        <p className="mt-1 text-[13px] font-bold uppercase leading-tight" style={{ color: "#FBF9F4", fontFamily: "'Arial Black', sans-serif" }}>
+          Fast, Honest Plumbing
+        </p>
+        <div className="mt-2 grid grid-cols-3 gap-1">
+          {["#2B6E9E", "#1D4E73", "#F0A93A"].map((c, i) => (
+            <div key={i} className="aspect-square rounded-sm" style={{ backgroundColor: c }} />
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
 
 function BloomAndBramblePreview() {
   return (
-    <div className="aspect-[4/3] w-full overflow-hidden border" style={{ borderColor: "#3B473C", backgroundColor: "#FBF6EA" }}>
+    <div
+      className="aspect-[4/3] w-full overflow-hidden border"
+      style={{ borderColor: "#3B473C", backgroundColor: "#FBF6EA" }}
+    >
       <div className="flex items-center justify-between px-3 py-2">
         <span className="text-[10px] italic" style={{ color: "#3B473C", fontFamily: "Georgia, serif" }}>
           Bloom <span style={{ color: "#AD7271" }}>&amp; Bramble</span>
@@ -26,9 +54,9 @@ function BloomAndBramblePreview() {
         </div>
       </div>
       <div className="px-3 pb-3">
-        <p className="text-[7px] uppercase tracking-wide" style={{ color: "#AD7271" }}>Hudson Valley Wedding Florist</p>
-        <p className="mt-1 text-[14px] italic leading-tight" style={{ color: "#3B473C", fontFamily: "Georgia, serif" }}>
-          Where the garden meets the aisle
+        <p className="text-[7px] uppercase tracking-wide" style={{ color: "#AD7271" }}>Seasonal Wedding Floristry</p>
+        <p className="mt-1 text-[13px] italic leading-tight" style={{ color: "#3B473C", fontFamily: "Georgia, serif" }}>
+          Grown slow. Gathered by hand.
         </p>
         <div className="mt-2 grid grid-cols-4 gap-1">
           {["#D8CFAE", "#EBDEC0", "#F1E7CE", "#F5EDDA"].map((c, i) => (
@@ -42,7 +70,10 @@ function BloomAndBramblePreview() {
 
 function UmbraPreview() {
   return (
-    <div className="aspect-[4/3] w-full overflow-hidden border" style={{ borderColor: "#2E2015", backgroundColor: "#FBF7EE" }}>
+    <div
+      className="aspect-[4/3] w-full overflow-hidden border"
+      style={{ borderColor: "#2E2015", backgroundColor: "#FBF7EE" }}
+    >
       <div className="flex items-center justify-between px-3 py-2" style={{ backgroundColor: "#2E2015" }}>
         <span className="text-[9px] italic" style={{ color: "#FBF7EE", fontFamily: "Georgia, serif" }}>UMBRA</span>
         <div className="flex gap-1.5">
@@ -56,10 +87,10 @@ function UmbraPreview() {
           className="inline-block px-1.5 py-0.5 text-[6px] uppercase tracking-wide"
           style={{ border: "1px solid #B98A4E", color: "#B98A4E", backgroundColor: "#FBF7EE" }}
         >
-          Collection 04
+          Collection 05
         </span>
-        <div className="mt-1.5 text-[15px] italic leading-tight" style={{ color: "#2E2015", fontFamily: "Georgia, serif" }}>
-          Where the garment ends
+        <div className="mt-1.5 text-[14px] italic leading-tight" style={{ color: "#2E2015", fontFamily: "Georgia, serif" }}>
+          A study in modern dressing
         </div>
         <div className="mt-2 grid grid-cols-3 gap-0.5">
           <div className="col-span-2 row-span-2 aspect-square" style={{ backgroundColor: "#F3EBD9" }} />
@@ -258,12 +289,14 @@ export default function PortfolioPage() {
                   <UmbraPreview />
                 ) : project.preview === "bloomandbramble" ? (
                   <BloomAndBramblePreview />
+                ) : project.preview === "mainlineplumbing" ? (
+                  <MainlinePlumbingPreview />
                 ) : (
                   <ImagePlaceholder label={`${project.name} example`} aspect="aspect-[4/3]" />
                 )
               const content = (
                 <>
-                  <div>
+                  <div className="transition-transform duration-300 group-hover:-translate-y-1">
                     {preview}
                   </div>
                   <p className="mt-4 font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]">

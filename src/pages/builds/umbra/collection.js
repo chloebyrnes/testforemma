@@ -17,7 +17,7 @@ export default function UmbraCollectionPage() {
       <style>{umbraStyles}</style>
       <UmbraNav current="Collection" />
       <section className="page-header">
-        <span className="mono">Collection 04 — Negative Space — SS27</span>
+        <span className="mono">Collection 05 — Negative Space — SS27</span>
         <h1>The full collection, cut from what the body leaves behind.</h1>
         <p>Nineteen silhouettes built around negative space rather than the body itself. Shown here: five key looks, followed by three pieces available now from the archive.</p>
       </section>
@@ -26,7 +26,7 @@ export default function UmbraCollectionPage() {
       <section id="lookbook">
         <div className="lookbook-head">
           <h2 className="serif">The Edit — Look 01–05</h2>
-          <span className="mono">Collection 04 / SS27</span>
+          <span className="mono">Collection 05 / SS27</span>
         </div>
         <div className="lookbook-grid">
 

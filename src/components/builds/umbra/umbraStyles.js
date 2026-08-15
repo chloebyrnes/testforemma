@@ -63,13 +63,13 @@ export const umbraStyles = `
   .nav-logo{
     font-family:'Bodoni Moda',serif;
     font-weight:500;
-    font-size:26px;
+    font-size:32px;
     letter-spacing:0.02em;
   }
   .nav-links{
     display:flex;
-    gap:28px;
-    font-size:11px;
+    gap:32px;
+    font-size:13px;
     align-items:center;
   }
   .nav-links a{position:relative;padding-bottom:2px;}
@@ -130,7 +130,7 @@ export const umbraStyles = `
   /* ================= HERO ================= */
   .hero{
     position:relative;
-    min-height:92vh;
+    min-height:64vh;
     background:var(--bone);
     color:var(--ink);
     display:grid;
@@ -142,26 +142,27 @@ export const umbraStyles = `
     position:relative;
     z-index:3;
     max-width:var(--u-max);
-    margin:auto auto 8vh;
+    margin:auto auto 48px;
     padding-top:96px;
     width:100%;
     display:grid;
     grid-template-columns:7fr 5fr;
-    gap:24px;
+    gap:16px;
     align-items:end;
   }
   .hero-eyebrow{
     font-size:11px;
     color:var(--signal);
-    margin-bottom:18px;
+    margin-bottom:10px;
     display:block;
   }
   .hero h1{
     font-family:'Bodoni Moda',serif;
-    font-size:clamp(40px,6vw,84px);
+    font-size:clamp(32px,4.6vw,64px);
     font-weight:400;
-    line-height:0.98;
+    line-height:1.05;
     letter-spacing:-0.01em;
+    white-space:nowrap;
   }
   .hero h1 em{
     font-style:italic;
@@ -490,6 +491,7 @@ export const umbraStyles = `
     .nav-mobile-panel a.active{color:var(--signal);}
 
     .hero-inner{grid-template-columns:1fr;padding-top:80px;}
+    .hero h1{white-space:normal; font-size:clamp(30px,8vw,44px);}
     .hero-side{padding-top:20px;}
     .manifesto{padding:48px 24px;}
     .manifesto-inner{grid-template-columns:1fr;}

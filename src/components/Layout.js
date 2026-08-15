@@ -170,13 +170,13 @@ const globalStyles = `
     box-shadow: 0 12px 24px rgba(17, 17, 17, 0.12);
   }
   .btn-primary:disabled {
-    background-color: var(--ash-surface);
-    color: var(--ash-ink);
-    opacity: 0.5;
+    background-color: #D6D6D6;
+    color: #6B6B6B;
+    opacity: 1;
     cursor: not-allowed;
   }
   .btn-primary:disabled:hover {
-    background-color: var(--ash-surface);
+    background-color: #D6D6D6;
     transform: none;
     box-shadow: none;
   }

@@ -14,19 +14,13 @@ export default function UmbraHomePage() {
       <section className="hero">
         <div className="hero-inner">
           <div>
-            <span className="hero-eyebrow mono">Collection 04 — Negative Space — SS27</span>
-            <h1>A study in<br/>modern <em>dressing.</em></h1>
+            <span className="hero-eyebrow mono">Collection 05 — Negative Space — SS27</span>
+            <h1>A study in modern <em>dressing.</em></h1>
           </div>
           <div className="hero-side">
             <p>Nineteen silhouettes built around what tailoring removes, not what it adds. Cut in raw wool, waxed cotton and unlined canvas.</p>
             <Link className="hero-cta mono" to="/builds/umbra/collection/">View the collection <span className="arrow">→</span></Link>
           </div>
-        </div>
-
-        <div className="hero-bottom-rule mono">
-          <span>Paris — Est. 2019</span>
-          <span>Pattern archive 001—014</span>
-          <span>Scroll</span>
         </div>
       </section>
 
@@ -35,10 +29,10 @@ export default function UmbraHomePage() {
         <div className="marquee-track">
           <span>Negative Space</span><span className="dim">Pattern No. 014-B</span>
           <span>A Study in Modern Dressing</span><span className="dim">Atelier Paris</span>
-          <span>Unlined Canvas</span><span className="dim">Collection 04</span>
+          <span>Unlined Canvas</span><span className="dim">Collection 05</span>
           <span>Negative Space</span><span className="dim">Pattern No. 014-B</span>
           <span>A Study in Modern Dressing</span><span className="dim">Atelier Paris</span>
-          <span>Unlined Canvas</span><span className="dim">Collection 04</span>
+          <span>Unlined Canvas</span><span className="dim">Collection 05</span>
         </div>
       </div>
       <UmbraNewsletterBand />
