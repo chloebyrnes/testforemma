@@ -93,7 +93,7 @@ function ProcessTeaser() {
                         backgroundColor: isLast ? "var(--ash-accent)" : "var(--ash-surface-soft)",
                       }}
                     >
-                      <StageIcon index={i} light={isLast} />
+                      <StageIcon index={i} />
                     </span>
                     <span className="h-px flex-1 bg-[var(--ash-surface)]" />
                     {!isLast && (

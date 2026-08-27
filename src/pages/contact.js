@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import Layout, { COMPANY_NAME, Reveal, projectTypes } from "../components/Layout"
 
 const inputClass =
-  "w-full border-2 bg-[var(--ash-white)] px-4 py-3 font-body text-sm text-[var(--ash-ink)] placeholder:text-[var(--ash-ink)]/50 outline-none transition-colors focus:border-[var(--ash-ink)]"
+  "w-full border bg-[var(--ash-white)] px-4 py-3 font-body text-sm text-[var(--ash-ink)] placeholder:text-[var(--ash-ink)]/50 outline-none transition-colors focus:border-[var(--ash-ink)]"
 const inputStyle = { borderColor: "var(--ash-ink)" }
 
 const budgetOptions = ["Under $2,000", "$2,000-$5,000", "$5,000-$15,000", "$15,000+", "Not sure yet"]

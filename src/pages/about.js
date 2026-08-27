@@ -28,6 +28,12 @@ export default function AboutPage() {
                 generic.
               </p>
               <p>
+                Behind the studio is a full stack developer with years of hands-on experience
+                across design, front-end, and back-end development, brought in-house so every
+                project is handled by someone who understands the whole picture, not just one
+                piece of it.
+              </p>
+              <p>
                 We don't work from templates. Every project starts with how your business
                 actually operates, and every page, feature, and interaction is planned and built
                 around that, rather than fitted into a predefined structure.

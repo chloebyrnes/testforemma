@@ -8,8 +8,9 @@ const projects = [
   { name: "Willow & Vine Events", category: "Client Portal", href: "/builds/willowvine/", preview: "willowvine" },
   { name: "Northbay Supply Co.", category: "Internal Tool", href: "/builds/northbay/login", preview: "northbay" },
   { name: "Petal House", category: "Custom Website", href: "/builds/floralco/", preview: "floralco" },
-  { name: "Umbra", category: "Custom Website", href: "/builds/umbra/", preview: "umbra" },
-  { name: "Bloom & Bramble", category: "Custom Website", href: "/builds/bloomandbramble/", preview: "bloomandbramble" },
+  // Temporarily hidden — re-add when ready:
+  // { name: "Umbra", category: "Custom Website", href: "/builds/umbra/", preview: "umbra" },
+  // { name: "Bloom & Bramble", category: "Custom Website", href: "/builds/bloomandbramble/", preview: "bloomandbramble" },
   { name: "Mainline Plumbing Co.", category: "Custom Website", href: "/builds/mainlineplumbing/", preview: "mainlineplumbing" },
 ]
 
@@ -268,6 +269,12 @@ export default function PortfolioPage() {
             A look at the kind of work we do, from custom websites to full web applications.
             These are example builds showing different styles and features, not real client
             projects.
+          </p>
+          <p className="mt-4 max-w-2xl border-l-2 pl-4 text-sm leading-relaxed text-[var(--ash-ink)]" style={{ borderColor: "var(--ash-accent)" }}>
+            A note on experience: I've spent years building for clients before starting this
+            studio, but that work stays confidential out of respect for those clients. The builds
+            shown here are original concept pieces meant to demonstrate range and craft. As Ashlyn
+            Studio takes on its own clients, real project work will be added here over time.
           </p>
         </Reveal>
       </section>
