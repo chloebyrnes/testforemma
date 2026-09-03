@@ -195,6 +195,41 @@ export default function OnboardingPage() {
       >
       <iframe name="hidden-onboarding-iframe" title="hidden" style={{ display: "none" }} onLoad={handleIframeLoad} />
 
+      {/*
+        Hidden static form so Netlify's build bot can detect the form and its
+        fields (including the two file inputs) in the generated HTML. This
+        form is never shown or interacted with, the visible form below is
+        what people actually fill out, and handleFormSubmit posts the real
+        data to Netlify using this form's name.
+      */}
+      <form name="client-onboarding" data-netlify="true" encType="multipart/form-data" hidden>
+        <input type="text" name="name" />
+        <input type="text" name="businessName" />
+        <input type="email" name="email" />
+        <input type="text" name="phone" />
+        <input type="text" name="projectType" />
+        <input type="file" name="logo" />
+        <input type="text" name="needsLogoHelp" />
+        <input type="file" name="galleryPhotos" multiple />
+        <input type="text" name="styleVibe" />
+        <input type="text" name="colorPreference" />
+        <input type="text" name="colorScheme" />
+        <input type="text" name="companyDescription" />
+        <input type="text" name="descriptionPreference" />
+        <input type="text" name="aboutMe" />
+        <input type="text" name="slogans" />
+        <input type="text" name="companyGoal" />
+        <input type="text" name="hasWebsite" />
+        <input type="text" name="currentPlatform" />
+        <input type="text" name="currentSiteUrl" />
+        <input type="text" name="domainStatus" />
+        <input type="text" name="portalGoal" />
+        <input type="text" name="toolDescription" />
+        <input type="text" name="inspirationSites" />
+        <input type="text" name="socialLinks" />
+        <input type="text" name="additionalNotes" />
+      </form>
+
       <section className="relative mx-auto max-w-3xl px-6 py-12 sm:px-10 sm:py-16">
         <p className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--ash-ink)]">Client Onboarding</p>
         <h1 className="mt-4 font-display text-3xl text-[var(--ash-ink)] sm:text-4xl [text-wrap:balance]">

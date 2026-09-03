@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
 import { Link } from "gatsby"
 import ashLogo from "../images/ashlogo.png"
+import manropeVariable from "../fonts/Manrope-VariableFont_wght.ttf"
 
 export const COMPANY_NAME = "Ashlyn Studio"
 
@@ -98,7 +99,15 @@ export const process = [
 export const accentCycle = ["var(--ash-accent)", "var(--ash-surface)"]
 
 const globalStyles = `
-  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Cormorant+Garamond:wght@500;600;700&family=Pinyon+Script&family=Space+Grotesk:wght@500;600;700&family=Playfair+Display:wght@500;600;700&family=Poppins:wght@400;500;600&family=Bodoni+Moda:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Quicksand:wght@500;600;700&family=Manrope:wght@500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Cormorant+Garamond:wght@500;600;700&family=Pinyon+Script&family=Space+Grotesk:wght@500;600;700&family=Playfair+Display:wght@500;600;700&family=Poppins:wght@400;500;600&family=Bodoni+Moda:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Quicksand:wght@500;600;700&display=swap');
+
+  @font-face {
+    font-family: 'Manrope';
+    src: url(${manropeVariable}) format('truetype-variations'), url(${manropeVariable}) format('truetype');
+    font-weight: 200 800;
+    font-style: normal;
+    font-display: swap;
+  }
 
   html, body, #___gatsby, #gatsby-focus-wrapper {
     background-color: var(--ash-bg);
@@ -110,7 +119,7 @@ const globalStyles = `
   .font-script { font-family: 'Manrope', sans-serif; font-weight: 500; }
   .font-menu { font-family: 'Manrope', sans-serif; font-weight: 500; }
   .font-mono { font-family: 'IBM Plex Mono', monospace; }
-  .font-body { font-family: 'Inter', sans-serif; }
+  .font-body { font-family: 'Manrope', sans-serif; font-weight: 400; }
 
   .menu-panel {
     background-color: var(--ash-white);
