@@ -2,7 +2,8 @@ import React, { useState, useRef } from "react"
 import Layout, { COMPANY_NAME } from "../components/Layout"
 
 const inputClass =
-  "w-full border border-[var(--ash-surface)] bg-[var(--ash-white)] px-4 py-3 font-body text-sm text-[var(--ash-ink)] placeholder:text-[var(--ash-ink)] outline-none transition-colors focus:border-[var(--ash-accent)]"
+  "w-full border bg-[var(--ash-white)] px-4 py-3 font-body text-sm text-[var(--ash-ink)] placeholder:text-[var(--ash-ink)]/50 outline-none transition-colors focus:border-[var(--ash-ink)]"
+const inputStyle = { borderColor: "#6E9AC9" }
 
 const imageAccept = "image/png, image/jpeg, image/jpg, image/webp, .png, .jpg, .jpeg, .webp"
 
@@ -15,7 +16,7 @@ const domainOptions = ["I have one", "I need help getting one", "Not sure yet"]
 function SectionHeading({ eyebrow, title }) {
   return (
     <div className="mb-6">
-      <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--ash-accent)]">{eyebrow}</p>
+      <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#6E9AC9]">{eyebrow}</p>
       <h2 className="mt-2 font-display text-2xl text-[var(--ash-ink)] sm:text-3xl">{title}</h2>
     </div>
   )
@@ -25,7 +26,7 @@ function Field({ label, hint, required, children }) {
   return (
     <div>
       <label className="mb-2 block font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]">
-        {label} {required && <span style={{ color: "var(--ash-accent)" }}>*</span>}
+        {label} {required && <span style={{ color: "#6E9AC9" }}>*</span>}
       </label>
       {hint && <p className="mb-2 text-xs text-[var(--ash-ink)]">{hint}</p>}
       {children}
@@ -45,11 +46,14 @@ function PillGroup({ options, value, onChange, name }) {
             role="radio"
             aria-checked={selected}
             onClick={() => onChange(option)}
-            className="rounded-full border px-4 py-2 font-mono text-xs uppercase tracking-[0.1em] transition-colors focus-visible:outline-none"
+            className={`rounded-full border px-4 py-2 font-mono text-xs uppercase tracking-[0.1em] transition-colors focus-visible:outline-none ${
+              selected
+                ? "text-[var(--ash-white)]"
+                : "text-[var(--ash-ink)] hover:bg-[#6E9AC9]/15"
+            }`}
             style={{
-              borderColor: "var(--ash-surface)",
-              backgroundColor: selected ? "var(--ash-accent)" : "transparent",
-              color: selected ? "var(--ash-white)" : "var(--ash-ink)",
+              borderColor: "#6E9AC9",
+              backgroundColor: selected ? "#6E9AC9" : "transparent",
             }}
           >
             {option}
@@ -65,14 +69,14 @@ function UploadIcon() {
     <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" aria-hidden="true">
       <path
         d="M12 16V4M12 4L7 9M12 4l5 5"
-        stroke="var(--ash-accent)"
+        stroke="#6E9AC9"
         strokeWidth="1.6"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
         d="M4 16v2.5A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5V16"
-        stroke="var(--ash-accent)"
+        stroke="#6E9AC9"
         strokeWidth="1.6"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -82,18 +86,44 @@ function UploadIcon() {
 }
 
 function UploadDropzone({ id, name, multiple, fileNames, onFilesChange }) {
+  const hasFiles = fileNames.length > 0
   return (
     <div>
       <label
         htmlFor={id}
-        className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed px-6 py-10 text-center transition-colors hover:bg-[var(--ash-surface-soft)]"
-        style={{ borderColor: "var(--ash-accent-2)", backgroundColor: "var(--ash-white)" }}
+        className={`flex cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl bg-[#F2F2F2] px-6 py-10 text-center transition-colors hover:bg-[#6E9AC9]/20 ${
+          hasFiles ? "border-2" : "border-2 border-dashed"
+        }`}
+        style={{ borderColor: "#6E9AC9" }}
       >
-        <UploadIcon />
+        {hasFiles ? (
+          <span
+            className="flex h-9 w-9 items-center justify-center rounded-full"
+            style={{ backgroundColor: "var(--ash-ink)" }}
+          >
+            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="var(--ash-white)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M4 12l5 5L20 6" />
+            </svg>
+          </span>
+        ) : (
+          <UploadIcon />
+        )}
         <p className="font-mono text-xs uppercase tracking-[0.1em] text-[var(--ash-ink)]">
-          Click to upload{multiple ? " or select multiple files" : ""}
+          {hasFiles
+            ? `${fileNames.length} file${fileNames.length > 1 ? "s" : ""} selected`
+            : "Click to upload"}
         </p>
+        {multiple && (
+          <p className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--ash-ink)]">
+            You can select more than one at once
+          </p>
+        )}
         <p className="text-xs text-[var(--ash-ink)]">PNG, JPG, or WEBP</p>
+        {hasFiles && (
+          <p className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--ash-ink)]">
+            Click to replace
+          </p>
+        )}
         <input
           id={id}
           name={name}
@@ -104,11 +134,15 @@ function UploadDropzone({ id, name, multiple, fileNames, onFilesChange }) {
           onChange={(e) => onFilesChange(Array.from(e.target.files || []))}
         />
       </label>
-      {fileNames.length > 0 && (
-        <ul className="mt-2 space-y-1">
+      {hasFiles && (
+        <ul className="mt-3 space-y-1.5">
           {fileNames.map((name) => (
-            <li key={name} className="font-mono text-xs text-[var(--ash-ink)]">
-              ✓ {name}
+            <li
+              key={name}
+              className="flex items-center gap-2 border px-3 py-2 font-mono text-xs text-[var(--ash-ink)]"
+              style={{ borderColor: "#6E9AC9", backgroundColor: "var(--ash-white)" }}
+            >
+              <span style={{ color: "#6E9AC9" }}>✓</span> {name}
             </li>
           ))}
         </ul>
@@ -235,7 +269,7 @@ export default function OnboardingPage() {
         <h1 className="mt-4 font-display text-3xl text-[var(--ash-ink)] sm:text-4xl [text-wrap:balance]">
           Let's get your project started
         </h1>
-        <span className="mt-3 block h-1 w-28 rounded-full bg-[var(--ash-accent-2)]" />
+        <span className="mt-3 block h-1 w-28 rounded-full bg-[#6E9AC9]" />
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-[var(--ash-ink)] sm:text-lg">
           The more you can share here, the less back-and-forth we'll need later. Nothing except
           the basics at the top is required, fill in whatever applies to your project and skip
@@ -243,7 +277,7 @@ export default function OnboardingPage() {
         </p>
 
         {submitted ? (
-          <div className="mt-14 border border-[var(--ash-surface)]/30 p-8" style={{ backgroundColor: "var(--ash-surface-soft)" }}>
+          <div className="mt-14 border border-[#6E9AC9]/30 p-8" style={{ backgroundColor: "#6E9AC9" }}>
             <p className="font-display text-2xl text-[var(--ash-ink)]">Thanks, {values.name.split(" ")[0]}.</p>
             <p className="mt-3 text-sm leading-relaxed text-[var(--ash-ink)]">
               We've got everything you sent over and will follow up soon at {values.email}.
@@ -257,7 +291,7 @@ export default function OnboardingPage() {
             encType="multipart/form-data"
             target="hidden-onboarding-iframe"
             onSubmit={handleFormSubmit}
-            className="mt-14 space-y-16"
+            className="mt-14 space-y-20 [&>div+div]:border-t [&>div+div]:border-[var(--ash-accent-2)] [&>div+div]:pt-20"
           >
             <input type="hidden" name="form-name" value="client-onboarding" />
 
@@ -267,25 +301,25 @@ export default function OnboardingPage() {
               <div className="space-y-6">
                 <div className="grid gap-6 sm:grid-cols-2">
                   <Field label="Your Name" required>
-                    <input type="text" name="name" value={values.name} onChange={handleChange("name")} placeholder="Jane Smith" className={inputClass} />
-                    {showErrors && !values.name.trim() && <p className="mt-1 font-mono text-xs" style={{ color: "var(--ash-accent)" }}>Required</p>}
+                    <input type="text" name="name" value={values.name} onChange={handleChange("name")} placeholder="Jane Smith" className={inputClass} style={inputStyle} />
+                    {showErrors && !values.name.trim() && <p className="mt-1 font-mono text-xs" style={{ color: "#6E9AC9" }}>Required</p>}
                   </Field>
                   <Field label="Business Name" required>
-                    <input type="text" name="businessName" value={values.businessName} onChange={handleChange("businessName")} placeholder="Your Business" className={inputClass} />
-                    {showErrors && !values.businessName.trim() && <p className="mt-1 font-mono text-xs" style={{ color: "var(--ash-accent)" }}>Required</p>}
+                    <input type="text" name="businessName" value={values.businessName} onChange={handleChange("businessName")} placeholder="Your Business" className={inputClass} style={inputStyle} />
+                    {showErrors && !values.businessName.trim() && <p className="mt-1 font-mono text-xs" style={{ color: "#6E9AC9" }}>Required</p>}
                   </Field>
                   <Field label="Email" required>
-                    <input type="email" name="email" value={values.email} onChange={handleChange("email")} placeholder="jane@business.com" className={inputClass} />
-                    {showErrors && !values.email.trim() && <p className="mt-1 font-mono text-xs" style={{ color: "var(--ash-accent)" }}>Required</p>}
+                    <input type="email" name="email" value={values.email} onChange={handleChange("email")} placeholder="jane@business.com" className={inputClass} style={inputStyle} />
+                    {showErrors && !values.email.trim() && <p className="mt-1 font-mono text-xs" style={{ color: "#6E9AC9" }}>Required</p>}
                   </Field>
                   <Field label="Phone (optional)">
-                    <input type="text" name="phone" value={values.phone} onChange={handleChange("phone")} placeholder="(555) 555-0100" className={inputClass} />
+                    <input type="text" name="phone" value={values.phone} onChange={handleChange("phone")} placeholder="(555) 555-0100" className={inputClass} style={inputStyle} />
                   </Field>
                 </div>
                 <Field label="What are we building?" required>
                   <input type="hidden" name="projectType" value={values.projectType} />
                   <PillGroup name="Project Type" options={projectTypeOptions} value={values.projectType} onChange={setField("projectType")} />
-                  {showErrors && !values.projectType && <p className="mt-2 font-mono text-xs" style={{ color: "var(--ash-accent)" }}>Required</p>}
+                  {showErrors && !values.projectType && <p className="mt-2 font-mono text-xs" style={{ color: "#6E9AC9" }}>Required</p>}
                 </Field>
               </div>
             </div>
@@ -331,7 +365,7 @@ export default function OnboardingPage() {
                     value={values.styleVibe}
                     onChange={handleChange("styleVibe")}
                     placeholder="Describe the look and feel you're going for"
-                    className={inputClass}
+                    className={inputClass} style={inputStyle}
                   />
                 </Field>
 
@@ -345,7 +379,7 @@ export default function OnboardingPage() {
                       value={values.colorScheme}
                       onChange={handleChange("colorScheme")}
                       placeholder="Hex codes, brand guide link, or just describe it"
-                      className={`${inputClass} mt-3`}
+                      className={`${inputClass} mt-3`} style={inputStyle}
                     />
                   )}
                 </Field>
@@ -357,20 +391,20 @@ export default function OnboardingPage() {
               <SectionHeading eyebrow="03" title="Content & Voice" />
               <div className="space-y-6">
                 <Field label="Company Description" hint="A few sentences about what your business does and who it's for.">
-                  <textarea name="companyDescription" value={values.companyDescription} onChange={handleChange("companyDescription")} rows={4} className={inputClass} />
+                  <textarea name="companyDescription" value={values.companyDescription} onChange={handleChange("companyDescription")} rows={4} className={inputClass} style={inputStyle} />
                   <input type="hidden" name="descriptionPreference" value={values.descriptionPreference} />
                   <div className="mt-3">
                     <PillGroup name="Description Preference" options={descriptionPrefOptions} value={values.descriptionPreference} onChange={setField("descriptionPreference")} />
                   </div>
                 </Field>
                 <Field label="About / About Me Section" hint="Your story, background, or whatever you'd want visitors to know about you or your team.">
-                  <textarea name="aboutMe" value={values.aboutMe} onChange={handleChange("aboutMe")} rows={4} className={inputClass} />
+                  <textarea name="aboutMe" value={values.aboutMe} onChange={handleChange("aboutMe")} rows={4} className={inputClass} style={inputStyle} />
                 </Field>
                 <Field label="Slogans or Taglines (optional)">
-                  <input type="text" name="slogans" value={values.slogans} onChange={handleChange("slogans")} placeholder="Any phrases you use or want to use" className={inputClass} />
+                  <input type="text" name="slogans" value={values.slogans} onChange={handleChange("slogans")} placeholder="Any phrases you use or want to use" className={inputClass} style={inputStyle} />
                 </Field>
                 <Field label="What's the Goal of the Company?" hint="This helps us make better design decisions, it won't necessarily appear on the site.">
-                  <textarea name="companyGoal" value={values.companyGoal} onChange={handleChange("companyGoal")} rows={3} className={inputClass} />
+                  <textarea name="companyGoal" value={values.companyGoal} onChange={handleChange("companyGoal")} rows={3} className={inputClass} style={inputStyle} />
                 </Field>
               </div>
             </div>
@@ -392,11 +426,11 @@ export default function OnboardingPage() {
                         value={values.currentPlatform}
                         onChange={handleChange("currentPlatform")}
                         placeholder="Shopify, Wix, Squarespace, etc."
-                        className={inputClass}
+                        className={inputClass} style={inputStyle}
                       />
                     </Field>
                     <Field label="Current Site URL">
-                      <input type="text" name="currentSiteUrl" value={values.currentSiteUrl} onChange={handleChange("currentSiteUrl")} placeholder="yourbusiness.com" className={inputClass} />
+                      <input type="text" name="currentSiteUrl" value={values.currentSiteUrl} onChange={handleChange("currentSiteUrl")} placeholder="yourbusiness.com" className={inputClass} style={inputStyle} />
                     </Field>
                   </div>
                 )}
@@ -414,12 +448,12 @@ export default function OnboardingPage() {
                 <div className="space-y-6">
                   {showPortalField && (
                     <Field label="Client Portal Goal" hint="What should clients be able to do with it, and what problem is it solving?">
-                      <textarea name="portalGoal" value={values.portalGoal} onChange={handleChange("portalGoal")} rows={3} className={inputClass} />
+                      <textarea name="portalGoal" value={values.portalGoal} onChange={handleChange("portalGoal")} rows={3} className={inputClass} style={inputStyle} />
                     </Field>
                   )}
                   {showToolField && (
                     <Field label="Internal Tool Description" hint="Describe what the tool needs to do for your team.">
-                      <textarea name="toolDescription" value={values.toolDescription} onChange={handleChange("toolDescription")} rows={3} className={inputClass} />
+                      <textarea name="toolDescription" value={values.toolDescription} onChange={handleChange("toolDescription")} rows={3} className={inputClass} style={inputStyle} />
                     </Field>
                   )}
                 </div>
@@ -431,13 +465,13 @@ export default function OnboardingPage() {
               <SectionHeading eyebrow={showSpecificsSection ? "06" : "05"} title="Anything Else" />
               <div className="space-y-6">
                 <Field label="Sites You Like" hint="Any websites, yours or someone else's, whose look or feel you'd want us to draw from.">
-                  <textarea name="inspirationSites" value={values.inspirationSites} onChange={handleChange("inspirationSites")} rows={3} className={inputClass} />
+                  <textarea name="inspirationSites" value={values.inspirationSites} onChange={handleChange("inspirationSites")} rows={3} className={inputClass} style={inputStyle} />
                 </Field>
                 <Field label="Social Media Links (optional)" hint="Helpful for pulling existing photos, tone, or content.">
-                  <input type="text" name="socialLinks" value={values.socialLinks} onChange={handleChange("socialLinks")} className={inputClass} />
+                  <input type="text" name="socialLinks" value={values.socialLinks} onChange={handleChange("socialLinks")} className={inputClass} style={inputStyle} />
                 </Field>
                 <Field label="Anything Else We Should Know?">
-                  <textarea name="additionalNotes" value={values.additionalNotes} onChange={handleChange("additionalNotes")} rows={4} className={inputClass} />
+                  <textarea name="additionalNotes" value={values.additionalNotes} onChange={handleChange("additionalNotes")} rows={4} className={inputClass} style={inputStyle} />
                 </Field>
               </div>
             </div>
@@ -445,7 +479,12 @@ export default function OnboardingPage() {
             <button
               type="submit"
               disabled={submitting}
-              className="btn-primary group inline-flex items-center gap-2 rounded-sm px-7 py-3 font-mono text-xs uppercase tracking-[0.15em] focus-visible:outline-none"
+              className="group inline-flex items-center gap-2 rounded-sm px-7 py-3 font-mono text-xs uppercase tracking-[0.15em] transition-colors focus-visible:outline-none"
+              style={{
+                backgroundColor: submitting ? "#B9CCE0" : "#6E9AC9",
+                color: "var(--ash-white)",
+                cursor: submitting ? "not-allowed" : "pointer",
+              }}
             >
               {submitting ? "Sending..." : "Submit"}
               <span className="btn-arrow">→</span>

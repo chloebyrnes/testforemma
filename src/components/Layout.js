@@ -1987,9 +1987,13 @@ function Nav({ currentPath }) {
   )
 }
 
-function Footer() {
+function Footer({ currentPath }) {
+  const isOnboarding = currentPath === "/onboarding"
   return (
-    <footer className="border-t border-[var(--ash-accent-2)] px-6 py-5 sm:px-10" style={{ backgroundColor: "var(--ash-surface-soft)" }}>
+    <footer
+      className="border-t border-[var(--ash-accent-2)] px-6 py-5 sm:px-10"
+      style={{ backgroundColor: isOnboarding ? "#6E9AC9" : "var(--ash-surface-soft)" }}
+    >
       <div className="mx-auto flex max-w-6xl items-center justify-center font-mono text-xs uppercase tracking-[0.15em] text-[var(--ash-ink)]">
         <span>{COMPANY_NAME}</span>
       </div>
@@ -2035,7 +2039,7 @@ export default function Layout({ children, currentPath = "/" }) {
       <style>{globalStyles}</style>
       <Nav currentPath={currentPath} />
       <div className="flex-1">{children}</div>
-      <Footer />
+      <Footer currentPath={currentPath} />
       <BackToTop />
     </main>
   )
