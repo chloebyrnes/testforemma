@@ -4,7 +4,7 @@
   needs to change. Every page and the shared Layout reference these variables
   instead of hardcoded hex codes.
 
-  Current palette: kept deliberately simple -- soft cream background, one
+  Current palette: kept deliberately simple -- white background, one
   consistent mint accent used everywhere (sections, borders, badges,
   buttons), black text, no color variation between elements.
 */
@@ -12,7 +12,7 @@
 :root {
   /* Core palette */
   --ash-ink: #111111;          /* near-black -- all text, no opacity fading */
-  --ash-bg: #F7F1DB;           /* soft cream -- page background, everywhere */
+  --ash-bg: #FFFFFF;           /* white -- page background, everywhere */
   --ash-surface: #E2EEEE;      /* mint -- section backgrounds */
   --ash-accent: #E2EEEE;       /* mint -- same color, buttons/badges/bars */
   --ash-accent-2: #E2EEEE;     /* mint -- same color, borders/highlights */

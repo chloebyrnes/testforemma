@@ -7,33 +7,24 @@ import Layout, {
   CornerMarks,
   StageIcon,
 } from "../components/Layout"
-import bannerVideo from "../videos/banner.mp4"
 
 function Hero() {
   return (
-    <section className="relative flex min-h-[560px] items-center overflow-hidden sm:min-h-[640px]">
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 h-full w-full object-cover"
-      >
-        <source src={bannerVideo} type="video/mp4" />
-      </video>
-      <div className="absolute inset-0 bg-black/35" />
-
+    <section
+      className="relative flex min-h-[560px] items-center overflow-hidden sm:min-h-[640px]"
+      style={{ backgroundColor: "#F2F2F2" }}
+    >
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 sm:py-20">
-        <p className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--ash-white)]">
+        <p className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--ash-ink)]">
           Design &amp; Development Studio
         </p>
-        <h1 className="mt-4 font-display text-2xl leading-[1.15] text-[var(--ash-white)] sm:text-3xl xl:whitespace-nowrap xl:text-3xl [text-wrap:balance]">
+        <h1 className="mt-4 font-display text-2xl leading-[1.15] text-[var(--ash-ink)] sm:text-3xl xl:whitespace-nowrap xl:text-3xl [text-wrap:balance]">
           Custom websites &amp; web applications, built around your business.
         </h1>
-        <p className="mt-3 font-script text-xl text-[var(--ash-white)] sm:text-2xl xl:whitespace-nowrap xl:text-2xl [text-wrap:balance]">
+        <p className="mt-3 font-script text-xl text-[var(--ash-ink)] sm:text-2xl xl:whitespace-nowrap xl:text-2xl [text-wrap:balance]">
           Your idea. Thoughtfully designed. Custom built.
         </p>
-        <p className="mt-6 max-w-xl text-base leading-relaxed text-[var(--ash-white)] sm:text-lg">
+        <p className="mt-6 max-w-xl text-base leading-relaxed text-[var(--ash-ink)] sm:text-lg">
           {COMPANY_NAME} is a design and development studio building custom websites, web
           applications, and digital tools around the way your business works. From the initial
           idea through strategy, UI/UX design, and development, we help shape your vision and
